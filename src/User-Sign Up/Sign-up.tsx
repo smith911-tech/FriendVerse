@@ -8,29 +8,26 @@ export default function Signup() {
     const BackToSignup = () => {
         navigate("/");
     };
-    
-    // ! phone number dropdown state
-    const [value, setValue] = useState("")
 
     // ! change input between email and phone number
-    const [changeInput, setChangeInput] = useState(true)
+    const [changeInput, setChangeInput] = useState<boolean>(true)
     const HandleChangeInput = () => {
         setChangeInput(!changeInput)
     }
 
     // ! show password
-    const [showPassword, setShowpassword] = useState(false)
+    const [showPassword, setShowpassword] = useState<boolean>(false)
     const HandleShowpassword = () => {
         setShowpassword(!showPassword)
     }
     // ! Input value
-    const [fullName, setFullName] = useState('');
-    const [email, setEmail] = useState('');
-    const [createpassword, setCreatePassword] = useState('');
-    const [phoneNumber, setPhonenumber] = useState('');
+    // const [fullName, setFullName] = useState<string>('');
+    // const [email, setEmail] = useState<string>('');
+    // const [createpassword, setCreatePassword] = useState<string>('');
+    const [phoneNumber, setPhonenumber] = useState<string>('');
 
     // ! error
-    const [error, setError] = useState('');
+    // const [error, setError] = useState('');
 
     //! Section change state && function 
     const [section, setSection] = useState(1);
@@ -80,7 +77,9 @@ export default function Signup() {
                     className="lg1280:h-11"
                     placeholder="Phone number"
                     value={phoneNumber}
-                    onChange={setPhonenumber}/>
+                    onChange={(e : any) => {
+                        setPhonenumber(e.target.value)
+                    }}/>
                     {/*end of  phone number drop down input */}
                     </div>
                     )}
