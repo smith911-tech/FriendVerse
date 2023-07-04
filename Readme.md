@@ -1,6 +1,8 @@
+Sure! I have added TypeScript to the list of technologies used in the README file. Here's the updated version:
+
 # FriendVerse
 
-Friend Verse is a social media platform that aims to connect people and foster meaningful relationships. It leverages the power of React.js, Tailwind CSS, Trello, Figma, and Firebase to provide users with a seamless and visually appealing social networking experience.
+Friend Verse is a social media platform that aims to connect people and foster meaningful relationships. It leverages the power of React.js, Tailwind CSS, Trello, Figma, Firebase, and TypeScript to provide users with a seamless and visually appealing social networking experience.
 
 ## Table of Contents
 - [Features](#features)
@@ -29,6 +31,7 @@ Friend Verse is a social media platform that aims to connect people and foster m
 - **Trello**: A project management tool that can be utilized for managing tasks, tracking progress, and collaborating on the development of Friend Verse.
 - **Figma**: A design and prototyping tool that helps create visually appealing user interfaces and collaborate on the design process.
 - **Firebase**: A comprehensive cloud-based platform by Google that offers various services for building and scaling web and mobile applications, including authentication, real-time database, and hosting.
+- **TypeScript**: A typed superset of JavaScript that compiles to plain JavaScript. It adds static type-checking and other features to enhance the development experience and catch errors early.
 
 ## Getting Started
 
@@ -43,15 +46,10 @@ To run Friend Verse locally or deploy it to a server, follow the steps below.
 
 2. Navigate to the project directory:
    ```shell || bash
-   cd FriendVerse
-   ```
-   
-3. Navigate to the project directory:
-   ```shell || bash
    cd friendv
    ```
    
-4. Install the dependencies:
+3. Install the dependencies:
    ```shell
    npm install
    ```
@@ -69,12 +67,11 @@ To run Friend Verse locally or deploy it to a server, follow the steps below.
 
 Contributions to Friend Verse are welcome! If you encounter any issues or have suggestions for improvement, please submit a pull request or open an issue on the project's repository.
 
-1. Fork the repository on GitHub.
-2. Clone your forked repository.
-3. Create a new branch for your feature or bug fix.
-4. Make changes and commit them with descriptive commit messages.
-5. Push your changes to your forked repository.
-6. Submit a pull request to the main repository.
+1. Clone the project.
+2. Create a new branch for your feature or bug fix.
+3. Make changes and commit them with descriptive commit messages.
+4. Push your changes.
+5. Submit a pull request to the main repository.
 
 
 ---
