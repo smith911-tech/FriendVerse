@@ -41,7 +41,7 @@ To run Friend Verse locally or deploy it to a server, follow the steps below.
 
 1. Clone the repository:
    ```shell
-   git clone https://github.com/your-username/friend-verse.git
+   git clone git@github.com:Friend-Verse/Friend-verse.git
    ```
 
 2. Navigate to the project directory:
