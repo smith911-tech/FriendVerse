@@ -11,7 +11,7 @@ import {
 } from "./Import";
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);

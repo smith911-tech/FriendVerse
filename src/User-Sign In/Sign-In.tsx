@@ -6,17 +6,17 @@ import 'react-phone-number-input/style.css'
 
 export default function SignIn() {
     // ! show password
-    const [showPassword, setShowpassword] = useState(false)
+    const [showPassword, setShowpassword] = useState<boolean>(false)
     const HandleShowpassword = () => {
         setShowpassword(!showPassword)
     }
     // ! change input between email and phone number
-    const [changeInput, setChangeInput] = useState(true)
+    const [changeInput, setChangeInput] = useState<boolean>(true)
     const HandleChangeInput = () => {
         setChangeInput(!changeInput)
     }
     // ! phone number dropdown state
-    const [value, setValue] = useState("")
+    const [phoneNumber, setPhonenumber] = useState<string>("");
     return (
         <main className="bg-[#1B1D21] h-[120vh] px-[29px] py-[61px] text-white w-full">
             <section className="bg-[black]  px-4 pb-28 sm500:w-[450px] block mx-auto my-0 md734:w-[80%] md734:pb-36 lg1440:w-[1000px] changePageanimation">
@@ -42,8 +42,10 @@ export default function SignIn() {
                     <PhoneInput
                     international
                     placeholder="Phone number"
-                    value={value}
-                    onChange={setValue}/>
+                    value={phoneNumber}
+                    onChange={(e: any) => {
+                        setPhonenumber(e.target.value);
+                    }}/>
                     {/*end of  phone number drop down input */}
                     </div>
                     
