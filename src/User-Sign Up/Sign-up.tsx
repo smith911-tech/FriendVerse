@@ -40,7 +40,7 @@ export default function Signup() {
     const [phoneNumber, setPhonenumber] = useState<string | undefined>()
 
     // ! error
-    const [error, setError] = useState("");
+    // const [error, setError] = useState("");
 
     const handlesubmit = (id: string) => {
         console.log(id)
