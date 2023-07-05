@@ -34,22 +34,24 @@ export default function Signup() {
         setSection(section - 1);
     };
     // ! Input value
-    // const [fullName, setFullName] = useState<string>('');
+    const [fullName, setFullName] = useState<string>('');
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
-    const [phoneNumber, setPhonenumber] = useState<string>("");
+    const [phoneNumber, setPhonenumber] = useState<string | undefined>()
 
     // ! error
     const [error, setError] = useState("");
 
-    const handlesubmit = (id: number) => {
+    const handlesubmit = (id: string) => {
         console.log(id)
         const authentication = auth;
-        if (id === 2) {
+        if (id) {
             createUserWithEmailAndPassword(authentication, email, password)
                 .then((response) => {
                     sessionStorage.setItem('AuthToken', response.user.refreshToken);
+                    sessionStorage.setItem("fullName", fullName)
                     console.log(response)
+                    navigate("/Homepage")
                 })
                 .catch((error) => {
                     console.log(error);
@@ -76,16 +78,16 @@ export default function Signup() {
                 </div>
                 <div className="flex justify-center gap-2">
                     <span
-                        className={`${section === 1 ? "bg-[#117DD5]" : "bg-[rgba(255,255,255,0.51)]"
-                            } py-[2.5px] w-[70px] md734:w-[90px] rounded-md`}
+                        className={`py-[2.5px] w-[70px] md734:w-[90px] rounded-md ${section === 1 ? "bg-[#117DD5]" : "bg-[rgba(255,255,255,0.51)]"
+                            } `}
                     ></span>
                     <span
-                        className={`${section === 2 ? "bg-[#117DD5]" : "bg-[rgba(255,255,255,0.51)]"
-                            } py-[2.5px] w-[70px] md734:w-[90px] rounded-md`}
+                        className={`py-[2.5px] w-[70px] md734:w-[90px] rounded-md ${section === 2 ? "bg-[#117DD5]" : "bg-[rgba(255,255,255,0.51)]"
+                            } `}
                     ></span>
                     <span
-                        className={`${section === 3 ? "bg-[#117DD5]" : "bg-[rgba(255,255,255,0.51)]"
-                            } py-[2.5px] w-[70px] md734:w-[90px] rounded-md`}
+                        className={` py-[2.5px] w-[70px] md734:w-[90px] rounded-md ${section === 3 ? "bg-[#117DD5]" : "bg-[rgba(255,255,255,0.51)]"
+                            }`}
                     ></span>
                 </div>
                 {/* first section */}
@@ -94,6 +96,10 @@ export default function Signup() {
                         <input
                             type="text"
                             className="bg-transparent border border-solid border-[#ffffffd5] h-10 px-4 w-full block mx-auto my-0 md734:w-[450px]  lg1280:h-11 mb-1"
+                            value={fullName}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                setFullName(e.target.value)
+                            }
                             placeholder="Full name"
                         />
                         <br />
@@ -101,6 +107,7 @@ export default function Signup() {
                             <input
                                 type="email"
                                 className="bg-transparent border border-solid border-[#ffffffd5] h-10 px-4 w-full block mx-auto my-0 md734:w-[450px]  lg1280:h-11 mb-1"
+                                value={email}
                                 placeholder="Email address"
                                 onChange={(e: ChangeEvent<HTMLInputElement>) =>
                                     setEmail(e.target.value)
@@ -114,9 +121,7 @@ export default function Signup() {
                                     className="lg1280:h-11"
                                     placeholder="Phone number"
                                     value={phoneNumber}
-                                    onChange={(e: any) => {
-                                        setPhonenumber(e.target.value);
-                                    }}
+                                    onChange={setPhonenumber}
                                 />
                                 {/*end of  phone number drop down input */}
                             </div>
@@ -142,6 +147,7 @@ export default function Signup() {
                                 name=""
                                 placeholder="Create Password"
                                 className="w-full bg-transparent border border-solid border-[#ffffffd5] h-10 px-4 mb-8 lg1280:h-11 "
+                                value={password}
                                 onChange={(e: ChangeEvent<HTMLInputElement>) =>
                                     setPassword(e.target.value)
                                 }
@@ -159,7 +165,7 @@ export default function Signup() {
                             )}
                         </div>
                         <button
-                            onClick={() => handlesubmit(2)}
+                            onClick={handleNextSection}
                             className="block mx-auto my-0 py-2 px-10  text-black bg-[#D9D9D9] rounded-[30px] font-sans font-bold select-none"
                         >
                             Next
@@ -235,7 +241,7 @@ export default function Signup() {
                             <input type="checkbox" name="" id="acknowledge" />
                         </div>
                         <br />
-                        <button className="block mx-auto my-0 py-2 px-10  text-black bg-[#D9D9D9] rounded-[30px] font-sans font-bold select-none">
+                        <button className="block mx-auto my-0 py-2 px-10  text-black bg-[#D9D9D9] rounded-[30px] font-sans font-bold select-none" onClick={() => handlesubmit("successFul")}>
                             Submit
                         </button>
                     </section>

@@ -8,6 +8,7 @@ import {
   Forgetpasword,
   Otp,
   Newpassword,
+  HomePage
 } from "./Import";
 
 function App() {
@@ -37,6 +38,8 @@ function App() {
             <Route path="/Otpverification" element={<Otp />} />
             {/* Create a new passowrd  */}
             <Route path="/Newpassword" element={<Newpassword />} />
+            {/* Home page */}
+            <Route path="/Homepage" element={<HomePage />}/>
           </Routes>
         </BrowserRouter>
       )}
