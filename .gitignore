@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 
 # web
-web/firebase-config.ts
+firebase-config.ts

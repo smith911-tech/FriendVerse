@@ -13,7 +13,7 @@ const firebaseConfig = {
   storageBucket: "friend-verse.appspot.com",
   messagingSenderId: "691190302930",
   appId: "1:691190302930:web:fff95f4f444222f0fa450b",
-  measurementId: "G-QZZYHCMPH3"
+  measurementId: "G-QZZYHCMPH3" 
 };
 
 // Initialize Firebase
