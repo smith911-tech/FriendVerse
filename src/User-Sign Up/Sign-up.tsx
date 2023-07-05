@@ -122,6 +122,7 @@ export default function Signup() {
                                     placeholder="Phone number"
                                     value={phoneNumber}
                                     onChange={setPhonenumber}
+                                    maxLength={16} 
                                 />
                                 {/*end of  phone number drop down input */}
                             </div>
