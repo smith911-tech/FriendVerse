@@ -21,13 +21,13 @@ export default function Signup() {
         setShowpassword(!showPassword)
     }
     // ! Input value
-    // const [fullName, setFullName] = useState<string>('');
-    // const [email, setEmail] = useState<string>('');
+    const [fullName, setFullName] = useState<string>('');
+    const [email, setEmail] = useState<string>('');
     // const [createpassword, setCreatePassword] = useState<string>('');
     const [phoneNumber, setPhonenumber] = useState<string>('');
 
     // ! error
-    // const [error, setError] = useState('');
+    const [error, setError] = useState('');
 
     //! Section change state && function 
     const [section, setSection] = useState(1);
