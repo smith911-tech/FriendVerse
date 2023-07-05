@@ -1,18 +1,18 @@
-import PhoneInput from 'react-phone-number-input'
-import 'react-phone-number-input/style.css'
-import { ChangeEvent, useState} from "react";
-interface Props{
-    fullName : string
-    setFullName : any
-    email : string
-    setEmail : any
-    password : string
-    setPassword : any
-    handleNextSection : () => void
-    phoneNumber: string | undefined
-    setPhonenumber: any
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
+import { ChangeEvent, useState } from "react";
+interface Props {
+    fullName: string;
+    setFullName: any;
+    email: string;
+    setEmail: any;
+    password: string;
+    setPassword: any;
+    handleNextSection: () => void;
+    phoneNumber: string | undefined;
+    setPhonenumber: any;
 }
-export default function FirstSection({ 
+export default function FirstSection({
     fullName,
     setFullName,
     email,
@@ -21,8 +21,8 @@ export default function FirstSection({
     setPassword,
     phoneNumber,
     handleNextSection,
-    setPhonenumber}: Props): JSX.Element{
-
+    setPhonenumber,
+}: Props): JSX.Element {
     // ! change input between email and phone number
     const [changeInput, setChangeInput] = useState<boolean>(true);
     const HandleChangeInput = () => {
@@ -34,7 +34,7 @@ export default function FirstSection({
     const HandleShowpassword = () => {
         setShowpassword(!showPassword);
     };
-    return(
+    return (
         <section className="flex flex-col mt-8 ">
             <input
                 type="text"
@@ -115,5 +115,5 @@ export default function FirstSection({
                 Next
             </button>
         </section>
-    )
+    );
 }
