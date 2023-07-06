@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import {  useState } from "react";
+import {  useState, useEffect } from "react";
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import {auth} from '../firebase-config'
 import FirstSection from "./FirstSection";
@@ -41,9 +41,19 @@ export default function Signup() {
     // const [error, setError] = useState("");
 
     // ! change input between email and phone number
-    const [changeInput, setChangeInput] = useState<boolean>(true);
+    const [changeInput, setChangeInput] = useState<boolean>(() => {
+        const storedValue = localStorage.getItem('EmailPasswordstate');
+        return storedValue ? JSON.parse(storedValue) : true;
+    });
+
+    //! Update local storage whenever the state changes
+    useEffect(() => {
+        localStorage.setItem('EmailPasswordstate', JSON.stringify(changeInput));
+    }, [changeInput]);
+
+    //! Function to toggle the boolean state
     const HandleChangeInput = () => {
-        setChangeInput(!changeInput);
+        setChangeInput(prevState => !prevState);
     };
 
     const handlesubmit = (id: string) => {
@@ -97,6 +107,7 @@ export default function Signup() {
                     isChecked={isChecked}
                     setIsChecked={setIsChecked}
                     handlesubmit={handlesubmit} 
+                    handlePreviousSection={handlePreviousSection}
                     />
                 )}
             </section>

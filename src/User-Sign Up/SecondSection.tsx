@@ -1,4 +1,3 @@
-import { ChangeEvent } from "react";
 interface Props {
     handleNextSection: () => void
     handlePreviousSection: () => void
@@ -26,7 +25,7 @@ export default function SecondSection({
                 id=""
                 className="w-full bg-[#ffffff62] border border-solid border-[#ffffffd5] h-10 px-4 mb-8 lg1280:h-11 mt-5 outline-none"
                 value={dataOfBirth}
-                onChange={(e: ChangeEvent<HTMLInputElement>) => setDateOfBirth(e.target.value)}
+                onChange={(e) => setDateOfBirth(e.target.value)}
             />
             <div className="flex justify-between">
                 <button
