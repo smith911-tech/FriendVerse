@@ -105,7 +105,8 @@ export default function Signup() {
                     setIsChecked={setIsChecked}
                     />
                 )}
-                <div className="flex justify-between">
+                {/* Buttons */}
+                <div className={`flex justify-between ${section === 2 ? "pb-24" : "pb-0"}`}>
                     <button
                     disabled={section === 1}
                         onClick={handlePreviousSection}
