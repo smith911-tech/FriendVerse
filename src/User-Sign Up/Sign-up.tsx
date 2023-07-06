@@ -6,9 +6,16 @@ import FirstSection from "./FirstSection";
 import SecondSection from "./SecondSection";
 import ThirdSection from "./ThirdSection";
 import MenuSection from "./MenuSection";
-import {FilldetailsError}  from "../Error-SuccessM";
+import {FilldetailsError, SuccessLoginM}  from "../Error-SuccessM";
 
 export default function Signup() {
+    // ! error message
+    const [error, setError] = useState<string | boolean>(false)
+
+    // ! Sucess message 
+    const [successFul, setSucessfull] = useState<string | boolean>(false)
+
+
     // ! Input value
     const [fullName, setFullName] = useState<string>('');
     const [email, setEmail] = useState<string>("");
@@ -23,7 +30,6 @@ export default function Signup() {
     const [section, setSection] = useState(1);
 
     // ! next section handle
-    const [Error, setError] = useState<string | boolean>(false)
     const handleNextSection = () => {
         if (
         (section === 1 && fullName !== "" && password !== "" && 
@@ -33,9 +39,14 @@ export default function Signup() {
         ){
             setSection(section + 1);
         }
-        if ((section === 1 && fullName === "" && password === "" && 
-            (changeInput ? email === "" : phoneNumber === "")) ||
-            (section === 2 && dateOfBirth === "")){
+        if ((section === 1 || fullName === "" || password === "" || 
+            (changeInput ? email === "" : phoneNumber === ""))){
+            setError("Please fill in all input ")
+            setTimeout(() => {
+                setError(false);
+            }, 3500);
+        }
+        if((section === 2 && dateOfBirth === "")){
             setError("Please fill in all input ")
             setTimeout(() => {
                 setError(false);
@@ -72,7 +83,11 @@ export default function Signup() {
                     sessionStorage.setItem('AuthToken', response.user.refreshToken);
                     sessionStorage.setItem("fullName", fullName)
                     console.log(response)
-                    navigate("/Homepage")
+                    setSucessfull("Login sucessfull")
+                    setTimeout(() => {
+                        navigate("/Homepage")
+                        setSucessfull(false)
+                    }, 3000)
                 })
                 .catch((error) => {
                     const errormessga = error.message
@@ -142,8 +157,11 @@ export default function Signup() {
                             </button>
                     )}
                 </div>
-                {Error && <FilldetailsError
-                    Error={Error}
+                {error && <FilldetailsError
+                    error={error}
+                />}
+                {successFul && <SuccessLoginM  
+                    successFul={successFul}
                 />}
             </section>
         </main>
