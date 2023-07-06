@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 export default function HomePage() {
+    const fullname = sessionStorage.getItem("fullName")
     const navigate = useNavigate();
     useEffect(() => {
         let authToken = sessionStorage.getItem('AuthToken')
@@ -12,8 +13,8 @@ export default function HomePage() {
         }
     }, [])
     return(
-        <>
-        Home PAGE
-        </>
+        <h2 className="text text-3xl">
+        Home PAGE {fullname}
+        </h2>
     )
 }
