@@ -16,7 +16,7 @@ export default function Signup() {
     const [successFul, setSucessfull] = useState<string | boolean>(false)
 
 
-    // ! Input value
+    // ! Input value 
     const [fullName, setFullName] = useState<string>('');
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
@@ -32,21 +32,21 @@ export default function Signup() {
     // ! next section handle
     const handleNextSection = () => {
         if (
-        (section === 1 && fullName !== "" && password !== "" && 
+        (section === 1 && fullName !== "" && password.length > 7 && 
         (changeInput ? email !== "" : phoneNumber !== "") ) || 
-        (section === 2 && dateOfBirth != "") || 
+        (section === 2 && dateOfBirth !== "") || 
         (section === 3 &&  isChecked)
         ){
             setSection(section + 1);
         }
-        if ((section === 1 || fullName === "" || password === "" || 
+        else if ((section === 1 || fullName === "" || password === "" || 
             (changeInput ? email === "" : phoneNumber === ""))){
             setError("Please fill in all input ")
             setTimeout(() => {
                 setError(false);
             }, 3500);
         }
-        if((section === 2 && dateOfBirth === "")){
+        else if((section === 2 && dateOfBirth === "")){
             setError("Please fill in all input ")
             setTimeout(() => {
                 setError(false);
