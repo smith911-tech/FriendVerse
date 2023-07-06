@@ -123,8 +123,9 @@ export default function Signup() {
                         </button>
                     ) : (
                             <button
+                            disabled={!isChecked}
                            onClick = {() => handlesubmit("successFul")}
-                                className="block mx-auto my-0 py-2 px-10  text-white bg-[#117DD5] rounded-[30px] font-sans font-bold select-none"
+                                className={`block mx-auto my-0 py-2 px-10  text-white  rounded-[30px] font-sans font-bold select-none ${isChecked ? "bg-[#117DD5]" : "bg-[#117dd554]"}`}
                             >
                                 Submit
                             </button>
