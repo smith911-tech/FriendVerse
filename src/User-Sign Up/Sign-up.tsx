@@ -86,7 +86,6 @@ export default function Signup() {
                     setEmail={setEmail}
                     password={password}
                     setPassword={setPassword}
-                    handleNextSection={handleNextSection}
                     phoneNumber={phoneNumber}
                     setPhonenumber={setPhonenumber}
                     changeInput ={changeInput}
@@ -97,19 +96,39 @@ export default function Signup() {
                 {section === 2 && (
                 <SecondSection 
                     dataOfBirth={dateOfBirth}
-                    setDateOfBirth={setDateOfBirth}
-                    handleNextSection={handleNextSection} 
-                    handlePreviousSection={handlePreviousSection}
+                    setDateOfBirth={setDateOfBirth} 
                     />
                 )}
                 {section === 3 && (
                     <ThirdSection 
                     isChecked={isChecked}
                     setIsChecked={setIsChecked}
-                    handlesubmit={handlesubmit} 
-                    handlePreviousSection={handlePreviousSection}
                     />
                 )}
+                <div className="flex justify-between">
+                    <button
+                    disabled={section === 1}
+                        onClick={handlePreviousSection}
+                        className={`block mx-auto my-0 py-2  text-black bg-[#D9D9D9] rounded-[30px] font-sans font-bold select-none ${section === 1 ? "bg-[#d9d9d952]" : "bg-[#D9D9D9]"} ${section === 3 ? "px-12" : "px-10"}`}
+                    >
+                        Prev
+                    </button>
+                    {section !== 3 ?(
+                        <button
+                            onClick={handleNextSection}
+                            className="block mx-auto my-0 py-2 px-10  text-white bg-[#117DD5] rounded-[30px] font-sans font-bold select-none"
+                        >
+                            Next
+                        </button>
+                    ) : (
+                            <button
+                           onClick = {() => handlesubmit("successFul")}
+                                className="block mx-auto my-0 py-2 px-10  text-white bg-[#117DD5] rounded-[30px] font-sans font-bold select-none"
+                            >
+                                Submit
+                            </button>
+                    )}
+                </div>
             </section>
         </main>
     );

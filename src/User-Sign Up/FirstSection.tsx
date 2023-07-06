@@ -8,7 +8,6 @@ interface Props{
     setEmail : any
     password : string
     setPassword : any
-    handleNextSection : () => void
     phoneNumber: string | undefined
     setPhonenumber: any
     changeInput : boolean
@@ -22,7 +21,6 @@ export default function FirstSection({
     password,
     setPassword,
     phoneNumber,
-    handleNextSection,
     setPhonenumber,
     changeInput,
     HandleChangeInput
@@ -109,12 +107,6 @@ export default function FirstSection({
                     ></i>
                 )}
             </div>
-            <button
-                onClick={handleNextSection}
-                className="block mx-auto my-0 py-2 px-10  text-black bg-[#D9D9D9] rounded-[30px] font-sans font-bold select-none"
-            >
-                Next
-            </button>
         </section>
     )
 }

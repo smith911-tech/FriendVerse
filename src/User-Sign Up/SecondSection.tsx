@@ -1,12 +1,8 @@
 interface Props {
-    handleNextSection: () => void
-    handlePreviousSection: () => void
     setDateOfBirth : any
     dataOfBirth: string
 }
 export default function SecondSection({
-    handleNextSection,
-    handlePreviousSection,
     setDateOfBirth,
     dataOfBirth,
     }: Props): JSX.Element {
@@ -27,20 +23,6 @@ export default function SecondSection({
                 value={dataOfBirth}
                 onChange={(e) => setDateOfBirth(e.target.value)}
             />
-            <div className="flex justify-between">
-                <button
-                    onClick={handlePreviousSection}
-                    className="block mx-auto my-0 py-2 px-10  text-black bg-[#D9D9D9] rounded-[30px] font-sans font-bold select-none"
-                >
-                    Prev
-                </button>
-                <button
-                    onClick={handleNextSection}
-                    className="block mx-auto my-0 py-2 px-10  text-white bg-[#117DD5] rounded-[30px] font-sans font-bold select-none"
-                >
-                    Next
-                </button>
-            </div>
         </section>
     )
 }

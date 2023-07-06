@@ -1,14 +1,10 @@
 interface Props {
-    handlesubmit: (id :string) => void 
     isChecked : boolean
     setIsChecked : any 
-    handlePreviousSection : () => void
 }
 export default function ThirdSection({
-    handlesubmit,
     isChecked,
     setIsChecked,
-    handlePreviousSection
 }: Props): JSX.Element {
 
     return (
@@ -56,18 +52,6 @@ export default function ThirdSection({
             </div>
             <br />
             <div className="flex justify-between">
-                <button
-                    onClick={handlePreviousSection}
-                    className="block mx-auto my-0 py-2 px-12  text-black bg-[#D9D9D9] rounded-[30px] font-sans font-bold select-none pa"
-                >
-                    Prev
-                </button>
-                <button
-                    onClick={() => handlesubmit("successFul")}
-                    className="block mx-auto my-0 py-2 px-10  text-white bg-[#117DD5] rounded-[30px] font-sans font-bold select-none"
-                >
-                    Submit
-                </button>
             </div>
         </section>
     )
