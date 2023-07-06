@@ -11,6 +11,8 @@ interface Props{
     handleNextSection : () => void
     phoneNumber: string | undefined
     setPhonenumber: any
+    changeInput : boolean
+    HandleChangeInput: () => void
 }
 export default function FirstSection({ 
     fullName,
@@ -21,13 +23,12 @@ export default function FirstSection({
     setPassword,
     phoneNumber,
     handleNextSection,
-    setPhonenumber}: Props): JSX.Element{
+    setPhonenumber,
+    changeInput,
+    HandleChangeInput
+}: Props): JSX.Element{
 
-    // ! change input between email and phone number
-    const [changeInput, setChangeInput] = useState<boolean>(true);
-    const HandleChangeInput = () => {
-        setChangeInput(!changeInput);
-    };
+
 
     // ! show password
     const [showPassword, setShowpassword] = useState<boolean>(false);
