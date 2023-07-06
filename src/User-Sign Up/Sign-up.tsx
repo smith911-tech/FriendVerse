@@ -31,28 +31,43 @@ export default function Signup() {
 
     // ! next section handle
     const handleNextSection = () => {
-        if (
-        (section === 1 && fullName !== "" && password.length > 7 && 
-        (changeInput ? email !== "" : phoneNumber !== "") ) || 
-        (section === 2 && dateOfBirth !== "") || 
-        (section === 3 &&  isChecked)
-        ){
-            setSection(section + 1);
+        switch (section) {
+            case 1:
+                if (
+                    fullName !== "" &&
+                    password.length > 7 &&
+                    (changeInput ? email !== "" : phoneNumber !== "")
+                ) {
+                    setSection(section + 1);
+                } else if (fullName === "" || (changeInput ? email === "" : phoneNumber === "")) {
+                    setError("Please fill in all input");
+                } else if (password.length < 7) {
+                    setError("Password must be at least 7 characters long");
+                }
+                break;
+            case 2:
+                if (dateOfBirth !== "") {
+                    setSection(section + 1);
+                } else {
+                    setError("Please fill in all input");
+                }
+                break;
+            case 3:
+                if (isChecked) {
+                    setSection(section + 1);
+                } else {
+                    setError("Please fill in all input");
+                }
+                break;
+            default:
+                break;
         }
-        else if ((section === 1 || fullName === "" || password === "" || 
-            (changeInput ? email === "" : phoneNumber === ""))){
-            setError("Please fill in all input ")
-            setTimeout(() => {
-                setError(false);
-            }, 3500);
-        }
-        else if((section === 2 && dateOfBirth === "")){
-            setError("Please fill in all input ")
-            setTimeout(() => {
-                setError(false);
-            }, 3500);
-        }
+
+        setTimeout(() => {
+            setError(false);
+        }, 3500);
     };
+
     // ! previous section handle
     const handlePreviousSection = () => {
         setSection(section - 1);
