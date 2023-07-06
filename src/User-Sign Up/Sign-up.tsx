@@ -94,6 +94,8 @@ export default function Signup() {
                 )}
                 {section === 3 && (
                     <ThirdSection 
+                    isChecked={isChecked}
+                    setIsChecked={setIsChecked}
                     handlesubmit={handlesubmit} 
                     />
                 )}

@@ -1,8 +1,12 @@
 interface Props {
-    handlesubmit: (id :string) => void
+    handlesubmit: (id :string) => void 
+    isChecked : boolean
+    setIsChecked : any 
 }
 export default function ThirdSection({
-    handlesubmit
+    handlesubmit,
+    isChecked,
+    setIsChecked,
 }: Props): JSX.Element {
 
     return (
@@ -40,7 +44,13 @@ export default function ThirdSection({
             <br />
             <div className="text- text-xs font-bold select-none">
                 <label htmlFor="acknowledge">I acknowledge</label>{" "}
-                <input type="checkbox" name="" id="acknowledge" />
+                <input 
+                type="checkbox" 
+                name="" 
+                id="acknowledge" 
+                checked={isChecked}
+                onChange={(e) => setIsChecked(e.target.checked)}
+                />
             </div>
             <br />
             <button className="block mx-auto my-0 py-2 px-10  text-black bg-[#D9D9D9] rounded-[30px] font-sans font-bold select-none" onClick={() => handlesubmit("successFul")}>
