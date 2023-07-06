@@ -8,6 +8,14 @@ import ThirdSection from "./ThirdSection";
 import MenuSection from "./MenuSection";
 
 export default function Signup() {
+    // ! Input value
+    const [fullName, setFullName] = useState<string>('');
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+    const [phoneNumber, setPhonenumber] = useState<string | undefined>()
+    const [dateOfBirth, setDateOfBirth] = useState<string>("")
+    const [isChecked, setIsChecked] = useState<boolean>(false)
+
     const navigate = useNavigate();
 
     //! Section change state && function
@@ -15,20 +23,28 @@ export default function Signup() {
 
     // ! next section handle
     const handleNextSection = () => {
-        setSection(section + 1);
+        if (
+        (section === 1 && fullName !== "" && password !== "" && (changeInput ? email !== "" : phoneNumber !== "") ) || 
+        (section === 2 && dateOfBirth != "") || 
+        (section === 3 &&  isChecked)
+        ) 
+        {
+            setSection(section + 1);
+        }
     };
     // ! previous section handle
     const handlePreviousSection = () => {
         setSection(section - 1);
     };
-    // ! Input value
-    const [fullName, setFullName] = useState<string>('');
-    const [email, setEmail] = useState<string>("");
-    const [password, setPassword] = useState<string>("");
-    const [phoneNumber, setPhonenumber] = useState<string | undefined>()
 
     // ! error
     // const [error, setError] = useState("");
+
+    // ! change input between email and phone number
+    const [changeInput, setChangeInput] = useState<boolean>(true);
+    const HandleChangeInput = () => {
+        setChangeInput(!changeInput);
+    };
 
     const handlesubmit = (id: string) => {
         console.log(id)
@@ -63,11 +79,15 @@ export default function Signup() {
                     handleNextSection={handleNextSection}
                     phoneNumber={phoneNumber}
                     setPhonenumber={setPhonenumber}
+                    changeInput ={changeInput}
+                    HandleChangeInput={HandleChangeInput}
                     />
                 )}
                 {/*end of first section */}
                 {section === 2 && (
                 <SecondSection 
+                    dataOfBirth={dateOfBirth}
+                    setDateOfBirth={setDateOfBirth}
                     handleNextSection={handleNextSection} 
                     handlePreviousSection={handlePreviousSection}
                     />

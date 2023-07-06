@@ -1,10 +1,15 @@
+import { ChangeEvent } from "react";
 interface Props {
     handleNextSection: () => void
     handlePreviousSection: () => void
+    setDateOfBirth : any
+    dataOfBirth: string
 }
 export default function SecondSection({
     handleNextSection,
-    handlePreviousSection
+    handlePreviousSection,
+    setDateOfBirth,
+    dataOfBirth,
     }: Props): JSX.Element {
 
     return (
@@ -20,6 +25,8 @@ export default function SecondSection({
                 name=""
                 id=""
                 className="w-full bg-[#ffffff62] border border-solid border-[#ffffffd5] h-10 px-4 mb-8 lg1280:h-11 mt-5 outline-none"
+                value={dataOfBirth}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setDateOfBirth(e.target.value)}
             />
             <div className="flex justify-between">
                 <button
