@@ -75,3 +75,17 @@ input::-webkit-calendar-picker-indicator {
     transform: translateY(0);
   }
 }
+
+/* ! Error container */
+.ErrorContainer{
+  animation: translateAnimation 0.5s ease-in-out;
+}
+@keyframes translateAnimation {
+  0% {
+        opacity: 0;
+  }
+
+  100% {
+        opacity: 1;
+  }
+}

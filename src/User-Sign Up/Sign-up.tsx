@@ -6,6 +6,7 @@ import FirstSection from "./FirstSection";
 import SecondSection from "./SecondSection";
 import ThirdSection from "./ThirdSection";
 import MenuSection from "./MenuSection";
+import {FilldetailsError}  from "../Error-SuccessM";
 
 export default function Signup() {
     // ! Input value
@@ -22,23 +23,29 @@ export default function Signup() {
     const [section, setSection] = useState(1);
 
     // ! next section handle
+    const [Error, setError] = useState<string | boolean>(false)
     const handleNextSection = () => {
         if (
-        (section === 1 && fullName !== "" && password !== "" && (changeInput ? email !== "" : phoneNumber !== "") ) || 
+        (section === 1 && fullName !== "" && password !== "" && 
+        (changeInput ? email !== "" : phoneNumber !== "") ) || 
         (section === 2 && dateOfBirth != "") || 
         (section === 3 &&  isChecked)
-        ) 
-        {
+        ){
             setSection(section + 1);
+        }
+        if ((section === 1 && fullName === "" && password === "" && 
+            (changeInput ? email === "" : phoneNumber === "")) ||
+            (section === 2 && dateOfBirth === "")){
+            setError("Please fill in all input ")
+            setTimeout(() => {
+                setError(false);
+            }, 3500);
         }
     };
     // ! previous section handle
     const handlePreviousSection = () => {
         setSection(section - 1);
     };
-
-    // ! error
-    // const [error, setError] = useState("");
 
     // ! change input between email and phone number
     const [changeInput, setChangeInput] = useState<boolean>(() => {
@@ -68,14 +75,18 @@ export default function Signup() {
                     navigate("/Homepage")
                 })
                 .catch((error) => {
-                    console.log(error);
+                    const errormessga = error.message
+                    setError(errormessga)
+                    setTimeout(() => {
+                        setError(false);
+                    }, 3500);
         });
         }
     }
 
     return (
         <main className="bg-[#1B1D21] h-[120vh] px-[29px] py-[61px] relative text-white w-full">
-            <section className="bg-[black]  px-4 pb-28 sm500:w-[450px] block mx-auto my-0 md734:w-[700px] md734:pb-36 relative changePageanimation">
+            <section className="bg-[black]  px-4 pb-28 sm500:w-[450px] block mx-auto my-0 md734:w-[680px] md734:pb-36 relative changePageanimation">
                 <MenuSection section={section}/>
                 {/* first section */}
                 {section === 1 && (
@@ -131,6 +142,9 @@ export default function Signup() {
                             </button>
                     )}
                 </div>
+                {Error && <FilldetailsError
+                    Error={Error}
+                />}
             </section>
         </main>
     );
