@@ -7,6 +7,7 @@ import SecondSection from "./SecondSection";
 import ThirdSection from "./ThirdSection";
 import MenuSection from "./MenuSection";
 import {FilldetailsError, SuccessLoginM}  from "../Error-SuccessM";
+import { ColorRing } from 'react-loader-spinner'
 
 export default function Signup() {
     // ! error message
@@ -23,6 +24,10 @@ export default function Signup() {
     const [phoneNumber, setPhonenumber] = useState<string | undefined>()
     const [dateOfBirth, setDateOfBirth] = useState<string>("")
     const [isChecked, setIsChecked] = useState<boolean>(false)
+    
+
+    // ! Submit preloader state
+    const [loader, setLoader] = useState<boolean>(false)
 
     const navigate = useNavigate();
 
@@ -99,6 +104,7 @@ export default function Signup() {
                     sessionStorage.setItem('AuthToken', response.user.refreshToken);
                     sessionStorage.setItem("fullName", fullName)
                     console.log(response)
+                    setLoader(true)
                     setSucessfull("Login sucessfull")
                     setTimeout(() => {
                         navigate("/Homepage")
@@ -108,6 +114,7 @@ export default function Signup() {
                 .catch((error) => {
                     const errormessga = error.message
                     setError(errormessga)
+                    setLoader(false)
                     setTimeout(() => {
                         setError(false);
                     }, 3500);
@@ -164,13 +171,22 @@ export default function Signup() {
                             Next
                         </button>
                     ) : (
-                            <button
+                             <button
                             disabled={!isChecked}
                            onClick = {() => handlesubmit("successFul")}
                                 className={`block mx-auto my-0 py-2 px-10  text-white  rounded-[30px] font-sans font-bold select-none ${isChecked ? "bg-[#117DD5]" : "bg-[#117dd554]"}`}
                             >
-                                Submit
-                            </button>
+                        {loader ? (
+                    <ColorRing
+                        visible={true}
+                        height="25"
+                        width="45"
+                        colors={['#FFFFFF', '#F0F0F0', '#FFD700', '#E84118', '#00FF00']}
+                    />
+                        ): (
+                        <span>Submit</span>
+                        )}
+                            </button> 
                     )}
                 </div>
                 {error && <FilldetailsError
