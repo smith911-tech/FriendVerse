@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
+import { FaEyeSlash, FaEye } from "react-icons/fa6"
 
 export default function SignIn() {
     // ! show password
@@ -80,15 +81,16 @@ export default function SignIn() {
                                 className="w-full bg-transparent border border-solid border-[#ffffffd5] h-10 px-4 mb-8 lg1280:h-11 "
                             />
                             {showPassword ? (
-                                <i
-                                    onClick={HandleShowpassword}
-                                    className="fa-regular fa-eye-slash absolute right-3 mt-3 cursor-pointer"
-                                ></i>
+                                <div
+                                    className='absolute right-3 mt-3 cursor-pointer'
+                                    onClick={HandleShowpassword}>
+                                    <FaEyeSlash />
+                                </div>
+
                             ) : (
-                                <i
-                                    onClick={HandleShowpassword}
-                                    className="fa-regular fa-eye absolute right-3 mt-3 cursor-pointer"
-                                ></i>
+                                <div className='absolute right-3 mt-3 cursor-pointer' onClick={HandleShowpassword}>
+                                    <FaEye />
+                                </div>
                             )}
                         </div>
                     </section>

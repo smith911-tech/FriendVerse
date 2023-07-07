@@ -1,6 +1,7 @@
 import PhoneInput from 'react-phone-number-input'
 import 'react-phone-number-input/style.css'
 import { ChangeEvent, useState } from "react";
+import {FaEyeSlash, FaEye} from "react-icons/fa6"
 interface Props {
     fullName: string
     setFullName: any
@@ -96,15 +97,16 @@ export default function FirstSection({
                     }
                 />
                 {showPassword ? (
-                    <i
-                        onClick={HandleShowpassword}
-                        className="fa-regular fa-eye-slash absolute right-3 mt-3 cursor-pointer"
-                    ></i>
+                    <div 
+                    className='absolute right-3 mt-3 cursor-pointer' 
+                    onClick={HandleShowpassword}>
+                        <FaEyeSlash />
+                    </div>
+                    
                 ) : (
-                    <i
-                        onClick={HandleShowpassword}
-                        className="fa-regular fa-eye absolute right-3 mt-3 cursor-pointer"
-                    ></i>
+                    <div className='absolute right-3 mt-3 cursor-pointer' onClick={HandleShowpassword}>
+                        <FaEye />
+                    </div>
                 )}
             </div>
         </section>

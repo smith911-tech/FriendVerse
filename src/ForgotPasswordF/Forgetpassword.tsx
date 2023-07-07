@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
+import { FaXmark } from "react-icons/fa6"
 export default function Forgetpasword() {
     //! back to signin page function
     const navigate = useNavigate();
@@ -22,10 +23,10 @@ export default function Forgetpasword() {
         <>
             <main className="bg-[#1B1D21] h-[100vh] px-[29px] py-[61px] text-white w-full">
                 <section className="bg-[black]  px-4 pb-28 sm500:w-[450px] block mx-auto my-0 md734:w-[600px] md734:pb-30  changePageanimation relative">
-                    <i
-                        onClick={BackToSignup}
-                        className="fa-solid fa-xmark absolute text-2xl top-3 cursor-pointer"
-                    ></i>
+                    <div className="absolute text-2xl top-3 cursor-pointer"
+                        onClick={BackToSignup}>
+                        <FaXmark />
+                    </div>
                     {/* Logo  */}
                     <div className="select-none">
                         <img

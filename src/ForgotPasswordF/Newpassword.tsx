@@ -1,5 +1,6 @@
 import Logo from "../assets/Logo.png";
 import { useState } from 'react'
+import { FaEyeSlash, FaEye } from "react-icons/fa6"
 export default function Newpassword() {
 
     // ! show password for the first input
@@ -37,15 +38,15 @@ export default function Newpassword() {
                         className="w-full bg-transparent border border-solid border-[#ffffffd5] h-10 px-4 mb-8 lg1280:h-11 "
                     />
                     {ShowFinputValue ? (
-                        <i
-                            onClick={HandleShowFinputValue}
-                            className="fa-regular fa-eye-slash absolute right-3 mt-3 cursor-pointer"
-                        ></i>
+                        <div className="absolute right-3 mt-3 cursor-pointer"
+                            onClick={ HandleShowFinputValue }>
+                        <FaEyeSlash /> 
+                        </div>
                     ) : (
-                        <i
-                            onClick={HandleShowFinputValue}
-                            className="fa-regular fa-eye absolute right-3 mt-3 cursor-pointer"
-                        ></i>
+                            <div className=" absolute right-3 mt-3 cursor-pointer"
+                                onClick={ HandleShowFinputValue }>
+                            <FaEye />
+                        </div>
                     )}
                 </div>
                 <div className="flex relative md734:w-[450px]  left-1/2 transform -translate-x-1/2">
@@ -56,15 +57,15 @@ export default function Newpassword() {
                         className="w-full bg-transparent border border-solid border-[#ffffffd5] h-10 px-4 mb-8 lg1280:h-11 "
                     />
                     {ShowSinputvalue ? (
-                        <i
-                            onClick={HandleShowSinputvalue}
-                            className="fa-regular fa-eye-slash absolute right-3 mt-3 cursor-pointer"
-                        ></i>
+                        <div className=" absolute right-3 mt-3 cursor-pointer"
+                            onClick={HandleShowSinputvalue}>
+                            <FaEyeSlash /> 
+                        </div>
                     ) : (
-                        <i
-                            onClick={HandleShowSinputvalue}
-                            className="fa-regular fa-eye absolute right-3 mt-3 cursor-pointer"
-                        ></i>
+                            <div className=" absolute right-3 mt-3 cursor-pointer"
+                            onClick={HandleShowSinputvalue}>
+                            <FaEye />
+                        </div>
                     )}
                 </div>
                 <button className="block mx-auto my-0 mt-1 py-2 px-10  text-black bg-[#D9D9D9] rounded-[10px] font-sans font-bold select-none hover:bg-[#117DD5]  hover:text-white hover:transition">

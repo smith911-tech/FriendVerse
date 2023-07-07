@@ -1,5 +1,6 @@
 import Logo from "../assets/Logo.png";
 import { useNavigate } from "react-router-dom";
+import {FaXmark} from "react-icons/fa6"
 interface Props {
     section: number
 }
@@ -13,10 +14,10 @@ export default function MenuSection({
 
     return (
     <>
-        <i
-                onClick={BackToSignup}
-                className="fa-solid fa-xmark absolute text-2xl top-3 cursor-pointer"
-            ></i>
+            <div className="absolute text-2xl top-3 cursor-pointer"
+            onClick={BackToSignup}>
+        <FaXmark />
+        </div>
             <div className="select-none">
                 <img
                     className="w-[100px] block mx-auto my-0 md734:w-[130px] lg1280:w-[150px]"
