@@ -89,3 +89,15 @@ input::-webkit-calendar-picker-indicator {
         opacity: 1;
   }
 }
+
+
+/* ! date of birth*/
+.SignupDate .react-date-picker {
+  background-color: white;
+  color: black;
+  height: 40px;
+  margin-top: 20px;
+  margin-bottom: 32px;
+  width: 100%;
+  outline: none;
+}

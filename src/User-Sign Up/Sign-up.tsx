@@ -21,7 +21,7 @@ export default function Signup() {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [phoneNumber, setPhonenumber] = useState<string | undefined>()
-    const [dateOfBirth, setDateOfBirth] = useState<string>("")
+    const [dateOfBirth, setDateOfBirth] = useState<any>(new Date())
     const [isChecked, setIsChecked] = useState<boolean>(false)
 
     const navigate = useNavigate();
