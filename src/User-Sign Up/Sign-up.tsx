@@ -14,7 +14,7 @@ export default function Signup() {
     const [error, setError] = useState<string | boolean>(false)
 
     // ! Sucess message 
-    const [successFul, setSuccessfull] = useState<string | boolean>(false)
+    const [successFul, setSuccessful] = useState<string | boolean>(false)
 
 
     // ! Input value 
@@ -71,32 +71,31 @@ export default function Signup() {
     };
 
 
-    const handlesubmit = (id: string) => {
-        console.log(id)
+    const handlesubmit = () => {
         const authentication = auth;
-        if (id) {
             createUserWithEmailAndPassword(authentication, email, password)
                 .then((response) => {
                     sessionStorage.setItem("fullName", fullName)
                     console.log(response)
                     setLoader(true)
-                    setSuccessfull("Login sucessfull")
+                    setSuccessful("Login successful")
                     const userid = response.user.uid
                     sessionStorage.setItem("UserId", userid)
                     setTimeout(() => {
                         navigate(`/Homepage`)
-                        setSuccessfull(false)
+                        setSuccessful(false)
                     }, 3000)
                 })
                 .catch((error) => {
-                    const errormessga = error.message
-                    setError(errormessga)
+
+                    if (error.code === "auth/email-already-in-use"){
+                        setError("Email already exist")
+                    }
                     setLoader(false)
                     setTimeout(() => {
                         setError(false);
                     }, 3500);
                 });
-        }
     }
 
     return (
@@ -146,7 +145,7 @@ export default function Signup() {
                     ) : (
                         <button
                             disabled={!isChecked}
-                            onClick={() => handlesubmit("successFul")}
+                            onClick={handlesubmit}
                             className={`block mx-auto my-0 py-2 px-10  text-white  rounded-[30px] font-sans font-bold select-none ${isChecked ? "bg-[#117DD5]" : "bg-[#117dd554]"}`}
                         >
                             {loader ? (
