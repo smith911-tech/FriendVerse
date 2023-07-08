@@ -126,11 +126,12 @@ export default function SignIn() {
 
                 {/* end of email, phone number and password input */}
                 <section className="select-none">
-                    <Link to="/Forgotpassword">
-                        <button className="block mx-auto my-7 border border-white border-solid py-1 rounded-[40px] px-6 font-bold lg1280:border-none lg1280:text-[#117DD5]">
+                    
+                    <button className="block mx-auto my-7 ">
+                        <Link className="border border-white border-solid py-2 rounded-[40px] px-6 font-bold lg1280:border-none lg1280:text-[#117DD5]" to="/Forgotpassword">
                             Forget password?
+                        </Link>
                         </button>
-                    </Link>
                     <p className="text-center font-bold ">
                         Don't have an Account?
                         <span className="text-[#117DD5] cursor-pointer">
