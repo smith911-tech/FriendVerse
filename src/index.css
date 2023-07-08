@@ -35,14 +35,17 @@ body {
 }
 
 /* ! phone numeber drop-down */
-.inputDrowndopDiv input {
+.inputDrowndopDiv  {
   color: white;
   background-color: transparent;
   border: solid 1px#ffffffd5;
-  height: 40px;
-  padding: 0 16px;
+  padding: 0 5px;
 }
-
+.inputDrowndopDiv input{
+  background-color: inherit;
+  outline: none;
+  height: 40px;
+}
 .inputDrowndopDiv option {
   color: black;
 }

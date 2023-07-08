@@ -1,5 +1,3 @@
-import PhoneInput from 'react-phone-number-input'
-import 'react-phone-number-input/style.css'
 import { ChangeEvent, useState } from "react";
 import {FaEyeSlash, FaEye} from "react-icons/fa6"
 interface Props {
@@ -9,10 +7,6 @@ interface Props {
     setEmail: any
     password: string
     setPassword: any
-    phoneNumber: string | undefined
-    setPhonenumber: any
-    changeInput: boolean
-    HandleChangeInput: () => void
 }
 export default function FirstSection({
     fullName,
@@ -21,10 +15,6 @@ export default function FirstSection({
     setEmail,
     password,
     setPassword,
-    phoneNumber,
-    setPhonenumber,
-    changeInput,
-    HandleChangeInput
 }: Props): JSX.Element {
 
 
@@ -46,7 +36,7 @@ export default function FirstSection({
                 placeholder="Full name"
             />
             <br />
-            {changeInput ? (
+
                 <input
                     type="email"
                     className="bg-transparent border border-solid border-[#ffffffd5] h-10 px-4 w-full block mx-auto my-0 md734:w-[450px]  lg1280:h-11 mb-1"
@@ -56,36 +46,9 @@ export default function FirstSection({
                         setEmail(e.target.value)
                     }
                 />
-            ) : (
-                <div className="inputDrowndopDiv  w-full block mx-auto my-0 md734:w-[450px]   mb-1">
-                    {/* phone number drop down input */}
-                    <PhoneInput
-                        international
-                        className="lg1280:h-11"
-                        placeholder="Phone number"
-                        value={phoneNumber}
-                        onChange={setPhonenumber}
-                        maxLength={16}
-                    />
-                    {/*end of  phone number drop down input */}
-                </div>
-            )}
-            {changeInput ? (
-                <p
-                    onClick={HandleChangeInput}
-                    className="text-right mb-4 text-[#117DD5] cursor-pointer font-seri font-semibold  md734:text-center md734:ml-60    text-sm select-none my-2"
-                >
-                    Use Phone Number instead
-                </p>
-            ) : (
-                <p
-                    onClick={HandleChangeInput}
-                    className="text-right mb-4 text-[#117DD5] cursor-pointer font-seri font-semibold  md734:text-center md734:ml-60    text-sm select-none my-2"
-                >
-                    Use Email address instead
-                </p>
-            )}
+                <br />
             <div className="flex relative md734:w-[450px]  left-1/2 transform -translate-x-1/2 ">
+                
                 <input
                     type={showPassword ? "text" : "password"}
                     name=""

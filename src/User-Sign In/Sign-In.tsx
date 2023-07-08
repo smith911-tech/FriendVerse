@@ -1,7 +1,6 @@
 import Logo from "../assets/Logo.png";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import PhoneInput from "react-phone-number-input";
+import { useState, ChangeEvent } from "react";
 import "react-phone-number-input/style.css";
 import { FaEyeSlash, FaEye } from "react-icons/fa6"
 
@@ -11,13 +10,10 @@ export default function SignIn() {
     const HandleShowpassword = () => {
         setShowpassword(!showPassword);
     };
-    // ! change input between email and phone number
-    const [changeInput, setChangeInput] = useState<boolean>(true);
-    const HandleChangeInput = () => {
-        setChangeInput(!changeInput);
-    };
-    // ! phone number dropdown state
-    const [phoneNumber, setPhonenumber] = useState<string | undefined>();
+
+    // ! input states
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
     return (
         <main className="bg-[#1B1D21] h-[120vh] px-[29px] py-[61px] text-white w-full">
             <section className="bg-[black]  px-4 pb-28 sm500:w-[450px] block mx-auto my-0 md734:w-[80%] md734:pb-36 lg1440:w-[1000px] changePageanimation">
@@ -35,50 +31,28 @@ export default function SignIn() {
                 {/* End of logo */}
                 <form action="">
                     <section className="flex flex-col justify-center lg1280:flex-row ">
-                        {/* email, phone number and password input */}
                         <div className="flex flex-col lg1280:w-[49%]">
-                            {changeInput ? (
-                                <input
-                                    type="email"
-                                    placeholder="Email Address"
-                                    className="bg-transparent border border-solid border-[#ffffffd5] h-10 px-4 w-full block mx-auto my-0 md734:w-[450px]  lg1280:h-11 mb-1"
-                                />
-                            ) : (
-                                <div className="inputDrowndopDiv  w-full block mx-auto my-0 md734:w-[450px]  lg1280:h-11 mb-1">
-                                    {/* phone number drop down input */}
-                                    <PhoneInput
-                                        international
-                                        placeholder="Phone number"
-                                        value={phoneNumber}
-                                        onChange={setPhonenumber}
-                                    />
-                                    {/*end of  phone number drop down input */}
-                                </div>
-                            )}
-                            {/* change of input text (email || phone number) */}
-                            {changeInput ? (
-                                <p
-                                    onClick={HandleChangeInput}
-                                    className="text-right mb-4 text-[#117DD5] cursor-pointer font-seri font-semibold  md734:text-center md734:ml-60  lg1280:text-right lg1280:mr-3 text-sm select-none"
-                                >
-                                    Use phone number instead
-                                </p>
-                            ) : (
-                                <p
-                                    onClick={HandleChangeInput}
-                                    className="text-right mb-4 text-[#117DD5] cursor-pointer font-seri font-semibold  md734:text-center md734:ml-60  lg1280:text-right lg1280:mr-3 text-sm select-none "
-                                >
-                                    Use email address instead
-                                </p>
-                            )}
-                            {/*end of  change of input text (email || phone number) */}
+                            <input
+                                type="email"
+                                placeholder="Email Address"
+                                className="bg-transparent border border-solid border-[#ffffffd5] h-10 px-4 w-full block mx-auto my-0 md734:w-[450px]  lg1280:h-11 mb-1"
+                                value={email}
+                                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                    setEmail(e.target.value)
+                                }
+                            />
                         </div>
+                        <br />
                         <div className="flex relative md734:w-[450px]  left-1/2 transform -translate-x-1/2 lg1280:left-0 lg1280:translate-x-0 lg1280:w-[49%]">
                             <input
                                 type={showPassword ? "text" : "password"}
                                 name=""
                                 placeholder="Password"
                                 className="w-full bg-transparent border border-solid border-[#ffffffd5] h-10 px-4 mb-8 lg1280:h-11 "
+                                value={password}
+                                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                    setPassword(e.target.value)
+                                }
                             />
                             {showPassword ? (
                                 <div

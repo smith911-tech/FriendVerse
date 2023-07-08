@@ -21,7 +21,6 @@ export default function SecondSection({
             <DatePicker 
             value={dataOfBirth} 
             onChange={setDateOfBirth} 
-            autoFocus
             disableCalendar
             showLeadingZeros
             dayPlaceholder='dd'

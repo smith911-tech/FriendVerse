@@ -4,11 +4,11 @@ export default function HomePage() {
     const fullname = sessionStorage.getItem("fullName")
     const navigate = useNavigate();
     useEffect(() => {
-        let authToken = sessionStorage.getItem('AuthToken')
-        if (authToken) {
-            navigate('/Homepage')
+        let userid = sessionStorage.getItem('UserId')
+        if (userid) {
+            navigate(`/Homepage`)
         }
-        else if (!authToken) {
+        else if (!userid) {
             navigate('/')
         }
     }, [])
@@ -18,3 +18,18 @@ export default function HomePage() {
         </h2>
     )
 }
+
+// import React from 'react';
+// import { auth } from './firebase';
+// import { useAuthState } from 'react-firebase-hooks/auth';
+// import Login from './login';
+// import Mainpage from './main';
+
+// function App() {
+//     const [user] = useAuthState(auth);
+//     return (
+//         user ? <Mainpage /> : <Login />
+//     );
+// }
+
+// export default App;
