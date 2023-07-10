@@ -79,7 +79,7 @@ export default function Signup() {
         const firstName = fullName.split(' ')[0];
         const generatedUsername = `@${firstName.toLowerCase()}`;
         const randomNumber = Math.floor(Math.random() * 100); 
-        const finalUsername = `${generatedUsername}${randomNumber}`;
+        const finalUsername = `${generatedUsername}  ${randomNumber}`;
         setUsername(finalUsername);
         console.log(userName)
     };
@@ -87,28 +87,28 @@ export default function Signup() {
     const handlesubmit = () => {
         const authentication = auth;
             createUserWithEmailAndPassword(authentication, email, password)
-                .then((response) => {
+                .then(async (response) => {
                     console.log(response)
                     setLoader(true)
                     setSuccessful("Login successful")
                     const userid = response.user.uid
                     sessionStorage.setItem("UserId", userid)
-                    
                     setTimeout(() => {
                         navigate(`/Homepage`)
                         setSuccessful(false)
                     }, 3000)
-                        const docRef = addDoc(collection(db, "users"), {
-                            dateOfBirth: dateOfBirth,
-                            username: userName,
-                            fullName: fullName,
-                            email: email,
-                            id: userid,
-                        })
-                    console.log("Document written with ID: ", docRef);
-                })
+                        try {
+                            const docRef = await addDoc(collection(db, "users"), {
+                                dateOfBirth: dateOfBirth,
+                                username: userName,
+                                fullName: fullName,
+                                email: email,
+                            })
+                            console.log("Document written with ID: ", docRef.id);
+                        } catch (e) {
+                            console.error("Error adding document: ", e);
+                        }})
                 .catch((error) => {
-
                     if (error.code === "auth/email-already-in-use"){
                         setError("Email already exist")
                     }
