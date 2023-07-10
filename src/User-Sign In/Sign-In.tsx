@@ -31,8 +31,7 @@ export default function SignIn() {
     const [loader, setLoader] = useState<boolean>(false)
 
     // ! SignIn Button
-    const handleLogIn = (e: any) => {
-        e.preventDefault
+    const handleLogIn = () => {
         const authentication = auth;
         signInWithEmailAndPassword(authentication, email, password)
             .then((response) => {

@@ -8,6 +8,9 @@ import ThirdSection from "./ThirdSection";
 import MenuSection from "./MenuSection";
 import { FilldetailsError, SuccessLoginM } from "../Error-SuccessM";
 import { ColorRing } from 'react-loader-spinner'
+import { addDoc, collection } from "firebase/firestore";
+import {db} from '../firebase-config'
+
 
 export default function Signup() {
     // ! error message
@@ -23,6 +26,7 @@ export default function Signup() {
     const [password, setPassword] = useState<string>("");
     const [dateOfBirth, setDateOfBirth] = useState<string>("")
     const [isChecked, setIsChecked] = useState<boolean>(false)
+    const [userName, setUsername] = useState<string>("")
 
 
     // ! Submit preloader state
@@ -51,6 +55,7 @@ export default function Signup() {
             case 2:
                 if (dateOfBirth !== "") {
                     setSection(section + 1)
+                    generateUsername()
                 }
                 else {
                     setError("Please fill in all input");
@@ -59,7 +64,6 @@ export default function Signup() {
             default:
                 break;
         }
-
         setTimeout(() => {
             setError(false);
         }, 3500);
@@ -70,21 +74,38 @@ export default function Signup() {
         setSection(section - 1);
     };
 
+    // ! Generating a userName
+    const generateUsername = () => {
+        const firstName = fullName.split(' ')[0];
+        const generatedUsername = `@${firstName.toLowerCase()}`;
+        const randomNumber = Math.floor(Math.random() * 100); 
+        const finalUsername = `${generatedUsername}${randomNumber}`;
+        setUsername(finalUsername);
+        console.log(userName)
+    };
 
     const handlesubmit = () => {
         const authentication = auth;
             createUserWithEmailAndPassword(authentication, email, password)
                 .then((response) => {
-                    sessionStorage.setItem("fullName", fullName)
                     console.log(response)
                     setLoader(true)
                     setSuccessful("Login successful")
                     const userid = response.user.uid
                     sessionStorage.setItem("UserId", userid)
+                    
                     setTimeout(() => {
                         navigate(`/Homepage`)
                         setSuccessful(false)
                     }, 3000)
+                        const docRef = addDoc(collection(db, "users"), {
+                            dateOfBirth: dateOfBirth,
+                            username: userName,
+                            fullName: fullName,
+                            email: email,
+                            id: userid,
+                        })
+                    console.log("Document written with ID: ", docRef);
                 })
                 .catch((error) => {
 
