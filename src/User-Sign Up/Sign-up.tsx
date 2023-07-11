@@ -26,7 +26,7 @@ export default function Signup() {
     const [isChecked, setIsChecked] = useState<boolean>(false);
     const [userName, setUsername] = useState<string>("");
 
-    // ! Submit preloader state
+    // ! Submit preloader state      
     const [loader, setLoader] = useState<boolean>(false);
 
     const navigate = useNavigate();

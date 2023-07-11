@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 interface Props {
     isChecked : boolean
     setIsChecked : any 
@@ -22,12 +23,12 @@ export default function ThirdSection({
             </p>
             <br />
             <p className="text-[#ffffff9b] text-sm font-normal">
-                By signing up, you agree to our
-                <span className="text-[#117DD5] cursor-pointer">Terms</span>,
-                <span className="text-[#117DD5] cursor-pointer">
-                    Privacy Policy
+                By signing up, you agree to our  
+                <Link to="/T&C" className="text-[#117DD5] cursor-pointer"> Terms, </Link>
+                <span className="text-[#117DD5] cursor-pointer"> 
+                        Privacy Policy
                 </span>
-                , and
+                , and {" "}
                 <span className="text-[#117DD5] cursor-pointer">
                     Cookie Use
                 </span>

@@ -9,6 +9,7 @@ import {
     Otp,
     Newpassword,
     HomePage,
+    TermsandCondition,
 } from "./Import";
 
 function App() {
@@ -26,12 +27,16 @@ function App() {
             ) : (
                 <BrowserRouter>
                     <Routes>
+
                         {/*  Sigin In page */}
                         <Route path="/" element={<SignIn />} />
+
                         {/* Sign Up page */}
                         <Route path="/Siginup" element={<Signup />} />
+
                         {/* 404 error */}
                         <Route path="*" element={<Page404 />} />
+
                         {/* forgotpassword */}
                         <Route
                             path="/Forgotpassword"
@@ -39,10 +44,15 @@ function App() {
                         />
                         {/* Otp page */}
                         <Route path="/Otpverification" element={<Otp />} />
+
                         {/* Create a new passowrd  */}
                         <Route path="/Newpassword" element={<Newpassword />} />
+
                         {/* Home page */}
                         <Route path="/Homepage" element={<HomePage />} />
+
+                        {/*  TermsandCondition */}
+                        <Route path='/T&C' element={<TermsandCondition />} />
                     </Routes>
                 </BrowserRouter>
             )}

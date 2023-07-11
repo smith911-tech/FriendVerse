@@ -5,6 +5,7 @@ import Forgetpasword from "./ForgotPasswordF/Forgetpassword";
 import Otp from "./ForgotPasswordF/Otp";
 import Newpassword from "./ForgotPasswordF/Newpassword";
 import HomePage from "./Home Comp/HomePage";
+import TermsandCondition from "./Terms & condition/Terms";
 
 export {
     SignIn,
@@ -13,5 +14,6 @@ export {
     Forgetpasword,
     Otp,
     Newpassword,
-    HomePage
+    HomePage,
+    TermsandCondition
 }
