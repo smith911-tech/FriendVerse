@@ -24,10 +24,10 @@ export default function ThirdSection({
             <br />
             <p className="text-[#ffffff9b] text-sm font-normal">
                 By signing up, you agree to our  
-                <Link to="/T&C" className="text-[#117DD5] cursor-pointer"> Terms, </Link>
-                <span className="text-[#117DD5] cursor-pointer"> 
+                <Link target="_blank" to="/T&C" className="text-[#117DD5] cursor-pointer"> Terms, </Link>
+                <Link to='/PrivacyPolicy' className="text-[#117DD5] cursor-pointer"> 
                         Privacy Policy
-                </span>
+                </Link>
                 , and {" "}
                 <span className="text-[#117DD5] cursor-pointer">
                     Cookie Use

@@ -10,6 +10,7 @@ import {
     Newpassword,
     HomePage,
     TermsandCondition,
+    Privacy
 } from "./Import";
 
 function App() {
@@ -53,6 +54,9 @@ function App() {
 
                         {/*  TermsandCondition */}
                         <Route path='/T&C' element={<TermsandCondition />} />
+
+                        {/* privacy */}
+                        <Route path="/PrivacyPolicy" element={< Privacy />} />
                     </Routes>
                 </BrowserRouter>
             )}

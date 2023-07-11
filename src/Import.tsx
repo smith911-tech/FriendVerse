@@ -6,6 +6,7 @@ import Otp from "./ForgotPasswordF/Otp";
 import Newpassword from "./ForgotPasswordF/Newpassword";
 import HomePage from "./Home Comp/HomePage";
 import TermsandCondition from "./Terms & condition/Terms";
+import Privacy from "./Privacy/Privacy";
 
 export {
     SignIn,
@@ -15,5 +16,6 @@ export {
     Otp,
     Newpassword,
     HomePage,
-    TermsandCondition
+    TermsandCondition,
+    Privacy,
 }
