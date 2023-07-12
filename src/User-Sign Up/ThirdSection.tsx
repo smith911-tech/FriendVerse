@@ -24,8 +24,8 @@ export default function ThirdSection({
             <br />
             <p className="text-[#ffffff9b] text-sm font-normal">
                 By signing up, you agree to our  
-                <Link target="_blank" to="/T&C" className="text-[#117DD5] cursor-pointer"> Terms, </Link>
-                <Link to='/PrivacyPolicy' className="text-[#117DD5] cursor-pointer"> 
+                <Link target="blank" to="/T&C" className="text-[#117DD5] cursor-pointer"> Terms, </Link>
+                <Link target="blank" to='/PrivacyPolicy' className="text-[#117DD5] cursor-pointer"> 
                         Privacy Policy
                 </Link>
                 , and {" "}
@@ -34,10 +34,10 @@ export default function ThirdSection({
                 </span>
                 . Friend Verse may use your contact information, including your
                 email address and phone number for purposes outlined in our
-                <span className="text-[#117DD5] cursor-pointer">
+                <Link target="blank" to='/PrivacyPolicy' className="text-[#117DD5] cursor-pointer">
                     {" "}
                     Privacy Policy
-                </span>
+                </Link>
                 .
             </p>
             <br />

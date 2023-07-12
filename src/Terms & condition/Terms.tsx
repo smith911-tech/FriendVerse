@@ -1,7 +1,7 @@
 import BackGroundImg from '../assets/T&C/terms and conditions.jpg'
 import Logo from "../assets/Logo2.png";
 import { Link } from 'react-router-dom';
-import { WiDaySunny, WiMoonWaxingCrescent3 } from "react-icons/wi";
+import { BsMoonStarsFill, BsFillSunFill } from 'react-icons/bs'
 import { useState } from "react";
 
 
@@ -11,9 +11,9 @@ export default function TermsandCondition() {
         setLightdarkM(!LightdarkM)
     } 
     return (
-        <main className={` ${LightdarkM ? "bg-white text-black" : "bg-black text-white"} `}>
-            <nav className={` ${LightdarkM ? "bg-[white]" : "bg-[black]"} flex fixed w-full shadow-2xl md734:pt-6 py-4 px-3 md734:px-6 justify-between`}>
-                <div className={`flex gap-1  font-serif ${LightdarkM ? "text-black" : "text-white"}`}>
+        <main className={` ${LightdarkM ? "bg-white text-black color-Toggle" : "bg-black text-white  color-Toggle"} `}>
+            <nav className={` ${LightdarkM ? "bg-[white]  color-Toggle" : "bg-[black]  color-Toggle"} flex fixed w-full shadow-2xl md734:pt-6 py-4 px-3 md734:px-6 justify-between`}>
+                <div className={`flex gap-1  font-serif ${LightdarkM ? "text-black color-Toggle" : "text-white color-Toggle"}`}>
                     <img src={Logo} alt="" className='w-[40px] md734:w-[50px]  select-none' />
                     <h2 className='font-bold  mt-2 md734:hidden'>T&C</h2>
                     <h2 className='font-semibold mt-2 hidden md734:inline-block md734:text-2xl'>
@@ -22,19 +22,19 @@ export default function TermsandCondition() {
                 </div>
                 <div>
                     {LightdarkM ? (
-                        <span className='text-3xl cursor-pointer' onClick={handlemode}>
-                            <WiDaySunny />
+                        <span className='text-3xl cursor-pointer color-Toggle' onClick={handlemode}>
+                            <BsMoonStarsFill />
                         </span>
                     ) : (
-                        <span className='text-3xl cursor-pointer ' onClick={handlemode}>
-                            <WiMoonWaxingCrescent3 />
+                            <span className='text-3xl cursor-pointer color-Toggle' onClick={handlemode}>
+                                <BsFillSunFill />
                         </span>
                     )}
                 </div>
             </nav>
             <section className='pb-7'>
                 <img src={BackGroundImg} alt="" className='pt-[70px] w-full select-none' />
-                <h2 className={`text-center py-10 font-bold font-serif ${LightdarkM ? "bg-black text-white" : "bg-white text-black"}`}>Effective: July 11, 2023 </h2>
+                <h2 className={`text-center py-10 font-bold font-serif ${LightdarkM ? "bg-black text-white  color-Toggle" : "bg-white text-black  color-Toggle"}`}>Effective: July 11, 2023 </h2>
             </section>
             <section className='px-2 md734:px-[10%]'>
                 <h2 className='font-bold text-3xl font-serif border-b-2 pb-4'>
