@@ -16,7 +16,12 @@ export default {
         'lg1440': '1440px',
       // => @media (min-width: 1440px) { ... }
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        "Belanosima": ['Belanosima', "sans-serif"],
+        "Inter": [ 'Inter', "sans-serif"]
+      }
+    },
   },
   plugins: [],
 }

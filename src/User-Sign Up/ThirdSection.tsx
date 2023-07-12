@@ -9,7 +9,7 @@ export default function ThirdSection({
 }: Props): JSX.Element {
 
     return (
-        <section className="flex flex-col mt-8  md734:px-24 font-sans">
+        <section className="flex flex-col mt-8  md734:px-24 font-Inter">
             <h2 className="text-lg font-bold ">
                 Personalize your experience
             </h2>
