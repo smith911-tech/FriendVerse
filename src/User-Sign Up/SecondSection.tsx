@@ -16,7 +16,7 @@ export default function SecondSection({
                 This will not be shown publicly. Confirm your own age, even if
                 this account is for a business, a pet, or something else.
                 <br />
-                <span className='text-[#d70101]'>Note</span> User must be above 3 Years
+                <span className='text-[#d70101]'>Note</span> User must be above 13 Years
             </p>
             <DatePicker 
             value={dataOfBirth} 
@@ -26,8 +26,8 @@ export default function SecondSection({
             dayPlaceholder='dd'
             monthPlaceholder='mm'
             yearPlaceholder='yyyy'
-            minDate={new Date("01-01-1900")}
-            maxDate={new Date("01-01-2020")}
+            minDate={new Date("01-01-1800")}
+            maxDate={new Date("01-01-2010")}
             />
         </section>
     )
