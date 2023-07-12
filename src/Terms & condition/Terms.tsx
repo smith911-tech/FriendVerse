@@ -11,7 +11,7 @@ export default function TermsandCondition() {
         setLightdarkM(!LightdarkM)
     } 
     return (
-        <main className={` ${LightdarkM ? "bg-white text-black color-Toggle" : "bg-black text-white  color-Toggle"} font-Inter `}>
+        <main className={` ${LightdarkM ? "bg-white text-black color-Toggle" : "bg-black text-[#ffffffc4]  color-Toggle"} font-Inter `}>
             <nav className={` ${LightdarkM ? "bg-[white]  color-Toggle" : "bg-[black]  color-Toggle"} flex fixed w-full shadow-2xl md734:pt-6 py-4 px-3 md734:px-6 justify-between`}>
                 <div className={`flex gap-1   ${LightdarkM ? "text-black color-Toggle" : "text-white color-Toggle"}`}>
                     <img src={Logo} alt="" className='w-[40px] md734:w-[50px]  select-none' />
