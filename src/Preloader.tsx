@@ -5,4 +5,4 @@ export default function Preloader() {
           <img src={logo} alt="Logo" className="preloader-spinner" />
         </div>
   );
-}
+}        

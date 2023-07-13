@@ -1,13 +1,17 @@
 import Logo from "../assets/Logo2.png";
 import { BsMoonStarsFill, BsFillSunFill } from "react-icons/bs";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import BackGroundImg from "../assets/privacy policy/privacypolicyBGimg.jpg";
 
 export default function Privacy() {
-    const [LightdarkM, setLightdarkM] = useState<boolean>(true);
+    const [LightdarkM, setLightdarkM] = useState<boolean>(
+        localStorage.getItem('LightDarkMode') === 'true')
     const handlemode = () => {
-        setLightdarkM(!LightdarkM);
-    };
+        setLightdarkM((prevValue) => !prevValue);
+    }
+    useEffect(() => {
+        localStorage.setItem('LightDarkMode', String(LightdarkM));
+    }, [LightdarkM]);
     return (
         <main
             className={` ${LightdarkM

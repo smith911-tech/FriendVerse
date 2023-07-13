@@ -2,14 +2,18 @@ import BackGroundImg from '../assets/T&C/terms and conditions.jpg'
 import Logo from "../assets/Logo2.png";
 import { Link } from 'react-router-dom';
 import { BsMoonStarsFill, BsFillSunFill } from 'react-icons/bs'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 
 export default function TermsandCondition() {
-    const [LightdarkM, setLightdarkM] = useState<boolean>(true)
+    const [LightdarkM, setLightdarkM] = useState<boolean>(
+        localStorage.getItem('LightDarkMode') === 'true')
     const handlemode = () => {
-        setLightdarkM(!LightdarkM)
-    } 
+        setLightdarkM((prevValue) => !prevValue);
+    }
+    useEffect(() => {
+        localStorage.setItem('LightDarkMode', String(LightdarkM));
+    }, [LightdarkM]);
     return (
         <main className={` ${LightdarkM ? "bg-white text-black color-Toggle" : "bg-black text-[#ffffffc4]  color-Toggle"} font-Inter `}>
             <nav className={` ${LightdarkM ? "bg-[white]  color-Toggle" : "bg-[black]  color-Toggle"} flex fixed w-full shadow-2xl md734:pt-6 py-4 px-3 md734:px-6 justify-between`}>
