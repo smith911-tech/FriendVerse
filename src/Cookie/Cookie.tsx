@@ -74,6 +74,18 @@ export default function Cookie(){
                     </div>
                     <p className="font-Belanosima">We understand that each user has unique interests and preferences. By leveraging the capabilities of local storage, FriendVerse can personalize the content you see based on your interactions, friend connections, and activity history. This allows us to recommend relevant posts, events, groups, and suggestions tailored specifically to your interests, making your social media experience more engaging and enjoyable.</p>
                 </section>
+                <section className="mb-8">
+                    <div className="flex bg-[#f3f7fa] w-full gap-3 mb-6">
+                        <div className="bg-[#067acc] w-8"></div>
+                        <div className="w-full p-3 select-none">
+                            <h2 className="font-Inter font-bold text-2xl  text-black">
+                                Privacy and Data Security:
+                            </h2>
+                        </div>
+                    </div>
+                    <p className="font-Belanosima">FriendVerse prioritizes the privacy and security of your data. While we utilize local storage for a seamless user experience, we strictly adhere to privacy guidelines and best practices. We do not collect or store any personally identifiable information in local storage. Any data stored locally is encrypted and anonymized, ensuring that your information remains safe and secure. We are committed to providing you with transparency and control over your data</p>
+                </section>
+                <p className="bg-[#f3f7fa] font-bold text-[#000000c5] p-3 text-center mb-9">In conclusion, FriendVerse utilizes local storage to enhance your social media experience. By staying logged in, saving and honoring your preferences, and personalizing the content you see, we strive to create a platform that caters to your individual needs while ensuring your privacy and data security. Join FriendVerse today and embark on a journey of meaningful connections and enjoyable interactions!</p>
             </section>
 
             <footer className='py-9 bg-[#14171a] text-[#ffffffb0] text-center  font-bold'>
