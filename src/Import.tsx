@@ -7,6 +7,7 @@ import Newpassword from "./ForgotPasswordF/Newpassword";
 import HomePage from "./Home Comp/HomePage";
 import TermsandCondition from "./Terms & condition/Terms";
 import Privacy from "./Privacy/Privacy";
+import Cookie from "./Cookie/Cookie";
 
 export {
     SignIn,
@@ -18,4 +19,5 @@ export {
     HomePage,
     TermsandCondition,
     Privacy,
+    Cookie,
 }

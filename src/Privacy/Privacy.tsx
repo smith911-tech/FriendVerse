@@ -142,7 +142,7 @@ export default function Privacy() {
                 <br /><br />
                 <div className="flex bg-[#f3f7fa] w-full gap-3">
                     <div className="bg-[#067acc] w-8"></div>
-                    <div className="w-full p-3 select-none">
+                    <div className="w-full p-3 select-none">     
                         <h2 className="font-Inter font-bold text-2xl  text-black">
                             Is FriendVerse for kids?
                         </h2>
