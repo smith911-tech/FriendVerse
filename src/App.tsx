@@ -10,7 +10,8 @@ import {
     Newpassword,
     HomePage,
     TermsandCondition,
-    Privacy
+    Privacy,
+    Cookie
 } from "./Import";
 
 function App() {
@@ -57,6 +58,9 @@ function App() {
 
                         {/* privacy */}
                         <Route path="/PrivacyPolicy" element={< Privacy />} />
+
+                        {/* Cookie */}
+                        <Route path="/Cookies" element={<Cookie />} />
                     </Routes>
                 </BrowserRouter>
             )}

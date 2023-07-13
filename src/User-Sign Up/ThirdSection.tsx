@@ -29,9 +29,9 @@ export default function ThirdSection({
                         Privacy Policy
                 </Link>
                 , and {" "}
-                <span className="text-[#117DD5] cursor-pointer">
+                <Link to='/Cookies' className="text-[#117DD5] cursor-pointer">
                     Cookie Use
-                </span>
+                </Link>
                 . Friend Verse may use your contact information, including your
                 email address and phone number for purposes outlined in our
                 <Link target="blank" to='/PrivacyPolicy' className="text-[#117DD5] cursor-pointer">
