@@ -22,7 +22,7 @@ export default function HomePage() {
     return(
         <main className="bg-[#000000] text-[#ffffffee] flex justify-between font-Inter">
             <section 
-                className={`border-r-[0.5px] border-[#ffffff8f] w-[100px] sm520:w-[250px] fixed h-screen bg-black pt-36 md734:w-[250px] sm520:pt-16  ${Toggle ? "sm520:left-0 z-10" : "sm520:left-[2000px]"}`}>
+                className={`border-r-[0.5px] border-[#ffffff8f] w-[100px] sm520:w-[250px] fixed h-screen bg-black pt-36 md734:w-[250px] sm520:pt-0  ${Toggle ? "sm520:left-0 z-10" : "sm520:left-[2000px]"}`}>
                 <Dashboard handleToggle={handleToggle}/>
             </section>
             <section 
