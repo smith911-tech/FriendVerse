@@ -4,6 +4,9 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",],
   theme: {
         screens: {
+      "sm520": {"max": "520px"},
+      // => (max-width: 733px) { ... }
+    
       'sm500': '500px',
       // => @media (min-width: 506px) { ... }
 
@@ -15,6 +18,7 @@ export default {
 
         'lg1440': '1440px',
       // => @media (min-width: 1440px) { ... }
+      
     },
     extend: {
       fontFamily: {
