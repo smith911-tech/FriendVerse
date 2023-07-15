@@ -41,7 +41,7 @@ export default function SignIn() {
                 setLoader(true)
                 setTimeout(() => {
                     setSuccessful(false);
-                    navigate(`/Homepage`)
+                    navigate("/Home")
                     setLoader(false)
                 }, 3000);
             })

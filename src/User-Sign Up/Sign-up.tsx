@@ -87,7 +87,7 @@ export default function Signup() {
                 const userid = response.user.uid;
                 sessionStorage.setItem("UserId", userid);
                 setTimeout(() => {
-                    navigate(`/Homepage`);
+                    navigate("/Home");
                     setSuccessful(false);
                 }, 3000);
                 try {

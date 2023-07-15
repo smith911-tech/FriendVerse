@@ -51,7 +51,7 @@ function App() {
                         <Route path="/Newpassword" element={<Newpassword />} />
 
                         {/* Home page */}
-                        <Route path="/Homepage" element={<HomePage />} />
+                        <Route path="/Home" element={<HomePage />} />
 
                         {/*  TermsandCondition */}
                         <Route path='/T&C' element={<TermsandCondition />} />

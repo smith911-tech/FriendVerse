@@ -1,19 +1,30 @@
 import { useEffect } from "react";
+import Dashboard from "./Dashboard";
 import { useNavigate } from "react-router-dom";
+import Content from "./Content";
+import SideDashboard from "./SideDashboard";
 export default function HomePage() {
     const navigate = useNavigate();
     useEffect(() => {
         let userid = sessionStorage.getItem('UserId')
         if (userid) {
-            navigate(`/Homepage`)
+            navigate("/Home")
         }
         else if (!userid) {
             navigate('/')
         }
     }, [])
     return(
-        <h2 className="text text-3xl">
-        Home PAGE 
-        </h2>
+        <main className="bg-[#000000] text-[#ffffffee] flex justify-between px-2">
+            <section>
+                <Dashboard />
+            </section>
+            <section>
+                <Content />
+            </section>
+            <section>
+                <SideDashboard />
+            </section>
+        </main>
     )
 }
