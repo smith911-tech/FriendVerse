@@ -6,23 +6,22 @@ import { FaCircleUser } from "react-icons/fa6"
 import {FaHome} from 'react-icons/fa'
 import { BiSolidMessageRoundedDots } from 'react-icons/bi'
 import { IoNotificationsSharp } from 'react-icons/io5'
-import { BsFillGearFill } from 'react-icons/bs'
-import { BsSearch } from 'react-icons/bs'
+import { BsFillGearFill, BsSearch } from 'react-icons/bs'
 export default function Dashboard({handleToggle}: Props): JSX.Element {
     return (   
         <main className=" ml-7 text-[#ffffffa1] relative sm520:mt-20">
             <div className="flex flex-col gap-[7vh] select-none sm520:gap-[20vw]">
                 <section className="flex gap-1 cursor-pointer">
-                    <span className="text-[30px]"> 
-                    <FaCircleUser />
-                    </span>
-                    <p className="text-[20px] md734:inline hidden sm520:inline">Profile</p>
-                </section>
-                <section className="flex gap-1 cursor-pointer">
                     <span className="text-[30px]">
                         <FaHome />
                     </span>
                     <p className="text-[20px] md734:inline hidden sm520:inline">Home</p>
+                </section>
+                <section className="flex gap-1 cursor-pointer">
+                    <span className="text-[30px]"> 
+                    <FaCircleUser />
+                    </span>
+                    <p className="text-[20px] md734:inline hidden sm520:inline">Profile</p>
                 </section>
                 <section className="flex gap-1 cursor-pointer">
                     <span className="text-[30px]">

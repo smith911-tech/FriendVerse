@@ -7,7 +7,7 @@ import { FaCircleUser } from "react-icons/fa6"
 export default function Content({ handleToggle }: Props): JSX.Element  {
     return (
         <main>
-            <div className='border-b-[0.5px] border-[#ffffff8f] mb-3  sm520:px-1'>
+            <div className='border-b-[0.5px] border-[#ffffff8f] mb-3  sm520:px-1 select-none'>
                 <span className="text-[33px] absolute top-4 left-5 sm520:inline hidden" onClick={handleToggle}>
                     <FaCircleUser />
                 </span>
