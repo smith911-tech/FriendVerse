@@ -11,7 +11,7 @@ import { BsSearch } from 'react-icons/bs'
 export default function Dashboard({handleToggle}: Props): JSX.Element {
     return (   
         <main className=" ml-7 text-[#ffffffa1] relative sm520:mt-20">
-            <div className="flex flex-col gap-[7vh] select-none sm520:gap-[15vw]">
+            <div className="flex flex-col gap-[7vh] select-none sm520:gap-[20vw]">
                 <section className="flex gap-1 cursor-pointer">
                     <span className="text-[30px]"> 
                     <FaCircleUser />
@@ -51,7 +51,7 @@ export default function Dashboard({handleToggle}: Props): JSX.Element {
             </div>
             <button 
                 className="text-center bg-[#067acc] mt-14 w-[70%] font-bold py-2 text-xl text-white rounded-2xl md734:block hidden">Vpost</button>
-            <span onClick={handleToggle} className='text-[30px] absolute top-[-60px] right-5'>
+            <span onClick={handleToggle} className='text-[30px] absolute top-[-60px] right-5 hidden sm520:inline'>
                 <AiOutlineClose />
                 </span>
         </main>
