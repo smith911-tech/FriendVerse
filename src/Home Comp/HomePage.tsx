@@ -15,14 +15,14 @@ export default function HomePage() {
         }
     }, [])
     return(
-        <main className="bg-[#000000] text-[#ffffffee] flex justify-between px-2">
-            <section>
+        <main className="bg-[#000000] text-[#ffffffee] flex justify-between font-Inter">
+            <section className="border-r-[0.5px] border-[#ffffff8f] w-[300px] fixed h-screen bg-black">
                 <Dashboard />
             </section>
-            <section>
+            <section className="ml-[300px] w-[80%] h-full bg-black mr-[300px]">
                 <Content />
             </section>
-            <section>
+            <section className="w-[300px] fixed  h-screen right-0 bg-black">
                 <SideDashboard />
             </section>
         </main>
