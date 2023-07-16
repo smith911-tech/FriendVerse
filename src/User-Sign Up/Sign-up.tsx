@@ -28,11 +28,12 @@ export default function Signup() {
 
     // ! Submit preloader state      
     const [loader, setLoader] = useState<boolean>(false);
-
     const navigate = useNavigate();
 
     //! Section change state && function
     const [section, setSection] = useState(1);
+
+    console.log(dateOfBirth)
 
     // ! next section handle
     const handleNextSection = () => {
@@ -96,8 +97,9 @@ export default function Signup() {
                         username: userName,
                         email: email,
                         dateOfBirth: dateOfBirth,
-                        profileImg : "",
-                        bio : ""
+                        profileImgage : "",
+                        bio : "",
+                        coverImage: ""
                     });
                 } catch (e) {
                     console.error("Error adding document: ", e);

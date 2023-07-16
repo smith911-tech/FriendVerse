@@ -9,6 +9,7 @@ export default function SecondSection({
     setDateOfBirth,
     dataOfBirth,
     }: Props): JSX.Element {
+
     return (
         <section className="flex flex-col mt-8 md734:px-24 SignupDate font-Inter">
             <h2 className="text-xl font-bold">Date of birth</h2>
