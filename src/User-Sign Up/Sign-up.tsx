@@ -96,6 +96,8 @@ export default function Signup() {
                         username: userName,
                         email: email,
                         dateOfBirth: dateOfBirth,
+                        profileImg : "",
+                        bio : ""
                     });
                 } catch (e) {
                     console.error("Error adding document: ", e);

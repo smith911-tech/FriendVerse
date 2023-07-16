@@ -24,18 +24,18 @@ export default function HomePage() {
     return (
         <>
         <Header />
-        <article className="bg-white flex justify-between gap-[5%] ">
+            <article className="bg-[#f0f2f5] flex justify-between gap-[5%] ">
             <section
-                className="bg-white pt-2"
+                className="pt-2 w-[20%]  h-screen sticky top-[10%]"
             >
                 <Dashboard />
             </section>
             <section
-                className="bg-white w-[85%] pt-2">
+                className="bg-white w-[50%] mt-10 rounded-2xl shadow-xl ">
                 <Content />
             </section>
             <section
-                className="bg-white pt-2">
+                    className="pt-2 w-[25%] h-screen sticky top-[10%]">
                 <SideDashboard />
             </section>
         </article>
