@@ -2,8 +2,8 @@
 
 export default function SideDashboard() {
     return(
-        <main className=" ">
-            
+        <main className=" lg1150:block hidden">
+  
         </main>
     )
 }

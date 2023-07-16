@@ -4,7 +4,7 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",],
   theme: {
         screens: {
-      "sm520": {"max": "520px"},
+      "sm650": {"max": "650px"},
       // => (max-width: 733px) { ... }
     
       'sm500': '500px',
@@ -12,6 +12,15 @@ export default {
 
       'md734': '734px',
       // => @media (min-width: 734px) { ... }
+
+      'md800': '800px',
+      // => @media (min-width: 800px) { ... }
+
+      'md970': '970px',
+      // => @media (min-width: 970px) { ... }
+
+      'lg1150': '1150px',
+      // => @media (min-width: 1150px) { ... }
 
       'lg1280': '1280px',
       // => @media (min-width: 1280px) { ... }
