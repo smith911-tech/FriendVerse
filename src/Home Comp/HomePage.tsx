@@ -1,4 +1,4 @@
-import { useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import Dashboard from "./Dashboard";
 import { useNavigate } from "react-router-dom";
 import Content from "./Content";
@@ -19,20 +19,22 @@ export default function HomePage() {
             navigate('/')
         }
     }, [])
-    return(
-        <main className="bg-[#000000] text-[#ffffffee] flex justify-between font-Inter">
+    return (
+        <main className="bg-white flex justify-between gap-[5%]">
             <section
-                className={`border-r-[0.5px] border-[#ffffff8f] w-[100px] sm520:w-[250px] fixed h-screen bg-black pt-36 md734:w-[250px] sm520:pt-0 ${Toggle ? " sm520:left-0 z-10" : " sm520:-left-96"
-                    } transition-all ease-in-out duration-500`}
+                className="bg-white w-[30%]"
             >
-                <Dashboard handleToggle={handleToggle} />
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis corrupti obcaecati incidunt sed debitis saepe maxime tempora beatae aperiam quas hic, voluptatem recusandae animi magnam iure ad. Voluptate accusantium commodi necessitatibus laudantium maiores nobis ratione, voluptas earum id cum, quibusdam ipsum vel dignissimos ullam magni alias optio expedita explicabo eum pariatur. Exercitationem, perferendis ad. Ipsum officiis consectetur repellat excepturi aut blanditiis qui cum magni error, eos asperiores similique sunt saepe ex repellendus nihil? Iusto reprehenderit temporibus magni earum provident suscipit adipisci vel voluptatum eum? Soluta aspernatur atque, nobis, dignissimos modi culpa optio exercitationem voluptas libero at vero? Itaque quam iste iusto! Reprehenderit ullam consequatur, quia voluptas, nam dolorem dignissimos natus quam nemo cum numquam neque autem sunt praesentium et vero id sequi at quaerat ex consequuntur reiciendis. Fugiat, alias fuga! Magnam tempora necessitatibus quos quisquam. Consectetur dolorum nesciunt repellendus maxime nostrum odit maiores a et voluptas facilis magnam neque velit totam repudiandae non adipisci, molestiae suscipit fugit accusamus dicta provident praesentium perferendis veniam? Odit provident quasi sed voluptates quo reprehenderit, ipsam, neque repellat, ducimus sunt iusto soluta. Facere doloremque accusantium rem magnam libero aliquam enim illum! Placeat, est! Nostrum vero eaque laborum molestias illo eveniet quae iusto unde, consequatur rem adipisci quisquam ab, sapiente optio ipsum enim fuga exercitationem commodi animi perferendis vel modi pariatur! Magni, atque? Quae eum enim eos consequuntur!
+                <Dashboard />
             </section>
-            <section 
-                className="ml-[50px] lg1280:w-[80%] h-screen bg-black lg1280:mr-[300px]  pt-3 w-full md734:ml-[250px] sm520:ml-0">
-                <Content handleToggle={handleToggle} />
+            <section
+                className="bg-white w-[35%]">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis corrupti obcaecati incidunt sed debitis saepe maxime tempora beatae aperiam quas hic, voluptatem recusandae animi magnam iure ad. Voluptate accusantium commodi necessitatibus laudantium maiores nobis ratione, voluptas earum id cum, quibusdam ipsum vel dignissimos ullam magni alias optio expedita explicabo eum pariatur. Exercitationem, perferendis ad. Ipsum officiis consectetur repellat excepturi aut blanditiis qui cum magni error, eos asperiores similique sunt saepe ex repellendus nihil? Iusto reprehenderit temporibus magni earum provident suscipit adipisci vel voluptatum eum? Soluta aspernatur atque, nobis, dignissimos modi culpa optio exercitationem voluptas libero at vero? Itaque quam iste iusto! Reprehenderit ullam consequatur, quia voluptas, nam dolorem dignissimos natus quam nemo cum numquam neque autem sunt praesentium et vero id sequi at quaerat ex consequuntur reiciendis. Fugiat, alias fuga! Magnam tempora necessitatibus quos quisquam. Consectetur dolorum nesciunt repellendus maxime nostrum odit maiores a et voluptas facilis magnam neque velit totam repudiandae non adipisci, molestiae suscipit fugit accusamus dicta provident praesentium perferendis veniam? Odit provident quasi sed voluptates quo reprehenderit, ipsam, neque repellat, ducimus sunt iusto soluta. Facere doloremque accusantium rem magnam libero aliquam enim illum! Placeat, est! Nostrum vero eaque laborum molestias illo eveniet quae iusto unde, consequatur rem adipisci quisquam ab, sapiente optio ipsum enim fuga exercitationem commodi animi perferendis vel modi pariatur! Magni, atque? Quae eum enim eos consequuntur!
+                <Content />
             </section>
-            <section 
-                className="w-[300px] fixed  h-screen right-0 bg-black border-l-[0.5px] border-[#ffffff8f]  pt-20 hidden lg1280:block">
+            <section
+                className="bg-white  w-[30%]">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis corrupti obcaecati incidunt sed debitis saepe maxime tempora beatae aperiam quas hic, voluptatem recusandae animi magnam iure ad. Voluptate accusantium commodi necessitatibus laudantium maiores nobis ratione, voluptas earum id cum, quibusdam ipsum vel dignissimos ullam magni alias optio expedita explicabo eum pariatur. Exercitationem, perferendis ad. Ipsum officiis consectetur repellat excepturi aut blanditiis qui cum magni error, eos asperiores similique sunt saepe ex repellendus nihil? Iusto reprehenderit temporibus magni earum provident suscipit adipisci vel voluptatum eum? Soluta aspernatur atque, nobis, dignissimos modi culpa optio exercitationem voluptas libero at vero? Itaque quam iste iusto! Reprehenderit ullam consequatur, quia voluptas, nam dolorem dignissimos natus quam nemo cum numquam neque autem sunt praesentium et vero id sequi at quaerat ex consequuntur reiciendis. Fugiat, alias fuga! Magnam tempora necessitatibus quos quisquam. Consectetur dolorum nesciunt repellendus maxime nostrum odit maiores a et voluptas facilis magnam neque velit totam repudiandae non adipisci, molestiae suscipit fugit accusamus dicta provident praesentium perferendis veniam? Odit provident quasi sed voluptates quo reprehenderit, ipsam, neque repellat, ducimus sunt iusto soluta. Facere doloremque accusantium rem magnam libero aliquam enim illum! Placeat, est! Nostrum vero eaque laborum molestias illo eveniet quae iusto unde, consequatur rem adipisci quisquam ab, sapiente optio ipsum enim fuga exercitationem commodi animi perferendis vel modi pariatur! Magni, atque? Quae eum enim eos consequuntur!
                 <SideDashboard />
             </section>
         </main>

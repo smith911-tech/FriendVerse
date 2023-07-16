@@ -106,7 +106,7 @@ input::-webkit-calendar-picker-indicator {
   outline: none;
 }
 
-/* ! */
+/* ! background color*/
 .color-Toggle{
-  transition: ease-in-out 0.5s;
+  transition: ease-in-out 0.2s;
 }
