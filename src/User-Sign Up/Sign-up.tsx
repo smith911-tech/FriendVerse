@@ -32,9 +32,8 @@ export default function Signup() {
 
     //! Section change state && function
     const [section, setSection] = useState(1);
-
-    console.log(dateOfBirth)
-
+    
+    
     // ! next section handle
     const handleNextSection = () => {
         switch (section) {
@@ -97,7 +96,7 @@ export default function Signup() {
                         username: userName,
                         email: email,
                         dateOfBirth: dateOfBirth,
-                        profileImgage : "",
+                        profileImage : "",
                         bio : "",
                         coverImage: ""
                     });

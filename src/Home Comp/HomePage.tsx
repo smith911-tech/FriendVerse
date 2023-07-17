@@ -25,10 +25,10 @@ export default function HomePage() {
     return (
         <main className="relative">
         <Header />
-            <ButtomNav />
-            <article className="bg-[#f0f2f5] flex justify-between gap-[5%] sm650:px-3">
+            
+            <article className="bg-[#f0f2f5] flex justify-between gap-[1%] sm650:px-3">
             <section
-                    className="pt-2 w-[5%] h-screen sticky top-[10%] md970:w-[20%] sm650:hidden"
+                    className="pt-2 w-[5%] h-screen sticky top-[13%] md970:w-[25%] sm650:hidden"
             >
                 <Dashboard />
             </section>
@@ -41,6 +41,7 @@ export default function HomePage() {
                 <SideDashboard />
             </section>
         </article>
+        <ButtomNav />
         </main>
     )
 }
