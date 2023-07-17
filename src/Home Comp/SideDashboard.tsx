@@ -4,6 +4,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from '../firebase-config'
 import { GoAlertFill } from "react-icons/go";
 import { BiSolidUserCircle } from "react-icons/bi";
+import VerfiyId from "../Verify";
 export default function SideDashboard() {
     const [SuggestData, setSuggestData] = useState<any[]>([]);
     const [searchTerm, setSearchTerm] = useState<string>("");
@@ -28,7 +29,7 @@ export default function SideDashboard() {
     }
     return (
         <main className="lg1150:block hidden px-1 pt-10 ">
-            <section className="bg-[white]  px-2 py-2 shadow-2xl relative">
+            <section className="bg-[white]  px-2 py-2 shadow-2xl relative mb-14">
                 <div className="flex relative">
                     <input type="text"
                         className="w-full py-2 pl-10 pr-1  outline-[#117DD5] border rounded-2xl  border-solid bg-[#eff3f4]" placeholder="Search"
@@ -73,6 +74,7 @@ export default function SideDashboard() {
                     </div>
                 )}
             </section>
+            <VerfiyId />
         </main>
     )
 }
