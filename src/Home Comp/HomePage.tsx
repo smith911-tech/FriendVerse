@@ -37,7 +37,7 @@ export default function HomePage() {
                 <Content />
             </section>
             <section
-                    className="pt-2 lg1150:w-[25%]  h-screen sticky top-[10%] w-[5%] sm650:hidden">
+                    className="pt-2 lg1150:w-[25%]  h-screen sticky top-[13%] w-[5%] sm650:hidden">
                 <SideDashboard />
             </section>
         </article>
