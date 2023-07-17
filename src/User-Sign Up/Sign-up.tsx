@@ -26,6 +26,12 @@ export default function Signup() {
     const [isChecked, setIsChecked] = useState<boolean>(false);
     const [userName, setUsername] = useState<string>("");
 
+    // ! email validation 
+    const isValidEmail = (email: string): boolean => {
+        const emailPattern: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailPattern.test(email);
+    };
+
     // ! Submit preloader state      
     const [loader, setLoader] = useState<boolean>(false);
     const navigate = useNavigate();
@@ -33,14 +39,14 @@ export default function Signup() {
     //! Section change state && function
     const [section, setSection] = useState(1);
     
-    
+
     // ! next section handle
     const handleNextSection = () => {
         switch (section) {
             case 1:
-                if (fullName !== "" && password.length > 7 && email !== "") {
+                if (fullName !== "" && password.length > 7 && (isValidEmail(email))) {
                     setSection(section + 1);
-                } else if (fullName === "" || email === "") {
+                } else if (fullName === "" || email === "" || (!isValidEmail(email))) {
                     setError("Please fill in all input");
                 } else if (password.length < 7) {
                     setError("Password must be at least 7 characters long");

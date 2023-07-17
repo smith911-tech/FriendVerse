@@ -8,6 +8,5 @@ export default function VerfiyId() {
                 Get Verified
             </button>
         </div>
-
     )
 }
