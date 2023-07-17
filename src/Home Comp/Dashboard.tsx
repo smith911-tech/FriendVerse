@@ -28,7 +28,7 @@ export default function Dashboard() {
     }, []);
 
     return (
-        <main className="md970:block hidden font-Inter pt-4 px-2">
+        <main className="md970:block hidden font-Inter pt-10 px-2">
             {userData  ? (
                 <section className="w-full flex flex-col justify-center">
                     <div className="bg-white rounded-lg shadow-2xl p-1">
@@ -59,7 +59,7 @@ export default function Dashboard() {
                             )}
                         </div>
                         <div className="mt-8 text-center font-medium mb-5">
-                            <h2 className="pb-1">{userData.fullName}</h2>
+                            <h2 className="pb-1 capitalize">{userData.fullName}</h2>
 
                             {userData.bio === "" ? (
                                 <h2 className="text-xs text-[#000000a5]">Hey, i'm new at Friend Verse</h2>
