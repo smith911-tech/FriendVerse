@@ -4,7 +4,7 @@ import "react-sweet-progress/lib/style.css";
 import { useState } from 'react';
 import { MdOutlineVerifiedUser } from "react-icons/md";
 export default function ProfileProgress() {
-    const [percentage, setPercentage] = useState<number>()
+    const [percentage, setPercentage] = useState<number>(25)
     return (
         <div className=' rounded-lg shadow-lg p-4 select-none mb-8 bg-white progress'>
             <h2 className=' text-lg font-semibold mb-2'>Complete your Profile</h2>
