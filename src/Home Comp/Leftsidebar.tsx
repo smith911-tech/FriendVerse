@@ -1,5 +1,5 @@
 import { db } from "../firebase-config";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, collection, getDocs } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import defaultcoverimg from '../assets/DefalutCoverImg.jpg'
 import { BiSolidUserCircle } from "react-icons/bi";
@@ -7,6 +7,7 @@ import { SmallCard } from "../LoadingCard";
 export default function Dashboard() {
     const [userData, setUserData] = useState<any>(null);
 
+//! personal user data
     const fetchData = async () => {
         try {
             let userid = sessionStorage.getItem("UserId");
@@ -25,14 +26,30 @@ export default function Dashboard() {
 
     useEffect(() => {
         fetchData();
+        fetchUsers();
     }, []);
+
+
+    //! states
+    const [SuggestData, setSuggestData] = useState<any[]>([]);
+
+    // !suggestions user data
+    const fetchUsers = async () => {
+        await getDocs(collection(db, "users"))
+            .then((querySnapshot) => {
+                const newData = querySnapshot.docs
+                    .map((doc) => ({ ...doc.data(), id: doc.id }))
+                setSuggestData(newData);
+                console.log(SuggestData);
+            });
+    };
 
     return (
         <main className="md970:block hidden font-Inter pt-10 px-2">
             {userData  ? (
                 <section className="w-full flex flex-col justify-center">
                     <div className="bg-white rounded-lg shadow-2xl p-1">
-                        <div className="relative">
+                        <div className="relative select-none">
                             {userData.coverImage === "" ? (
                                 <img
                                     src={defaultcoverimg}
@@ -58,7 +75,7 @@ export default function Dashboard() {
                                 />
                             )}
                         </div>
-                        <div className="mt-8 text-center font-medium mb-5">
+                        <div className="mt-8 text-center font-medium mb-2">
                             <h2 className="pb-1 capitalize">{userData.fullName}</h2>
 
                             {userData.bio === "" ? (
@@ -67,11 +84,11 @@ export default function Dashboard() {
                                 <h2 className="text-xs text-[#000000a5]">{userData.bio}</h2>
                             )}
                         </div>
-                        <div className="mb-5">
+                        <div className="mb-2">
                             <h2 className="text-center font-medium text-[#000000a5]">Following</h2>
                             <p className="text-center font-medium">10</p>
                         </div>
-                        <div className="mb-5">
+                        <div className="mb-2">
                             <h2 className="text-center font-medium text-[#000000a5]">Followers</h2>
                             <p className="text-center font-medium">33</p>
                         </div>
@@ -81,6 +98,39 @@ export default function Dashboard() {
             ) : (
                 <SmallCard />
             )}
+            <section>
+                <h2>Suggestion</h2>
+                {SuggestData.length === 0  ? (
+                    <SmallCard />
+                ) : (
+                SuggestData.slice(1, 4).map((data: any) => (
+                    <div
+                        className="cursor-pointer w-full select-none flex  my-4 ml-1 rounded-2xl gap-2"
+                        key={data.id}>
+                        <div>
+                            {data.profileImage === "" ? (
+                                <div className='text-[48px]   rounded-full text-[#000000d7]'>
+                                    <BiSolidUserCircle />
+                                </div>
+                            ) : (
+                                <img
+                                    src={data.profileImage}
+                                    alt="Profile"
+                                    className="w-12 h-12 rounded-full   object-contain "
+                                />
+                            )}
+                        </div>
+                        <div>
+                            <p
+                                className="text-left font-semibold">{data.fullName}</p>
+                            <p
+                                className="text-sm text-left text-[#000000a9]">{data.username}</p>
+                        </div>
+                    </div>
+                ))
+                )}
+
+            </section>
         </main>
     )
 }

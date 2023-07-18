@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import Dashboard from "./Dashboard";
+import Dashboard from "./Leftsidebar";
 import { useNavigate } from "react-router-dom";
 import Content from "./Content";
-import SideDashboard from "./SideDashboard";
+import SideDashboard from "./Rightsidebar";
 import Header from "./Header";
 import ButtomNav from "./ButtomNav";
 export default function HomePage() {
@@ -33,7 +33,7 @@ export default function HomePage() {
                 <Dashboard />
             </section>
             <section
-                    className="bg-white w-[95%] mt-10 rounded-2xl shadow-xl md800:w-[60%] sm650:w-[100%]">
+                    className=" w-[95%] mt-10 rounded-2xl  md800:w-[60%] sm650:w-[100%]">
                 <Content />
             </section>
             <section

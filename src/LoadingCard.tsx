@@ -27,14 +27,6 @@ export function SmallCard() {
                     <div className="card-title">
                     </div>
                 </div>
-                <div className="card__skeleton">
-                    <div className="card-title">
-                    </div>
-                </div>
-                <div className="card__skeleton">
-                    <div className="card-title">
-                    </div>
-                </div>
         </section>
         </div>
     )

@@ -4,7 +4,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from '../firebase-config'
 import { GoAlertFill } from "react-icons/go";
 import { BiSolidUserCircle } from "react-icons/bi";
-import VerfiyId from "../Verify";
+import VerfiyId from "../VerifyBox";
 export default function SideDashboard() {
     const [SuggestData, setSuggestData] = useState<any[]>([]);
     const [searchTerm, setSearchTerm] = useState<string>("");
