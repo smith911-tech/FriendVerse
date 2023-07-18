@@ -1,16 +1,16 @@
 // @ts-ignore
 import { Progress } from 'react-sweet-progress';
 import "react-sweet-progress/lib/style.css";
-import { useState } from 'react';
+// import { useState } from 'react';
 import { MdOutlineVerifiedUser } from "react-icons/md";
 export default function ProfileProgress() {
-    const [percentage, setPercentage] = useState<number>(25)
+    // const [percentage, setPercentage] = useState<number>(25)
     return (
         <div className=' rounded-lg shadow-lg p-4 select-none mb-8 bg-white progress'>
             <h2 className=' text-lg font-semibold mb-2'>Complete your Profile</h2>
             <Progress
                 type="circle"
-                percent={percentage}
+                percent={25}
             />
             <section className='flex flex-col gap-2 font-bold text-[#000000b6]'>
 
