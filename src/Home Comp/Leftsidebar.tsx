@@ -3,11 +3,12 @@ import { doc, getDoc, collection, getDocs } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import defaultcoverimg from '../assets/DefalutCoverImg.jpg'
 import { BiSolidUserCircle } from "react-icons/bi";
-import { SmallCard } from "../LoadingCard";
+import { SmallCard } from "./LoadingCard";
+import { GoTelescopeFill } from "react-icons/go";
 export default function Dashboard() {
     const [userData, setUserData] = useState<any>(null);
 
-//! personal user data
+    //! personal user data
     const fetchData = async () => {
         try {
             let userid = sessionStorage.getItem("UserId");
@@ -46,7 +47,7 @@ export default function Dashboard() {
 
     return (
         <main className="md970:block hidden font-Inter pt-10 px-2">
-            {userData  ? (
+            {userData ? (
                 <section className="w-full flex flex-col justify-center">
                     <div className="bg-white rounded-lg shadow-2xl p-1">
                         <div className="relative select-none">
@@ -84,50 +85,56 @@ export default function Dashboard() {
                                 <h2 className="text-xs text-[#000000a5]">{userData.bio}</h2>
                             )}
                         </div>
-                        <div className="mb-2">
+                        <div className="mb-2 select-none">
                             <h2 className="text-center font-medium text-[#000000a5]">Following</h2>
                             <p className="text-center font-medium">10</p>
                         </div>
-                        <div className="mb-2">
+                        <div className="mb-2 select-none">
                             <h2 className="text-center font-medium text-[#000000a5]">Followers</h2>
                             <p className="text-center font-medium">33</p>
                         </div>
-                        <h2 className="text-[#117DD5] text-center font-bold mb-2">View profile</h2>
+                        <h2 className="text-[#117DD5] text-center font-bold mb-2 select-none">View profile</h2>
                     </div>
                 </section>
             ) : (
                 <SmallCard />
             )}
-            <section>
-                <h2>Suggestion</h2>
-                {SuggestData.length === 0  ? (
+            <section className="mt-6">
+                {SuggestData.length === 0 ? (
                     <SmallCard />
                 ) : (
-                SuggestData.slice(1, 4).map((data: any) => (
-                    <div
-                        className="cursor-pointer w-full select-none flex  my-4 ml-1 rounded-2xl gap-2"
-                        key={data.id}>
-                        <div>
-                            {data.profileImage === "" ? (
-                                <div className='text-[48px]   rounded-full text-[#000000d7]'>
-                                    <BiSolidUserCircle />
+                        <section className="bg-white rounded-lg shadow-2xl py-2">
+                            <div className="flex text-lg justify-between mx-2">
+                                <h2 className=" font-extrabold">Suggestions</h2>
+                                <span className=" text-green-600"><GoTelescopeFill /></span>
+                        </div>
+                        {SuggestData.slice(1, 4).map((data: any) => (
+                            <div
+                                className="cursor-pointer w-full select-none flex  my-4 ml-1 rounded-2xl gap-2"
+                                key={data.id}>
+                                <div>
+                                    {data.profileImage === "" ? (
+                                        <div className='text-[48px]   rounded-full text-[#000000d7]'>
+                                            <BiSolidUserCircle />
+                                        </div>
+                                    ) : (
+                                        <img
+                                            src={data.profileImage}
+                                            alt="Profile"
+                                            className="w-12 h-12 rounded-full   object-contain "
+                                        />
+                                    )}
                                 </div>
-                            ) : (
-                                <img
-                                    src={data.profileImage}
-                                    alt="Profile"
-                                    className="w-12 h-12 rounded-full   object-contain "
-                                />
-                            )}
-                        </div>
-                        <div>
-                            <p
-                                className="text-left font-semibold">{data.fullName}</p>
-                            <p
-                                className="text-sm text-left text-[#000000a9]">{data.username}</p>
-                        </div>
-                    </div>
-                ))
+                                <div>
+                                    <p
+                                        className="text-left font-semibold">{data.fullName}</p>
+                                    <p
+                                        className="text-sm text-left text-[#000000a9]">{data.username}</p>
+                                </div>
+                            </div>
+
+                        ))}
+                    </section>
                 )}
 
             </section>
