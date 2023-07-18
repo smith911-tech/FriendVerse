@@ -33,7 +33,7 @@ export default function HomePage() {
                 <Dashboard />
             </section>
             <section
-                    className=" w-[95%] mt-10 rounded-2xl  md800:w-[60%] sm650:w-[100%]">
+                    className=" w-[95%] mt-10 rounded-2xl  md800:w-[60%] sm650:w-[100%] bg-white">
                 <Content />
             </section>
             <section
