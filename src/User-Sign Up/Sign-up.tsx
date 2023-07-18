@@ -103,8 +103,9 @@ export default function Signup() {
                         email: email,
                         dateOfBirth: dateOfBirth,
                         profileImage : "",
-                        bio : "",
-                        coverImage: ""
+                        bio: "Hey, i'm new at Friend Verse",
+                        coverImage: "",
+                        Location : ""
                     });
                 } catch (e) {
                     console.error("Error adding document: ", e);
