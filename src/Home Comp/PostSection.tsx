@@ -6,6 +6,7 @@ interface userdatas {
 }
 import { FaXmark } from "react-icons/fa6";
 import { BiSolidUserCircle } from 'react-icons/bi';
+import { GrGallery } from 'react-icons/gr'
 export default function PostSection({
     handleBodyClick,
     userData,
@@ -84,7 +85,12 @@ export default function PostSection({
                         </h2>
                     </section>
                     <section>
-
+                        <textarea className="w-full  text-xl pt-2 mt-2 outline-none" name="" id="" rows={5}  placeholder={`What's on your mind, ${firstName}?`} ></textarea>
+                    </section>
+                    <section>
+                        <span >
+                            <GrGallery />
+                        </span>
                     </section>
                 </div>
             )}
