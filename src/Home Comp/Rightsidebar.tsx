@@ -19,7 +19,7 @@ export default function SideDashboard({ fetchUsers, SuggestData, userData }: use
     }
     return (
         <main className="lg1150:block hidden px-1 pt-10 ">
-            <section className="bg-[white]  px-2 py-2 shadow-2xl relative mb-8">
+            <section className="bg-[white]  px-2 py-2 shadow relative mb-8">
                 <div className="flex relative">
                     <input type="text"
                         className="w-full py-2 pl-10 pr-1  outline-[#117DD5] border rounded-2xl  border-solid bg-[#eff3f4]" placeholder="Search"
@@ -29,7 +29,7 @@ export default function SideDashboard({ fetchUsers, SuggestData, userData }: use
                     <div className='text-xl cursor-pointer absolute top-[10px] left-3'><CiSearch /></div>
                 </div>
                 {searchTerm && (
-                    <div className={`absolute bg-white w-full   shadow-xl z-10 -ml-2 overflow-y-auto overflow-x-hidden ${getSuggestions().length === 0 ? " h-[inherit] " : "h-44 "}`}>
+                    <div className={`absolute bg-white w-full   shadow z-10 -ml-2 overflow-y-auto overflow-x-hidden ${getSuggestions().length === 0 ? " h-[inherit] " : "h-44 "}`}>
                         {getSuggestions().length === 0 ? (
                             <button className="ml-2 py-3 w-full font-semibold flex justify-center gap-2">
                                 <span className=" text-2xl text-red-600"><GoAlertFill /></span>

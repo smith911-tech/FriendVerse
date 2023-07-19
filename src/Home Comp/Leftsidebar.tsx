@@ -15,7 +15,7 @@ export default function Dashboard({ userData, SuggestData }: userdatas): JSX.Ele
         <main className="md970:block hidden font-Inter pt-10 px-2">
             {userData ? (
                 <section className="w-full flex flex-col justify-center">
-                    <div className="bg-white rounded-lg shadow-2xl p-1">
+                    <div className="bg-white rounded-lg shadow p-1">
                         <div className="relative select-none">
                             {userData.coverImage === "" ? (
                                 <img
@@ -65,7 +65,7 @@ export default function Dashboard({ userData, SuggestData }: userdatas): JSX.Ele
                 {SuggestData.length === 0 ? (
                     <SmallCard />
                 ) : (
-                        <section className="bg-white rounded-lg shadow-2xl py-2">
+                        <section className="bg-white rounded-lg shadow py-2">
                             <div className="flex text-lg justify-between mx-2">
                                 <h2 className=" font-extrabold">Suggestions</h2>
                                 <span className=" text-[#117dd5]"><GoTelescopeFill /></span>

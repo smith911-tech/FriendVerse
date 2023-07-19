@@ -30,7 +30,7 @@ export default function ProfileProgress({userData}: userdatas): JSX.Element {
 
 
     return (
-        <div className=' rounded-lg shadow-lg p-4 select-none mb-8 bg-white progress'>
+        <div className=' rounded-lg shadow p-4 select-none mb-8 bg-white progress'>
             <h2 className=' text-lg font-semibold mb-2'>Complete your Profile</h2>
             <Progress
                 type="circle"

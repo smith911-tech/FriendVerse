@@ -68,7 +68,7 @@ export default function HomePage() {
 
     return (
         <main className="relative">
-        <Header />
+        <Header userData={userData}/>
             
             <article className="bg-[#f0f2f5] flex justify-between gap-[1%] sm650:px-3">
             <section
