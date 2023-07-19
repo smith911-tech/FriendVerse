@@ -10,7 +10,7 @@ import { BiSolidUserCircle } from "react-icons/bi";
 import { MdOutlineOndemandVideo } from 'react-icons/md'
 export default function Header({userData}: userdatas): JSX.Element {
     return (
-        <header className='sticky top-0 shadow bg-[#fff] flex justify-between px-3 py-2 text-[#000000bc] w-full z-10 select-none'>
+        <header className='fixed top-0 shadow bg-[#fff] flex justify-between px-3 py-2 text-[#000000bc] w-full z-10 select-none'>
             <img src={logo} alt="" className='w-[40px] object-contain' />
             <nav className='flex gap-14 px-5 mt-2 sm650:hidden'>
                 <div className='text-3xl cursor-pointer text-[blue]'> 
@@ -23,17 +23,26 @@ export default function Header({userData}: userdatas): JSX.Element {
                 <div className='text-3xl cursor-pointer'> <IoNotificationsOutline /></div>
             </nav>
             <div>
-                {userData && userData?.profileImage === "" ? (
-                    <div className='text-[48px]   rounded-full text-[#000000d7]'>
+                {userData ? (
+                    <section>
+                        {userData.profileImage === "" ? (
+                            <div className='text-[48px] rounded-full text-[#000000d7]'>
+                                <BiSolidUserCircle />
+                            </div>
+                        ) : (
+                            <img
+                                src={userData.profileImage}
+                                alt="Profile"
+                                className="w-12 h-12 rounded-full object-contain"
+                            />
+                        )}
+                    </section>
+                ) : (
+                    <div className='text-[48px] rounded-full text-[#000000d7]'>
                         <BiSolidUserCircle />
                     </div>
-                ) : (
-                    <img
-                        src={userData?.profileImage}
-                        alt="Profile"
-                        className="w-12 h-12 rounded-full   object-contain "
-                    />
                 )}
+
             </div>
         </header>
     )

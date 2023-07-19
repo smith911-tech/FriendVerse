@@ -12,7 +12,7 @@ export default function Dashboard({ userData, SuggestData }: userdatas): JSX.Ele
 
 
     return (
-        <main className="md970:block hidden font-Inter pt-10 px-2">
+        <main className="md970:block hidden font-Inter pt-2 px-2">
             {userData ? (
                 <section className="w-full flex flex-col justify-center">
                     <div className="bg-white rounded-lg shadow p-1">

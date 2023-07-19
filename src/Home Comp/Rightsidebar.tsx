@@ -18,7 +18,7 @@ export default function SideDashboard({ fetchUsers, SuggestData, userData }: use
         return SuggestData.filter((data: any) => regex.test(data.fullName || data.username)).slice(0, 5);
     }
     return (
-        <main className="lg1150:block hidden px-1 pt-10 ">
+        <main className="lg1150:block hidden px-1 pt-2 ">
             <section className="bg-[white]  px-2 py-2 shadow relative mb-8">
                 <div className="flex relative">
                     <input type="text"

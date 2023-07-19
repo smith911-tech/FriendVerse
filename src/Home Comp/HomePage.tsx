@@ -82,17 +82,17 @@ export default function HomePage() {
         <Header userData={userData} />
             </header>
             
-            <article className="bg-[#f0f2f5] flex justify-between gap-[1%] sm650:px-3">
+            <article className="bg-[#f0f2f5] flex justify-between gap-[1%] sm650:px-3 pt-[70px]">
             <section
                     onClick={handleBodyClick}
-                    className="pt-2 w-[5%] h-screen sticky top-[40px] md970:w-[25%] sm650:hidden"
+                    className="pt-2 w-[5%] h-screen sticky top-[70px] md970:w-[25%] sm650:hidden"
             >
                     <Leftsidebar 
                     userData={userData} 
                     SuggestData={SuggestData} />
             </section>
             <section
-                    className=" w-[95%] mt-10 rounded-2xl  md800:w-[60%] sm650:w-[100%] ">
+                    className=" w-[95%] mt-4 rounded-2xl  md800:w-[60%] sm650:w-[100%] ">
                     <Content userData={userData}
                     handleBodyClick={handleBodyClick} 
                     handleInputClick={handleInputClick}
@@ -101,7 +101,7 @@ export default function HomePage() {
             </section>
             <section 
                     onClick={handleBodyClick}
-                    className="pt-2 lg1150:w-[25%]  h-screen sticky top-[40px] w-[5%] sm650:hidden">
+                    className="pt-2 lg1150:w-[25%]  h-screen sticky top-[70px] w-[5%] sm650:hidden">
                     <Rightsidebar 
                     fetchUsers={fetchUsers} 
                     SuggestData={SuggestData}
