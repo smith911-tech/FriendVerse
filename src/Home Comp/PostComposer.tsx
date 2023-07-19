@@ -8,6 +8,7 @@ import { FaXmark } from "react-icons/fa6";
 import { BiSolidUserCircle } from 'react-icons/bi';
 import { TfiGallery } from 'react-icons/tfi'
 import { ImFileVideo } from 'react-icons/im'
+import { useEffect, useRef } from "react";
 export default function PostSection({
     handleBodyClick,
     userData,
@@ -15,9 +16,18 @@ export default function PostSection({
     handleInputClick,
 }: userdatas): JSX.Element {
     const firstName = userData?.fullName?.split(' ')[0] ?? 'Loading....';
+    const inputRef = useRef<HTMLTextAreaElement>(null);
+
+
+    useEffect(() => {
+        if (isInputClicked && inputRef.current) {
+            inputRef.current.focus();
+        }
+    }, [isInputClicked]);
+
 
     return (
-        
+
         <>
             <header className="bg-white mb-2 py-2 px-5 rounded-2xl shadow md970:w-[90%] block mt-0 mx-auto select-none ">
                 <nav className="flex justify-between gap-2">
@@ -89,7 +99,7 @@ export default function PostSection({
                         </h2>
                     </section>
                     <section>
-                        <textarea className="w-full  text-xl pt-2 mt-2 outline-none" name="" id="" rows={5}  placeholder={`What's on your mind, ${firstName}?`} ></textarea>
+                        <textarea ref={inputRef} className="w-full  text-xl pt-2 mt-2 outline-none" name="" id="" rows={5} placeholder={`What's on your mind, ${firstName}?`} ></textarea>
                     </section>
                     <section className=" text-2xl flex justify-between border border-[#000000b6] border-solid gap-2 py-2 px-3 mb-3">
                         <h2 className=" font-medium text-[#000000b8] text-xl">Add to your post</h2>
