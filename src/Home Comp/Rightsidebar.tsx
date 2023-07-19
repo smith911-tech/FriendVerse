@@ -16,7 +16,6 @@ export default function SideDashboard() {
                 const newData = querySnapshot.docs
                     .map((doc) => ({ ...doc.data(), id: doc.id }))
                 setSuggestData(newData);
-                console.log(SuggestData);
             });
     };
     console.log(SuggestData)

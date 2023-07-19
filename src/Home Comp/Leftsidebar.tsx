@@ -78,7 +78,7 @@ export default function Dashboard() {
                         </div>
                         <div className="mt-8 text-center font-medium mb-2">
                             <h2 className="pb-1 capitalize">{userData.fullName}</h2>
-                            
+
                                 <h2 className="text-xs text-[#000000a5]">{userData.bio}</h2>
                         </div>
                         <div className="mb-2 select-none">
@@ -102,7 +102,7 @@ export default function Dashboard() {
                         <section className="bg-white rounded-lg shadow-2xl py-2">
                             <div className="flex text-lg justify-between mx-2">
                                 <h2 className=" font-extrabold">Suggestions</h2>
-                                <span className=" text-green-600"><GoTelescopeFill /></span>
+                                <span className=" text-[#117dd5]"><GoTelescopeFill /></span>
                         </div>
                         {SuggestData.slice(1, 4).map((data: any) => (
                             <div
