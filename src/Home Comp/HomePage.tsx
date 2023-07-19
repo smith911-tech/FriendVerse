@@ -78,14 +78,14 @@ export default function HomePage() {
 
     return (
         <main className="relative">
-            <header onClick={handleBodyClick}>
+            <header onClick={handleBodyClick} className={`${isInputClicked ? " brightness-[0.2]" : " brightness-100"}`}>
         <Header userData={userData} />
             </header>
             
-            <article className="bg-[#f0f2f5] flex justify-between gap-[1%] sm650:px-3 pt-[70px]">
+            <article className={` flex justify-between gap-[1%] sm650:px-3 pt-[70px] ${isInputClicked ? " bg-[#000000ca]" : "bg-[#f0f2f5]"}`}>
             <section
                     onClick={handleBodyClick}
-                    className="pt-2 w-[5%] h-screen sticky top-[70px] md970:w-[25%] sm650:hidden"
+                    className={`pt-2 w-[5%] h-screen sticky top-[70px] md970:w-[25%] sm650:hidden ${isInputClicked ? " brightness-[0.2]" : " brightness-100"}`}
             >
                     <Leftsidebar 
                     userData={userData} 
@@ -102,7 +102,7 @@ export default function HomePage() {
             </section>
             <section 
                     onClick={handleBodyClick}
-                    className="pt-2 lg1150:w-[25%]  h-screen sticky top-[70px] w-[5%] sm650:hidden">
+                    className={`pt-2 lg1150:w-[25%]  h-screen sticky top-[70px] w-[5%] sm650:hidden ${isInputClicked ? " brightness-[0.2]" : " brightness-100"}`}>
                     <Rightsidebar 
                     fetchUsers={fetchUsers} 
                     SuggestData={SuggestData}

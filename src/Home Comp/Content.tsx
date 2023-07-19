@@ -1,4 +1,4 @@
-import PostSection from "./PostSection";
+import PostComposer from "./PostComposer";
 
 interface userdatas{
     userData : any,
@@ -11,7 +11,7 @@ export default function Content({ userData, isInputClicked, handleInputClick, ha
 
     return (
         <main className='relative'>
-            <PostSection 
+            <PostComposer 
             userData={userData} 
             isInputClicked={isInputClicked} 
             handleInputClick={handleInputClick} 
