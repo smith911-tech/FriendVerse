@@ -1,49 +1,15 @@
-import { db } from "../firebase-config";
-import { doc, getDoc, collection, getDocs } from "firebase/firestore";
-import { useState, useEffect } from "react";
+interface userdatas{
+    userData : any,
+    SuggestData : any
+}
+
 import defaultcoverimg from '../assets/DefalutCoverImg.jpg'
 import { BiSolidUserCircle } from "react-icons/bi";
 import { SmallCard } from "./LoadingCard";
 import { GoTelescopeFill } from "react-icons/go";
-export default function Dashboard() {
-    const [userData, setUserData] = useState<any>(null);
 
-    //! personal user data
-    const fetchData = async () => {
-        try {
-            let userid = sessionStorage.getItem("UserId");
-            const docRef = doc(db, "users", userid as string);
-            const snapshot = await getDoc(docRef);
-            console.log(userData)
-            if (snapshot.exists()) {
-                setUserData(snapshot.data());
-            } else {
-                console.log("No matching document");
-            }
-        } catch (error) {
-            console.error("Error fetching user data:", error);
-        }
-    };
+export default function Dashboard({ userData, SuggestData }: userdatas): JSX.Element {
 
-    useEffect(() => {
-        fetchData();
-        fetchUsers();
-    }, []);
-
-
-    //! states
-    const [SuggestData, setSuggestData] = useState<any[]>([]);
-
-    // !suggestions user data
-    const fetchUsers = async () => {
-        await getDocs(collection(db, "users"))
-            .then((querySnapshot) => {
-                const newData = querySnapshot.docs
-                    .map((doc) => ({ ...doc.data(), id: doc.id }))
-                setSuggestData(newData);
-                console.log(SuggestData);
-            });
-    };
 
     return (
         <main className="md970:block hidden font-Inter pt-10 px-2">
