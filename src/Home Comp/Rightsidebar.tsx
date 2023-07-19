@@ -1,27 +1,17 @@
+interface userdatas {
+    fetchUsers : () => void,
+    SuggestData : any,
+    userData : any
+}
 import { CiSearch } from "react-icons/ci";
-import { useState, useEffect } from "react";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from '../firebase-config'
+import { useState} from "react";
 import { GoAlertFill } from "react-icons/go";
 import { BiSolidUserCircle } from "react-icons/bi";
 import VerfiyId from "./VerifyBox";
 import ProfileProgress from "./ProfileProgress";
-export default function SideDashboard() {
-    const [SuggestData, setSuggestData] = useState<any[]>([]);
+export default function SideDashboard({ fetchUsers, SuggestData, userData }: userdatas):JSX.Element {
     const [searchTerm, setSearchTerm] = useState<string>("");
 
-    const fetchUser = async () => {
-        await getDocs(collection(db, "users"))
-            .then((querySnapshot) => {
-                const newData = querySnapshot.docs
-                    .map((doc) => ({ ...doc.data(), id: doc.id }))
-                setSuggestData(newData);
-            });
-    };
-    console.log(SuggestData)
-    useEffect(() => {
-        fetchUser();
-    }, [])
 
     function getSuggestions() {
         const regex = new RegExp(`${searchTerm}`, "i");
@@ -34,6 +24,7 @@ export default function SideDashboard() {
                     <input type="text"
                         className="w-full py-2 pl-10 pr-1  outline-[#117DD5] border rounded-2xl  border-solid bg-[#eff3f4]" placeholder="Search"
                         value={searchTerm}
+                        onClick={fetchUsers}
                         onChange={(e) => setSearchTerm(e.target.value)} />
                     <div className='text-xl cursor-pointer absolute top-[10px] left-3'><CiSearch /></div>
                 </div>
@@ -45,7 +36,7 @@ export default function SideDashboard() {
                                 <h2>User doesn't exist</h2>
                             </button>
                         ) : (
-                            getSuggestions().map((data) => (
+                            getSuggestions().map((data : any) => (
                                 <button
                                     className="cursor-pointer w-full select-none flex  my-4 ml-1 rounded-2xl hover:bg-[#e1e6e7] gap-2"
                                     key={data.id}>
@@ -75,7 +66,7 @@ export default function SideDashboard() {
                 )}
             </section>
             <VerfiyId />
-            <ProfileProgress />
+            <ProfileProgress userData={userData}/>
         </main>
     )
 }

@@ -74,7 +74,7 @@ export default function HomePage() {
             <section
                     className="pt-2 w-[5%] h-screen sticky top-[40px] md970:w-[25%] sm650:hidden"
             >
-                    <Leftsidebar userData={userData} SuggestData={SuggestData}/>
+                    <Leftsidebar userData={userData} SuggestData={SuggestData} />
             </section>
             <section
                     className=" w-[95%] mt-10 rounded-2xl  md800:w-[60%] sm650:w-[100%] bg-white">
@@ -82,7 +82,11 @@ export default function HomePage() {
             </section>
             <section
                     className="pt-2 lg1150:w-[25%]  h-screen sticky top-[40px] w-[5%] sm650:hidden">
-                <Rightsidebar />
+                    <Rightsidebar 
+                    fetchUsers={fetchUsers} 
+                    SuggestData={SuggestData}
+                    userData={userData}
+                    />
             </section>
         </article>
         <ButtomNav />

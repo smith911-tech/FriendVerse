@@ -1,34 +1,12 @@
+interface userdatas {
+    userData : any,
+}
+
 // @ts-ignore
 import { Progress } from 'react-sweet-progress';
 import "react-sweet-progress/lib/style.css";
-import {useState, useEffect} from 'react'
 import { MdOutlineVerifiedUser } from "react-icons/md";
-import { doc, getDoc } from "firebase/firestore";
-import {db } from '../firebase-config'
-export default function ProfileProgress() {
-    const [userData, setUserData] = useState<any>(null);
-
-    // ! data fetched
-    const fetchData = async () => {
-        try {
-            let userid = sessionStorage.getItem("UserId");
-            const docRef = doc(db, "users", userid as string);
-            const snapshot = await getDoc(docRef);
-            console.log(userData)
-            if (snapshot.exists()) {
-                setUserData(snapshot.data());
-                console.log(userData)
-            } else {
-                console.log("No matching document");
-            }
-        } catch (error) {
-            console.error("Error fetching user data:", error);
-        }
-    };
-
-    useEffect(() => {
-        fetchData();
-    }, []);
+export default function ProfileProgress({userData}: userdatas): JSX.Element {
 
     let percentage = 0;
     if (userData) {
