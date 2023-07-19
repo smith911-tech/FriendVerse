@@ -74,7 +74,7 @@ export default function HomePage() {
     const handleBodyClick = () => {
         setInputClicked(false);
     };
-
+    
 
     return (
         <main className="relative">
@@ -93,7 +93,8 @@ export default function HomePage() {
             </section>
             <section
                     className=" w-[95%] mt-4 rounded-2xl  md800:w-[60%] sm650:w-[100%] ">
-                    <Content userData={userData}
+                    <Content 
+                    userData={userData}
                     handleBodyClick={handleBodyClick} 
                     handleInputClick={handleInputClick}
                     isInputClicked={isInputClicked}

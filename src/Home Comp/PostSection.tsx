@@ -2,7 +2,7 @@ interface userdatas {
     handleBodyClick: () => void,
     handleInputClick: () => void,
     isInputClicked: boolean,
-    userData: any
+    userData: any,
 }
 import { FaXmark } from "react-icons/fa6";
 import { BiSolidUserCircle } from 'react-icons/bi';
@@ -12,13 +12,14 @@ export default function PostSection({
     handleBodyClick,
     userData,
     isInputClicked,
-    handleInputClick }: userdatas): JSX.Element {
+    handleInputClick,
+}: userdatas): JSX.Element {
     const firstName = userData?.fullName?.split(' ')[0] ?? 'Loading....';
 
     return (
         
         <>
-            <header className="bg-white mb-2 py-2 px-5 rounded-2xl shadow md970:w-[90%] block mt-0 mx-auto ">
+            <header className="bg-white mb-2 py-2 px-5 rounded-2xl shadow md970:w-[90%] block mt-0 mx-auto select-none ">
                 <nav className="flex justify-between gap-2">
                     <div>
                         {userData ? (
