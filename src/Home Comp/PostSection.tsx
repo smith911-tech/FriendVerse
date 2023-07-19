@@ -57,23 +57,34 @@ export default function PostSection({
                         </span>
                     </section>
                     <hr />
-                    <section className="flex gap-2">
+                    <section className="flex gap-2 mt-2 select-none">
                         <div>
-                            {userData && userData.profileImage === "" ? (
+                            {userData ? (
+                                <section>
+                                    {userData.profileImage === "" ? (
+                                        <div className='text-[48px] rounded-full text-[#000000d7]'>
+                                            <BiSolidUserCircle />
+                                        </div>
+                                    ) : (
+                                        <img
+                                            src={userData.profileImage}
+                                            alt="Profile"
+                                            className="w-12 h-12 rounded-full object-contain"
+                                        />
+                                    )}
+                                </section>
+                            ) : (
                                 <div className='text-[48px] rounded-full text-[#000000d7]'>
                                     <BiSolidUserCircle />
                                 </div>
-                            ) : (
-                                <img
-                                    src={userData.profileImage}
-                                    alt="Profile"
-                                    className="w-12 h-12 rounded-full object-contain"
-                                />
                             )}
                         </div>
-                        <h2 className=" text-lg mt-3">
+                        <h2 className=" text-lg mt-3 font-semibold">
                             {userData && userData.fullName}
                         </h2>
+                    </section>
+                    <section>
+
                     </section>
                 </div>
             )}
