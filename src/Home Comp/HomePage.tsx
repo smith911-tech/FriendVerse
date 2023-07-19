@@ -65,13 +65,26 @@ export default function HomePage() {
         fetchData();
     }, []);
 
+    // ! Opening the post div
+    const [isInputClicked, setInputClicked] = useState(false);
+    const handleInputClick = () => {
+        setInputClicked(true);
+    };
+
+    const handleBodyClick = () => {
+        setInputClicked(false);
+    };
+
 
     return (
         <main className="relative">
-        <Header userData={userData}/>
+            <header onClick={handleBodyClick}>
+        <Header userData={userData} />
+            </header>
             
             <article className="bg-[#f0f2f5] flex justify-between gap-[1%] sm650:px-3">
             <section
+                    onClick={handleBodyClick}
                     className="pt-2 w-[5%] h-screen sticky top-[40px] md970:w-[25%] sm650:hidden"
             >
                     <Leftsidebar 
@@ -80,9 +93,14 @@ export default function HomePage() {
             </section>
             <section
                     className=" w-[95%] mt-10 rounded-2xl  md800:w-[60%] sm650:w-[100%] ">
-                    <Content userData={userData}/>
+                    <Content userData={userData}
+                    handleBodyClick={handleBodyClick} 
+                    handleInputClick={handleInputClick}
+                    isInputClicked={isInputClicked}
+                    />
             </section>
-            <section
+            <section 
+                    onClick={handleBodyClick}
                     className="pt-2 lg1150:w-[25%]  h-screen sticky top-[40px] w-[5%] sm650:hidden">
                     <Rightsidebar 
                     fetchUsers={fetchUsers} 
