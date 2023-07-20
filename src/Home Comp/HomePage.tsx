@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState} from "react";
 import Leftsidebar from "./Leftsidebar";
 import { useNavigate } from "react-router-dom";
 import Content from "./Content";
@@ -45,7 +45,7 @@ export default function HomePage() {
         } catch (error) {
             console.error("Error fetching user data:", error);
         }
-    };
+    }
 
     //! states
     const [SuggestData, setSuggestData] = useState<any[]>([]);
@@ -59,11 +59,15 @@ export default function HomePage() {
                 setSuggestData(newData);
                 console.log(SuggestData);
             });
-    };
+    }
     useEffect(() => {
         fetchUsers();
         fetchData();
     }, []);
+
+
+
+
 
     // ! Opening the post div
     const [isInputClicked, setInputClicked] = useState(false);
@@ -78,7 +82,7 @@ export default function HomePage() {
 
     return (
         <main className="relative">
-            <header onClick={handleBodyClick} className={`${isInputClicked ? " brightness-[0.2]" : " brightness-100"}`}>
+            <header onClick={handleBodyClick} className={`fixed  top-0 w-full z-10  ${isInputClicked ? " brightness-[0.2]" : " brightness-100"}`}>
         <Header userData={userData} />
             </header>
             
@@ -104,7 +108,6 @@ export default function HomePage() {
                     onClick={handleBodyClick}
                     className={`pt-2 lg1150:w-[25%]  h-screen sticky top-[70px] w-[5%] sm650:hidden ${isInputClicked ? " brightness-[0.2]" : " brightness-100"}`}>
                     <Rightsidebar 
-                    fetchUsers={fetchUsers} 
                     SuggestData={SuggestData}
                     userData={userData}
                     />

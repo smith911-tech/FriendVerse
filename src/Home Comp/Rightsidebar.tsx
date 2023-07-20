@@ -1,5 +1,4 @@
 interface userdatas {
-    fetchUsers : () => void,
     SuggestData : any,
     userData : any
 }
@@ -9,7 +8,7 @@ import { GoAlertFill } from "react-icons/go";
 import { BiSolidUserCircle } from "react-icons/bi";
 import VerfiyId from "./VerifyBox";
 import ProfileProgress from "./ProfileProgress";
-export default function SideDashboard({ fetchUsers, SuggestData, userData }: userdatas):JSX.Element {
+export default function SideDashboard({ SuggestData, userData }: userdatas):JSX.Element {
     const [searchTerm, setSearchTerm] = useState<string>("");
 
 
@@ -24,7 +23,6 @@ export default function SideDashboard({ fetchUsers, SuggestData, userData }: use
                     <input type="text"
                         className="w-full py-2 pl-10 pr-1  outline-[#117DD5] border rounded-2xl  border-solid bg-[#eff3f4]" placeholder="Search"
                         value={searchTerm}
-                        onClick={fetchUsers}
                         onChange={(e) => setSearchTerm(e.target.value)} />
                     <div className='text-xl cursor-pointer absolute top-[10px] left-3'><CiSearch /></div>
                 </div>

@@ -1,7 +1,7 @@
 import { AiOutlineHome } from 'react-icons/ai'
-import { TbMessage } from 'react-icons/tb'
+import { TiMessages } from 'react-icons/ti'
 import { IoNotificationsOutline } from 'react-icons/io5'
-import { FiUsers } from "react-icons/fi"
+import { FiUserPlus } from "react-icons/fi"
 import { AiOutlineSearch } from "react-icons/ai";
 export default function ButtomNav(){
     return(
@@ -10,8 +10,8 @@ export default function ButtomNav(){
                 <AiOutlineHome />
                 <div className="border-b-4 border-[blue] w-8 mx-auto mt-1"></div>
             </div>
-            <div className='text-3xl cursor-pointer'> <FiUsers /></div>
-            <div className='text-3xl cursor-pointer'> < TbMessage /></div>
+            <div className='text-3xl cursor-pointer'> <FiUserPlus /></div>
+            <div className='text-3xl cursor-pointer'> < TiMessages /></div>
             <div className='text-3xl cursor-pointer'> <IoNotificationsOutline /></div>
             <div className='text-3xl cursor-pointer'><AiOutlineSearch /></div>
         </nav>
