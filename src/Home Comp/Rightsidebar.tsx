@@ -16,6 +16,7 @@ export default function SideDashboard({ SuggestData, userData }: userdatas):JSX.
         const regex = new RegExp(`${searchTerm}`, "i");
         return SuggestData.filter((data: any) => regex.test(data.fullName || data.username)).slice(0, 5);
     }
+    let userid = sessionStorage.getItem('UserId')
     return (
         <main className="lg1150:block hidden px-1 pt-2 ">
             <section className="bg-[white]  px-2 py-2 shadow relative mb-8">
@@ -27,38 +28,42 @@ export default function SideDashboard({ SuggestData, userData }: userdatas):JSX.
                     <div className='text-xl cursor-pointer absolute top-[10px] left-3'><CiSearch /></div>
                 </div>
                 {searchTerm && (
-                    <div className={`absolute bg-white w-full   shadow z-10 -ml-2 overflow-y-auto overflow-x-hidden ${getSuggestions().length === 0 ? " h-[inherit] " : "h-44 "}`}>
+                    <div className={`absolute bg-white w-full shadow z-10 -ml-2 overflow-y-auto overflow-x-hidden ${getSuggestions().length === 0 ? " h-[inherit] " : "h-44 "}`}>
                         {getSuggestions().length === 0 ? (
                             <button className="ml-2 py-3 w-full font-semibold flex justify-center gap-2">
-                                <span className=" text-2xl text-red-600"><GoAlertFill /></span>
+                                <span className="text-2xl text-red-600"><GoAlertFill /></span>
                                 <h2>User doesn't exist</h2>
                             </button>
                         ) : (
-                            getSuggestions().map((data : any) => (
-                                <button
-                                    className="cursor-pointer w-full select-none flex  my-4 ml-1 rounded-2xl hover:bg-[#e1e6e7] gap-2"
-                                    key={data.id}>
-                                        <div>
-                                        {data.profileImage === "" ? (
-                                            <div className='text-[48px]   rounded-full text-[#000000d7]'>
-                                                <BiSolidUserCircle />
+                            getSuggestions().map((data: any) => {
+                                if (data.id !== userid) {
+                                    return (
+                                        <button
+                                            className="cursor-pointer w-full select-none flex my-4 ml-1 rounded-2xl hover:bg-[#e1e6e7] gap-2"
+                                            key={data.id}
+                                        >
+                                            <div>
+                                                {data.profileImage === "" ? (
+                                                    <div className='text-[48px] rounded-full text-[#000000d7]'>
+                                                        <BiSolidUserCircle />
+                                                    </div>
+                                                ) : (
+                                                    <img
+                                                        src={data.profileImage}
+                                                        alt="Profile"
+                                                        className="w-12 h-12 rounded-full object-contain"
+                                                    />
+                                                )}
                                             </div>
-                                        ) : (
-                                            <img
-                                                src={data.profileImage}
-                                                alt="Profile"
-                                                className="w-12 h-12 rounded-full   object-contain   "
-                                            />
-                                        )}
-                                        </div>
-                                        <div>
-                                        <p 
-                                        className="text-left font-semibold">{data.fullName}</p>
-                                        <p 
-                                        className="text-sm text-left text-[#000000a9]">{data.username}</p>
-                                        </div>
-                                </button>
-                            ))
+                                            <div>
+                                                <p className="text-left font-semibold">{data.fullName}</p>
+                                                <p className="text-sm text-left text-[#000000a9]">{data.username}</p>
+                                            </div>
+                                        </button>
+                                    );
+                                }
+                                return null;
+                            })
                         )}
                     </div>
                 )}
