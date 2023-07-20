@@ -11,7 +11,8 @@ import {
     HomePage,
     TermsandCondition,
     Privacy,
-    Cookie
+    Cookie,
+    Profile,
 } from "./Import";
 
 function App() {
@@ -50,9 +51,6 @@ function App() {
                         {/* Create a new passowrd  */}
                         <Route path="/Newpassword" element={<Newpassword />} />
 
-                        {/* Home page */}
-                        <Route path="/Home" element={<HomePage />} />
-
                         {/*  TermsandCondition */}
                         <Route path='/T&C' element={<TermsandCondition />} />
 
@@ -61,6 +59,12 @@ function App() {
 
                         {/* Cookie */}
                         <Route path="/Cookies" element={<Cookie />} />
+
+                        {/* Profile */}
+                        <Route path="/Profile" element={<Profile /> }/>
+
+                        {/* Home page */}
+                        <Route path="/Home" element={<HomePage />} />
                     </Routes>
                 </BrowserRouter>
             )}

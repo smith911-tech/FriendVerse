@@ -8,6 +8,7 @@ import HomePage from "./Home Comp/HomePage";
 import TermsandCondition from "./Terms & condition/Terms";
 import Privacy from "./Privacy/Privacy";
 import Cookie from "./Cookie/Cookie";
+import Profile from './Home Comp/UserPersonalProfile/UserPersonalProfile'
 
 export {
     SignIn,
@@ -20,4 +21,5 @@ export {
     TermsandCondition,
     Privacy,
     Cookie,
+    Profile,
 }

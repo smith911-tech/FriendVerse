@@ -61,12 +61,15 @@ export default function HomePage() {
             });
     }
     useEffect(() => {
-        fetchUsers();
-        fetchData();
+        const fetchDataAndUsers = async () => {
+            await fetchUsers();
+            await fetchData();
+        };
+
+        fetchDataAndUsers(); 
+        const intervalId = setInterval(fetchDataAndUsers, 600000);
+        return () => clearInterval(intervalId);
     }, []);
-
-
-
 
 
     // ! Opening the post div
