@@ -14,9 +14,8 @@ export default function Header({userData}: userdatas): JSX.Element {
         <header className=' shadow bg-[#fff] flex justify-between px-3 py-2 text-[#000000bc] select-none'>
             <img src={logo} alt="" className='w-[40px] object-contain' />
             <nav className='flex gap-14 px-5 mt-2 sm650:hidden'>
-                <div className='text-3xl cursor-pointer text-[blue]'> 
+                <div className='text-3xl cursor-pointer '> 
                     <AiOutlineHome />
-                    <div className="border-b-4 border-[blue] w-8 mx-auto mt-1"></div>
                 </div>
                 <div className='text-3xl cursor-pointer'> <FiUserPlus/></div>
                 <div className='text-3xl cursor-pointer'><MdOutlineOndemandVideo /></div>

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import Leftsidebar from "../Leftsidebar";
 import { useNavigate } from "react-router-dom";
 import Rightsidebar from "../Rightsidebar";
 import Header from "../Header";
 import ButtomNav from "../ButtomNav";
 import { doc, getDoc, collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase-config"
+import ProfileLeftbar from "./LeftsidebarProfile";
 export default function userPersonalProfile() {
     // ! toggle profile on mobile screen
     const [Toggle, setToggle] = useState<boolean>(false)
@@ -90,8 +90,7 @@ export default function userPersonalProfile() {
                     onClick={handleBodyClick}
                     className={`pt-2 w-[5%] h-screen sticky top-[70px] md970:w-[25%] sm650:hidden ${isInputClicked ? " brightness-[0.2]" : " brightness-100"}`}
                 >
-                    <Leftsidebar
-                        userData={userData}
+                    <ProfileLeftbar
                         SuggestData={SuggestData} />
                 </section>
                 <section
