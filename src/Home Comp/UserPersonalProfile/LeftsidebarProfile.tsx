@@ -20,35 +20,30 @@ export default function ProfileLeftbar({ SuggestData }: userdatas): JSX.Element 
                             <h2 className="font-extrabold">Suggestions</h2>
                             <span className="text-[#117dd5]"><GoTelescopeFill /></span>
                         </div>
-                        {SuggestData.slice(0, 8).map((data: any) => {
-                            if (data.id !== userid) {
-                                return (
-                                    <div
-                                        className="cursor-pointer w-full select-none flex my-4 ml-1 rounded-2xl gap-2"
-                                        key={data.id}
-                                    >
-                                        <div>
-                                            {data.profileImage === "" ? (
-                                                <div className='text-[48px] rounded-full text-[#000000d7]'>
-                                                    <BiSolidUserCircle />
-                                                </div>
-                                            ) : (
-                                                <img
-                                                    src={data.profileImage}
-                                                    alt="Profile"
-                                                    className="w-12 h-12 rounded-full object-contain"
-                                                />
-                                            )}
+                        {SuggestData.filter((data: any) => data.id !== userid).slice(0, 8).map((data: any) => (
+                            <div
+                                className="cursor-pointer w-full select-none flex my-4 ml-1 rounded-2xl gap-2"
+                                key={data.id}
+                            >
+                                <div>
+                                    {data.profileImage === "" ? (
+                                        <div className='text-[48px] rounded-full text-[#000000d7]'>
+                                            <BiSolidUserCircle />
                                         </div>
-                                        <div>
-                                            <p className="text-left font-semibold">{data.fullName}</p>
-                                            <p className="text-sm text-left text-[#000000a9]">{data.username}</p>
-                                        </div>
-                                    </div>
-                                );
-                            }
-                            return null;
-                        })}
+                                    ) : (
+                                        <img
+                                            src={data.profileImage}
+                                            alt="Profile"
+                                            className="w-12 h-12 rounded-full object-contain"
+                                        />
+                                    )}
+                                </div>
+                                <div>
+                                    <p className="text-left font-semibold">{data.fullName}</p>
+                                    <p className="text-sm text-left text-[#000000a9]">{data.username}</p>
+                                </div>
+                            </div>
+                        ))}
                     </section>
                 )}
             </section>

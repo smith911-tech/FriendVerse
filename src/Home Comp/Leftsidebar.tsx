@@ -9,7 +9,7 @@ import { SmallCard } from "./LoadingCard";
 import { GoTelescopeFill } from "react-icons/go";
 
 export default function Dashboard({ userData, SuggestData }: userdatas): JSX.Element {
-
+    let userid = sessionStorage.getItem('UserId')
 
     return (
         <main className="md970:block hidden font-Inter pt-2 px-2">
@@ -70,7 +70,7 @@ export default function Dashboard({ userData, SuggestData }: userdatas): JSX.Ele
                                 <h2 className=" font-extrabold">Suggestions</h2>
                                 <span className=" text-[#117dd5]"><GoTelescopeFill /></span>
                         </div>
-                        {SuggestData.slice(1, 4).map((data: any) => (
+                        {SuggestData.filter((data: any) => data.id !== userid).slice(0, 4).map((data: any) =>(
                             <div
                                 className="cursor-pointer w-full select-none flex  my-4 ml-1 rounded-2xl gap-2"
                                 key={data.id}>
