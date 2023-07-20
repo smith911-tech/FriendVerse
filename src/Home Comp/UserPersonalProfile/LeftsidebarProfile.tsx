@@ -2,7 +2,7 @@ interface userdatas {
     SuggestData: any
 }
 import { BiSolidUserCircle } from "react-icons/bi";
-import { SmallCard } from "../LoadingCard";
+import { LongCard } from "../LoadingCard";
 import { GoTelescopeFill } from "react-icons/go";
 
 export default function ProfileLeftbar({ SuggestData }: userdatas): JSX.Element {
@@ -11,9 +11,9 @@ export default function ProfileLeftbar({ SuggestData }: userdatas): JSX.Element 
     return (
 
         <main className="md970:block hidden font-Inter pt-2 px-2">
-            <section className="mt-6">
+            <section >
                 {SuggestData.length === 0 ? (
-                    <SmallCard />
+                    <LongCard />
                 ) : (
                     <section className="bg-white rounded-lg shadow py-2">
                         <div className="flex text-lg justify-between mx-2">

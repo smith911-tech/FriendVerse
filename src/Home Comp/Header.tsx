@@ -9,6 +9,7 @@ import { FiUserPlus} from "react-icons/fi"
 import { BiSolidUserCircle } from "react-icons/bi";
 import { MdOutlineOndemandVideo } from 'react-icons/md'
 import { Link } from 'react-router-dom'
+import { RotatingLines } from 'react-loader-spinner'
 export default function Header({userData}: userdatas): JSX.Element {
     return (
         <header className=' shadow bg-[#fff] flex justify-between px-3 py-2 text-[#000000bc] select-none'>
@@ -43,7 +44,13 @@ export default function Header({userData}: userdatas): JSX.Element {
                     </section>
                 ) : (
                     <div className='text-[48px] rounded-full text-[#000000d7]'>
-                        <BiSolidUserCircle />
+                            <RotatingLines
+                                strokeColor="grey"
+                                strokeWidth="5"
+                                animationDuration="0.75"
+                                width="40"
+                                visible={true}
+                            />
                     </div>
                 )}
 
