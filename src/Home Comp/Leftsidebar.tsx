@@ -50,7 +50,7 @@ export default function Dashboard({ userData, SuggestData }: userdatas): JSX.Ele
                         <div className="mt-8 text-center font-medium mb-2">
                             <h2 className="pb-1 capitalize">{userData.fullName}</h2>
 
-                                <h2 className="text-xs text-[#000000a5]">{userData.bio}</h2>
+                                <h2 className="text-xs text-[#000000a5] px-2 text-center">{userData.bio}</h2>
                         </div>
                         <div className="mb-2 select-none">
                             <h2 className="text-center font-medium text-[#000000a5]">Following</h2>
