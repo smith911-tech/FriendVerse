@@ -121,7 +121,7 @@ export default function PostSection({
                             </span>
                         </div>
                     </section>
-                    <button className=" my-3 text-center w-full py-3 bg-[#3b82f6] text-white text-xl font-medium rounded-xl sm650:py-2">Post</button>
+                    <button className=" my-3 text-center w-full py-3 bg-[#3b82f6] text-white text-xl font-medium rounded-xl sm650:py-2">Verb</button>
                 </div>
             )}
         </>

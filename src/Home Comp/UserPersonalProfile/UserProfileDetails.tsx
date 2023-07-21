@@ -73,6 +73,12 @@ export default function UserProfileDetails({userData}: userdatas): JSX.Element{
                     <span className=' text-[black] select-none'>10</span> Following</li>
             </ul>
             <hr />
+            <ul className='flex justify-between font-bold mt-2 text-[#000000ce]'>
+                <li>Verb</li>
+                <li>Reverb</li>
+                <li>Liked</li>
+                <li>Impression</li>
+            </ul>
         </section>
     )
 }
