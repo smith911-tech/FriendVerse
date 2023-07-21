@@ -116,7 +116,9 @@ export default function HomePage() {
                     />
             </section>
         </article>
+            <footer onClick={handleBodyClick} >
         <ButtomNav />
+            </footer>
         </main>
     )
 }

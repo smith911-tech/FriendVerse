@@ -9,6 +9,7 @@ import { BiSolidUserCircle } from 'react-icons/bi';
 import { TfiGallery } from 'react-icons/tfi'
 import { ImFileVideo } from 'react-icons/im'
 import { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 export default function PostSection({
     handleBodyClick,
     userData,
@@ -35,15 +36,19 @@ export default function PostSection({
                         {userData ? (
                             <section>
                                 {userData.profileImage === "" ? (
+                                    <Link to='/Profile'>
                                     <div className='text-[48px] rounded-full text-[#000000d7]'>
                                         <BiSolidUserCircle />
                                     </div>
+                                    </Link>
                                 ) : (
+                                    <Link to='/Profile'>
                                     <img
                                         src={userData.profileImage}
                                         alt="Profile"
                                         className="w-12 h-12 rounded-full object-contain"
                                     />
+                                        </Link>
                                 )}
                             </section>
                         ) : (
@@ -64,9 +69,9 @@ export default function PostSection({
             </header>
 
             {isInputClicked && (
-                <div className="absolute top-0 left-0 right-0 mx-auto bg-white p-4 z-[30] rounded-2xl shadow md970:w-[90%] ">
+                <div className="absolute top-0 left-0 right-0 mx-auto bg-white p-4 z-[30] rounded-2xl shadow md970:w-[90%] sm650:-top-9 ">
                     <section className="flex justify-between mb-1">
-                        <h2 className='text-xl font-bold'>Create Post</h2>
+                        <h2 className='text-xl font-bold '>Create Post</h2>
                         <span className="text-xl bg-[#f0f2f5] mb-2 rounded-full text-[#0000009b] px-1 py-1 cursor-pointer" onClick={handleBodyClick}>
                             <FaXmark />
                         </span>
@@ -116,7 +121,7 @@ export default function PostSection({
                             </span>
                         </div>
                     </section>
-                    <button className=" my-3 text-center w-full py-3 bg-[#3b82f6] text-white text-xl font-medium rounded-xl">Post</button>
+                    <button className=" my-3 text-center w-full py-3 bg-[#3b82f6] text-white text-xl font-medium rounded-xl sm650:py-2">Post</button>
                 </div>
             )}
         </>
