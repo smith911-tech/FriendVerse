@@ -1,13 +1,14 @@
 interface userdatas {
     userData: any | null,
-    handleInputClick : () => void
+    handleInputClick : () => void,
+    isInputClicked : boolean
 }
 import { BsFillPencilFill } from 'react-icons/bs'
 import { IoLocationOutline } from 'react-icons/io5'
 import { LiaBirthdayCakeSolid } from 'react-icons/lia'
 import ProfileSides from './ProfileSlider';
 import UpdateProfile from './UpdateProfile';
-export default function UserProfileDetails({userData, handleInputClick}: userdatas): JSX.Element{
+export default function UserProfileDetails({ userData, handleInputClick, isInputClicked }: userdatas): JSX.Element{
 
 
     //! Regular expression to find URLs in the bio text
@@ -27,15 +28,17 @@ export default function UserProfileDetails({userData, handleInputClick}: userdat
     // ! Data of birth convertion from timestamp
     const dataofbirth = userData && userData.dateOfBirth;
     const DODValue = new Date(dataofbirth.seconds * 1000);
-    // Define an array to get the month name
+
+    //! Define an array to get the month name
     const monthNames = [
         "January", "February", "March", "April", "May", "June", "July",
         "August", "September", "October", "November", "December"
     ];
-    // Formatting the date to show as "15 January 2004"
+    //! Formatting the date to show as "15 January 2004"
     const formattedDate = `${DODValue.getDate()} ${monthNames[DODValue.getMonth()]} ${DODValue.getFullYear()}`;
 
     return(
+        <>
         <section className='w-full px-6 py-2'>
             <button onClick={handleInputClick} className='block my-0 ml-auto bg-[#3b82f6] text-white font-semibold py-1 px-2 rounded-lg'>
                 <div className='flex gap-[2px]'>
@@ -76,8 +79,9 @@ export default function UserProfileDetails({userData, handleInputClick}: userdat
                     <span className=' text-[black] select-none'>10</span> Following</li>
             </ul>
             <hr />
-            <UpdateProfile />
             <ProfileSides />
         </section>
+            <UpdateProfile isInputClicked={isInputClicked} />
+        </>
     )
 }

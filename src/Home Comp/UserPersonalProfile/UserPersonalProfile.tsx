@@ -101,7 +101,9 @@ export default function userPersonalProfile() {
                     className=" w-[95%] mt-4 rounded-2xl  md800:w-[60%] sm650:w-[100%] ">
                     <UserProfile 
                     userData={userData} 
-                    handleInputClick={handleInputClick}/>
+                    handleInputClick={handleInputClick}
+                    isInputClicked={isInputClicked}
+                    />
                 </section>
                 <section
                     onClick={handleBodyClick}
