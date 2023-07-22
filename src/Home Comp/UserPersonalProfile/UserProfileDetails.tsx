@@ -81,7 +81,7 @@ export default function UserProfileDetails({ userData, handleInputClick, isInput
             <hr />
             <ProfileSides />
         </section>
-            <UpdateProfile isInputClicked={isInputClicked} />
+            <UpdateProfile isInputClicked={isInputClicked} userData={userData}/>
         </>
     )
 }
