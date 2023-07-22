@@ -16,7 +16,7 @@ export default function UserProfile({ userData, handleInputClick, isInputClicked
                 {userData ? (
                     <section className="w-full flex flex-col justify-center bg-white">
                         <div className="bg-white rounded-lg shadow p-1">
-                            <section className='flex justify-between px-2 py-1'>
+                            <section className='flex justify-between px-2 py-1 smm500:px-1'>
                             <Link to='/Home'>
                                 <div className=' text-[#0000008e] text-3xl top-1 left-1 cursor-pointer'>
                                     <BsFillArrowLeftCircleFill />
@@ -42,14 +42,14 @@ export default function UserProfile({ userData, handleInputClick, isInputClicked
                                 )}
                                 
                                 {userData.profileImage === "" ? (
-                                    <div className=' text-8xl absolute left-4 -translate-y-1/2 border-2 border-white rounded-full bg-white text-[#000000d7]'>
+                                    <div className=' text-8xl absolute left-4 -translate-y-1/2  border-white rounded-full bg-white text-[#000000d7] smm500:text-[80px] smm500:left-1'>
                                         <BiSolidUserCircle />
                                     </div>
                                 ) : (
                                     <img 
                                         src={userData.profileImage}
                                         alt="Profile"
-                                        className="w-24 h-24 rounded-full absolute left-4 -translate-y-1/2 border-4 border-white object-contain bg-white"
+                                        className="w-24 h-24 rounded-full absolute left-4 -translate-y-1/2 border border-white object-contain bg-white smm500:h-20 smm500:w-20 smm500:left-1"
                                     />
                                 )}
 

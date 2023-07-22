@@ -39,7 +39,7 @@ export default function UserProfileDetails({ userData, handleInputClick, isInput
 
     return(
         <>
-        <section className='w-full px-6 py-2'>
+            <section className='w-full px-6 py-2 smm500:px-2 '>
             <button onClick={handleInputClick} className='block my-0 ml-auto bg-[#3b82f6] text-white font-semibold py-1 px-2 rounded-lg'>
                 <div className='flex gap-[2px]'>
                     <p className='mt-1'><BsFillPencilFill /></p>
