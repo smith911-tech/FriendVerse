@@ -103,6 +103,7 @@ export default function userPersonalProfile() {
                     userData={userData} 
                     handleInputClick={handleInputClick}
                     isInputClicked={isInputClicked}
+                    handleBodyClick={handleBodyClick}
                     />
                 </section>
                 <section

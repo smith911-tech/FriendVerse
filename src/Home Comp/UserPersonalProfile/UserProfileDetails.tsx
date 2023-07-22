@@ -1,14 +1,20 @@
 interface userdatas {
     userData: any | null,
     handleInputClick : () => void,
-    isInputClicked : boolean
+    isInputClicked : boolean,
+    handleBodyClick: () => void
 }
 import { BsFillPencilFill } from 'react-icons/bs'
 import { IoLocationOutline } from 'react-icons/io5'
 import { LiaBirthdayCakeSolid } from 'react-icons/lia'
 import ProfileSides from './ProfileSlider';
 import UpdateProfile from './UpdateProfile';
-export default function UserProfileDetails({ userData, handleInputClick, isInputClicked }: userdatas): JSX.Element{
+export default function UserProfileDetails({ 
+    userData, 
+    handleInputClick, 
+    isInputClicked,
+    handleBodyClick
+}: userdatas): JSX.Element{
 
 
     //! Regular expression to find URLs in the bio text
@@ -81,7 +87,11 @@ export default function UserProfileDetails({ userData, handleInputClick, isInput
             <hr />
             <ProfileSides />
         </section>
-            <UpdateProfile isInputClicked={isInputClicked} userData={userData}/>
+            <UpdateProfile 
+            isInputClicked={isInputClicked} 
+            userData={userData}
+            handleBodyClick={handleBodyClick}
+            />
         </>
     )
 }
