@@ -28,7 +28,7 @@ export default function PostSection({
 
 
     return (
-
+    
         <>
             <header className="bg-white mb-2 py-2 px-5 rounded-2xl shadow md970:w-[90%] block mt-0 mx-auto select-none  smm500:py-[1px] smm500:px-2">
                 <nav className="flex justify-between gap-2">
