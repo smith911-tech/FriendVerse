@@ -28,9 +28,9 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
                                     className="w-full rounded-t-lg h-44 smm500:h-32 object-cover brightness-[0.5]"
                                 />
                                 <label htmlFor="coverimg" className=' absolute top-2/4 cursor-pointer text-[#ffffffc8] text-4xl left-[45%] bg-[#0000008b] px-2 py-2 rounded-2xl'>
-                                    <span >
+                                    <abbr title='Upload Image' >
                                         <AiOutlineCloudUpload />
-                                    </span>
+                                    </abbr>
                                     <input type="file" name="" id="coverimg" className='hidden' />
                                 </label>
                             </section>
@@ -42,15 +42,15 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
                                     className="w-full rounded-t-lg h-44  object-cover smm500:h-32 brightness-[0.5]"
                                 />
                                 <label htmlFor="coverimg" className=' absolute top-2/4 cursor-pointer text-[#ffffffc8] text-3xl left-1/3 bg-[#0000008b] px-2 py-2 rounded-2xl'>
-                                    <span >
+                                    <abbr title='Upload Image' >
                                         <AiOutlineCloudUpload />
-                                    </span>
+                                    </abbr>
                                     <input type="file" name="" id="coverimg" className='hidden' />
                                 </label>
-                                <div className=' absolute top-2/4 cursor-pointer text-[#ffffffc8] text-3xl right-1/3 bg-[#0000008b] px-2 py-2 rounded-2xl'>
-                                    <span >
+                                <div className=' absolute top-2/4 cursor-pointer text-[#ffffffc8] text-2xl right-1/3 bg-[#0000008b] px-2 py-2 rounded-2xl'>
+                                    <abbr title='Remove Cover Image' >
                                         <AiOutlineClose />
-                                    </span>
+                                    </abbr>
                                 </div>
                             </section>
                         )}

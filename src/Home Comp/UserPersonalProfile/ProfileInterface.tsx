@@ -6,10 +6,10 @@ interface userdatas{
 }
 import defaultcoverimg from '../../assets/DefalutCoverImg.jpg'
 import { BiSolidUserCircle } from "react-icons/bi";
-import { SmallCard } from "../../Home Comp/LoadingCard";
+import { SmallCard } from "../LoadingCard";
 import { BsFillArrowLeftCircleFill, BsFillGearFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-import UserProfileDetails from './UserProfileDetails';
+import ProfileDetails from './ProfileDetails';
 export default function UserProfile({ 
     userData, 
     handleInputClick, 
@@ -61,7 +61,7 @@ export default function UserProfile({
 
                             </div>
                         </div>
-                        <UserProfileDetails 
+                        <ProfileDetails
                         userData={userData} 
                         handleInputClick={handleInputClick} 
                         isInputClicked={isInputClicked}

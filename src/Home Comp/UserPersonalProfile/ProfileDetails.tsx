@@ -7,8 +7,8 @@ interface userdatas {
 import { BsFillPencilFill } from 'react-icons/bs'
 import { IoLocationOutline } from 'react-icons/io5'
 import { LiaBirthdayCakeSolid } from 'react-icons/lia'
-import ProfileSides from './ProfileSlider';
-import UpdateProfile from './UpdateProfile';
+import ProfileSLideBtn from './ProfileSlideBtn';
+import UpdateP from './UpdateP';
 export default function UserProfileDetails({ 
     userData, 
     handleInputClick, 
@@ -85,9 +85,9 @@ export default function UserProfileDetails({
                     <span className=' text-[black] select-none'>10</span> Following</li>
             </ul>
             <hr />
-            <ProfileSides />
+            <ProfileSLideBtn />
         </section>
-            <UpdateProfile 
+            <UpdateP
             isInputClicked={isInputClicked} 
             userData={userData}
             handleBodyClick={handleBodyClick}

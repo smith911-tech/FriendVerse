@@ -6,7 +6,7 @@ import ButtomNav from "../ButtomNav";
 import { doc, getDoc, collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase-config"
 import ProfileLeftbar from "./LeftsidebarProfile";
-import UserProfile from "./UserProfile";
+import ProfileInterface from "./ProfileInterface";
 export default function userPersonalProfile() {
     // ! toggle profile on mobile screen
     const [Toggle, setToggle] = useState<boolean>(false)
@@ -99,7 +99,7 @@ export default function userPersonalProfile() {
                 </section>
                 <section
                     className=" w-[95%] mt-4 rounded-2xl  md800:w-[60%] sm650:w-[100%] smm500:mt-0">
-                    <UserProfile 
+                    <ProfileInterface 
                     userData={userData} 
                     handleInputClick={handleInputClick}
                     isInputClicked={isInputClicked}
