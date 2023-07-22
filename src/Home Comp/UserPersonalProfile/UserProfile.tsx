@@ -31,13 +31,13 @@ export default function UserProfile({ userData, handleInputClick, isInputClicked
                                     <img
                                         src={defaultcoverimg}
                                         alt="Cover"
-                                        className="w-full rounded-t-lg h-44 object-cover"
+                                        className="w-full rounded-t-lg h-44 smm500:h-32 object-cover"
                                     />
                                 ) : (
                                     <img
                                         src={userData.coverImage}
                                         alt="Cover"
-                                                className="w-full rounded-t-lg h-44  object-cover"
+                                            className="w-full rounded-t-lg h-44  object-cover smm500:h-32"
                                     />
                                 )}
                                 

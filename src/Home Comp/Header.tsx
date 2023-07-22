@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom'
 export default function Header({userData}: userdatas): JSX.Element {
     return (
         <header className=' shadow bg-[#fff] flex justify-between px-3 py-2 text-[#000000bc] select-none'>
-            <img src={logo} alt="" className='w-[40px] object-contain' />
+            <img src={logo} alt="" className='w-[40px] object-contain smm500:w-[30px]' />
             <nav className='flex gap-14 px-5 mt-2 sm650:hidden'>
                 <div className='text-3xl cursor-pointer '> 
                     <AiOutlineHome />
@@ -27,7 +27,7 @@ export default function Header({userData}: userdatas): JSX.Element {
                     <section>
                         {userData.profileImage === "" ? (
                             <Link to='/Profile'>
-                                <div className='text-[48px] rounded-full text-[#000000d7]'>
+                                <div className='text-[48px] rounded-full text-[#000000d7]  smm500:text-[40px]'>
                                     <BiSolidUserCircle />
                                 </div>
                         </Link>
@@ -36,13 +36,13 @@ export default function Header({userData}: userdatas): JSX.Element {
                             <img
                                 src={userData.profileImage}
                                 alt="Profile"
-                                className="w-12 h-12 rounded-full object-contain"
+                                        className="w-12 h-12 rounded-full object-contain smm500:w-10 smm500:h-10"
                             />
                                 </Link>
                         )}
                     </section>
                 ) : (
-                        <div className='text-[48px] rounded-full text-[#000000d7]'>
+                        <div className='text-[48px] rounded-full text-[#000000d7] smm500:text-[40px]'>
                             <BiSolidUserCircle />
                         </div>
                 )}

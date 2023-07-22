@@ -6,6 +6,9 @@ export default {
         screens: {
       "sm650": {"max": "650px"},
       // => (max-width: 733px) { ... }
+
+      "smm500": {"max": "500px"},
+      // => (max-width: 733px) { ... }
     
       'sm500': '500px',
       // => @media (min-width: 506px) { ... }
