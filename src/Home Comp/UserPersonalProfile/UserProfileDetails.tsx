@@ -1,11 +1,13 @@
 interface userdatas {
-    userData: any | null
+    userData: any | null,
+    handleInputClick : () => void
 }
 import { BsFillPencilFill } from 'react-icons/bs'
 import { IoLocationOutline } from 'react-icons/io5'
 import { LiaBirthdayCakeSolid } from 'react-icons/lia'
 import ProfileSides from './ProfileSlider';
-export default function UserProfileDetails({userData}: userdatas): JSX.Element{
+import UpdateProfile from './UpdateProfile';
+export default function UserProfileDetails({userData, handleInputClick}: userdatas): JSX.Element{
 
 
     //! Regular expression to find URLs in the bio text
@@ -35,7 +37,7 @@ export default function UserProfileDetails({userData}: userdatas): JSX.Element{
 
     return(
         <section className='w-full px-6 py-2'>
-            <button className='block my-0 ml-auto bg-[#3b82f6] text-white font-semibold py-1 px-2 rounded-lg'>
+            <button onClick={handleInputClick} className='block my-0 ml-auto bg-[#3b82f6] text-white font-semibold py-1 px-2 rounded-lg'>
                 <div className='flex gap-[2px]'>
                     <p className='mt-1'><BsFillPencilFill /></p>
                     <h2>Edit Profile</h2>
@@ -74,6 +76,7 @@ export default function UserProfileDetails({userData}: userdatas): JSX.Element{
                     <span className=' text-[black] select-none'>10</span> Following</li>
             </ul>
             <hr />
+            <UpdateProfile />
             <ProfileSides />
         </section>
     )

@@ -45,7 +45,7 @@ export default function UserProfile({ userData, handleInputClick }: userdatas): 
                                         <BiSolidUserCircle />
                                     </div>
                                 ) : (
-                                    <img onClick={handleInputClick}
+                                    <img 
                                         src={userData.profileImage}
                                         alt="Profile"
                                         className="w-24 h-24 rounded-full absolute left-4 -translate-y-1/2 border-4 border-white object-contain bg-white"
@@ -54,7 +54,7 @@ export default function UserProfile({ userData, handleInputClick }: userdatas): 
 
                             </div>
                         </div>
-                        <UserProfileDetails userData={userData}/>
+                        <UserProfileDetails userData={userData} handleInputClick={handleInputClick} />
                     </section>
                 ) : (
                     <SmallCard />
