@@ -7,6 +7,7 @@ export default function ProfileSides() {
         slidesToShow: 4,
         infinite: false,
         slidesToScroll: 1,
+        arrows: false,
         responsive: [
             {
                 breakpoint: 1024,
