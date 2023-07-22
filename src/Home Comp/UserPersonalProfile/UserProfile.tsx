@@ -1,5 +1,6 @@
 interface userdatas{
-    userData : any
+    userData : any,
+    handleInputClick: () => void
 }
 import defaultcoverimg from '../../assets/DefalutCoverImg.jpg'
 import { BiSolidUserCircle } from "react-icons/bi";
@@ -7,7 +8,7 @@ import { SmallCard } from "../../Home Comp/LoadingCard";
 import { BsFillArrowLeftCircleFill, BsFillGearFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import UserProfileDetails from './UserProfileDetails';
-export default function UserProfile({userData}: userdatas): JSX.Element{
+export default function UserProfile({ userData, handleInputClick }: userdatas): JSX.Element{
     return(
         <main>
         <section>
@@ -44,7 +45,7 @@ export default function UserProfile({userData}: userdatas): JSX.Element{
                                         <BiSolidUserCircle />
                                     </div>
                                 ) : (
-                                    <img
+                                    <img onClick={handleInputClick}
                                         src={userData.profileImage}
                                         alt="Profile"
                                         className="w-24 h-24 rounded-full absolute left-4 -translate-y-1/2 border-4 border-white object-contain bg-white"

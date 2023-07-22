@@ -78,6 +78,9 @@ export default function userPersonalProfile() {
     const handleBodyClick = () => {
         setInputClicked(false);
     };
+    const handleInputClick = () => {
+        setInputClicked(true);
+    };
 
 
     return (
@@ -96,7 +99,9 @@ export default function userPersonalProfile() {
                 </section>
                 <section
                     className=" w-[95%] mt-4 rounded-2xl  md800:w-[60%] sm650:w-[100%] ">
-                        <UserProfile userData={userData}/>
+                    <UserProfile 
+                    userData={userData} 
+                    handleInputClick={handleInputClick}/>
                 </section>
                 <section
                     onClick={handleBodyClick}
