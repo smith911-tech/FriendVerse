@@ -4,6 +4,7 @@ interface userdatas {
 import { BsFillPencilFill } from 'react-icons/bs'
 import { IoLocationOutline } from 'react-icons/io5'
 import { LiaBirthdayCakeSolid } from 'react-icons/lia'
+import ProfileSides from './ProfileSlider';
 export default function UserProfileDetails({userData}: userdatas): JSX.Element{
 
 
@@ -63,7 +64,7 @@ export default function UserProfileDetails({userData}: userdatas): JSX.Element{
                     <span className=' text-xl'>
                         {userData && userData.Location && < LiaBirthdayCakeSolid />}
                     </span>
-                    {formattedDate}
+                    {userData && userData.dateOfBirth && formattedDate}
                 </h2>
             </section>
             <ul className='flex gap-7 font-medium text-[#000000a5] mb-2'>
@@ -73,12 +74,7 @@ export default function UserProfileDetails({userData}: userdatas): JSX.Element{
                     <span className=' text-[black] select-none'>10</span> Following</li>
             </ul>
             <hr />
-            <ul className='flex justify-between font-bold mt-2 text-[#000000ce]'>
-                <li>Verb</li>
-                <li>Reverb</li>
-                <li>Liked</li>
-                <li>Impression</li>
-            </ul>
+            <ProfileSides />
         </section>
     )
 }
