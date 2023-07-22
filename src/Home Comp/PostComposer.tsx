@@ -71,8 +71,8 @@ export default function PostSection({
             {isInputClicked && (
                 <div className="absolute top-0 left-0 right-0 mx-auto bg-white p-4 z-[30] rounded-2xl shadow md970:w-[90%] sm650:-top-9 ">
                     <section className="flex justify-between mb-1">
-                        <h2 className='text-xl font-bold '>Create Post</h2>
-                        <span className="text-xl bg-[#f0f2f5] mb-2 rounded-full text-[#0000009b] px-1 py-1 cursor-pointer" onClick={handleBodyClick}>
+                        <h2 className='text-xl font-bold smm500:text-lg'>Create Post</h2>
+                        <span className="text-xl bg-[#f0f2f5] mb-2 rounded-full text-[#0000009b] px-1 py-1 cursor-pointer smm500:text-lg" onClick={handleBodyClick}>
                             <FaXmark />
                         </span>
                     </section>
@@ -82,14 +82,14 @@ export default function PostSection({
                             {userData ? (
                                 <section>
                                     {userData.profileImage === "" ? (
-                                        <div className='text-[48px] rounded-full text-[#000000d7]'>
+                                        <div className='text-[48px] rounded-full text-[#000000d7] smm500:text-[40px]'>
                                             <BiSolidUserCircle />
                                         </div>
                                     ) : (
                                         <img
                                             src={userData.profileImage}
                                             alt="Profile"
-                                            className="w-12 h-12 rounded-full object-contain"
+                                                className="w-12 h-12 rounded-full object-contain smm500:h-10 smm500:w-10"
                                         />
                                     )}
                                 </section>
@@ -99,29 +99,29 @@ export default function PostSection({
                                 </div>
                             )}
                         </div>
-                        <h2 className=" text-lg mt-3 font-semibold">
+                        <h2 className=" text-lg mt-3 font-semibold smm500:text-base">
                             {userData && userData.fullName}
                         </h2>
                     </section>
                     <section>
-                        <textarea ref={inputRef} className="w-full  text-xl pt-2 mt-2 outline-none" name="" id="" rows={5} placeholder={`What's on your mind, ${firstName}?`} ></textarea>
+                        <textarea ref={inputRef} className="w-full  text-xl pt-2 mt-2 outline-none smm500:text-lg" name="" id="" rows={5} placeholder={`What's on your mind, ${firstName}?`} ></textarea>
                     </section>
-                    <section className=" text-2xl flex justify-between border border-[#000000b6] border-solid gap-2 py-2 px-3 mb-3">
-                        <h2 className=" font-medium text-[#000000b8] text-xl">Add to your post</h2>
-                        <div className="flex gap-3">
-                            <span className=" cursor-pointer text-[#45bd62] mt-1">
+                    <section className=" text-2xl flex justify-between border border-[#000000b6] border-solid gap-2 py-2 px-3 mb-3 smm500:border-[0.1px] smm500:py-1 smm500:px-2">
+                        <h2 className=" font-medium text-[#000000b8] text-xl smm500:text-base">Add to your post</h2>
+                        <div className="flex gap-3 ">
+                            <span className=" cursor-pointer text-[#45bd62] mt-1 smm500:text-lg">
                                 <abbr title="Photo">
                                     <TfiGallery />
                                 </abbr>
                             </span>
-                            <span className=" cursor-pointer text-[#f5533d] mt-1">
+                            <span className=" cursor-pointer text-[#f5533d] mt-1 smm500:text-lg">
                                 <abbr title="Video">
                                     <ImFileVideo />
                                 </abbr>
                             </span>
                         </div>
                     </section>
-                    <button className=" my-3 text-center w-full py-3 bg-[#3b82f6] text-white text-xl font-medium rounded-xl sm650:py-2">Verb</button>
+                    <button className=" my-3 text-center w-full py-3 bg-[#3b82f6] text-white text-xl font-medium rounded-xl sm650:py-2 smm500:py-1 smm500:text-lg">Verb</button>
                 </div>
             )}
         </>
