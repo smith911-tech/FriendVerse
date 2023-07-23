@@ -11,7 +11,7 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
     return (
         <>
             {isInputClicked && (
-                <div className=" absolute top-0 left-0 right-0 mx-auto bg-white p-4 z-[30]  shadow md970:w-[100%] sm650:-top-9 rounded-t-2xl">
+                <div className=" absolute top-0 left-0 right-0 mx-auto bg-white p-4 z-[30]  shadow md970:w-[100%] sm650:-top-9 rounded-t-2xl h-[35rem]  overflow-y-auto">
                     <section className='flex justify-between mb-4'>
                         <div className='flex gap-3'>
                             <span className=' text-2xl cursor-pointer' onClick={handleBodyClick}><AiOutlineClose /></span>
@@ -21,6 +21,7 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
                     </section>
                     <div className="relative select-none">
                         {userData.coverImage === "" ? (
+                             // ! defuly cover image image update
                             <section className='relative'>
                                 <img
                                     src={defaultcoverimg}
@@ -35,6 +36,7 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
                                 </label>
                             </section>
                         ) : (
+                            // ! user cover image update
                             <section className='relative'>
                                 <img
                                     src={userData.coverImage}
@@ -56,16 +58,64 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
                         )}
 
                         {userData.profileImage === "" ? (
-                            <div className=' text-8xl absolute left-4 -translate-y-1/2  border-white rounded-full bg-white text-[#000000d7] smm500:text-[80px] smm500:left-1 brightness-[0.5]'>
-                                <BiSolidUserCircle />
+                            //! default profile image update
+                            <div className=' text-8xl absolute left-4 -translate-y-1/2  border-white rounded-full bg-[#ffffffe6] text-[#000000d7] smm500:text-[80px] smm500:left-1'>
+                                <span className=' brightness-[0.5]'>
+                                    <BiSolidUserCircle />
+                                </span>
+                                <label htmlFor="coverimg" className=' absolute top-1/4 cursor-pointer text-[#fff] text-3xl left-1/4 bg-[#0000008b] px-2 py-2 rounded-2xl brightness-200'>
+                                    <abbr title='Upload Image' >
+                                        <AiOutlineCloudUpload />
+                                    </abbr>
+                                    <input type="file" name="" id="coverimg" className='hidden' />
+                                </label>
                             </div>
                         ) : (
+                            <div className='w-24 h-24 rounded-full absolute left-4 -translate-y-1/2 border border-white object-contain bg-white smm500:h-20 smm500:w-20 smm500:left-1 '>
                             <img
+                                //! user profile image update
                                 src={userData.profileImage}
                                 alt="Profile"
-                                className="w-24 h-24 rounded-full absolute left-4 -translate-y-1/2 border border-white object-contain bg-white smm500:h-20 smm500:w-20 smm500:left-1 brightness-[0.5]"
+                                className="rounded-full brightness-[0.7]"
                             />
+                            <label htmlFor="coverimg" className=' absolute top-1/4 cursor-pointer text-[#ffffff9c] text-3xl left-1/4 bg-[#0000008b] px-2 py-2 rounded-2xl brightness-200'>
+                            <abbr title='Upload Image' >
+                                <AiOutlineCloudUpload />
+                            </abbr>
+                            <input type="file" name="" id="coverimg" className='hidden' />
+                            </label>
+                            </div>
                         )}
+
+                    </div>
+                    {/* Name, username, location, date of birth, bio  */}
+                    <div className="flex justify-center">
+                        <section className='mt-16 w-full flex flex-col gap-4 items-center'>
+                            <input
+                                type="text"
+                                className='w-full py-3 px-4 border border-gray-300 rounded-md text-lg placeholder-gray-500 focus:outline-none focus:border-blue-500'
+                                placeholder='Fullname'
+                            />
+                            <input
+                                type="text"
+                                className='w-full py-3 px-4 border border-gray-300 rounded-md text-lg placeholder-gray-500 focus:outline-none focus:border-blue-500'
+                                placeholder='Username'
+                            />
+                            <textarea
+                                className='w-full py-3 px-4 border border-gray-300 rounded-md text-lg placeholder-gray-500 focus:outline-none focus:border-blue-500'
+                                placeholder='Bio'
+                                name=""
+                                cols={30}
+                                rows={2}
+                            >
+                            </textarea>
+                            <input
+                                type="text"
+                                className='w-full py-3 px-4 border border-gray-300 rounded-md text-lg placeholder-gray-500 focus:outline-none focus:border-blue-500'
+                                placeholder='Location'
+                            />
+                        </section>
+
 
                     </div>
                 </div>
