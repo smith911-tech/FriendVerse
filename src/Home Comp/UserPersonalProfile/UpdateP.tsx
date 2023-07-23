@@ -7,12 +7,15 @@ import { AiOutlineClose } from 'react-icons/ai'
 import defaultcoverimg from '../../assets/DefalutCoverImg.jpg'
 import { BiSolidUserCircle } from "react-icons/bi";
 import { AiOutlineCloudUpload } from 'react-icons/ai'
+import DatePicker from 'react-date-picker';
+import 'react-date-picker/dist/DatePicker.css';
+import 'react-calendar/dist/Calendar.css';
 export default function UpdateProfile({ isInputClicked, userData, handleBodyClick }: userdatas): JSX.Element {
     return (
         <>
             {isInputClicked && (
-                <div className=" absolute top-0 left-0 right-0 mx-auto bg-white p-4 z-[30]  shadow md970:w-[100%] sm650:-top-9 rounded-t-2xl h-[35rem]  overflow-y-auto">
-                    <section className='flex justify-between mb-4'>
+                <div className=" absolute top-0 left-0 right-0 mx-auto bg-white px-4 pb-4 z-[30]  shadow md970:w-[100%] sm650:-top-9 rounded-t-2xl h-[35rem]  overflow-y-auto">
+                    <section className='flex justify-between sticky z-20  bg-white h-22 top-0 py-3'>
                         <div className='flex gap-3'>
                             <span className=' text-2xl cursor-pointer' onClick={handleBodyClick}><AiOutlineClose /></span>
                             <h2 className=' font-medium'>Edit Profile</h2>
@@ -89,7 +92,7 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
 
                     </div>
                     {/* Name, username, location, date of birth, bio  */}
-                    <div className="flex justify-center">
+                    <div className="flex justify-center update-user-Date">
                         <section className='mt-16 w-full flex flex-col gap-4 items-center'>
                             <input
                                 type="text"
@@ -113,6 +116,15 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
                                 type="text"
                                 className='w-full py-3 px-4 border border-gray-300 rounded-md text-lg placeholder-gray-500 focus:outline-none focus:border-blue-500'
                                 placeholder='Location'
+                            />
+                            <DatePicker
+                                disableCalendar
+                                showLeadingZeros
+                                dayPlaceholder='dd'
+                                monthPlaceholder='mm'
+                                yearPlaceholder='yyyy'
+                                minDate={new Date("01-01-1800")}
+                                maxDate={new Date("01-01-2010")}
                             />
                         </section>
 

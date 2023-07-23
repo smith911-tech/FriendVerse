@@ -202,3 +202,15 @@ input::-webkit-calendar-picker-indicator {
   display: block;
   margin: 0 auto;
 }
+/* ! update page  */
+.update-user-Date .react-date-picker {
+  background-color: white;
+  color: black;
+  height: 50px;
+  margin-top: 20px;
+  margin-bottom: 32px;
+  width: 100%;
+  outline: #3B82F6;
+  border: #6B7280;
+  border-radius: 6px;
+}
