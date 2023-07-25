@@ -11,18 +11,14 @@ import DatePicker from 'react-date-picker';
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import { useState } from 'react';
+import { db } from '../../firebase-config';
+import { doc, updateDoc } from 'firebase/firestore';
 export default function UpdateProfile({ isInputClicked, userData, handleBodyClick }: userdatas) {
 
     // ! dataofbirth formatter
     const dataofbirth = userData && userData.dateOfBirth;
     const DODValue = new Date(dataofbirth.seconds * 1000);
-
-    // Formatting the date to show only the day, month, and year
-    const formattedDate = DODValue.toLocaleDateString("en-US", {
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric"
-    });
+    
 
     // ! update user state
     const [profileImg, setProfileImg] = useState<any>(userData.profileImage  || "")
@@ -31,7 +27,7 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
     const [userName, setUserName] = useState<string>(userData.username || "")
     const [bio, setBio] = useState<string>(userData.bio || "")
     const [location, setLocation] = useState<string>(userData.Location || "")
-    const [dateOfBirth, setDateOfBirth] = useState<any>(formattedDate || "")
+    const [dateOfBirth, setDateOfBirth] = useState<any>(DODValue || "")
 
     // ! update profile image
     const handleImageUpload = (event: any) => {
@@ -53,6 +49,28 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
         };
         reader.readAsDataURL(file);
     };
+
+    // ! getting the userid from the local storage 
+    let userid = sessionStorage.getItem('UserId')
+    // Todo: handleUpdate
+    const handleUpdate = async (_e: any) => {
+        const DataDocRef = doc(db, "users", userid as string)
+        try {
+            await updateDoc(DataDocRef, {
+                fullName: fullName,
+                username: userName,
+                dateOfBirth: dateOfBirth,
+                profileImage: profileImg,
+                bio: bio,
+                coverImage: coverImg,
+                Location: location
+            })
+            handleBodyClick()
+            console.log(Response)
+        } catch (error) {
+            console.log(error)
+        }
+    }
     return (
         <>
             {isInputClicked && (
@@ -62,7 +80,7 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
                             <span className=' text-2xl cursor-pointer' onClick={handleBodyClick}><AiOutlineClose /></span>
                             <h2 className=' font-medium'>Edit Profile</h2>
                         </div>
-                        <button className=' bg-[#3b82f6] text-white font-medium py-1 px-4 rounded-3xl'>Save</button>
+                        <button onClick={handleUpdate} className=' bg-[#3b82f6] text-white font-medium py-1 px-4 rounded-3xl'>Save</button>
                     </section>
                     <div className="relative select-none">
                         {coverImg === "" ? (

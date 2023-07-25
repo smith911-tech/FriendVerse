@@ -42,7 +42,7 @@ export default function UserProfileDetails({
     ];
     //! Formatting the date to show as "15 January 2004"
     const formattedDate = `${DODValue.getDate()} ${monthNames[DODValue.getMonth()]} ${DODValue.getFullYear()}`;
-
+ 
     return(
         <>
             <section className='w-full px-6 py-2 smm500:px-2 '>
@@ -75,7 +75,7 @@ export default function UserProfileDetails({
                     <span className=' text-xl'>
                         {userData && userData.Location && < LiaBirthdayCakeSolid />}
                     </span>
-                    {userData && userData.dateOfBirth && formattedDate}
+                    {userData && userData.dateOfBirth && formattedDate as string}
                 </h2>
             </section>
             <ul className='flex gap-7 font-medium text-[#000000a5] mb-2'>
