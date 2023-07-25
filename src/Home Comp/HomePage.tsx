@@ -5,7 +5,7 @@ import Content from "./Content";
 import Rightsidebar from "./Rightsidebar";
 import Header from "./Header";
 import ButtomNav from "./ButtomNav";
-import { doc, getDoc, collection, getDocs } from "firebase/firestore";
+import { collection, doc, onSnapshot } from "firebase/firestore"
 import { db } from '../firebase-config'
 export default function HomePage() {
     // ! toggle profile on mobile screen
@@ -15,8 +15,8 @@ export default function HomePage() {
         handleToggle()
     }
     const navigate = useNavigate();
+    let userid = sessionStorage.getItem('UserId')
     useEffect(() => {
-        let userid = sessionStorage.getItem('UserId')
         if (userid) {
             navigate("/Home")
         }
@@ -30,45 +30,39 @@ export default function HomePage() {
     const [userData, setUserData] = useState<any>(null);
 
     // ! data fetched
-    const fetchData = async () => {
-        try {
-            let userid = sessionStorage.getItem("UserId");
-            const docRef = doc(db, "users", userid as string);
-            const snapshot = await getDoc(docRef);
-            console.log(userData)
-            if (snapshot.exists()) {
-                setUserData(snapshot.data());
-                console.log(userData)
-            } else {
-                console.log("No matching document");
-            }
-        } catch (error) {
-            console.error("Error fetching user data:", error);
+
+    useEffect(() => {
+        if (userid) {
+            const userRef = doc(collection(db, "users"), userid as string);
+            const handleSnapshot = (snapshot: { exists: () => any; data: () => any; }) => {
+                if (snapshot.exists()) {
+                    const data = snapshot.data();
+                    setUserData(data);
+                } else {
+                    setUserData(null);
+                }
+            };
+            const unsubscribe = onSnapshot(userRef, handleSnapshot);
+            return () => {
+                unsubscribe();
+            };
         }
-    }
+    }, []);
+
 
     //! states
     const [SuggestData, setSuggestData] = useState<any[]>([]);
 
     // !suggestions user data
-    const fetchUsers = async () => {
-        await getDocs(collection(db, "users"))
-            .then((querySnapshot) => {
-                const newData = querySnapshot.docs
-                    .map((doc) => ({ ...doc.data(), id: doc.id }))
-                setSuggestData(newData);
-                console.log(SuggestData);
-            });
-    }
     useEffect(() => {
-        const fetchDataAndUsers = async () => {
-            await fetchUsers();
-            await fetchData();
+        const handleSnapshot = (snapshot: any) => {
+            const data = snapshot.docs.map((doc: any) => ({ ...doc.data(), id: doc.id }));
+            setSuggestData(data);
         };
-
-        fetchDataAndUsers(); 
-        const intervalId = setInterval(fetchDataAndUsers, 600000);
-        return () => clearInterval(intervalId);
+        const unsubscribe = onSnapshot(collection(db, "users"), handleSnapshot);
+        return () => {
+            unsubscribe();
+        };
     }, []);
 
 

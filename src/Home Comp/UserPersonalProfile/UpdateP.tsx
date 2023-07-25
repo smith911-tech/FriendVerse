@@ -66,7 +66,6 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
                 Location: location
             })
             handleBodyClick()
-            console.log(Response)
         } catch (error) {
             console.log(error)
         }

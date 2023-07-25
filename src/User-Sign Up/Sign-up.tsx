@@ -84,18 +84,17 @@ export default function Signup() {
     };
 
     const handlesubmit = () => {
+        setLoader(true);
         const authentication = auth;
         createUserWithEmailAndPassword(authentication, email, password)
             .then(async (response) => {
                 console.log(response);
-                setLoader(true);
                 setSuccessful("Login successful");
                 const userid = response.user.uid;
                 sessionStorage.setItem("UserId", userid);
                 setTimeout(() => {
                     navigate("/Home");
-                    setSuccessful(false);
-                }, 3000);
+                }, 1000);
                 try {
                     await setDoc(doc(db, "users", userid), {
                         fullName: fullName,
