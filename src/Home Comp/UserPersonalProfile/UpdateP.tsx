@@ -195,6 +195,7 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
                                 className='w-full py-3 px-4 border border-gray-300 rounded-md text-lg placeholder-gray-500 focus:outline-none focus:border-blue-500'
                                 
                                 placeholder='Fullname'
+                                maxLength={35}
                                 value={fullName}
                                 onChange={(e) => setFullName(e.target.value)}
                             />
@@ -213,6 +214,7 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
                                 rows={2}
                                 value={bio}
                                 onChange={(e) => setBio(e.target.value)}
+                                maxLength={170}
                             >
                             </textarea>
                             <input
@@ -221,6 +223,7 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
                                 placeholder='Location'
                                 value={location}
                                 onChange={(e) => setLocation(e.target.value)}
+                                maxLength={50}
                             />
                             <DatePicker
                                 showLeadingZeros

@@ -213,3 +213,6 @@ input::-webkit-calendar-picker-indicator {
   border: #6B7280;
   border-radius: 6px;
 }
+.update-user-Date .react-date-picker .react-date-picker__inputGroup__leadingZero{
+  padding-left: 16px;
+}
