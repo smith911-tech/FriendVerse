@@ -34,7 +34,7 @@ export default function UserProfileDetails({
     // ! Data of birth convertion from timestamp
     const dataofbirth = userData && userData.dateOfBirth;
     const DODValue = new Date(dataofbirth.seconds * 1000);
-
+    
     //! Define an array to get the month name
     const monthNames = [
         "January", "February", "March", "April", "May", "June", "July",

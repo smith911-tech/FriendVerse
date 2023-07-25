@@ -11,7 +11,19 @@ import DatePicker from 'react-date-picker';
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import { useState } from 'react';
-export default function UpdateProfile({ isInputClicked, userData, handleBodyClick }: userdatas): JSX.Element {
+export default function UpdateProfile({ isInputClicked, userData, handleBodyClick }: userdatas) {
+
+    // ! dataofbirth formatter
+    const dataofbirth = userData && userData.dateOfBirth;
+    const DODValue = new Date(dataofbirth.seconds * 1000);
+
+    // Formatting the date to show only the day, month, and year
+    const formattedDate = DODValue.toLocaleDateString("en-US", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric"
+    });
+
     // ! update user state
     const [profileImg, setProfileImg] = useState<any>(userData.profileImage  || "")
     const [coverImg, setCoverImg] = useState<any>(userData.coverImage || "")
@@ -19,7 +31,7 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
     const [userName, setUserName] = useState<string>(userData.username || "")
     const [bio, setBio] = useState<string>(userData.bio || "")
     const [location, setLocation] = useState<string>(userData.Location || "")
-    const [dateOfBirth, setDateOfBirth] = useState<string>( "")
+    const [dateOfBirth, setDateOfBirth] = useState<any>(formattedDate || "")
 
     // ! update profile image
     const handleImageUpload = (event: any) => {
@@ -41,7 +53,6 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
         };
         reader.readAsDataURL(file);
     };
-
     return (
         <>
             {isInputClicked && (
@@ -171,13 +182,14 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
                                 onChange={(e) => setLocation(e.target.value)}
                             />
                             <DatePicker
-                                disableCalendar
                                 showLeadingZeros
                                 dayPlaceholder='dd'
                                 monthPlaceholder='mm'
                                 yearPlaceholder='yyyy'
                                 minDate={new Date("01-01-1800")}
                                 maxDate={new Date("01-01-2010")}
+                                onChange={setDateOfBirth}
+                                value={dateOfBirth}
                             />
                         </section>
                     </div>
