@@ -10,7 +10,38 @@ import { AiOutlineCloudUpload } from 'react-icons/ai'
 import DatePicker from 'react-date-picker';
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
+import { useState } from 'react';
 export default function UpdateProfile({ isInputClicked, userData, handleBodyClick }: userdatas): JSX.Element {
+    // ! update user state
+    const [profileImg, setProfileImg] = useState<any>(userData.profileImage  || "")
+    const [coverImg, setCoverImg] = useState<any>(userData.coverImage || "")
+    const [fullName, setFullName] = useState<string>(userData.fullName || "")
+    const [userName, setUserName] = useState<string>(userData.username || "")
+    const [bio, setBio] = useState<string>(userData.bio || "")
+    const [location, setLocation] = useState<string>(userData.Location || "")
+    const [dateOfBirth, setDateOfBirth] = useState<string>( "")
+
+    // ! update profile image
+    const handleImageUpload = (event: any) => {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            setProfileImg(reader.result);
+        };
+        reader.readAsDataURL(file);
+    };
+
+    // ! update cover image
+    const handleImageUCload = (event: any) => {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            setCoverImg(reader.result);
+
+        };
+        reader.readAsDataURL(file);
+    };
+
     return (
         <>
             {isInputClicked && (
@@ -23,7 +54,7 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
                         <button className=' bg-[#3b82f6] text-white font-medium py-1 px-4 rounded-3xl'>Save</button>
                     </section>
                     <div className="relative select-none">
-                        {userData.coverImage === "" ? (
+                        {coverImg === "" ? (
                              // ! defuly cover image image update
                             <section className='relative'>
                                 <img
@@ -35,14 +66,14 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
                                     <abbr title='Upload Image' >
                                         <AiOutlineCloudUpload />
                                     </abbr>
-                                    <input type="file" name="" id="coverimg" className='hidden' />
+                                    <input type="file" name="" id="coverimg" className='hidden' onChange={handleImageUCload}/>
                                 </label>
                             </section>
                         ) : (
                             // ! user cover image update
                             <section className='relative'>
                                 <img
-                                    src={userData.coverImage}
+                                    src={coverImg}
                                     alt="Cover"
                                     className="w-full rounded-t-lg h-44  object-cover smm500:h-32 brightness-[0.5]"
                                 />
@@ -50,7 +81,7 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
                                     <abbr title='Upload Image' >
                                         <AiOutlineCloudUpload />
                                     </abbr>
-                                    <input type="file" name="" id="coverimg" className='hidden' />
+                                        <input type="file" name="" id="coverimg" className='hidden' onChange={handleImageUCload}/>
                                 </label>
                                 <div className=' absolute top-2/4 cursor-pointer text-[#ffffffc8] text-2xl right-1/3 bg-[#0000008b] px-2 py-2 rounded-2xl'>
                                     <abbr title='Remove Cover Image' >
@@ -60,32 +91,45 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
                             </section>
                         )}
 
-                        {userData.profileImage === "" ? (
+                        {profileImg === "" ? (
                             //! default profile image update
                             <div className=' text-8xl absolute left-4 -translate-y-1/2  border-white rounded-full bg-[#ffffffe6] text-[#000000d7] smm500:text-[80px] smm500:left-1'>
                                 <span className=' brightness-[0.5]'>
                                     <BiSolidUserCircle />
                                 </span>
-                                <label htmlFor="coverimg" className=' absolute top-1/4 cursor-pointer text-[#fff] text-3xl left-1/4 bg-[#0000008b] px-2 py-2 rounded-2xl brightness-200'>
+                                <label htmlFor="ProfileImg" className=' absolute top-1/4 cursor-pointer text-[#fff] text-3xl left-1/4 bg-[#0000008b] px-2 py-2 rounded-2xl brightness-200'>
                                     <abbr title='Upload Image' >
                                         <AiOutlineCloudUpload />
                                     </abbr>
-                                    <input type="file" name="" id="coverimg" className='hidden' />
+                                    <input 
+                                    type="file" 
+                                    name="" 
+                                    id="ProfileImg" 
+                                    className='hidden' 
+                                    onChange={handleImageUpload}
+                                    accept="image/*"
+                                    />
                                 </label>
                             </div>
                         ) : (
                             <div className='w-24 h-24 rounded-full absolute left-4 -translate-y-1/2 border border-white object-contain bg-white smm500:h-20 smm500:w-20 smm500:left-1 '>
                             <img
                                 //! user profile image update
-                                src={userData.profileImage}
+                                src={profileImg}
                                 alt="Profile"
-                                className="rounded-full brightness-[0.7]"
+                                className="rounded-full brightness-[0.7] w-24 h-24"
                             />
-                            <label htmlFor="coverimg" className=' absolute top-1/4 cursor-pointer text-[#ffffff9c] text-3xl left-1/4 bg-[#0000008b] px-2 py-2 rounded-2xl brightness-200'>
+                            <label htmlFor="ProfileImg" className=' absolute top-1/4 cursor-pointer text-[#ffffff9c] text-3xl left-1/4 bg-[#0000008b] px-2 py-2 rounded-2xl brightness-200'>
                             <abbr title='Upload Image' >
                                 <AiOutlineCloudUpload />
                             </abbr>
-                            <input type="file" name="" id="coverimg" className='hidden' />
+                            <input type="file" 
+                            name="" 
+                            id="ProfileImg" 
+                            className='hidden' 
+                            onChange={handleImageUpload}
+                            accept="image/*"
+                            />
                             </label>
                             </div>
                         )}
@@ -97,12 +141,17 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
                             <input
                                 type="text"
                                 className='w-full py-3 px-4 border border-gray-300 rounded-md text-lg placeholder-gray-500 focus:outline-none focus:border-blue-500'
+                                
                                 placeholder='Fullname'
+                                value={fullName}
+                                onChange={(e) => setFullName(e.target.value)}
                             />
                             <input
                                 type="text"
                                 className='w-full py-3 px-4 border border-gray-300 rounded-md text-lg placeholder-gray-500 focus:outline-none focus:border-blue-500'
                                 placeholder='Username'
+                                value={userName}
+                                onChange={(e) => setUserName(e.target.value)}
                             />
                             <textarea
                                 className='w-full py-3 px-4 border border-gray-300 rounded-md text-lg placeholder-gray-500 focus:outline-none focus:border-blue-500'
@@ -110,12 +159,16 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
                                 name=""
                                 cols={30}
                                 rows={2}
+                                value={bio}
+                                onChange={(e) => setBio(e.target.value)}
                             >
                             </textarea>
                             <input
                                 type="text"
                                 className='w-full py-3 px-4 border border-gray-300 rounded-md text-lg placeholder-gray-500 focus:outline-none focus:border-blue-500'
                                 placeholder='Location'
+                                value={location}
+                                onChange={(e) => setLocation(e.target.value)}
                             />
                             <DatePicker
                                 disableCalendar
@@ -127,8 +180,6 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
                                 maxDate={new Date("01-01-2010")}
                             />
                         </section>
-
-
                     </div>
                 </div>
             )}
