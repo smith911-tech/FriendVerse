@@ -13,6 +13,7 @@ import 'react-calendar/dist/Calendar.css';
 import { useState } from 'react';
 import { db } from '../../firebase-config';
 import { doc, updateDoc } from 'firebase/firestore';
+import { ThreeDots } from 'react-loader-spinner'
 export default function UpdateProfile({ isInputClicked, userData, handleBodyClick }: userdatas) {
 
     // ! dataofbirth formatter
@@ -50,10 +51,13 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
         reader.readAsDataURL(file);
     };
 
+    // ! On load 
+    const [Loader, setLoader] = useState<boolean>(false)
     // ! getting the userid from the local storage 
     let userid = sessionStorage.getItem('UserId')
     // Todo: handleUpdate
     const handleUpdate = async (_e: any) => {
+        setLoader(true)
         const DataDocRef = doc(db, "users", userid as string)
         try {
             await updateDoc(DataDocRef, {
@@ -66,8 +70,10 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
                 Location: location
             })
             handleBodyClick()
+            setLoader(false)
         } catch (error) {
             console.log(error)
+            setLoader(false)
         }
     }
     return (
@@ -79,7 +85,25 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
                             <span className=' text-2xl cursor-pointer' onClick={handleBodyClick}><AiOutlineClose /></span>
                             <h2 className=' font-medium'>Edit Profile</h2>
                         </div>
-                        <button onClick={handleUpdate} className=' bg-[#3b82f6] text-white font-medium py-1 px-4 rounded-3xl'>Save</button>
+                        <button 
+                        onClick={handleUpdate} 
+                            className=' bg-[#3b82f6] text-white font-medium py-1 px-4 rounded-3xl'>
+                                {Loader ? (
+                                <span className=''>
+                                    <ThreeDots
+                                        height="25"
+                                        width="25"
+                                        radius="9"
+                                        color="#fff"
+                                        ariaLabel="three-dots-loading"
+                                        visible={true}
+
+                                    />
+                                </span>
+                                ) : (
+                                    <h2>Save</h2>
+                                )}
+                        </button>
                     </section>
                     <div className="relative select-none">
                         {coverImg === "" ? (

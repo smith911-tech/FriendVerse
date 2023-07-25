@@ -46,7 +46,7 @@ export default function PostSection({
                                     <img
                                         src={userData.profileImage}
                                         alt="Profile"
-                                        className="w-12 h-12 rounded-full object-contain"
+                                        className="w-12 h-12 rounded-full object-fill"
                                     />
                                         </Link>
                                 )}

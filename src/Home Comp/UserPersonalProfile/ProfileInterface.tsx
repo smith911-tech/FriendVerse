@@ -43,7 +43,7 @@ export default function UserProfile({
                                     <img
                                         src={userData.coverImage}
                                         alt="Cover"
-                                            className="w-full rounded-t-lg h-44  object-cover smm500:h-32"
+                                            className="w-full rounded-t-lg h-44  object-cover smm500:h-32 "
                                     />
                                 )}
                                 
@@ -55,7 +55,7 @@ export default function UserProfile({
                                     <img 
                                         src={userData.profileImage}
                                         alt="Profile"
-                                        className="w-24 h-24 rounded-full absolute left-4 -translate-y-1/2 border border-white object-contain bg-white smm500:h-20 smm500:w-20 smm500:left-1"
+                                        className="w-24 h-24 rounded-full absolute left-4 -translate-y-1/2 border border-white object-cover bg-white smm500:h-20 smm500:w-20 smm500:left-1"
                                     />
                                 )}
 
