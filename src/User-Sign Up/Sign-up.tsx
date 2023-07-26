@@ -111,6 +111,7 @@ export default function Signup() {
                 }
             })
             .catch((error) => {
+                setLoader(false);
                 if (error.code === "auth/email-already-in-use") {
                     setError("Email already exist");
                 }
