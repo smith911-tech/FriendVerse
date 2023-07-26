@@ -46,7 +46,7 @@ export default function PostSection({
                                     <img
                                         src={userData.profileImage}
                                         alt="Profile"
-                                        className="w-12 h-12 rounded-full object-fill"
+                                        className="w-12 h-12 rounded-full object-cover"
                                     />
                                         </Link>
                                 )}
@@ -89,7 +89,7 @@ export default function PostSection({
                                         <img
                                             src={userData.profileImage}
                                             alt="Profile"
-                                                className="w-12 h-12 rounded-full object-contain smm500:h-10 smm500:w-10"
+                                                className="w-12 h-12 rounded-full object-cover smm500:h-10 smm500:w-10"
                                         />
                                     )}
                                 </section>

@@ -169,7 +169,7 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
                                 //! user profile image update
                                 src={profileImg}
                                 alt="Profile"
-                                className="rounded-full brightness-[0.7] w-24 h-24"
+                                className="rounded-full brightness-[0.7] w-24 h-20 object-cover"
                             />
                             <label htmlFor="ProfileImg" className=' absolute top-1/4 cursor-pointer text-[#ffffff9c] text-3xl left-1/4 bg-[#0000008b] px-2 py-2 rounded-2xl brightness-200'>
                             <abbr title='Upload Image' >

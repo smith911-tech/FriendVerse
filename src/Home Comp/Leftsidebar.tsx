@@ -42,7 +42,7 @@ export default function Dashboard({ userData, SuggestData }: userdatas): JSX.Ele
                                 <img
                                     src={userData.profileImage}
                                     alt="Profile"
-                                    className="w-16 h-16 rounded-full absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-4 border-white object-fill bg-white"
+                                    className="w-16 h-16 rounded-full absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-4 border-white object-cover bg-white"
                                 />
                                     </Link>
                             )}
