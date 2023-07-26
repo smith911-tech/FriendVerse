@@ -7,7 +7,7 @@ bio : string
 setBio : any
 location : string
 setLocation : any
-dataOfBirthValue : string
+dateOfBirth : string
 setDateOfBirth : any
 } 
 import DatePicker from 'react-date-picker';
@@ -22,7 +22,7 @@ export default function UpdateInputValue({
     setBio,
     location,
     setLocation,
-    dataOfBirthValue,
+    dateOfBirth,
     setDateOfBirth
 
 }: userDatas){
@@ -72,7 +72,7 @@ export default function UpdateInputValue({
                     minDate={new Date("01-01-1800")}
                     maxDate={new Date("01-01-2010")}
                     onChange={setDateOfBirth}
-                    value={dataOfBirthValue}
+                    value={dateOfBirth}
                 />
             </section>
         </>

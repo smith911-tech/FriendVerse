@@ -13,8 +13,8 @@ import UpdateInputValue from './UserUpload/UpdateInputValue';
 export default function UpdateProfile({ isInputClicked, userData, handleBodyClick }: userdatas) {
 
     // ! dataofbirth formatter
-    const dataofbirthValue = userData && userData.dateOfBirth;
-    const DODValue = new Date(dataofbirthValue.seconds * 1000);
+    const dateofbirthValue = userData && userData.dateOfBirth;
+    const DODValue = new Date(dateofbirthValue.seconds * 1000);
     
 
     // ! update user state
@@ -101,7 +101,7 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
                         setBio={setBio}
                         location={location}
                         setLocation={setLocation}
-                        dataOfBirthValue={dataofbirthValue}
+                        dateOfBirth={dateOfBirth}
                         setDateOfBirth={setDateOfBirth}
                         />
                     </div>
