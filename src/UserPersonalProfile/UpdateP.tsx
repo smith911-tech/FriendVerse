@@ -4,14 +4,14 @@ interface userdatas {
     handleBodyClick: () => void
 }
 import { AiOutlineClose } from 'react-icons/ai'
-import defaultcoverimg from '../../assets/DefalutCoverImg.jpg'
+import defaultcoverimg from '../assets/DefalutCoverImg.jpg'
 import { BiSolidUserCircle } from "react-icons/bi";
 import { AiOutlineCloudUpload } from 'react-icons/ai'
 import DatePicker from 'react-date-picker';
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import { useState } from 'react';
-import { db } from '../../firebase-config';
+import { db } from '../firebase-config';
 import { doc, updateDoc } from 'firebase/firestore';
 import { ThreeDots } from 'react-loader-spinner'
 export default function UpdateProfile({ isInputClicked, userData, handleBodyClick }: userdatas) {

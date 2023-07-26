@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Rightsidebar from "../../GeneralComponent/Rightsidebar";
-import Header from "../../GeneralComponent/Header";
-import ButtomNav from "../../GeneralComponent/ButtomNav";
+import Rightsidebar from "../GeneralComponent/Rightsidebar";
+import Header from "../GeneralComponent/Header";
+import ButtomNav from "../GeneralComponent/ButtomNav";
 import { collection, doc,  onSnapshot } from "firebase/firestore"
-import { db } from "../../firebase-config"
+import { db } from "../firebase-config"
 import ProfileLeftbar from "./LeftsidebarProfile";
 import ProfileInterface from "./ProfileInterface";
 export default function userPersonalProfile() {

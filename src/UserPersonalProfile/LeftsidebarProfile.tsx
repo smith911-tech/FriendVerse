@@ -2,7 +2,7 @@ interface userdatas {
     SuggestData: any
 }
 import { BiSolidUserCircle } from "react-icons/bi";
-import { LongCard } from "../../GeneralComponent/LoadingCard";
+import { LongCard } from "../GeneralComponent/LoadingCard";
 import { GoTelescopeFill } from "react-icons/go";
 
 export default function ProfileLeftbar({ SuggestData }: userdatas): JSX.Element {

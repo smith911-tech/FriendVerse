@@ -4,9 +4,9 @@ interface userdatas{
     isInputClicked : boolean,
     handleBodyClick: () => void
 }
-import defaultcoverimg from '../../assets/DefalutCoverImg.jpg'
+import defaultcoverimg from '../assets/DefalutCoverImg.jpg'
 import { BiSolidUserCircle } from "react-icons/bi";
-import { SmallCard } from "../../GeneralComponent/LoadingCard";
+import { SmallCard } from "../GeneralComponent/LoadingCard";
 import { BsFillArrowLeftCircleFill, BsFillGearFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import ProfileDetails from './ProfileDetails';
