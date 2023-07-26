@@ -79,7 +79,7 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
     return (
         <>
             {isInputClicked && (
-                <div className=" absolute top-0 left-0 right-0 mx-auto bg-white px-4 pb-4 z-[30]  shadow md970:w-[100%] sm650:-top-9 rounded-t-2xl h-[35rem]  overflow-y-auto">
+                <div className=" absolute top-0 left-0 right-0 mx-auto bg-white px-4 pb-4 z-[30]  shadow md970:w-[100%] sm650:-top-9 rounded-t-2xl h-[35rem]  overflow-y-auto ">
                     <section className='flex justify-between sticky z-20  bg-white h-22 top-0 py-3'>
                         <div className='flex gap-3'>
                             <span className=' text-2xl cursor-pointer' onClick={handleBodyClick}><AiOutlineClose /></span>

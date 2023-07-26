@@ -1,6 +1,6 @@
 import Logo from "../assets/Logo.png";
 import { Link } from "react-router-dom";
-import { useState, ChangeEvent} from "react";
+import { useState, ChangeEvent } from "react";
 import "react-phone-number-input/style.css";
 import { FaEyeSlash, FaEye } from "react-icons/fa6"
 import { auth } from '../firebase-config'
@@ -31,21 +31,22 @@ export default function SignIn() {
     const [loader, setLoader] = useState<boolean>(false)
 
     // ! SignIn Button
-    const handleLogIn = () => {
+    const handleLogIn = (e: any) => {
+        e.preventDefault()
+        setLoader(true)
         const authentication = auth;
         signInWithEmailAndPassword(authentication, email, password)
             .then((response) => {
                 const userid = response.user.uid
                 sessionStorage.setItem("UserId", userid)
                 setSuccessful("Login successful")
-                setLoader(true)
                 setTimeout(() => {
                     setSuccessful(false);
                     navigate("/Home")
-                    setLoader(false)
-                }, 3000);
+                }, 2000);
             })
             .catch((error) => {
+                setLoader(false)
                 if (error.code === 'auth/wrong-password') {
                     setError('Please check the Password');
                 }
@@ -83,12 +84,14 @@ export default function SignIn() {
                     </h2>
                 </div>
                 {/* End of logo */}
+                <form action="" onSubmit={handleLogIn}>
                 <section className="flex flex-col justify-center lg1280:flex-row ">
                     <div className="flex flex-col lg1280:w-[49%]">
                         <input
                             type="email"
                             placeholder="Email Address"
                             className="bg-transparent border border-solid border-[#ffffffd5] h-10 px-4 w-full block mx-auto my-0 md734:w-[450px]  lg1280:h-11 mb-1"
+                            required
                             value={email}
                             onChange={(e: ChangeEvent<HTMLInputElement>) =>
                                 setEmail(e.target.value)
@@ -97,11 +100,13 @@ export default function SignIn() {
                     </div>
                     <br />
                     <div className="flex relative md734:w-[450px]  left-1/2 transform -translate-x-1/2 lg1280:left-0 lg1280:translate-x-0 lg1280:w-[49%]">
+                        
                         <input
                             type={showPassword ? "text" : "password"}
                             name=""
                             placeholder="Password"
                             className="w-full bg-transparent border border-solid border-[#ffffffd5] h-10 px-4 mb-8 lg1280:h-11 "
+                            required
                             value={password}
                             onChange={(e: ChangeEvent<HTMLInputElement>) =>
                                 setPassword(e.target.value)
@@ -121,7 +126,7 @@ export default function SignIn() {
                         )}
                     </div>
                 </section>
-                <button onClick={handleLogIn} className="block mx-auto my-0 py-2 px-10  text-black bg-[#D9D9D9] rounded-[30px] font-sans font-bold select-none">
+                <button  className="block mx-auto my-0 py-2 px-10  text-black bg-[#D9D9D9] rounded-[30px] font-sans font-bold select-none">
                     {loader ? (
                         <ColorRing
                             visible={true}
@@ -133,6 +138,7 @@ export default function SignIn() {
                         <span>Sign In</span>
                     )}
                 </button>
+                </form>
 
                 {/* end of email, phone number and password input */}
                 <section className="select-none">
