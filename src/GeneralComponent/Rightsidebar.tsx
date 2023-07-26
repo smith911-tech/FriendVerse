@@ -6,8 +6,8 @@ import { CiSearch } from "react-icons/ci";
 import { useState} from "react";
 import { GoAlertFill } from "react-icons/go";
 import { BiSolidUserCircle } from "react-icons/bi";
-import VerfiyId from "./VerifyBox";
-import ProfileProgress from "./ProfileProgress";
+import VerfiyId from "../Home Comp/VerifyBox";
+import ProfileProgress from "../Home Comp/ProfileProgress";
 export default function SideDashboard({ SuggestData, userData }: userdatas):JSX.Element {
     const [searchTerm, setSearchTerm] = useState<string>("");
 

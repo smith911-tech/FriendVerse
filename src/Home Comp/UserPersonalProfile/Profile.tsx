@@ -1,19 +1,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Rightsidebar from "../Rightsidebar";
-import Header from "../Header";
-import ButtomNav from "../ButtomNav";
+import Rightsidebar from "../../GeneralComponent/Rightsidebar";
+import Header from "../../GeneralComponent/Header";
+import ButtomNav from "../../GeneralComponent/ButtomNav";
 import { collection, doc,  onSnapshot } from "firebase/firestore"
 import { db } from "../../firebase-config"
 import ProfileLeftbar from "./LeftsidebarProfile";
 import ProfileInterface from "./ProfileInterface";
 export default function userPersonalProfile() {
-    // ! toggle profile on mobile screen
-    const [Toggle, setToggle] = useState<boolean>(false)
-    const handleToggle = () => {
-        setToggle(!Toggle)
-        handleToggle()
-    }
     const navigate = useNavigate();
     let userid = sessionStorage.getItem('UserId')
     useEffect(() => {
