@@ -10,12 +10,24 @@ import { SmallCard } from "../GeneralComponent/LoadingCard";
 import { BsFillArrowLeftCircleFill, BsFillGearFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import ProfileDetails from './ProfileDetails';
+import { useState } from 'react';
 export default function UserProfile({ 
     userData, 
     handleInputClick, 
     isInputClicked,
     handleBodyClick
 }: userdatas): JSX.Element{
+    const [showPmodal, setShowPmodal] = useState<boolean>(false)
+    const [showCmodal, setShowCmodal] = useState<boolean>(false)
+
+    const handleShowProfileImg = () => {
+        setShowPmodal(!showPmodal)
+        
+    }
+    const handleShowCoverImg = () => {
+        setShowCmodal(!showCmodal)
+        handleShowProfileImg()
+    }
     return(
         <main>
         <section className='relative'>
@@ -43,10 +55,10 @@ export default function UserProfile({
                                     <img
                                         src={userData.coverImage}
                                         alt="Cover"
-                                            className="w-full rounded-t-lg h-44  object-cover smm500:h-32 "
+                                            className="w-full rounded-t-lg h-44  object-cover smm500:h-32 cursor-pointer"
+                                            onClick={handleShowCoverImg}
                                     />
                                 )}
-                                
                                 {userData.profileImage === "" ? (
                                     <div className=' text-8xl absolute left-4 -translate-y-1/2  border-white rounded-full bg-white text-[#000000d7] smm500:text-[80px] smm500:left-1'>
                                         <BiSolidUserCircle />
@@ -60,6 +72,26 @@ export default function UserProfile({
                                 )}
 
                             </div>
+                            {/* cover image modal */}
+                            {/* {showCmodal && (
+                                <div className='fixed w-full top-20 z-[40] left-0'>
+                                    {userData.coverImage === "" ? (
+                                        <img
+                                            src={defaultcoverimg}
+                                            alt="Cover"
+                                            className="w-full rounded-t-lg h-44 smm500:h-32 object-cover"
+                                        />
+                                    ) : (
+                                        <img
+                                            src={userData.coverImage}
+                                            alt="Cover"
+                                            className="  object-contain  top-0 h-[60vh] w-screen "
+                                        />
+                                    )}
+                                </div>
+                            )
+                            } */}
+                            {/* end of image modal */}
                         </div>
                         <ProfileDetails
                         userData={userData} 
