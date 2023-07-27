@@ -6,10 +6,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 export default function ButtomNav(){
     return(
         <nav className='hidden gap-10 px-5 mt-2  bg-white z-[50] w-full justify-center fixed bottom-0 sm650:flex py-3 shadow-black shadow-2xl rounded-t-2xl '>
-            <div className='text-3xl cursor-pointer text-[blue]'>
-                <AiOutlineHome />
-                <div className="border-b-4 border-[blue] w-8 mx-auto mt-1"></div>
-            </div>
+            <div className='text-3xl cursor-pointer'><AiOutlineHome /></div>
             <div className='text-3xl cursor-pointer'> <FiUserPlus /></div>
             <div className='text-3xl cursor-pointer'> < TiMessages /></div>
             <div className='text-3xl cursor-pointer'> <IoNotificationsOutline /></div>

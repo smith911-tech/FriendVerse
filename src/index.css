@@ -35,6 +35,12 @@ body {
   }
 }
 
+/* ! active link */
+.ActiveLink.active  {
+  background-color: rgba(246, 248, 250, 1);
+  color: rgba(42, 82, 152, 1);
+}
+
 /* ! phone numeber drop-down */
 .inputDrowndopDiv  {
   color: white;
@@ -216,3 +222,4 @@ input::-webkit-calendar-picker-indicator {
 .update-user-Date .react-date-picker .react-date-picker__inputGroup__leadingZero{
   padding-left: 16px;
 }
+

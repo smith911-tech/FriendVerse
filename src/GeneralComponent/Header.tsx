@@ -8,19 +8,32 @@ import { IoNotificationsOutline } from 'react-icons/io5'
 import { FiUserPlus} from "react-icons/fi"
 import { BiSolidUserCircle } from "react-icons/bi";
 import { MdOutlineOndemandVideo } from 'react-icons/md'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 export default function Header({userData}: userdatas): JSX.Element {
     return (
         <header className=' shadow bg-[#fff] flex justify-between px-3 py-2 text-[#000000bc] select-none'>
             <img src={logo} alt="" className='w-[40px] object-contain smm500:w-[30px]' />
-            <nav className='flex gap-14 px-5 mt-2 sm650:hidden'>
-                <div className='text-3xl cursor-pointer '> 
-                    <AiOutlineHome />
-                </div>
-                <div className='text-3xl cursor-pointer'> <FiUserPlus/></div>
+            <nav className='flex gap-14 px-5 mt-2 sm650:hidden Header-Class'>
+
+                <NavLink className="ActiveLink" to="/Home" >
+                <div className='text-3xl cursor-pointer '> <AiOutlineHome /></div>
+                </NavLink>
+
+                <NavLink className="ActiveLink" to="/FriendRequest">
+                    <div className='text-3xl cursor-pointer'> <FiUserPlus /></div>
+                </NavLink>
+
+                <NavLink className="ActiveLink" to="/VideoContent" >
                 <div className='text-3xl cursor-pointer'><MdOutlineOndemandVideo /></div>
+                </NavLink>
+
+                <NavLink className="ActiveLink" to="/Message" >
                 <div className='text-3xl cursor-pointer'> < TiMessages /></div>
+                </NavLink>
+
+                <NavLink className="ActiveLink" to="/Notifications">
                 <div className='text-3xl cursor-pointer'> <IoNotificationsOutline /></div>
+                </NavLink>
             </nav>
             <div>
                 {userData ? (
