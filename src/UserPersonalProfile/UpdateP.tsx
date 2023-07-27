@@ -5,7 +5,7 @@ interface userdatas {
 }
 import { useState } from 'react';
 import { db } from '../firebase-config';
-import { doc, updateDoc, deleteField } from 'firebase/firestore';
+import { doc, updateDoc } from 'firebase/firestore';
 import SaveUpdateNav from './UserUpload/SaveUpdateNav';
 import CoverimgUpload from "./UserUpload/CoverImgUpload";
 import ProfileimgUpload from "./UserUpload/ProfileImgUpload";
@@ -56,6 +56,11 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
     let userid = sessionStorage.getItem('UserId')
     
     // Todo: handleUpdate
+    const [userClickedRemoveCover, setUserClickedRemoveCover] = useState(false);
+
+    const handleRemoveCoverClick = () => {
+        setUserClickedRemoveCover(true);
+    };
     const handleUpdate = async (_e: any) => {
         setLoader(true);
 
@@ -66,8 +71,7 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
                 setError(false);
             }, 1500);
             return;
-        }
-        else if (userName.trim().length < 1) {
+        } else if (userName.trim().length < 1) {
             setError("Username cannot be empty.");
             setLoader(false);
             setTimeout(() => {
@@ -78,15 +82,28 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
 
         const DataDocRef = doc(db, "users", userid as string);
         try {
-            await updateDoc(DataDocRef, {
-                fullName: fullName,
-                username: userName,
-                dateOfBirth: dateOfBirth,
-                profileImage: profileImg,
-                bio: bio,
-                coverImage: coverImg,
-                Location: location
-            });
+            if (userClickedRemoveCover) {
+                await updateDoc(DataDocRef, {
+                    fullName: fullName,
+                    username: userName,
+                    dateOfBirth: dateOfBirth,
+                    profileImage: profileImg,
+                    bio: bio,
+                    coverImage: '',
+                    Location: location
+                });
+            } else {
+                await updateDoc(DataDocRef, {
+                    fullName: fullName,
+                    username: userName,
+                    dateOfBirth: dateOfBirth,
+                    profileImage: profileImg,
+                    bio: bio,
+                    coverImage: coverImg,
+                    Location: location
+                });
+            }
+
             handleBodyClick();
             setLoader(false);
         } catch (error) {
@@ -97,7 +114,7 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
             setLoader(false);
         }
     };
-    
+
     return (
         <>
             {isInputClicked && (
@@ -110,6 +127,7 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
                     <div className="relative select-none">
                         <CoverimgUpload 
                         coverImg={coverImg}
+                        handleRemoveCoverClick={handleRemoveCoverClick}
                         handleImageUCload={handleImageUCload}
                         />
                         <ProfileimgUpload 
