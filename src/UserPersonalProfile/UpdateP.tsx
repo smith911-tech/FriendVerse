@@ -17,7 +17,7 @@ export default function UpdateProfile({
     isInputClicked, 
     userData, 
     handleBodyClick  
-    
+
     }: userdatas) {
 
     // ! dataofbirth formatter
@@ -128,6 +128,7 @@ export default function UpdateProfile({
                 setError(false);
             }, 1500);
             setLoader(false);
+            console.log(error)
         }
     };
 
