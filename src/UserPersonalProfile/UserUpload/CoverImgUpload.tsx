@@ -2,6 +2,7 @@ interface userDatas{
     coverImg: string,
     handleRemoveCoverClick: () => void
     handleImageUCload: (event: any) => void
+    userData: any
 }
 import { AiOutlineClose } from 'react-icons/ai'
 import defaultcoverimg from '../../assets/DefalutCoverImg.jpg'
@@ -9,10 +10,12 @@ import { AiOutlineCloudUpload } from 'react-icons/ai'
 export default function CoverimgUpload({ 
     coverImg, 
     handleImageUCload, 
-    handleRemoveCoverClick }: userDatas){
+    handleRemoveCoverClick,
+    userData
+}: userDatas){
     return(
         <>
-            {coverImg === "" ? (
+            {userData.coverImage === "" ? (
                 // ! defuly cover image image update
                 <section className='relative'>
                     <img
