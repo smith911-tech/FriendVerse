@@ -56,7 +56,7 @@ export default function UserProfile({
                             </div>
                             </section> 
                             <div className="relative select-none">
-                                {!userData.coverImage ? (
+                                {userData.coverImage === "" ? (
                                     <img
                                         src={defaultcoverimg}
                                         alt="Cover"

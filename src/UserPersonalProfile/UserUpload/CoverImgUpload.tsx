@@ -41,7 +41,7 @@ export default function CoverimgUpload({
                         </abbr>
                         <input type="file" name="" id="coverimg" className='hidden' onChange={handleImageUCload} />
                     </label>
-                        <div className=' absolute top-2/4 cursor-pointer text-[#ffffffc8] text-2xl right-1/3 bg-[#0000008b] px-2 py-2 rounded-2xl' onClick={handleRemoveCoverClick}>
+                    <div className=' absolute top-2/4 cursor-pointer text-[#ffffffc8] text-2xl right-1/3 bg-[#0000008b] px-2 py-2 rounded-2xl' onClick={handleRemoveCoverClick}>
                         <abbr title='Remove Cover Image' >
                             <AiOutlineClose />
                         </abbr>
