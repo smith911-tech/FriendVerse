@@ -15,7 +15,8 @@ import {
     Profile,
     FriendRequest,
     VideoContent,
-    MessageComp
+    MessageComp,
+    NotificationComp
 } from "./Import";
 
 function App() {
@@ -77,6 +78,9 @@ function App() {
 
                         {/* Message Comp */}
                         <Route path="/Message" element={<MessageComp />} />
+
+                        {/* Message Comp */}
+                        <Route path="/Notifications" element={<NotificationComp />} />
                     </Routes>
                 </BrowserRouter>
             )}

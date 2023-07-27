@@ -6,13 +6,13 @@ import Header from "../GeneralComponent/Header";
 import ButtomNav from "../GeneralComponent/ButtomNav";
 import { collection, doc, onSnapshot } from "firebase/firestore"
 import { db } from '../firebase-config'
-import MessageContent from "./Messagecontent";
-export default function MessageComp() {
+
+export default function NotificationComp() {
     const navigate = useNavigate();
     let userid = sessionStorage.getItem('UserId')
     useEffect(() => {
         if (userid) {
-            navigate("/Message")
+            navigate("/Notifications")
         }
         else if (!userid) {
             navigate('/')
@@ -84,8 +84,8 @@ export default function MessageComp() {
                         SuggestData={SuggestData} />
                 </section>
                 <section
-                    className=" w-[95%] mt-4 rounded-2xl  md800:w-[60%] sm650:w-[100%] smm500:mt-0">    
-                    <MessageContent />
+                    className=" w-[95%] mt-4 rounded-2xl  md800:w-[60%] sm650:w-[100%] smm500:mt-0">
+                   
                 </section>
                 <section
                     onClick={handleBodyClick}
