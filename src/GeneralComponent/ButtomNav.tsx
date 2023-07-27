@@ -1,7 +1,7 @@
 import { AiOutlineHome } from 'react-icons/ai'
 import { TiMessages } from 'react-icons/ti'
 import { IoNotificationsOutline } from 'react-icons/io5'
-import { FiUserPlus } from "react-icons/fi"
+import { LuUsers } from "react-icons/lu"
 import { AiOutlineSearch } from "react-icons/ai";
 import { NavLink } from 'react-router-dom';
 export default function ButtomNav(){
@@ -13,7 +13,7 @@ export default function ButtomNav(){
             </NavLink>
 
             <NavLink className="ActiveLink" to="/FriendRequest">
-                <div className='text-3xl cursor-pointer'> <FiUserPlus /></div>
+                <div className='text-3xl cursor-pointer'> <LuUsers /></div>
                 <NavLink to="/FriendRequest" className="UnderHomeNav"></NavLink>
             </NavLink>
 
@@ -35,30 +35,3 @@ export default function ButtomNav(){
         
     )
 }
-{/* <nav className='flex gap-14 px-5 mt-2 sm650:hidden Header-Class'>
-
-    <NavLink className="ActiveLink" to="/Home" >
-        <div className='text-3xl cursor-pointer '> <AiOutlineHome /></div>
-        <NavLink to="/Home" className="UnderHomeNav"></NavLink>
-    </NavLink>
-
-    <NavLink className="ActiveLink" to="/FriendRequest">
-        <div className='text-3xl cursor-pointer'> <FiUserPlus /></div>
-        <NavLink to="/FriendRequest" className="UnderHomeNav"></NavLink>
-    </NavLink>
-
-    <NavLink className="ActiveLink" to="/VideoContent" >
-        <div className='text-3xl cursor-pointer'><MdOutlineOndemandVideo /></div>
-        <NavLink to="/VideoContent" className="UnderHomeNav"></NavLink>
-    </NavLink>
-
-    <NavLink className="ActiveLink" to="/Message" >
-        <div className='text-3xl cursor-pointer'> < TiMessages /></div>
-        <NavLink to="/Message" className="UnderHomeNav"></NavLink>
-    </NavLink>
-
-    <NavLink className="ActiveLink" to="/Notifications">
-        <div className='text-3xl cursor-pointer'> <IoNotificationsOutline /></div>
-        <NavLink to="/Notifications" className="UnderHomeNav"></NavLink>
-    </NavLink>
-</nav> */}

@@ -5,7 +5,7 @@ import logo from '../assets/Logo2.png'
 import { AiOutlineHome } from 'react-icons/ai'
 import { TiMessages } from 'react-icons/ti'
 import { IoNotificationsOutline } from 'react-icons/io5'
-import { FiUserPlus} from "react-icons/fi"
+import { LuUsers } from "react-icons/lu"
 import { BiSolidUserCircle } from "react-icons/bi";
 import { MdOutlineOndemandVideo } from 'react-icons/md'
 import { Link, NavLink } from 'react-router-dom'
@@ -21,7 +21,7 @@ export default function Header({userData}: userdatas): JSX.Element {
                 </NavLink>
 
                 <NavLink className="ActiveLink" to="/FriendRequest">
-                    <div className='text-3xl cursor-pointer'> <FiUserPlus /></div>
+                    <div className='text-3xl cursor-pointer'> <LuUsers /></div>
                     <NavLink to="/FriendRequest" className="UnderHomeNav"></NavLink>
                 </NavLink>
 
