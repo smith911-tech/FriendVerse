@@ -59,7 +59,9 @@ export default function UserProfileDetails({
             <h2 className=' font-semibold text-xl mt-1 '>
                 {userData && userData.fullName}
             </h2>
-            <p className='text-[#000000a5] '>{userData && userData.username}</p>
+            <p className='text-[#000000a5] '>
+            <span className='select-none'>@</span>
+            {userData && userData.username}</p>
             </section>
             <section className=' mb-2'>
             <p

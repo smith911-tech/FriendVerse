@@ -57,7 +57,7 @@ export default function SideDashboard({ SuggestData, userData }: userdatas):JSX.
                                         <p 
                                         className="text-left font-semibold">{data.fullName}</p>
                                         <p 
-                                        className="text-sm text-left text-[#000000a9]">{data.username}</p>
+                                        className="text-sm text-left text-[#000000a9]"><span className='select-none'>@</span>{data.username}</p>
                                         </div>
                                 </button>
                             ))

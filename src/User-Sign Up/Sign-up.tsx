@@ -76,7 +76,7 @@ export default function Signup() {
     // ! Generating a userName
     const generateUsername = () => {
         const firstName = fullName.split(" ")[0];
-        const generatedUsername = `@${firstName.toLowerCase()}`;
+        const generatedUsername = `${firstName.toLowerCase()}`;
         const randomNumber = Math.floor(Math.random() * 100);
         const finalUsername = `${generatedUsername}${randomNumber}`;
         setUsername(finalUsername);
