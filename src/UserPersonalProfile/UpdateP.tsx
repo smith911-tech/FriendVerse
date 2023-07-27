@@ -101,11 +101,14 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
                     bio: bio,
                     coverImage: coverImg,
                     Location: location
-                });
+                    
+                })
             }
-
             handleBodyClick();
             setLoader(false);
+            setTimeout(() => {
+                setUserClickedRemoveCover(false)
+            }, 50)
         } catch (error) {
             setError("Error")
             setTimeout(() => {
