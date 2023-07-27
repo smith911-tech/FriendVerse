@@ -6,6 +6,7 @@ import Header from "../GeneralComponent/Header";
 import ButtomNav from "../GeneralComponent/ButtomNav";
 import { collection, doc, onSnapshot } from "firebase/firestore"
 import { db } from '../firebase-config'
+import NotificationContent from "./NotificationContent";
 
 export default function NotificationComp() {
     const navigate = useNavigate();
@@ -85,7 +86,7 @@ export default function NotificationComp() {
                 </section>
                 <section
                     className=" w-[95%] mt-4 rounded-2xl  md800:w-[60%] sm650:w-[100%] smm500:mt-0">
-                   
+                    <NotificationContent />
                 </section>
                 <section
                     onClick={handleBodyClick}
