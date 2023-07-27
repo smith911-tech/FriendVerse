@@ -11,6 +11,8 @@ import { BsFillArrowLeftCircleFill, BsFillGearFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import ProfileDetails from './ProfileDetails';
 import { useState } from 'react';
+import { UserCoverImg } from './UserModai/UserProfileModal';
+
 export default function UserProfile({ 
     userData, 
     handleInputClick, 
@@ -20,14 +22,25 @@ export default function UserProfile({
     const [showPmodal, setShowPmodal] = useState<boolean>(false)
     const [showCmodal, setShowCmodal] = useState<boolean>(false)
 
+// ! user Profile image handle click
     const handleShowProfileImg = () => {
         setShowPmodal(!showPmodal)
         
     }
+    const handlePloseModal = () => {
+        setShowCmodal(false);
+    };
+// ? end of user Profile image handle click
+
+// ! user cover image handle click
     const handleShowCoverImg = () => {
-        setShowCmodal(!showCmodal)
-        handleShowProfileImg()
-    }
+        setShowCmodal(!showCmodal);
+    };
+
+    const handleCloseModal = () => {
+        setShowCmodal(false);
+    };
+// ? end of user cover image handle click
     return(
         <main>
         <section className='relative'>
@@ -73,24 +86,11 @@ export default function UserProfile({
 
                             </div>
                             {/* cover image modal */}
-                            {/* {showCmodal && (
-                                <div className='fixed w-full top-20 z-[40] left-0'>
-                                    {userData.coverImage === "" ? (
-                                        <img
-                                            src={defaultcoverimg}
-                                            alt="Cover"
-                                            className="w-full rounded-t-lg h-44 smm500:h-32 object-cover"
-                                        />
-                                    ) : (
-                                        <img
-                                            src={userData.coverImage}
-                                            alt="Cover"
-                                            className="  object-contain  top-0 h-[60vh] w-screen "
-                                        />
-                                    )}
-                                </div>
-                            )
-                            } */}
+                            <UserCoverImg 
+                            userData={userData} 
+                            handleCloseModal={handleCloseModal}
+                            showCmodal={showCmodal}
+                            />
                             {/* end of image modal */}
                         </div>
                         <ProfileDetails
