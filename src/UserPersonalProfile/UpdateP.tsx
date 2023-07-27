@@ -132,6 +132,7 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
                         coverImg={coverImg}
                         handleRemoveCoverClick={handleRemoveCoverClick}
                         handleImageUCload={handleImageUCload}
+                        userClickedRemoveCover={userClickedRemoveCover}
                         />
                         <ProfileimgUpload 
                         handleImageUpload={handleImageUpload} 
