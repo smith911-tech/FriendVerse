@@ -17,22 +17,27 @@ export default function Header({userData}: userdatas): JSX.Element {
 
                 <NavLink className="ActiveLink" to="/Home" >
                 <div className='text-3xl cursor-pointer '> <AiOutlineHome /></div>
+                <NavLink to="/Home" className="UnderHomeNav"></NavLink>
                 </NavLink>
 
                 <NavLink className="ActiveLink" to="/FriendRequest">
                     <div className='text-3xl cursor-pointer'> <FiUserPlus /></div>
+                    <NavLink to="/FriendRequest" className="UnderHomeNav"></NavLink>
                 </NavLink>
 
                 <NavLink className="ActiveLink" to="/VideoContent" >
                 <div className='text-3xl cursor-pointer'><MdOutlineOndemandVideo /></div>
+                    <NavLink to="/VideoContent" className="UnderHomeNav"></NavLink>
                 </NavLink>
 
                 <NavLink className="ActiveLink" to="/Message" >
                 <div className='text-3xl cursor-pointer'> < TiMessages /></div>
+                <NavLink to="/Message" className="UnderHomeNav"></NavLink>
                 </NavLink>
 
                 <NavLink className="ActiveLink" to="/Notifications">
                 <div className='text-3xl cursor-pointer'> <IoNotificationsOutline /></div>
+                <NavLink to="/Notifications" className="UnderHomeNav"></NavLink>
                 </NavLink>
             </nav>
             <div>

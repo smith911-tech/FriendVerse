@@ -36,9 +36,14 @@ body {
 }
 
 /* ! active link */
-.ActiveLink.active  {
-  background-color: rgba(246, 248, 250, 1);
-  color: rgba(42, 82, 152, 1);
+.ActiveLink.active {
+  color: blue;
+}
+.UnderHomeNav.active{
+  border-bottom: 4px blue solid;
+  display: block;
+  margin: 4px auto 0 auto;
+  width: 2rem;
 }
 
 /* ! phone numeber drop-down */
