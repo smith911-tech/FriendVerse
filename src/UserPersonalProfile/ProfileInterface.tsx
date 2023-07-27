@@ -11,7 +11,7 @@ import { BsFillArrowLeftCircleFill, BsFillGearFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import ProfileDetails from './ProfileDetails';
 import { useState } from 'react';
-import { UserCoverImg } from './UserModai/UserProfileModal';
+import { UserCoverImg, UserProfileImg } from './UserModai/UserProfileModal';
 
 export default function UserProfile({ 
     userData, 
@@ -27,20 +27,18 @@ export default function UserProfile({
         setShowPmodal(!showPmodal)
         
     }
-    const handlePloseModal = () => {
-        setShowCmodal(false);
-    };
 // ? end of user Profile image handle click
 
 // ! user cover image handle click
     const handleShowCoverImg = () => {
         setShowCmodal(!showCmodal);
     };
+// ? end of user cover image handle click
 
     const handleCloseModal = () => {
         setShowCmodal(false);
+        setShowPmodal(false);
     };
-// ? end of user cover image handle click
     return(
         <main>
         <section className='relative'>
@@ -77,7 +75,9 @@ export default function UserProfile({
                                         <BiSolidUserCircle />
                                     </div>
                                 ) : (
+                                    
                                     <img 
+                                        onClick={handleShowProfileImg}
                                         src={userData.profileImage}
                                         alt="Profile"
                                         className="w-24 h-24 rounded-full absolute left-4 -translate-y-1/2 border border-white object-cover bg-white smm500:h-20 smm500:w-20 smm500:left-1"
@@ -92,6 +92,14 @@ export default function UserProfile({
                             showCmodal={showCmodal}
                             />
                             {/* end of image modal */}
+
+                            {/* Profile Imge Modal */}
+                            <UserProfileImg 
+                            userData={userData} 
+                            showPmodal={showPmodal}
+                            handleCloseModal={handleCloseModal}
+                            />
+                            {/* End Of prodile image modal  */}
                         </div>
                         <ProfileDetails
                         userData={userData} 
