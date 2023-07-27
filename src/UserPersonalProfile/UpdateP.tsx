@@ -2,6 +2,8 @@ interface userdatas {
     isInputClicked: boolean,
     userData: any,
     handleBodyClick: () => void
+    showDOB: boolean
+    setShowDOB: any
 }
 import { useState } from 'react';
 import { db } from '../firebase-config';
@@ -10,8 +12,13 @@ import SaveUpdateNav from './UserUpload/SaveUpdateNav';
 import CoverimgUpload from "./UserUpload/CoverImgUpload";
 import ProfileimgUpload from "./UserUpload/ProfileImgUpload";
 import UpdateInputValue from './UserUpload/UpdateInputValue';
-import { FilldetailsError } from '../Error-SuccessM';
-export default function UpdateProfile({ isInputClicked, userData, handleBodyClick }: userdatas) {
+import { FilldetailsError, SuccessLoginM } from '../Error-SuccessM';
+export default function UpdateProfile({ 
+    isInputClicked, 
+    userData, 
+    handleBodyClick  
+    
+    }: userdatas) {
 
     // ! dataofbirth formatter
     const dateofbirthValue = userData && userData.dateOfBirth;
@@ -49,18 +56,24 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
     };
 
     const [error, setError] = useState<string | boolean>(false)
+    const [successFul, setSuccessful] = useState<string | boolean>(false)
 
     // ! On load 
     const [Loader, setLoader] = useState<boolean>(false)
     // ! getting the userid from the local storage 
     let userid = sessionStorage.getItem('UserId')
     
-    // Todo: handleUpdate
+// ! background image state
     const [userClickedRemoveCover, setUserClickedRemoveCover] = useState(false);
-
+// ! removal of background image
     const handleRemoveCoverClick = () => {
         setUserClickedRemoveCover(true);
+        setSuccessful("Removed Successfully")
     };
+    setTimeout(() => {
+        setSuccessful(false);
+    }, 1500);
+      // !  handleUpdate
     const handleUpdate = async (_e: any) => {
         setLoader(true);
 
@@ -156,6 +169,7 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
                 </div>
             )}
             {error && <FilldetailsError error={error} />}
+            {successFul && <SuccessLoginM successFul={successFul}/>}
         </>
     )
 }

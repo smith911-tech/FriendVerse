@@ -34,7 +34,7 @@ export default function CoverimgUpload({
                 // ! user cover image update
                 <section className='relative'>
                     <img
-                        src={coverImg }
+                        src={coverImg}
                         alt="Cover"
                         className="w-full rounded-t-lg h-44  object-cover smm500:h-32 brightness-[0.5]"
                     />

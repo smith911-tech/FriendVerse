@@ -9,6 +9,7 @@ import { IoLocationOutline } from 'react-icons/io5'
 import { LiaBirthdayCakeSolid } from 'react-icons/lia'
 import ProfileSLideBtn from './ProfileSlideBtn';
 import UpdateP from './UpdateP';
+import {useState} from 'react'
 export default function UserProfileDetails({ 
     userData, 
     handleInputClick, 
@@ -42,7 +43,9 @@ export default function UserProfileDetails({
     ];
     //! Formatting the date to show as "15 January 2004"
     const formattedDate = `${DODValue.getDate()} ${monthNames[DODValue.getMonth()]} ${DODValue.getFullYear()}`;
- 
+
+    // ! date of birth hidden or not state
+    const [showDOB, setShowDOB] = useState<boolean>(true)
     return(
         <>
             <section className='w-full px-6 py-2 smm500:px-2 '>
@@ -91,6 +94,8 @@ export default function UserProfileDetails({
             isInputClicked={isInputClicked} 
             userData={userData}
             handleBodyClick={handleBodyClick}
+            showDOB={showDOB}
+            setShowDOB={setShowDOB}
             />
         </>
     )
