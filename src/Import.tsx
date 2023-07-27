@@ -10,6 +10,7 @@ import Privacy from "./Privacy/Privacy";
 import Cookie from "./Cookie/Cookie";
 import Profile from './UserPersonalProfile/Profile'
 import FriendRequest from "./Friend Request Comp/FriendRequest";
+import VideoContent from "./Videos/Videos";
 
 export {
     SignIn,
@@ -24,4 +25,5 @@ export {
     Cookie,
     Profile,
     FriendRequest,
+    VideoContent,
 }

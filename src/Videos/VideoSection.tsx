@@ -1,8 +1,8 @@
 
-export default function RequestContent(){
+export default function VideoSection(){
     return(
         <main className=" text-3xl text-center">
-        Under Contruction
+            Under Contruction
         </main>
     )
 }

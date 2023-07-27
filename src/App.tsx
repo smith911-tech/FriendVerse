@@ -14,6 +14,7 @@ import {
     Cookie,
     Profile,
     FriendRequest,
+    VideoContent
 } from "./Import";
 
 function App() {
@@ -67,8 +68,11 @@ function App() {
                         {/* Home page */}
                         <Route path="/Home" element={<HomePage />} />
 
-                            {/* Friend Request*/}
-                            <Route path="/FriendRequest" element={<FriendRequest />} />
+                        {/* Friend Request*/}
+                        <Route path="/FriendRequest" element={<FriendRequest />} />
+
+                        {/* Videos */}
+                        <Route path="/VideoContent" element={<VideoContent />} />
                     </Routes>
                 </BrowserRouter>
             )}
