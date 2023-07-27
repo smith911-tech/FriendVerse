@@ -130,7 +130,6 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
                     <div className="relative select-none">
                         <CoverimgUpload 
                         coverImg={coverImg}
-                        userData={userData}
                         handleRemoveCoverClick={handleRemoveCoverClick}
                         handleImageUCload={handleImageUCload}
                         />
