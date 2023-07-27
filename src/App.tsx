@@ -14,7 +14,8 @@ import {
     Cookie,
     Profile,
     FriendRequest,
-    VideoContent
+    VideoContent,
+    MessageComp
 } from "./Import";
 
 function App() {
@@ -73,6 +74,9 @@ function App() {
 
                         {/* Videos */}
                         <Route path="/VideoContent" element={<VideoContent />} />
+
+                        {/* Message Comp */}
+                        <Route path="/Message" element={<MessageComp />} />
                     </Routes>
                 </BrowserRouter>
             )}
