@@ -18,7 +18,7 @@ export default function Dashboard({ userData, SuggestData }: userdatas): JSX.Ele
                 <section className="w-full flex flex-col justify-center">
                     <div className="bg-white rounded-lg shadow p-1">
                         <div className="relative select-none">
-                            {userData.coverImage === "" ? (
+                            {!userData.coverImage ? (
                                 <img
                                     src={defaultcoverimg}
                                     alt="Cover"

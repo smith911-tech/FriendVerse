@@ -5,7 +5,7 @@ interface userdatas {
 }
 import { useState } from 'react';
 import { db } from '../firebase-config';
-import { doc, updateDoc } from 'firebase/firestore';
+import { doc, updateDoc, deleteField } from 'firebase/firestore';
 import SaveUpdateNav from './UserUpload/SaveUpdateNav';
 import CoverimgUpload from "./UserUpload/CoverImgUpload";
 import ProfileimgUpload from "./UserUpload/ProfileImgUpload";
@@ -48,12 +48,13 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
         reader.readAsDataURL(file);
     };
 
-    const [error, setError] = useState<string | boolean>(true)
+    const [error, setError] = useState<string | boolean>(false)
 
     // ! On load 
     const [Loader, setLoader] = useState<boolean>(false)
     // ! getting the userid from the local storage 
     let userid = sessionStorage.getItem('UserId')
+    
     // Todo: handleUpdate
     const handleUpdate = async (_e: any) => {
         setLoader(true);
@@ -96,7 +97,7 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
             setLoader(false);
         }
     };
-
+    
     return (
         <>
             {isInputClicked && (

@@ -8,7 +8,7 @@ import { AiOutlineCloudUpload } from 'react-icons/ai'
 export default function CoverimgUpload({ coverImg, handleImageUCload }: userDatas){
     return(
         <>
-            {coverImg === "" ? (
+            {!coverImg ? (
                 // ! defuly cover image image update
                 <section className='relative'>
                     <img
