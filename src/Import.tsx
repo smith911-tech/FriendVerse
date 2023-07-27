@@ -9,6 +9,7 @@ import TermsandCondition from "./Terms & condition/Terms";
 import Privacy from "./Privacy/Privacy";
 import Cookie from "./Cookie/Cookie";
 import Profile from './UserPersonalProfile/Profile'
+import FriendRequest from "./Friend Request Comp/FriendRequest";
 
 export {
     SignIn,
@@ -22,4 +23,5 @@ export {
     Privacy,
     Cookie,
     Profile,
+    FriendRequest,
 }

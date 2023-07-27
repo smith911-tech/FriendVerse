@@ -13,6 +13,7 @@ import {
     Privacy,
     Cookie,
     Profile,
+    FriendRequest,
 } from "./Import";
 
 function App() {
@@ -65,6 +66,9 @@ function App() {
 
                         {/* Home page */}
                         <Route path="/Home" element={<HomePage />} />
+
+                            {/* Friend Request*/}
+                            <Route path="/FriendRequest" element={<FriendRequest />} />
                     </Routes>
                 </BrowserRouter>
             )}
