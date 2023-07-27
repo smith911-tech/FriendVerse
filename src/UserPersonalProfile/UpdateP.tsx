@@ -58,8 +58,16 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
     const handleUpdate = async (_e: any) => {
         setLoader(true);
 
-        if (fullName.trim().length < 1 || userName.trim().length < 1) {
-            setError("Full name and username cannot be empty.");
+        if (fullName.trim().length < 1) {
+            setError("Full name cannot be empty.");
+            setLoader(false);
+            setTimeout(() => {
+                setError(false);
+            }, 1500);
+            return;
+        }
+        else if (userName.trim().length < 1) {
+            setError("Username cannot be empty.");
             setLoader(false);
             setTimeout(() => {
                 setError(false);
@@ -81,7 +89,10 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
             handleBodyClick();
             setLoader(false);
         } catch (error) {
-            console.log(error);
+            setError("Error")
+            setTimeout(() => {
+                setError(false);
+            }, 1500);
             setLoader(false);
         }
     };
