@@ -10,6 +10,7 @@ import SaveUpdateNav from './UserUpload/SaveUpdateNav';
 import CoverimgUpload from "./UserUpload/CoverImgUpload";
 import ProfileimgUpload from "./UserUpload/ProfileImgUpload";
 import UpdateInputValue from './UserUpload/UpdateInputValue';
+import { FilldetailsError } from '../Error-SuccessM';
 export default function UpdateProfile({ isInputClicked, userData, handleBodyClick }: userdatas) {
 
     // ! dataofbirth formatter
@@ -47,14 +48,26 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
         reader.readAsDataURL(file);
     };
 
+    const [error, setError] = useState<string | boolean>(true)
+
     // ! On load 
     const [Loader, setLoader] = useState<boolean>(false)
     // ! getting the userid from the local storage 
     let userid = sessionStorage.getItem('UserId')
     // Todo: handleUpdate
     const handleUpdate = async (_e: any) => {
-        setLoader(true)
-        const DataDocRef = doc(db, "users", userid as string)
+        setLoader(true);
+
+        if (fullName.trim().length < 1 || userName.trim().length < 1) {
+            setError("Full name and username cannot be empty.");
+            setLoader(false);
+            setTimeout(() => {
+                setError(false);
+            }, 1500);
+            return;
+        }
+
+        const DataDocRef = doc(db, "users", userid as string);
         try {
             await updateDoc(DataDocRef, {
                 fullName: fullName,
@@ -64,14 +77,15 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
                 bio: bio,
                 coverImage: coverImg,
                 Location: location
-            })
-            handleBodyClick()
-            setLoader(false)
+            });
+            handleBodyClick();
+            setLoader(false);
         } catch (error) {
-            console.log(error)
-            setLoader(false)
+            console.log(error);
+            setLoader(false);
         }
-    }
+    };
+
     return (
         <>
             {isInputClicked && (
@@ -90,7 +104,7 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
                         handleImageUpload={handleImageUpload} 
                         profileImg={profileImg}/>
                     </div>
-                    {/* Name, username, location, date of birth, bio  */}
+                    {/* Name, username, location, date of birth, bio Input */}
                     <div className="flex justify-center update-user-Date">
                         <UpdateInputValue 
                         fullName={fullName}
@@ -107,6 +121,7 @@ export default function UpdateProfile({ isInputClicked, userData, handleBodyClic
                     </div>
                 </div>
             )}
+            {error && <FilldetailsError error={error} />}
         </>
     )
 }
