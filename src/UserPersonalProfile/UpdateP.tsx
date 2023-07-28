@@ -103,7 +103,7 @@ export default function UpdateProfile({
         try {
             // Upload the profileImg to Firebase Storage if it's not null
             if (profileImgUrl) {
-                const profileImgRef = ref(storage, `${userid}/Profile_Img`);
+                const profileImgRef = ref(storage, `Users/${userid}/Profile_Img`);
                 await uploadBytesResumable(profileImgRef, profileImgUrl);
                 // Get the download URL of the uploaded profile image
                 const profileImgURL = await getDownloadURL(profileImgRef);
@@ -114,7 +114,7 @@ export default function UpdateProfile({
 
             // Upload the coverImg to Firebase Storage if it's not null
             if (coverImgUrl && !userClickedRemoveCover) {
-                const coverImgRef = ref(storage, `${userid}/Cover_Img`);
+                const coverImgRef = ref(storage, `Users/${userid}/Cover_Img`);
                 await uploadBytesResumable(coverImgRef, coverImgUrl);
                 // Get the download URL of the uploaded cover image
                 const coverImgURL = await getDownloadURL(coverImgRef);
