@@ -89,7 +89,7 @@ export default function UpdateInputValue({
                                 } inline-block w-6 h-6 transform transition-transform bg-white rounded-full shadow-md`}
                         />
                     </label>
-                    <span className="text-lg font-semibold">Show Date of Birth</span>
+                    <span className="text-lg font-semibold text-[#000000d3]">Show Date of Birth</span>
                 </div>
 
                 {/* Date of Birth section */}
