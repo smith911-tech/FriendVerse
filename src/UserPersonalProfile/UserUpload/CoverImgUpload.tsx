@@ -15,7 +15,7 @@ export default function CoverimgUpload({
 }: userDatas){
     return(
         <>
-            {coverImg === "" && !userClickedRemoveCover ? (
+            {!coverImg  && !userClickedRemoveCover ? (
                 // ! defuly cover image image update
                 <section className='relative'>
                     <img

@@ -7,7 +7,7 @@ import { AiOutlineCloudUpload } from 'react-icons/ai'
 export default function ProfileimgUpload({ handleImageUpload, profileImg }: userDatas){
     return(
         <>
-            {profileImg === "" ? (
+            {!profileImg  ? (
                 //! default profile image update
                 <div className=' text-8xl absolute left-4 -translate-y-1/2  border-white rounded-full bg-[#ffffffe6] text-[#000000d7] smm500:text-[80px] smm500:left-1'>
                     <span className=' brightness-[0.5]'>

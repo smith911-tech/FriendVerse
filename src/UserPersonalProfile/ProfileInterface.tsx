@@ -80,7 +80,7 @@ export default function UserProfile({
                                         onClick={handleShowProfileImg}
                                         src={userData.profileImage}
                                         alt="Profile"
-                                        className="w-24 h-24 rounded-full absolute left-4 -translate-y-1/2 border border-white object-cover bg-white smm500:h-20 smm500:w-20 smm500:left-1 cursor-pointer"
+                                        className="w-24 h-24 rounded-full absolute left-4 -translate-y-1/2 border border-white object-cover bg-white smm500:h-23 smm500:w-23 smm500:left-1 cursor-pointer"
                                     />
                                 )}
 

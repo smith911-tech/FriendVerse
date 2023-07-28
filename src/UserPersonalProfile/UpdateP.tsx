@@ -27,8 +27,10 @@ export default function UpdateProfile({
     
 
     // ! update user state
-    const [profileImg, setProfileImg] = useState<any>(userData.profileImage  || null)
-    const [coverImg, setCoverImg] = useState<any>(userData.coverImage || null)
+    const [profileImg, setProfileImg] = useState<any>(userData.profileImage  || "")
+    const [coverImg, setCoverImg] = useState<any>(userData.coverImage || "")
+    const [profileImgUrl, setProfileImgUrl] = useState<any>(null)
+    const [coverImgUrl, setCoverImgUrl] = useState<any>(null)
     const [fullName, setFullName] = useState<string>(userData.fullName || "")
     const [userName, setUserName] = useState<string>(userData.username || "")
     const [bio, setBio] = useState<string>(userData.bio || "")
@@ -41,6 +43,7 @@ export default function UpdateProfile({
         const reader = new FileReader();
         reader.onloadend = () => {
             setProfileImg(reader.result);
+            setProfileImgUrl(file)
         };
         reader.readAsDataURL(file);
     };
@@ -52,6 +55,7 @@ export default function UpdateProfile({
         const reader = new FileReader();
         reader.onloadend = () => {
             setCoverImg(reader.result);
+            setCoverImgUrl(file)
 
         };
         reader.readAsDataURL(file);
@@ -65,9 +69,9 @@ export default function UpdateProfile({
     // ! getting the userid from the local storage 
     let userid = sessionStorage.getItem('UserId')
     
-// ! background image state
+    // ! background image state
     const [userClickedRemoveCover, setUserClickedRemoveCover] = useState(false);
-// ! removal of background image
+    // ! removal of background image
     const handleRemoveCoverClick = () => {
         setUserClickedRemoveCover(true);
         setSuccessful("Removed Successfully")
@@ -98,14 +102,14 @@ export default function UpdateProfile({
         const DataDocRef = doc(db, "users", userid as string);
         try {
             const profileImgRef = ref(storage, `${userid}/Profile_Img`);
-            await uploadBytesResumable(profileImgRef, profileImg, { contentType: 'image/jpeg' });
+            await uploadBytesResumable(profileImgRef, profileImgUrl);
 
             // Get the download URL of the uploaded profile image
             const profileImgURL = await getDownloadURL(profileImgRef);
 
             // Upload the coverImg to Firebase Storage
             const coverImgRef = ref(storage, `${userid}/Cover_Img`);
-            await uploadBytesResumable(coverImgRef, coverImg, { contentType: 'image/jpeg' });
+            await uploadBytesResumable(coverImgRef, coverImgUrl);
 
             // Get the download URL of the uploaded cover image
             const coverImgURL = await getDownloadURL(coverImgRef);
