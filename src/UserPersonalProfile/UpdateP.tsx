@@ -27,8 +27,8 @@ export default function UpdateProfile({
     
 
     // ! update user state
-    const [profileImg, setProfileImg] = useState<any>(userData.profileImage  || "")
-    const [coverImg, setCoverImg] = useState<any>(userData.coverImage || "")
+    const [profileImg, setProfileImg] = useState<any>(userData.profileImage  || null)
+    const [coverImg, setCoverImg] = useState<any>(userData.coverImage || null)
     const [fullName, setFullName] = useState<string>(userData.fullName || "")
     const [userName, setUserName] = useState<string>(userData.username || "")
     const [bio, setBio] = useState<string>(userData.bio || "")
