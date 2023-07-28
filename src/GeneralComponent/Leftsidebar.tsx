@@ -90,7 +90,7 @@ export default function Dashboard({ userData, SuggestData }: userdatas): JSX.Ele
                                         <img
                                             src={data.profileImage}
                                             alt="Profile"
-                                            className="w-12 h-12 rounded-full   object-contain "
+                                                className="w-12 h-12 rounded-full   object-cover "
                                         />
                                     )}
                                 </div>
