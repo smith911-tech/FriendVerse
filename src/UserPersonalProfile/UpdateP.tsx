@@ -13,7 +13,7 @@ import CoverimgUpload from "./UserUpload/CoverImgUpload";
 import ProfileimgUpload from "./UserUpload/ProfileImgUpload";
 import UpdateInputValue from './UserUpload/UpdateInputValue';
 import { FilldetailsError, SuccessLoginM } from '../Error-SuccessM';
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 export default function UpdateProfile({ 
     isInputClicked, 
     userData, 
@@ -96,18 +96,19 @@ export default function UpdateProfile({
 
         const DataDocRef = doc(db, "users", userid as string);
         try {
-            const profileImgRef = ref(storage, `${userid}/profile_image.jpg`);
-            await uploadBytes(profileImgRef, profileImg, { contentType: 'image/jpeg' });
+            const profileImgRef = ref(storage, `${userid}/Profile_Img`);
+            await uploadBytesResumable(profileImgRef, profileImg, { contentType: 'image/jpeg' });
 
             // Get the download URL of the uploaded profile image
             const profileImgURL = await getDownloadURL(profileImgRef);
 
             // Upload the coverImg to Firebase Storage
-            const coverImgRef = ref(storage, `${userid}/cover_images.jpg`);
-            await uploadBytes(coverImgRef, coverImg, { contentType: 'image/jpeg' });
+            const coverImgRef = ref(storage, `${userid}/Cover_Img`);
+            await uploadBytesResumable(coverImgRef, coverImg, { contentType: 'image/jpeg' });
 
             // Get the download URL of the uploaded cover image
             const coverImgURL = await getDownloadURL(coverImgRef);
+            
             (
                 await updateDoc(DataDocRef, {
                     fullName: fullName,
