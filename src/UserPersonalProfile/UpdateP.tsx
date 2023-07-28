@@ -44,9 +44,10 @@ export default function UpdateProfile({
         };
         reader.readAsDataURL(file);
     };
+    
 
     // ! update cover image
-    const handleImageUCload = (event: any) => {
+    const handleImageCUpload = (event: any) => {
         const file = event.target.files[0];
         const reader = new FileReader();
         reader.onloadend = () => {
@@ -149,7 +150,7 @@ export default function UpdateProfile({
                         <CoverimgUpload 
                         coverImg={coverImg}
                         handleRemoveCoverClick={handleRemoveCoverClick}
-                        handleImageUCload={handleImageUCload}
+                        handleImageCUpload={ handleImageCUpload}
                         userClickedRemoveCover={userClickedRemoveCover}
                         />
                         <ProfileimgUpload 
