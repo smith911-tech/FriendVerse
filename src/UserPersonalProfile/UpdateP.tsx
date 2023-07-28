@@ -101,27 +101,38 @@ export default function UpdateProfile({
 
         const DataDocRef = doc(db, "users", userid as string);
         try {
-            const profileImgRef = ref(storage, `${userid}/Profile_Img`);
-            await uploadBytesResumable(profileImgRef, profileImgUrl);
+            // Upload the profileImg to Firebase Storage if it's not null
+            if (profileImgUrl) {
+                const profileImgRef = ref(storage, `${userid}/Profile_Img`);
+                await uploadBytesResumable(profileImgRef, profileImgUrl);
+                // Get the download URL of the uploaded profile image
+                const profileImgURL = await getDownloadURL(profileImgRef);
+                await updateDoc(DataDocRef, {
+                    profileImage: profileImgURL,
+                });
+            }
 
-            // Get the download URL of the uploaded profile image
-            const profileImgURL = await getDownloadURL(profileImgRef);
-
-            // Upload the coverImg to Firebase Storage
-            const coverImgRef = ref(storage, `${userid}/Cover_Img`);
-            await uploadBytesResumable(coverImgRef, coverImgUrl);
-
-            // Get the download URL of the uploaded cover image
-            const coverImgURL = await getDownloadURL(coverImgRef);
-            
+            // Upload the coverImg to Firebase Storage if it's not null
+            if (coverImgUrl && !userClickedRemoveCover) {
+                const coverImgRef = ref(storage, `${userid}/Cover_Img`);
+                await uploadBytesResumable(coverImgRef, coverImgUrl);
+                // Get the download URL of the uploaded cover image
+                const coverImgURL = await getDownloadURL(coverImgRef);
+                await updateDoc(DataDocRef, {
+                    coverImage: coverImgURL,
+                });
+            } else if (userClickedRemoveCover) {
+                // If userClickedRemoveCover is true, delete the profile image by setting it to an empty string
+                await updateDoc(DataDocRef, {
+                    coverImage: "",
+                });
+            }
             (
                 await updateDoc(DataDocRef, {
                     fullName: fullName,
                     username: userName,
                     dateOfBirth: dateOfBirth,
-                    profileImage: profileImgURL,
                     bio: bio,
-                    coverImage: userClickedRemoveCover ? '' : coverImgURL,
                     Location: location
                 })
             )
