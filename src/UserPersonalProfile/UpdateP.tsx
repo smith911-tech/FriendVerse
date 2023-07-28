@@ -6,13 +6,14 @@ interface userdatas {
     setShowDOB: any
 }
 import { useState } from 'react';
-import { db } from '../firebase-config';
+import { db, storage } from '../firebase-config';
 import { doc, updateDoc } from 'firebase/firestore';
 import SaveUpdateNav from './UserUpload/SaveUpdateNav';
 import CoverimgUpload from "./UserUpload/CoverImgUpload";
 import ProfileimgUpload from "./UserUpload/ProfileImgUpload";
 import UpdateInputValue from './UserUpload/UpdateInputValue';
 import { FilldetailsError, SuccessLoginM } from '../Error-SuccessM';
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 export default function UpdateProfile({ 
     isInputClicked, 
     userData, 
@@ -95,12 +96,24 @@ export default function UpdateProfile({
 
         const DataDocRef = doc(db, "users", userid as string);
         try {
+            const profileImgRef = ref(storage, `${userid}/profile_images`);
+            await uploadBytes(profileImgRef, profileImg);
+
+            // Get the download URL of the uploaded profile image
+            const profileImgURL = await getDownloadURL(profileImgRef);
+
+            // Upload the coverImg to Firebase Storage
+            const coverImgRef = ref(storage, `${userid}/cover_images`);
+            await uploadBytes(coverImgRef, coverImg);
+
+            // Get the download URL of the uploaded cover image
+            const coverImgURL = await getDownloadURL(coverImgRef);
             if (userClickedRemoveCover) {
                 await updateDoc(DataDocRef, {
                     fullName: fullName,
                     username: userName,
                     dateOfBirth: dateOfBirth,
-                    profileImage: profileImg,
+                    profileImage: profileImgURL,
                     bio: bio,
                     coverImage: '',
                     Location: location
@@ -110,9 +123,9 @@ export default function UpdateProfile({
                     fullName: fullName,
                     username: userName,
                     dateOfBirth: dateOfBirth,
-                    profileImage: profileImg,
+                    profileImage: profileImgURL,
                     bio: bio,
-                    coverImage: coverImg,
+                    coverImage: coverImgURL,
                     Location: location
                     
                 })
