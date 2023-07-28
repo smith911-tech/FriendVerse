@@ -45,7 +45,7 @@ export default function UserProfileDetails({
     const formattedDate = `${DODValue.getDate()} ${monthNames[DODValue.getMonth()]} ${DODValue.getFullYear()}`;
 
     // ! date of birth hidden or not state
-    const [showDOB, setShowDOB] = useState<boolean>(true)
+    const [showDOB, setShowDOB] = useState<boolean>(false)
     return(
         <>
             <section className='w-full px-6 py-2 smm500:px-2 '>
@@ -79,7 +79,7 @@ export default function UserProfileDetails({
                 {userData.showDOB && (
                         <h2 className='flex text-[#000000b9]'>
                                 <span className=' text-xl'>
-                                    {userData && userData.Location && < LiaBirthdayCakeSolid />}
+                                {userData && userData.dateOfBirth && < LiaBirthdayCakeSolid />}
                                 </span>
                                 {userData && userData.dateOfBirth && formattedDate as string}
                             </h2>
