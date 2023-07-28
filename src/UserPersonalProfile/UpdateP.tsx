@@ -96,40 +96,29 @@ export default function UpdateProfile({
 
         const DataDocRef = doc(db, "users", userid as string);
         try {
-            const profileImgRef = ref(storage, `${userid}/profile_images`);
-            await uploadBytes(profileImgRef, profileImg);
+            const profileImgRef = ref(storage, `${userid}/profile_image.jpg`);
+            await uploadBytes(profileImgRef, profileImg, { contentType: 'image/jpeg' });
 
             // Get the download URL of the uploaded profile image
             const profileImgURL = await getDownloadURL(profileImgRef);
 
             // Upload the coverImg to Firebase Storage
-            const coverImgRef = ref(storage, `${userid}/cover_images`);
-            await uploadBytes(coverImgRef, coverImg);
+            const coverImgRef = ref(storage, `${userid}/cover_images.jpg`);
+            await uploadBytes(coverImgRef, coverImg, { contentType: 'image/jpeg' });
 
             // Get the download URL of the uploaded cover image
             const coverImgURL = await getDownloadURL(coverImgRef);
-            if (userClickedRemoveCover) {
+            (
                 await updateDoc(DataDocRef, {
                     fullName: fullName,
                     username: userName,
                     dateOfBirth: dateOfBirth,
                     profileImage: profileImgURL,
                     bio: bio,
-                    coverImage: '',
+                    coverImage: userClickedRemoveCover ? '' : coverImgURL,
                     Location: location
-                });
-            } else {
-                await updateDoc(DataDocRef, {
-                    fullName: fullName,
-                    username: userName,
-                    dateOfBirth: dateOfBirth,
-                    profileImage: profileImgURL,
-                    bio: bio,
-                    coverImage: coverImgURL,
-                    Location: location
-                    
                 })
-            }
+            )
             handleBodyClick();
             setLoader(false);
             setTimeout(() => {
@@ -144,6 +133,7 @@ export default function UpdateProfile({
             console.log(error)
         }
     };
+
 
     return (
         <>
