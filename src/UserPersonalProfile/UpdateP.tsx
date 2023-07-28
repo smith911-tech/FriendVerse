@@ -17,8 +17,9 @@ import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 export default function UpdateProfile({ 
     isInputClicked, 
     userData, 
-    handleBodyClick  
-
+    handleBodyClick,
+    showDOB,
+    setShowDOB,
     }: userdatas) {
 
     // ! dataofbirth formatter
@@ -133,7 +134,8 @@ export default function UpdateProfile({
                     username: userName,
                     dateOfBirth: dateOfBirth,
                     bio: bio,
-                    Location: location
+                    Location: location,
+                    showDOB: showDOB
                 })
             )
             handleBodyClick();
@@ -185,6 +187,8 @@ export default function UpdateProfile({
                         setLocation={setLocation}
                         dateOfBirth={dateOfBirth}
                         setDateOfBirth={setDateOfBirth}
+                        showDOB={showDOB}
+                        setShowDOB={setShowDOB}
                         />
                     </div>
                 </div>

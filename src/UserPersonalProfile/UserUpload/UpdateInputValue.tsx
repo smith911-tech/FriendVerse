@@ -9,6 +9,8 @@ location : string
 setLocation : any
 dateOfBirth : string
 setDateOfBirth : any
+showDOB: boolean
+setShowDOB: any
 } 
 import DatePicker from 'react-date-picker';
 import 'react-date-picker/dist/DatePicker.css';
@@ -23,8 +25,9 @@ export default function UpdateInputValue({
     location,
     setLocation,
     dateOfBirth,
-    setDateOfBirth
-
+    setDateOfBirth,
+    showDOB,
+    setShowDOB,
 }: userDatas){
     return(
         <>
@@ -64,16 +67,43 @@ export default function UpdateInputValue({
                     onChange={(e) => setLocation(e.target.value)}
                     maxLength={50}
                 />
-                <DatePicker
-                    showLeadingZeros
-                    dayPlaceholder='dd'
-                    monthPlaceholder='mm'
-                    yearPlaceholder='yyyy'
-                    minDate={new Date("01-01-1800")}
-                    maxDate={new Date("01-01-2010")}
-                    onChange={setDateOfBirth}
-                    value={dateOfBirth}
-                />
+                <div className="flex items-center gap-2">
+                    <input
+                        type="checkbox"
+                        id="showDateOfBirthToggle"
+                        className="hidden"
+                        checked={showDOB}
+                        onChange={() => setShowDOB(!showDOB)}
+                    />
+                    <label
+                        htmlFor="showDateOfBirthToggle"
+                        className={`${showDOB
+                                ? 'bg-blue-500'
+                                : 'bg-gray-300'
+                            } rounded-full w-14 h-8 flex items-center cursor-pointer`}
+                    >
+                        <span
+                            className={`${showDOB
+                                    ? 'translate-x-6'
+                                    : 'translate-x-1'
+                                } inline-block w-6 h-6 transform transition-transform bg-white rounded-full shadow-md`}
+                        />
+                    </label>
+                    <span className="text-lg font-semibold">Show Date of Birth</span>
+                </div>
+
+                {/* Date of Birth section */}
+                    <DatePicker
+                        showLeadingZeros
+                        dayPlaceholder='dd'
+                        monthPlaceholder='mm'
+                        yearPlaceholder='yyyy'
+                        minDate={new Date("01-01-1800")}
+                        maxDate={new Date("01-01-2010")}
+                        onChange={setDateOfBirth}
+                        value={dateOfBirth}
+                        className="mt-4"
+                    />
             </section>
         </>
     )

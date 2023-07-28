@@ -76,12 +76,14 @@ export default function UserProfileDetails({
                     </span>
                     {userData && userData.Location}
                 </h2>
-                <h2 className='flex text-[#000000b9]'>
-                    <span className=' text-xl'>
-                        {userData && userData.Location && < LiaBirthdayCakeSolid />}
-                    </span>
-                    {userData && userData.dateOfBirth && formattedDate as string}
-                </h2>
+                {userData.showDOB && (
+                        <h2 className='flex text-[#000000b9]'>
+                                <span className=' text-xl'>
+                                    {userData && userData.Location && < LiaBirthdayCakeSolid />}
+                                </span>
+                                {userData && userData.dateOfBirth && formattedDate as string}
+                            </h2>
+                )}
             </section>
             <ul className='flex gap-7 font-medium text-[#000000a5] mb-2'>
                 <li>
