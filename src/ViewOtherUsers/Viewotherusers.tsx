@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Rightsidebar from "../GeneralComponent/Rightsidebar";
 import Header from "../GeneralComponent/Header";
@@ -11,12 +12,23 @@ export default function ViewOtherUsers() {
     let userid = sessionStorage.getItem('UserId')
     useEffect(() => {
         if (userid) {
-            navigate("/ViewOtherUsers/:username/:id")
+            navigate(`/ViewOtherUsers/:${data.username}/${data.id}`)
         }
         else if (!userid) {
             navigate('/')
         }
     }, [])
+    
+    const { id } = useParams();
+    const [data, setData] = useState<any>(null);
+
+    useEffect(() => {
+        const UsersPersonalData = userData.find((_data: { id: any; }) => String(_data.id) === id);
+        if (UsersPersonalData) {
+            setData(UsersPersonalData);
+        }
+    }, [id]);
+
 
 
     // ! fetching personal userdata 
