@@ -11,7 +11,7 @@ export default function ViewOtherUsers() {
     let userid = sessionStorage.getItem('UserId')
     useEffect(() => {
         if (userid) {
-            navigate("/Profile")
+            navigate("/ViewOtherUsers/:id")
         }
         else if (!userid) {
             navigate('/')

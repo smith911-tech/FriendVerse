@@ -8,8 +8,13 @@ import { GoAlertFill } from "react-icons/go";
 import { BiSolidUserCircle } from "react-icons/bi";
 import VerfiyId from "../Home Comp/VerifyBox";
 import ProfileProgress from "../Home Comp/ProfileProgress";
+import { useNavigate } from "react-router-dom";
 export default function SideDashboard({ SuggestData, userData }: userdatas):JSX.Element {
     const [searchTerm, setSearchTerm] = useState<string>("");
+    const navigate = useNavigate()
+    const handleNavigate = (username: any, id: any) =>{
+        navigate(`/ViewOtherUsers/${username}/${id}`)
+    }
 
 
     function getSuggestions() {
@@ -39,6 +44,9 @@ export default function SideDashboard({ SuggestData, userData }: userdatas):JSX.
                                 
                                 <button
                                     className="cursor-pointer w-full select-none flex  my-4 ml-1 rounded-2xl hover:bg-[#e1e6e7] gap-2"
+                                        onClick={() => {
+                                            handleNavigate(data.id, data.username)
+                                        }}
                                     key={data.id}>
                                         <div>
                                         {data.profileImage === "" ? (

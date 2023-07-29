@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 export default function Page404(){
   const navigate = useNavigate()
   const handlenavigate = () =>{
-    navigate('/Homepage')
+    navigate('/Home')
   }
     return(
       <div className="flex  justify-center min-h-screen bg-black flex-col ">
