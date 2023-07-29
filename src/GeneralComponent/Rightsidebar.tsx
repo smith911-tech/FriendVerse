@@ -45,7 +45,7 @@ export default function SideDashboard({ SuggestData, userData }: userdatas):JSX.
                                 <button
                                     className="cursor-pointer w-full select-none flex  my-4 ml-1 rounded-2xl hover:bg-[#e1e6e7] gap-2"
                                         onClick={() => {
-                                            handleNavigate(data.id, data.username)
+                                            handleNavigate(data.username,data.id)
                                         }}
                                     key={data.id}>
                                         <div>

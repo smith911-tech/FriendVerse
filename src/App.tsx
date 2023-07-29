@@ -84,7 +84,7 @@ function App() {
                         <Route path="/Notifications" element={<NotificationComp />} />
 
                         {/*  ViewOtherUsers */}
-                        <Route path="/ViewOtherUsers/:id" element={<ViewOtherUsers />} />
+                        <Route path="/ViewOtherUsers/:username/:id" element={<ViewOtherUsers />} />
                     </Routes>
                 </BrowserRouter>
             )}
