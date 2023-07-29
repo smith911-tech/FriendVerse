@@ -16,7 +16,8 @@ import {
     FriendRequest,
     VideoContent,
     MessageComp,
-    NotificationComp
+    NotificationComp,
+    ViewOtherUsers
 } from "./Import";
 
 function App() {
@@ -76,11 +77,14 @@ function App() {
                         {/* Videos */}
                         <Route path="/VideoContent" element={<VideoContent />} />
 
-                        {/* Message Comp */}
+                        {/* Message page */}
                         <Route path="/Message" element={<MessageComp />} />
 
-                        {/* Message Comp */}
+                        {/* Notification page*/}
                         <Route path="/Notifications" element={<NotificationComp />} />
+
+                        {/*  ViewOtherUsers */}
+                        <Route path="/ViewOtherUsers" element={<ViewOtherUsers />} />
                     </Routes>
                 </BrowserRouter>
             )}

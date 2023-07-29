@@ -13,6 +13,7 @@ import FriendRequest from "./Friend Request Comp/FriendRequest";
 import VideoContent from "./Videos/Videos";
 import MessageComp from "./Message/Messagecomp";
 import NotificationComp from "./Notification/Notification";
+import ViewOtherUsers from "./ViewOtherUsers/Viewotherusers";
 
 export {
     SignIn,
@@ -30,4 +31,5 @@ export {
     VideoContent,
     MessageComp,
     NotificationComp,
+    ViewOtherUsers,
 }
