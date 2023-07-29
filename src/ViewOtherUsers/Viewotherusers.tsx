@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Rightsidebar from "../GeneralComponent/Rightsidebar";
 import Header from "../GeneralComponent/Header";
@@ -11,24 +10,13 @@ export default function ViewOtherUsers() {
     const navigate = useNavigate();
     let userid = sessionStorage.getItem('UserId')
     useEffect(() => {
-        if (userid) {
-            navigate(`/ViewOtherUsers/:${data.username}/${data.id}`)
+        if (userid ) {
+            navigate(`/ViewOtherUsers`)
         }
         else if (!userid) {
             navigate('/')
         }
     }, [])
-    
-    const { id } = useParams();
-    const [data, setData] = useState<any>(null);
-
-    useEffect(() => {
-        const UsersPersonalData = userData.find((_data: { id: any; }) => String(_data.id) === id);
-        if (UsersPersonalData) {
-            setData(UsersPersonalData);
-        }
-    }, [id]);
-
 
 
     // ! fetching personal userdata 
@@ -78,6 +66,7 @@ export default function ViewOtherUsers() {
         setInputClicked(false);
     };
 
+    
     return (
         <main className="relative">
             <header onClick={handleBodyClick} className={`fixed  top-0 w-full z-10  ${isInputClicked ? " brightness-[0.2]" : " brightness-100"}`}>
