@@ -19,7 +19,7 @@ interface Success {
 export function SuccessLoginM({ successFul }: Success): JSX.Element{
     return(
         <article className="absolute bg-[#19212b] top-6 right-3 flex py-2 px-4 shadow-2xl rounded-lg ErrorContainer  z-[50]">
-            <div className=" text-[#00bfa5] text-xl mr-3 mt-1">
+            <div className=" text-[#00bfa5] text-xl mr-3 mt-1"> 
                 <VscVerifiedFilled />
             </div> 
             <h2 className="text-white font-semibold select-none text-center">{successFul}</h2>
