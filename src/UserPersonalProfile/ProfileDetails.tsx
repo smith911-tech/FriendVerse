@@ -45,7 +45,7 @@ export default function UserProfileDetails({
     const formattedDate = `${DODValue.getDate()} ${monthNames[DODValue.getMonth()]} ${DODValue.getFullYear()}`;
 
     // ! date of birth hidden or not state
-    const [showDOB, setShowDOB] = useState<boolean>(false)
+    const [showDOB, setShowDOB] = useState<boolean>(true)
     return(
         <>
             <section className='w-full px-6 py-2 smm500:px-2 '>

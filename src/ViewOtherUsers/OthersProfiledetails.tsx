@@ -4,6 +4,7 @@ interface userdatas {
 import { IoLocationOutline } from 'react-icons/io5'
 import { LiaBirthdayCakeSolid } from 'react-icons/lia'
 import OtherUsersSlidesbtn from './OtherUsersSlidesbtn';
+import { AiOutlineMail } from 'react-icons/ai'
 export default function OthersProfileDetails({
     data,
 }: userdatas){
@@ -38,9 +39,11 @@ export default function OthersProfileDetails({
     return (
         <>
             <section className='w-full px-6 py-2 smm500:px-2 '>
-                <div>
-                <button className='block my-0 ml-auto bg-[#3b82f6] text-white font-semibold py-1 px-4 rounded-xl '>
-                <h2>Follow</h2>
+                <div className='flex'>
+                    <div className='text-xl'>
+                        <AiOutlineMail/>
+                    </div>
+                <button className='block my-0 ml-auto bg-[#3b82f6] text-white font-semibold py-1 px-4 rounded-xl '>Follow
                 </button>
                 </div>
                 <section className=' mb-2 mt-2'>
@@ -57,7 +60,7 @@ export default function OthersProfileDetails({
                         dangerouslySetInnerHTML={{ __html: formattedBio || '' }}
                     />
                 </section>
-                <section className=' mb-2 flex gap-2 flex-wrap'>
+                <section className=' mb-2 flex  flex-wrap'>
                     <h2 className='flex text-[#000000b9]'>
                         <span className=' text-xl '>
                             {data && data.Location && <IoLocationOutline />}
