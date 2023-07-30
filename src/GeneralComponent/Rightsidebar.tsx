@@ -14,7 +14,7 @@ export default function SideDashboard({ SuggestData, userData }: userdatas):JSX.
 
 
     function getSuggestions() {
-        const regex = new RegExp(`${searchTerm}`, "i");
+        const regex = new RegExp(`${searchTerm}`);
         return SuggestData.filter((data: any) => regex.test(data.fullName || data.username)).slice(0, 5);
     }
     let userid = sessionStorage.getItem('UserId')
