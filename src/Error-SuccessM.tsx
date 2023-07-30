@@ -12,7 +12,7 @@ export function FilldetailsError({ error }: Error): JSX.Element{
             <h2 className="text-white font-semibold select-none text-center">{error}</h2>
         </article> 
     )
-}
+} 
 interface Success {
     successFul: string | boolean
 }
