@@ -6,10 +6,10 @@ import ButtomNav from "../GeneralComponent/ButtomNav";
 import { collection, doc, onSnapshot } from "firebase/firestore"
 import { db } from "../firebase-config"
 import Leftsidebar from "../GeneralComponent/Leftsidebar";
-import ViewUsersData from "./viewothersdata";
+import ViewUsersData from "./Viewothersdata";
 export default function ViewOtherUsers() {
     let userid = sessionStorage.getItem('UserId')
-    
+
 
     // ! fetching personal userdata 
     const [userData, setUserData] = useState<any>(null);
