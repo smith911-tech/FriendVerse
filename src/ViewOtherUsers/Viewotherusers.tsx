@@ -1,23 +1,14 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Rightsidebar from "../GeneralComponent/Rightsidebar";
 import Header from "../GeneralComponent/Header";
 import ButtomNav from "../GeneralComponent/ButtomNav";
 import { collection, doc, onSnapshot } from "firebase/firestore"
 import { db } from "../firebase-config"
 import ProfileLeftbar from "../UserPersonalProfile/LeftsidebarProfile";
+import ViewUsersData from "./viewothersdata";
 export default function ViewOtherUsers() {
-    const navigate = useNavigate();
     let userid = sessionStorage.getItem('UserId')
-    useEffect(() => {
-        if (userid ) {
-            navigate(`/ViewOtherUsers`)
-        }
-        else if (!userid) {
-            navigate('/')
-        }
-    }, [])
-
 
     // ! fetching personal userdata 
     const [userData, setUserData] = useState<any>(null);
@@ -66,7 +57,18 @@ export default function ViewOtherUsers() {
         setInputClicked(false);
     };
 
-    
+    // ! getting other users data
+    const { id } = useParams(); 
+    const [data, setData] = useState<any>();
+
+    useEffect(() => {
+        const userDetails = SuggestData && SuggestData.find((data: any) => data.username === id);
+        if (userDetails) {
+            setData(userDetails);
+        }
+    }, [id, SuggestData]);
+    console.log(data)
+
     return (
         <main className="relative">
             <header onClick={handleBodyClick} className={`fixed  top-0 w-full z-10  ${isInputClicked ? " brightness-[0.2]" : " brightness-100"}`}>
@@ -83,6 +85,7 @@ export default function ViewOtherUsers() {
                 </section>
                 <section
                     className=" w-[95%] mt-4 rounded-2xl  md800:w-[60%] sm650:w-[100%] smm500:mt-0">
+                        
                 </section>
                 <section
                     onClick={handleBodyClick}
