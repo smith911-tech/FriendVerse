@@ -2,8 +2,7 @@ interface userdatas {
     userData: any
 }
 import logo from '../assets/Logo2.png'
-import { AiOutlineHome } from 'react-icons/ai'
-import { TiMessages } from 'react-icons/ti'
+import { AiOutlineHome, AiOutlineMail } from 'react-icons/ai'
 import { IoNotificationsOutline } from 'react-icons/io5'
 import { LuUsers } from "react-icons/lu"
 import { BiSolidUserCircle } from "react-icons/bi";
@@ -31,7 +30,7 @@ export default function Header({userData}: userdatas): JSX.Element {
                 </NavLink>
 
                 <NavLink className="ActiveLink" to="/Message" >
-                <div className='text-3xl cursor-pointer'> < TiMessages /></div>
+                    <div className='text-3xl cursor-pointer'> <AiOutlineMail /></div>
                 <NavLink to="/Message" className="UnderHomeNav"></NavLink>
                 </NavLink>
 
