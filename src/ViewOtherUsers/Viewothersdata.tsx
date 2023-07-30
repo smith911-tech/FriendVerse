@@ -1,10 +1,9 @@
 interface userDatas{
     data: any; 
-    SuggestData: any[];
 }
 
-export default function ViewUsersData({data, SuggestData}: userDatas){
-    console.log(SuggestData && data);
+export default function ViewUsersData({data}: userDatas){
+    console.log( data);
     
     return(
         <main>
