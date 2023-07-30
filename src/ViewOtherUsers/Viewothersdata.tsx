@@ -8,6 +8,7 @@ import { BsFillArrowLeftCircleFill } from 'react-icons/bs';
 import defaultcoverimg from '../assets/DefalutCoverImg.jpg'
 import { BiSolidUserCircle } from "react-icons/bi";
 import { OtherUserCover, OtherUsersProfile } from './OtheProfileModal';
+import OthersProfileDetails from './OthersProfiledetails';
 export default function ViewUsersData({ data }: userDatas) {
     const [showPmodal, setShowPmodal] = useState<boolean>(false)
     const [showCmodal, setShowCmodal] = useState<boolean>(false)
@@ -84,6 +85,7 @@ export default function ViewUsersData({ data }: userDatas) {
                         />
                         {/* End Of prodile image modal  */}
                     </div>
+                    <OthersProfileDetails data={data}/>
                 </section>
             ) : (
                 <LongCard />

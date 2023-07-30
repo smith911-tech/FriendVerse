@@ -5,10 +5,11 @@ import Header from "../GeneralComponent/Header";
 import ButtomNav from "../GeneralComponent/ButtomNav";
 import { collection, doc, onSnapshot } from "firebase/firestore"
 import { db } from "../firebase-config"
-import ProfileLeftbar from "../UserPersonalProfile/LeftsidebarProfile";
+import Leftsidebar from "../GeneralComponent/Leftsidebar";
 import ViewUsersData from "./viewothersdata";
 export default function ViewOtherUsers() {
     let userid = sessionStorage.getItem('UserId')
+    
 
     // ! fetching personal userdata 
     const [userData, setUserData] = useState<any>(null);
@@ -79,7 +80,8 @@ export default function ViewOtherUsers() {
                     onClick={handleBodyClick}
                     className={`pt-2 w-[5%] h-screen sticky top-[70px] md970:w-[25%] sm650:hidden ${isInputClicked ? " brightness-[0.2]" : " brightness-100"}`}
                 >
-                    <ProfileLeftbar
+                    <Leftsidebar
+                        userData={userData}
                         SuggestData={SuggestData} />
                 </section>
                 <section
