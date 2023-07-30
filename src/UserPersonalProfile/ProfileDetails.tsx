@@ -69,8 +69,8 @@ export default function UserProfileDetails({
                 dangerouslySetInnerHTML={{ __html: formattedBio || '' }}
             />
             </section>
-            <section className=' mb-2 flex gap-2 flex-wrap'>
-                <h2 className='flex text-[#000000b9]'>
+                <section className={`flex flex-wrap ${userData && userData.showDOB || userData.Location ? "mb-2" : "m-0"}`}>
+                    <h2 className={`flex text-[#000000b9] ${userData.Location ? " mr-2" : "m-0"}`}>
                     <span className=' text-xl '>
                         {userData && userData.Location && <IoLocationOutline />} 
                     </span>

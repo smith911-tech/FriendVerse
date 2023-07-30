@@ -4,6 +4,7 @@ interface userdatas {
 import { BiSolidUserCircle } from "react-icons/bi";
 import { LongCard } from "../GeneralComponent/LoadingCard";
 import { GoTelescopeFill } from "react-icons/go";
+import { Link } from "react-router-dom";
 
 export default function ProfileLeftbar({ SuggestData }: userdatas): JSX.Element {
     let userid = sessionStorage.getItem('UserId')
@@ -21,6 +22,7 @@ export default function ProfileLeftbar({ SuggestData }: userdatas): JSX.Element 
                             <span className="text-[#117dd5]"><GoTelescopeFill /></span>
                         </div>
                         {SuggestData.filter((data: any) => data.id !== userid).slice(0, 8).map((data: any) => (
+                            <Link to={`/${data.username}`}>
                             <div
                                 className="cursor-pointer w-full select-none flex my-4 ml-1 rounded-2xl gap-2"
                                 key={data.id}
@@ -43,6 +45,7 @@ export default function ProfileLeftbar({ SuggestData }: userdatas): JSX.Element 
                                     <p className="text-sm text-left text-[#000000a9]"><span className='select-none'>@</span>{data.username}</p>
                                 </div>
                             </div>
+                            </Link>
                         ))}
                     </section>
                 )}
