@@ -14,7 +14,7 @@ export default function OtherUsersSlidesbtn() {
                 settings: {
                     slidesToShow: 4,
                 },
-            },
+            },  
             {
                 breakpoint: 600,
                 settings: {
