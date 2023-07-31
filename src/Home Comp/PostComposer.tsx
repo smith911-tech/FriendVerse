@@ -59,7 +59,7 @@ export default function PostSection({
 
                     </div>
                     <input
-
+                        readOnly
                         type="text"
                         onClick={handleInputClick}
                         className="w-[90%] cursor-pointer h-10 bg-[#f0f2f5] rounded-2xl mt-1 px-4 outline-none"

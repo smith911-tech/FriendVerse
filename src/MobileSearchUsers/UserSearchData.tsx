@@ -1,13 +1,21 @@
-import { AiOutlineSearch } from 'react-icons/ai'
 interface userdatas{
     SuggestData: any
 }
+import { AiOutlineSearch } from 'react-icons/ai'
 import { BiLeftArrowAlt } from 'react-icons/bi'
-import {  useState } from "react";
+import {  useState, useEffect, useRef} from "react";
 import { GoAlertFill } from 'react-icons/go'
 import { Link } from "react-router-dom";
 import { BiSolidUserCircle } from 'react-icons/bi'
 export default function UserSearchData({ SuggestData }: userdatas){
+    const inputRef = useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        if (inputRef.current) {
+            inputRef.current.focus();
+        }
+    }, []);
+
     const [searchTerm, setSearchTerm] = useState<string>("");
 
 
@@ -23,7 +31,7 @@ export default function UserSearchData({ SuggestData }: userdatas){
                 <div className='text-4xl pb-2 h-9'>
                     <BiLeftArrowAlt />
                 </div>
-                <input type="text" className='w-full h-9 bg-[#f0f2f5] outline-none rounded-xl px-3' placeholder='Search FriendVerse' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+                <input type="text" className='w-full h-9 bg-[#f0f2f5] outline-none rounded-xl px-3' placeholder='Search FriendVerse' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} ref={inputRef}/>
                 <span className='text-3xl cursor-pointer '>
                     <AiOutlineSearch />
                 </span>
