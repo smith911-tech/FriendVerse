@@ -25,9 +25,9 @@ export default function ButtomNav(){
                 <div className='text-3xl cursor-pointer'> <IoNotificationsOutline /></div>
                 <NavLink to="/Notifications" className="UnderHomeNav"></NavLink>
             </NavLink>
-            <NavLink className="ActiveLink" to="*" >
+            <NavLink className="ActiveLink" to="/UserSearch" >
                 <div className='text-3xl cursor-pointer'><AiOutlineSearch /></div>
-                <NavLink to="*" className="UnderHomeNav"></NavLink>
+                <NavLink to="/UserSearch" className="UnderHomeNav"></NavLink>
             </NavLink>
         </nav>
         

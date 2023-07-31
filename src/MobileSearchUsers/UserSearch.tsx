@@ -1,13 +1,12 @@
-import { useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import Leftsidebar from "../GeneralComponent/Leftsidebar";
 import { useNavigate } from "react-router-dom";
-import Content from "./Content";
 import Rightsidebar from "../GeneralComponent/Rightsidebar";
 import Header from "../GeneralComponent/Header";
 import ButtomNav from "../GeneralComponent/ButtomNav";
 import { collection, doc, onSnapshot } from "firebase/firestore"
 import { db } from '../firebase-config'
-export default function HomePage() {
+export default function UserSearch() {
     const navigate = useNavigate();
     let userid = sessionStorage.getItem('UserId')
     useEffect(() => {
@@ -18,7 +17,7 @@ export default function HomePage() {
             navigate('/')
         }
     }, [])
-    
+
 
     // ! fetching personal userdata 
     const [userData, setUserData] = useState<any>(null);
@@ -62,50 +61,40 @@ export default function HomePage() {
 
     // ! Opening the post div
     const [isInputClicked, setInputClicked] = useState(false);
-    const handleInputClick = () => {
-        setInputClicked(true);
-    };
-
     const handleBodyClick = () => {
         setInputClicked(false);
     };
-    
+
 
     return (
         <main className="relative">
             <header onClick={handleBodyClick} className={`fixed  top-0 w-full z-10  ${isInputClicked ? " brightness-[0.2]" : " brightness-100"}`}>
-        <Header userData={userData} SuggestData={SuggestData}/>
+                <Header userData={userData} SuggestData={SuggestData} />
             </header>
-            
+
             <article className={` flex justify-between gap-[1%] sm650:px-3 pt-[70px] ${isInputClicked ? " bg-[#000000ca]" : "bg-[#f0f2f5]"}`}>
-            <section
+                <section
                     onClick={handleBodyClick}
                     className={`pt-2 w-[5%] h-screen sticky top-[70px] md970:w-[25%] sm650:hidden ${isInputClicked ? " brightness-[0.2]" : " brightness-100"}`}
-            >
-                    <Leftsidebar 
-                    userData={userData} 
-                    SuggestData={SuggestData} />
-            </section>
-            <section
+                >
+                    <Leftsidebar
+                        userData={userData}
+                        SuggestData={SuggestData} />
+                </section>
+                <section
                     className=" w-[95%] mt-4 rounded-2xl  md800:w-[60%] sm650:w-[100%] smm500:mt-0">
-                    <Content 
-                    userData={userData}
-                    handleBodyClick={handleBodyClick} 
-                    handleInputClick={handleInputClick}
-                    isInputClicked={isInputClicked}
-                    />
-            </section>
-            <section 
+                </section>
+                <section
                     onClick={handleBodyClick}
                     className={`pt-2 lg1150:w-[25%]  h-screen sticky top-[70px] w-[5%] sm650:hidden ${isInputClicked ? " brightness-[0.2]" : " brightness-100"}`}>
-                    <Rightsidebar 
-                    SuggestData={SuggestData}
-                    userData={userData}
+                    <Rightsidebar
+                        SuggestData={SuggestData}
+                        userData={userData}
                     />
-            </section>
-        </article>
+                </section>
+            </article>
             <footer onClick={handleBodyClick} >
-        <ButtomNav />
+                <ButtomNav />
             </footer>
         </main>
     )
