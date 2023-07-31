@@ -71,7 +71,7 @@ export default function FriendRequest() {
     return (
         <main className="relative">
             <header onClick={handleBodyClick} className={`fixed  top-0 w-full z-10  ${isInputClicked ? " brightness-[0.2]" : " brightness-100"}`}>
-                <Header userData={userData} />
+                <Header userData={userData} SuggestData={SuggestData} />
             </header>
 
             <article className={` flex justify-between gap-[1%] sm650:px-3 pt-[70px] ${isInputClicked ? " bg-[#000000ca]" : "bg-[#f0f2f5]"}`}>

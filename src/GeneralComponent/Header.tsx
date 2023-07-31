@@ -1,5 +1,6 @@
 interface userdatas {
     userData: any
+    SuggestData: any
 }
 import logo from '../assets/Logo2.png'
 import { AiOutlineHome, AiOutlineMail, AiOutlineSearch } from 'react-icons/ai'
@@ -10,7 +11,7 @@ import { MdOutlineOndemandVideo } from 'react-icons/md'
 import { Link, NavLink } from 'react-router-dom'
 import { Popover } from '@headlessui/react'
 import HeaderSearch from './HeaderSearch'
-export default function Header({userData}: userdatas): JSX.Element {
+export default function Header({ userData, SuggestData }: userdatas) {
     return (
         <header className=' shadow bg-[#fff] flex justify-between px-3 py-2 text-[#000000bc] select-none'> 
         <div className='flex gap-2'>
@@ -22,7 +23,7 @@ export default function Header({userData}: userdatas): JSX.Element {
                 </span>
                 </Popover.Button>
                     <Popover.Panel className="absolute z-[50] bg-white top-0 w-[320px] -left-14 shadow-2xl pt-2 px-2">
-                        <HeaderSearch />
+                        <HeaderSearch SuggestData={SuggestData} Popover={Popover}/>
                     </Popover.Panel>
                 </Popover>
         </div>
