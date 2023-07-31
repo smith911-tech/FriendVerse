@@ -61,9 +61,11 @@ export default function Header({ userData, SuggestData }: userdatas) {
                 </NavLink>
             </nav>
             <div className='flex gap-2'>
-                <span className='text-2xl  p-2 bg-[#f0f2f5] mt-1 rounded-full cursor-pointer sm650:block hidden'>
-                    <AiOutlineSearch />
-                </span>
+                <Link to="/UserSearch">
+                    <span className='text-2xl  p-2 bg-[#f0f2f5] mt-1 rounded-full cursor-pointer sm650:block hidden'>
+                        <AiOutlineSearch />
+                    </span>
+                </Link>
                 {userData ? (
                     <section>
                         {userData.profileImage === "" ? (
