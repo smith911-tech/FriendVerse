@@ -39,7 +39,7 @@ export default function UserSearchData({ SuggestData }: userdatas){
                 </span>
             </header>
             {searchTerm && (
-                <div className={`absolute bg-white w-full mt-1  shadow z-10 -ml-2 overflow-y-auto overflow-x-hidden ${getSuggestions().length === 0 ? " h-[inherit] " : " h-[70vw] "}`}>
+                <div className={`absolute bg-white w-full mt-1  shadow z-10 -ml-2 overflow-y-auto overflow-x-hidden ${getSuggestions().length === 0 ? " h-[inherit] " : " h-[100vw] "}`}>
                     {getSuggestions().length === 0 ? (
                         <button className="ml-2 py-3 w-full font-semibold flex justify-center gap-2">
                             <span className=" text-2xl text-red-600"><GoAlertFill /></span>
