@@ -9,7 +9,6 @@ import { Link } from "react-router-dom";
 import { BiSolidUserCircle } from 'react-icons/bi'
 export default function UserSearchData({ SuggestData }: userdatas){
     const inputRef = useRef<HTMLInputElement>(null);
-
     useEffect(() => {
         if (inputRef.current) {
             inputRef.current.focus();
@@ -17,27 +16,30 @@ export default function UserSearchData({ SuggestData }: userdatas){
     }, []);
 
     const [searchTerm, setSearchTerm] = useState<string>("");
-
-
     function getSuggestions() {
         const regex = new RegExp(`${searchTerm}`);
         return SuggestData.filter((data: any) => regex.test(data.fullName || data.username)).slice(0, 5);
     }
     let userid = sessionStorage.getItem('UserId')
 
+    function HandleBack() {
+        window.history.go(-3);
+    }
+
+
     return(
         <main>
             <header className='bg-[white] shadow-sm py-3 px-2 flex gap-2'>
-                <div className='text-4xl pb-2 h-9'>
+                <div className='text-4xl pb-2 h-9 cursor-pointer' onClick={HandleBack}>
                     <BiLeftArrowAlt />
                 </div>
                 <input type="text" className='w-full h-9 bg-[#f0f2f5] outline-none rounded-xl px-3' placeholder='Search FriendVerse' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} ref={inputRef}/>
-                <span className='text-3xl cursor-pointer '>
+                <span className='text-3xl cursor-pointer  '>
                     <AiOutlineSearch />
                 </span>
             </header>
             {searchTerm && (
-                <div className={`absolute bg-white w-full mt-1   shadow z-10 -ml-2 overflow-y-auto overflow-x-hidden ${getSuggestions().length === 0 ? " h-[inherit] " : "h-[80vw] "}`}>
+                <div className={`absolute bg-white w-full mt-1  shadow z-10 -ml-2 overflow-y-auto overflow-x-hidden ${getSuggestions().length === 0 ? " h-[inherit] " : " h-[70vw] "}`}>
                     {getSuggestions().length === 0 ? (
                         <button className="ml-2 py-3 w-full font-semibold flex justify-center gap-2">
                             <span className=" text-2xl text-red-600"><GoAlertFill /></span>
