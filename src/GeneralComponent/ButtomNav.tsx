@@ -1,7 +1,8 @@
 import { AiOutlineHome } from 'react-icons/ai'
 import { IoNotificationsOutline } from 'react-icons/io5'
+import { MdOutlineOndemandVideo } from 'react-icons/md'
 import { LuUsers } from "react-icons/lu"
-import { AiOutlineSearch, AiOutlineMail } from "react-icons/ai";
+import { AiOutlineMail } from "react-icons/ai";
 import { NavLink } from 'react-router-dom';
 export default function ButtomNav(){
     return(
@@ -15,6 +16,10 @@ export default function ButtomNav(){
                 <div className='text-3xl cursor-pointer'> <LuUsers /></div>
                 <NavLink to="/FriendRequest" className="UnderHomeNav"></NavLink>
             </NavLink>
+            <NavLink className="ActiveLink" to="/VideoContent" >
+                <div className='text-3xl cursor-pointer'><MdOutlineOndemandVideo /></div>
+                <NavLink to="/VideoContent" className="UnderHomeNav"></NavLink>
+            </NavLink>
 
             <NavLink className="ActiveLink" to="/Message" >
                 <div className='text-3xl cursor-pointer'> < AiOutlineMail /></div>
@@ -24,10 +29,6 @@ export default function ButtomNav(){
             <NavLink className="ActiveLink" to="/Notifications">
                 <div className='text-3xl cursor-pointer'> <IoNotificationsOutline /></div>
                 <NavLink to="/Notifications" className="UnderHomeNav"></NavLink>
-            </NavLink>
-            <NavLink className="ActiveLink" to="/UserSearch" >
-                <div className='text-3xl cursor-pointer'><AiOutlineSearch /></div>
-                <NavLink to="/UserSearch" className="UnderHomeNav"></NavLink>
             </NavLink>
         </nav>
         
