@@ -14,6 +14,7 @@ import VideoContent from "./Videos/Videos";
 import MessageComp from "./Message/Messagecomp";
 import NotificationComp from "./Notification/Notification";
 import ViewOtherUsers from "./ViewOtherUsers/Viewotherusers";
+import UserSearch from "./MobileSearchUsers/UserSearch";
 
 export {
     SignIn,
@@ -32,4 +33,5 @@ export {
     MessageComp,
     NotificationComp,
     ViewOtherUsers,
+    UserSearch,
 }

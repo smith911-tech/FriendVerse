@@ -75,7 +75,7 @@ export default function userPersonalProfile() {
     return (
         <main className="relative">
             <header onClick={handleBodyClick} className={`fixed  top-0 w-full z-10  ${isInputClicked ? " brightness-[0.2]" : " brightness-100"}`}>
-                <Header userData={userData} />
+                <Header userData={userData} SuggestData={SuggestData} />
             </header>
 
             <article className={` flex justify-between gap-[1%] sm650:px-3 pt-[70px] ${isInputClicked ? " bg-[#000000ca]" : "bg-[#f0f2f5]"}`}>
@@ -87,7 +87,7 @@ export default function userPersonalProfile() {
                         SuggestData={SuggestData} />
                 </section>
                 <section
-                    className=" w-[95%] mt-4 rounded-2xl  md800:w-[60%] sm650:w-[100%] smm500:mt-0">
+                    className=" w-[95%] mt-4 rounded-2xl  md800:w-[60%] sm650:w-[100%] smm500:mt-0 h-screen">
                     <ProfileInterface 
                     userData={userData} 
                     handleInputClick={handleInputClick}

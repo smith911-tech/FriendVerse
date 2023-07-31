@@ -17,7 +17,8 @@ import {
     VideoContent,
     MessageComp,
     NotificationComp,
-    ViewOtherUsers
+    ViewOtherUsers,
+    UserSearch
 } from "./Import";
 
 function App() {
@@ -85,6 +86,9 @@ function App() {
 
                         {/*  ViewOtherUsers */}
                         <Route path="/:id" element={<ViewOtherUsers />} />
+
+                        {/*  ViewOtherUsers */}
+                        <Route path="/UserSearch" element={<UserSearch />} />
                     </Routes>
                 </BrowserRouter>
             )}
