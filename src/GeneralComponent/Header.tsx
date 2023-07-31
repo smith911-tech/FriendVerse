@@ -2,7 +2,7 @@ interface userdatas {
     userData: any
 }
 import logo from '../assets/Logo2.png'
-import { AiOutlineHome, AiOutlineMail } from 'react-icons/ai'
+import { AiOutlineHome, AiOutlineMail, AiOutlineSearch } from 'react-icons/ai'
 import { IoNotificationsOutline } from 'react-icons/io5'
 import { LuUsers } from "react-icons/lu"
 import { BiSolidUserCircle } from "react-icons/bi";
@@ -10,8 +10,13 @@ import { MdOutlineOndemandVideo } from 'react-icons/md'
 import { Link, NavLink } from 'react-router-dom'
 export default function Header({userData}: userdatas): JSX.Element {
     return (
-        <header className=' shadow bg-[#fff] flex justify-between px-3 py-2 text-[#000000bc] select-none'>
-            <img src={logo} alt="" className='w-[40px] object-contain smm500:w-[30px]' />
+        <header className=' shadow bg-[#fff] flex justify-between px-3 py-2 text-[#000000bc] select-none'> 
+        <div className='flex gap-2'>
+                <img src={logo} alt="" className='w-[40px] object-contain smm500:w-[30px]' />
+                <span className='text-2xl  p-2 bg-[#f0f2f5] mt-1 rounded-full cursor-pointer lg1150:hidden block sm650:hidden'>
+                    <AiOutlineSearch />
+                </span>
+        </div>
             <nav className='flex gap-14 px-5 mt-2 sm650:hidden Header-Class'>
 
                 <NavLink className="ActiveLink" to="/Home" >

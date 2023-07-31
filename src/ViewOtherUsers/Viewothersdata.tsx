@@ -9,6 +9,7 @@ import defaultcoverimg from '../assets/DefalutCoverImg.jpg'
 import { BiSolidUserCircle } from "react-icons/bi";
 import { OtherUserCover, OtherUsersProfile } from './OtheProfileModal';
 import OthersProfileDetails from './OthersProfiledetails';
+import { BsThreeDots } from 'react-icons/bs'
 export default function ViewUsersData({ data }: userDatas) {
     const navigate = useNavigate();
     let userid = sessionStorage.getItem('UserId')
@@ -50,6 +51,9 @@ export default function ViewUsersData({ data }: userDatas) {
                                 <BsFillArrowLeftCircleFill />
                             </div>
                         </Link>
+                        <div className='text-3xl '>
+                    <BsThreeDots />
+                        </div>
                     </section>
                     <div className="relative select-none">
                         {data.coverImage === "" ? (
