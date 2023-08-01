@@ -51,9 +51,11 @@ export default function UserProfile({
                                     <BsFillArrowLeftCircleFill />
                                 </div>
                             </Link>
+                            <Link to='/Profile/Settings'>
                             <div className=' text-[#0000008e] text-3xl top-1 right-1 cursor-pointer bg-white'>
                                 <BsFillGearFill />
                             </div>
+                            </Link>
                             </section> 
                             <div className="relative select-none">
                                 {userData.coverImage === "" ? (
