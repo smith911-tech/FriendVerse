@@ -6,6 +6,7 @@ import ButtomNav from "../GeneralComponent/ButtomNav";
 import { collection, doc, onSnapshot } from "firebase/firestore"
 import { db } from "../firebase-config"
 import ProfileLeftbar from "../UserPersonalProfile/LeftsidebarProfile";
+import SettingsInterface from "./SettingsInterface";
 export default function Settings() {
     const navigate = useNavigate();
     let userid = sessionStorage.getItem('UserId')
@@ -81,6 +82,7 @@ export default function Settings() {
                 </section>
                 <section
                     className=" w-[95%] mt-4 rounded-2xl  md800:w-[60%] sm650:w-[100%] smm500:mt-0 h-screen">
+                    <SettingsInterface />
                 </section>
                 <section
                     onClick={handleBodyClick}
