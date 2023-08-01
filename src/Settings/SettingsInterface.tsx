@@ -1,132 +1,132 @@
 interface userdatas{
     userData: any
 }
+import { useState } from 'react'
 import {  BsFillArrowLeftCircleFill } from 'react-icons/bs'
+import { BiSolidUserCircle } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
 import { LongCard } from '../GeneralComponent/LoadingCard'
 
 export default function SettingsInterface({userData}: userdatas){
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
     return(
         <>
         {userData ? (
-                <main className="bg-white">
-                    <section className='flex px-2 py-1 smm500:px-1 gap-5'>
-                        <Link to='/Profile'>
-                            <div className='text-[#0000008e] text-3xl top-1 left-1 cursor-pointer mt-1'>
-                                <BsFillArrowLeftCircleFill />
-                            </div>
+                <main className="bg-white p-4">
+                    <section className="flex items-center gap-2 mb-4">
+                        <Link to="/Profile">
+                            <BsFillArrowLeftCircleFill className="text-[#0000008e] text-3xl cursor-pointer" />
                         </Link>
                         <div>
-                            <p className=' text-xl font-bold  mt-1'>Your Account</p>
+                            <h1 className="text-2xl font-bold">Your Account</h1>
                         </div>
                     </section>
-                    <section className='px-4 smm500:px-2 w-full block my-0 mx-au'>
-                        {/* Profile Picture */} 
-                        <div className='flex items-center'>
-                            <img
-                                src={userData.profilePicture}
-                                alt='Profile Picture'
-                                className='w-16 h-16 rounded-full object-cover mr-4'
-                            />
+                    <section className="space-y-4">
+                        {/* Profile Picture */}
+                        <div className="flex items-center justify-center gap-4">
+                            {userData.profileImage === '' ? (
+                                <Link to="/Profile">
+                                    <div className="text-[48px] rounded-full text-[#000000d7]">
+                                        <BiSolidUserCircle />
+                                    </div>
+                                </Link>
+                            ) : (
+                                <Link to="/Profile">
+                                    <img
+                                        src={userData.profileImage}
+                                        alt="Profile"
+                                        className="w-12 h-12 rounded-full object-cover"
+                                    />
+                                </Link>
+                            )}
                             <div>
-                                <p className='text-lg font-bold'>{userData.fullName}</p>
-                                <p className='text-sm text-gray-500'>@{userData.username}</p>
+                                <p className="text-lg font-bold">{userData.fullName}</p>
+                                <p className="text-sm text-gray-500">@{userData.username}</p>
                             </div>
                         </div>
-                        <hr className='my-4' />
+                        <hr />
                         {/* Privacy Settings */}
-                        <div className='mb-4'>
-                            <p className='text-base font-bold'>Privacy Settings</p>
-                            {/* Add your privacy settings options here */}
-                            {/* For example: */}
+                        <div className="space-y-2">
+                            <h2 className="text-lg font-bold">Privacy Settings</h2>
                             <div>
-                                <label htmlFor='postsPrivacy' className='block font-medium'>
+                                <label htmlFor="postsPrivacy" className="block font-medium">
                                     Who can see your posts?
                                 </label>
                                 <select
-                                    id='postsPrivacy'
-                                    className='border rounded-lg px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500'
+                                    id="postsPrivacy"
+                                    className="border rounded-lg px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 >
-                                    <option value='public'>Public</option>
-                                    <option value='friends'>Friends</option>
-                                    <option value='private'>Private</option>
+                                    <option value="public">Public</option>
+                                    <option value="private">Private</option>
                                 </select>
                             </div>
                         </div>
-                        {/* Notifications */}
-                        <div className='mb-4'>
-                            <p className='text-base font-bold'>Notifications</p>
-                            {/* Add your notification settings options here */}
-                            {/* For example: */}
-                            <div>
-                                <label htmlFor='emailNotifications' className='block font-medium'>
-                                    Email Notifications
-                                </label>
-                                <input
-                                    type='checkbox'
-                                    id='emailNotifications'
-                                    className='form-checkbox h-5 w-5 text-blue-500'
-                                />
-                            </div>
-                        </div>
-                        {/* Account Deletion */}
-                        <div className='mb-4'>
-                            <button className='bg-red-500 text-white px-4 py-2 rounded-lg'>
-                                Delete Account
-                            </button>
-                        </div>
+                        <hr />
                         {/* Theme Settings */}
-                        <div className='mb-4'>
-                            <p className='text-base font-bold'>Theme Settings</p>
-                            {/* Add your theme settings options here */}
-                            {/* For example: */}
+                        <div className="space-y-2">
+                            <h2 className="text-lg font-bold">Theme Settings</h2>
                             <div>
-                                <label htmlFor='theme' className='block font-medium'>
+                                <label htmlFor="theme" className="block font-medium">
                                     Select Theme
                                 </label>
                                 <select
-                                    id='theme'
-                                    className='border rounded-lg px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500'
+                                    id="theme"
+                                    className="border rounded-lg px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 >
-                                    <option value='light'>Light Mode</option>
-                                    <option value='dark'>Dark Mode</option>
+                                    <option value="light">Light Mode</option>
+                                    <option value="dark">Dark Mode</option>
                                 </select>
                             </div>
                         </div>
+                        <hr />
                         {/* Language Settings */}
-                        <div className='mb-4'>
-                            <p className='text-base font-bold'>Language Settings</p>
-                            {/* Add your language settings options here */}
-                            {/* For example: */}
+                        <div className="space-y-2">
+                            <h2 className="text-lg font-bold">Language Settings</h2>
                             <div>
-                                <label htmlFor='language' className='block font-medium'>
+                                <label htmlFor="language" className="block font-medium">
                                     Select Language
                                 </label>
                                 <select
-                                    id='language'
-                                    className='border rounded-lg px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500'
+                                    id="language"
+                                    className="border rounded-lg px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 >
-                                    <option value='en'>English</option>
-                                    <option value='es'>Español</option>
+                                    <option value="en">English</option>
+                                    <option value="es">Español</option>
                                 </select>
                             </div>
                         </div>
-                        {/* Connected Accounts */}
-                        <div className='mb-4'>
-                            <p className='text-base font-bold'>Connected Accounts</p>
-                            {/* Add your connected accounts management options here */}
-                            {/* For example: */}
-                            <div>
-                                <p>Connected Accounts:</p>
-                                <ul className='list-disc list-inside'>
-                                    <li>Linked with Facebook</li>
-                                    <li>Linked with Twitter</li>
-                                </ul>
-                            </div>
+                        <hr />
+                        {/* Account Deletion */}
+                        <div className="flex justify-center">
+                            <button 
+                            onClick={() => setShowDeleteModal(true)}
+                            className="bg-red-500 text-white px-4 py-2 rounded-lg w-[80%] ">
+                                Delete Account
+                            </button>
                         </div>
                     </section>
+                    {showDeleteModal && (
+                        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+                            <div className="bg-white p-4 rounded-lg w-[400px]">
+                                <h2 className="text-xl font-bold mb-4">Confirm Account Deletion</h2>
+                                <p className="mb-4">Are you sure you want to delete your account?</p>
+                                <div className="flex justify-between">
+                                    <button
+                                        className="bg-red-500 text-white px-4 py-2 rounded-lg"
+                                    >
+                                        Yes, Delete
+                                    </button>
+                                    <button
+                                        className="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg"
+                                        onClick={() => setShowDeleteModal(false)}
+                                    >
+                                        Cancel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
                 </main>
-
         )
         : 
         (
