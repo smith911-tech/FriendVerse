@@ -18,7 +18,8 @@ import {
     MessageComp,
     NotificationComp,
     ViewOtherUsers,
-    UserSearch
+    UserSearch,
+    Settings,
 } from "./Import";
 
 function App() {
@@ -89,6 +90,9 @@ function App() {
 
                         {/*  ViewOtherUsers */}
                         <Route path="/UserSearch" element={<UserSearch />} />
+
+                        {/*  Settings */}
+                        <Route path="/Profile/Settings" element={<Settings />} />
                     </Routes>
                 </BrowserRouter>
             )}
