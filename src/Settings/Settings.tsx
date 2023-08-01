@@ -81,8 +81,8 @@ export default function Settings() {
                         SuggestData={SuggestData} />
                 </section>
                 <section
-                    className=" w-[95%] mt-4 rounded-2xl  md800:w-[60%] sm650:w-[100%] smm500:mt-0 h-screen">
-                    <SettingsInterface />
+                    className=" w-[95%] mt-4 rounded-2xl  md800:w-[60%] sm650:w-[100%] smm500:mt-0 ">
+                    <SettingsInterface userData={userData}/>
                 </section>
                 <section
                     onClick={handleBodyClick}
