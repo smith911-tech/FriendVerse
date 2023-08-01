@@ -21,7 +21,7 @@ export default function SettingsInterface({userData}: userdatas){
                         </div>
                     </section>
                     <section className='px-4 smm500:px-2 w-full block my-0 mx-au'>
-                        {/* Profile Picture */}
+                        {/* Profile Picture */} 
                         <div className='flex items-center'>
                             <img
                                 src={userData.profilePicture}
