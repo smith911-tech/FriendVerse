@@ -6,7 +6,7 @@ import { CiSearch } from "react-icons/ci";
 import { useState} from "react";
 import { GoAlertFill } from "react-icons/go";
 import { BiSolidUserCircle } from "react-icons/bi";
-import VerfiyId from "../Home Comp/VerifyBox";
+import VerfiyId from "./VerifyBox";
 import ProfileProgress from "../Home Comp/ProfileProgress";
 import { Link } from "react-router-dom";
 export default function SideDashboard({ SuggestData, userData }: userdatas):JSX.Element {
