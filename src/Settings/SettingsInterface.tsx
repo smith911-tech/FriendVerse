@@ -4,21 +4,27 @@ interface userdatas{
 import { useState } from 'react'
 import {  BsFillArrowLeftCircleFill } from 'react-icons/bs'
 import { BiSolidUserCircle } from 'react-icons/bi'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { LongCard } from '../GeneralComponent/LoadingCard'
 import DeleteModal from './DeleteModal'
 import { SuccessLoginM } from '../Error-SuccessM'
+
 
 export default function SettingsInterface({userData}: userdatas){
     const [showDeleteModal, setShowDeleteModal] = useState(false);
      // ! Sucess message 
     const [successFul, setSuccessful] = useState<string | boolean>(false) 
+
+    const navigate = useNavigate()
     
     const handleLogout = () => {
-        setSuccessful("Logout successful")
+        setSuccessful("Logging out...");
         setTimeout(() => {
+        sessionStorage.removeItem('UserId');
         setSuccessful(false)
-        }, 2000)
+        navigate("/")
+        window.scrollTo(0, 0)
+        }, 1000)
     }
     return(
         <>
@@ -91,7 +97,7 @@ export default function SettingsInterface({userData}: userdatas){
                                     <h2 className="text-lg font-semibold">Logout</h2>
                                     <p className="text-gray-600">Are you sure you want to logout?</p>
                                     <button className="border rounded-lg px-6 py-2 bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 w-full transition-colors" onClick={handleLogout}>
-                                        Logout
+                                        <h2>Logout</h2>
                                     </button>
                                 </div>
                                 <hr />

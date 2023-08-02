@@ -1,6 +1,6 @@
 import Logo from "../assets/Logo.png";
 import { Link } from "react-router-dom";
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 import "react-phone-number-input/style.css";
 import { FaEyeSlash, FaEye } from "react-icons/fa6"
 import { auth } from '../firebase-config'
@@ -60,15 +60,15 @@ export default function SignIn() {
     }
 
     // ! routing for if user have uerid on his local storage 
-    // useEffect(() => {
-    //     let userid = sessionStorage.getItem('UserId')
-    //     if (userid) {
-    //         navigate("/Home")
-    //     }
-    //     else if (!userid) {
-    //         navigate('/')
-    //     }
-    // }, [])
+    useEffect(() => {
+        let userid = sessionStorage.getItem('UserId')
+        if (userid) {
+            navigate("/Home")
+        }
+        else if (!userid) {
+            navigate('/')
+        }
+    }, [])
     return (
         <main className="bg-[#1B1D21] h-[120vh] px-[29px] py-[61px] text-white w-full">
             <section className="bg-[black]  px-4 pb-28 sm500:w-[450px] block mx-auto my-0 md734:w-[80%] md734:pb-36 lg1440:w-[1000px]  relative">
