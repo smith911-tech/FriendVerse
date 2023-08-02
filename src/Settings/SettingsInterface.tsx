@@ -27,7 +27,7 @@ export default function SettingsInterface({userData}: userdatas){
                         <div className="flex items-center justify-center gap-4">
                             {userData.profileImage === '' ? (
                                 <Link to="/Profile">
-                                    <div className="text-[48px] rounded-full text-[#000000d7]">
+                                    <div className="text-[48px] rounded-full text-[#000000d7] select-none">
                                         <BiSolidUserCircle />
                                     </div>
                                 </Link>
@@ -36,7 +36,7 @@ export default function SettingsInterface({userData}: userdatas){
                                     <img
                                         src={userData.profileImage}
                                         alt="Profile"
-                                        className="w-12 h-12 rounded-full object-cover"
+                                        className="w-12 h-12 rounded-full object-cover select-none"
                                     />
                                 </Link>
                             )}
@@ -81,24 +81,12 @@ export default function SettingsInterface({userData}: userdatas){
                         </div>
                         <hr />
                         {/* Language Settings */}
-                        <div className="space-y-2">
-                            <h2 className="text-lg font-bold">Language Settings</h2>
-                            <div>
-                                <label htmlFor="language" className="block font-medium">
-                                    Select Language
-                                </label>
-                                <select
-                                    id="language"
-                                    className="border rounded-lg px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                >
-                                    <option value="en">English</option>
-                                    <option value="es">Español</option>
-                                </select>
-                            </div>
+                        <div className="space-y-2 ">
+                            <h2 className="text-lg font-bold">Verify Identity?</h2>
                         </div>
                         <hr />
                         {/* Account Deletion */}
-                        <div className="flex justify-center">
+                        <div className="flex justify-center select-none">
                             <button 
                             onClick={() => setShowDeleteModal(true)}
                             className="bg-red-500 text-white px-4 py-2 rounded-lg w-[80%] ">
