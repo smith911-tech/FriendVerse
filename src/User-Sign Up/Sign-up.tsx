@@ -91,7 +91,6 @@ export default function Signup() {
         const authentication = auth;
         createUserWithEmailAndPassword(authentication, email, password)
             .then(async (response) => {
-                console.log(response);
                 setSuccessful("Login successful");
                 const userid = response.user.uid;
                 sessionStorage.setItem("UserId", userid);

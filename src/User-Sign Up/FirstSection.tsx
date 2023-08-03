@@ -34,6 +34,7 @@ export default function FirstSection({
                     setFullName(e.target.value)
                 }
                 placeholder="Full name"
+                maxLength={35}
             />
             <br />
 
