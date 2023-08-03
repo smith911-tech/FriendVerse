@@ -2,12 +2,13 @@ interface userdats{
     setShowDeleteModal: any
 }
 import { auth } from "../firebase-config"
-import { db, storage } from '../firebase-config';
+import { db } from '../firebase-config';
 import { doc, deleteDoc } from "firebase/firestore";
 import { deleteUser } from "firebase/auth"
 import { useNavigate } from "react-router-dom";
 export default function DeleteModal({ setShowDeleteModal }: userdats){
     const navigate = useNavigate()
+
     let userid = sessionStorage.getItem('UserId')
     const handleDelete = async () => {
         const user = auth.currentUser;
@@ -15,13 +16,14 @@ export default function DeleteModal({ setShowDeleteModal }: userdats){
             if (user && userid) {
                 await deleteDoc(doc(db, "users", userid));
                 await deleteUser(user); 
-                sessionStorage.removeItem("UserId")
                 navigate("/")
+                sessionStorage.removeItem("UserId")
             }
         } catch (error) {
             console.log('Error deleting the user:', error);
         }
     };
+
     return(
         <>
             <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
