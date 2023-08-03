@@ -2,24 +2,24 @@ interface userdats{
     setShowDeleteModal: any
 }
 import { auth } from "../firebase-config"
+import { doc, updateDoc, deleteField } from "firebase/firestore";
+import {useState} from 'react'
+import { SuccessLoginM } from '../Error-SuccessM'
 import { deleteUser } from "firebase/auth"
 export default function DeleteModal({ setShowDeleteModal }: userdats){
+    const [successFul, setSuccessful] = useState<string | boolean>(true) 
 
     const handleDelete = async () => {
         const user = auth.currentUser;
-
         try {
             if (user) {
+                setSuccessful("Account Deleted")
                 await deleteUser(user); 
-                console.log("delected")
             } else {
-                // Handle the case when the user is not authenticated or not found.
                 console.error('User not found or not authenticated.');
             }
         } catch (error) {
-            // An error occurred during user deletion.
             console.error('Error deleting the user:', error);
-            // You can add additional error handling here if needed.
         }
     };
 
@@ -43,6 +43,9 @@ export default function DeleteModal({ setShowDeleteModal }: userdats){
                         </button>
                     </div>
                 </div>
+                {successFul && <SuccessLoginM
+                    successFul={successFul}
+                />}
             </div>
         </>
     )

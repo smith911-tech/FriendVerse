@@ -40,8 +40,8 @@ export default function SettingsInterface({userData}: userdatas){
                         <div className="flex items-center gap-4 mb-6">
                             {userData.profileImage === '' ? (
                                 <Link to="/Profile">
-                                    <div className="text-[48px] rounded-full bg-gray-300 w-16 h-16 flex items-center justify-center">
-                                        <BiSolidUserCircle className="text-[#000000d7] text-4xl" />
+                                    <div className="text-[2000px] rounded-full bg-gray-300  flex items-center justify-center">
+                                        <BiSolidUserCircle className="text-[#000000d7] text-[60px]" />
                                     </div>
                                 </Link>
                             ) : (
