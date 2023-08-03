@@ -69,13 +69,17 @@ export default function Header({ userData, SuggestData }: userdatas) {
                 {userData ? (
                     <section>
                         {userData.profileImage === "" ? (
-                            <Link to='/Profile'>
+                            <Link to='/Profile' onClick={(() => {
+                                window.scrollTo(0, 0);
+                            })}>
                                 <div className='text-[48px] rounded-full text-[#000000d7]  smm500:text-[40px]'>
                                     <BiSolidUserCircle />
                                 </div>
                         </Link>
                         ) : (
-                                <Link to='/Profile'>
+                                <Link to='/Profile' onClick={(() => {
+                                    window.scrollTo(0, 0);
+                                })}>
                             <img
                                 src={userData.profileImage}
                                 alt="Profile"

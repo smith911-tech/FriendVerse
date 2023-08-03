@@ -48,7 +48,9 @@ export default function HeaderSearch({SuggestData, Popover, isSearchInput}: user
                             <Link to={`/${data.username}`}>
                                 <button
                                     className="cursor-pointer w-full select-none flex  my-4 ml-1 rounded-2xl hover:bg-[#e1e6e7] gap-2"
-                                    onClick={() => setSearchTerm('')}
+                                    onClick={() => {setSearchTerm('')
+                                        window.scrollTo(0, 0);
+                                }}
                                     key={data.id}>
                                     <div>
                                         {data.profileImage === "" ? (
