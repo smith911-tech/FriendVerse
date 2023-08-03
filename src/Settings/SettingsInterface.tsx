@@ -31,7 +31,7 @@ export default function SettingsInterface({userData}: userdatas){
         <>
         {userData ? (
                 <main className="bg-gray-100 px-4 py-4 pb-12">
-                    <section className="mb-6">
+                    <section className="py-3 sticky top-16 z-[50] bg-[#f3f4f6]">
                         <Link to="/Profile" className="text-blue-500 flex items-center gap-1">
                             <BsFillArrowLeftCircleFill className="text-xl" />
                             <span>Back to Profile</span>

@@ -6,23 +6,53 @@ import { db } from '../firebase-config';
 import { doc, deleteDoc } from "firebase/firestore";
 import { deleteUser } from "firebase/auth"
 import { useNavigate } from "react-router-dom";
+import { FilldetailsError } from '../Error-SuccessM'
+import { useState } from "react";
 export default function DeleteModal({ setShowDeleteModal }: userdats){
+    // ! error message
+    const [error, setError] = useState<string | boolean>(false)
     const navigate = useNavigate()
 
-    let userid = sessionStorage.getItem('UserId')
     const handleDelete = async () => {
-        const user = auth.currentUser;
         try {
-            if (user && userid) {
-                await deleteDoc(doc(db, "users", userid));
-                await deleteUser(user); 
-                navigate("/")
-                sessionStorage.removeItem("UserId")
+            const user = auth.currentUser;
+            if (!user) {
+                setError("Try again later");
+                setTimeout(() => {
+                    setError(false)
+                }, 2000)
+                return;
             }
+            // Retrieve the userid from sessionStorage
+            let userid = sessionStorage.getItem('UserId');
+            if (!userid) {
+                console.log('UserId is not set in sessionStorage.');
+                return;
+            }
+
+            // Delete the user document from Firestore using userid
+            const userDocRef = doc(db, "users", userid);
+            await deleteDoc(userDocRef);
+
+            // Delete the user from Firebase Authentication
+            await deleteUser(user);
+
+            // Remove the userid from sessionStorage
+            sessionStorage.removeItem("UserId");
+
+            // Navigate to the desired location (e.g., "/")
+            navigate("/");
+
+            console.log('Deletion process completed successfully.');
         } catch (error) {
-            console.log('Error deleting the user:', error);
+            setError('Error deleting the user');
+            setTimeout(() => {
+                setError(false)
+            }, 2000)
         }
     };
+
+
 
     return(
         <>
@@ -44,6 +74,9 @@ export default function DeleteModal({ setShowDeleteModal }: userdats){
                         </button>
                     </div>
                 </div>
+                {error && <FilldetailsError
+                    error={error}
+                />}
             </div>
         </>
     )
