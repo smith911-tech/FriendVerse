@@ -47,6 +47,7 @@ export default function UpdateInputValue({
                     placeholder='Username'
                     value={userName}
                     onChange={(e) => setUserName(e.target.value)}
+                    maxLength={35}
                 />
                 <textarea
                     className='w-full py-3 px-4 border border-gray-300 rounded-md text-lg placeholder-gray-500 focus:outline-none focus:border-blue-500'

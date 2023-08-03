@@ -26,6 +26,9 @@ export default function ProfileLeftbar({ SuggestData }: userdatas): JSX.Element 
                             <div
                                 className="cursor-pointer w-full select-none flex my-4 ml-1 rounded-2xl gap-2"
                                 key={data.id}
+                                onClick={(() => {
+                                    window.scrollTo(0, 0);
+                                })}
                             >
                                 <div>
                                     {data.profileImage === "" ? (

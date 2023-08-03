@@ -47,7 +47,9 @@ export default function UserSearchData({ SuggestData }: userdatas){
                         </button>
                     ) : (
                         getSuggestions().filter((data: any) => data.id !== userid).map((data: any) => (
-                            <Link to={`/${data.username}`}>
+                            <Link to={`/${data.username}`} onClick={(() => {
+                                window.scrollTo(0, 0);
+                            })}>
                                 <button
                                     className="cursor-pointer w-full select-none flex  my-4 ml-4 rounded-2xl hover:bg-[#e1e6e7] gap-2"
                                     onClick={() => setSearchTerm('')}

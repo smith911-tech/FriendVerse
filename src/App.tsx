@@ -93,6 +93,7 @@ function App() {
 
                         {/*  Settings */}
                         <Route path="/Profile/Settings" element={<Settings />} />
+
                     </Routes>
                 </BrowserRouter>
             )}

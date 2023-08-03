@@ -32,13 +32,17 @@ export default function Dashboard({ userData, SuggestData }: userdatas): JSX.Ele
                                 />
                             )}
                             {userData.profileImage === "" ? (
-                                <Link to='/Profile'>
+                                <Link to='/Profile' onClick={(() => {
+                                    window.scrollTo(0, 0);
+                                })}>
                                 <div className='text-[48px] absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-4 border-white rounded-full bg-white text-[#000000d7]'>
                                     <BiSolidUserCircle />
                                 </div>
                                 </Link>
                             ) : (
-                                <Link to='/Profile'>
+                                <Link to='/Profile' onClick={(() => {
+                                    window.scrollTo(0, 0);
+                                })}>
                                 <img
                                     src={userData.profileImage}
                                     alt="Profile"
@@ -81,6 +85,9 @@ export default function Dashboard({ userData, SuggestData }: userdatas): JSX.Ele
                             <Link to={`/${data.username}`}>
                             <div
                                 className="cursor-pointer w-full select-none flex  my-4 ml-1 rounded-2xl gap-2"
+                                onClick={(() => {
+                                    window.scrollTo(0, 0);
+                                })}
                                 key={data.id}>
                                 <div>
                                     {data.profileImage === "" ? (
