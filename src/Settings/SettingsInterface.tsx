@@ -8,6 +8,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { LongCard } from '../GeneralComponent/LoadingCard'
 import DeleteModal from './DeleteModal'
 import { SuccessLoginM } from '../Error-SuccessM'
+import { ColorRing } from 'react-loader-spinner'
 
 
 export default function SettingsInterface({userData}: userdatas){
@@ -96,8 +97,17 @@ export default function SettingsInterface({userData}: userdatas){
                                 <div className="bg-red-50 rounded-lg p-4 space-y-2 select-none">
                                     <h2 className="text-lg font-semibold">Logout</h2>
                                     <p className="text-gray-600">Are you sure you want to logout?</p>
-                                    <button className="border rounded-lg px-6 py-2 bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 w-full transition-colors" onClick={handleLogout}>
-                                        <h2>Logout</h2>
+                                    <button className="border rounded-lg px-6 py-2 bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 w-full transition-colors flex justify-center" onClick={handleLogout}>
+                                        {!successFul ? 
+                                        (<h2>Logout</h2>
+                                        ) : ( 
+                                            <ColorRing
+                                                visible={true}
+                                                height="25"
+                                                width="45"
+                                                colors={['#ffff', '#ffff', '#ffff', '#fff', '#ffff']}
+                                            />
+                                            )}
                                     </button>
                                 </div>
                                 <hr />

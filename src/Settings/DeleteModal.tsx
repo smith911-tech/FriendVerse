@@ -2,27 +2,26 @@ interface userdats{
     setShowDeleteModal: any
 }
 import { auth } from "../firebase-config"
-import { doc, updateDoc, deleteField } from "firebase/firestore";
-import {useState} from 'react'
-import { SuccessLoginM } from '../Error-SuccessM'
+import { db, storage } from '../firebase-config';
+import { doc, deleteDoc } from "firebase/firestore";
 import { deleteUser } from "firebase/auth"
+import { useNavigate } from "react-router-dom";
 export default function DeleteModal({ setShowDeleteModal }: userdats){
-    const [successFul, setSuccessful] = useState<string | boolean>(true) 
-
+    const navigate = useNavigate()
+    let userid = sessionStorage.getItem('UserId')
     const handleDelete = async () => {
         const user = auth.currentUser;
         try {
-            if (user) {
-                setSuccessful("Account Deleted")
+            if (user && userid) {
+                await deleteDoc(doc(db, "users", userid));
                 await deleteUser(user); 
-            } else {
-                console.error('User not found or not authenticated.');
+                sessionStorage.removeItem("UserId")
+                navigate("/")
             }
         } catch (error) {
-            console.error('Error deleting the user:', error);
+            console.log('Error deleting the user:', error);
         }
     };
-
     return(
         <>
             <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
@@ -43,9 +42,6 @@ export default function DeleteModal({ setShowDeleteModal }: userdats){
                         </button>
                     </div>
                 </div>
-                {successFul && <SuccessLoginM
-                    successFul={successFul}
-                />}
             </div>
         </>
     )
