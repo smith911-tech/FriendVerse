@@ -45,7 +45,7 @@ export default function UserProfile({
                 {userData ? (
                     <section className="w-full flex flex-col justify-center bg-white">
                         <div className="bg-white rounded-lg shadow p-1">
-                            <section className='flex justify-between px-2 py-1 smm500:px-1'>
+                            <section className='flex justify-between px-2 py-1 smm500:px-1 sticky top-16 z-[50] bg-white'>
                             <Link to='/Home'>
                                 <div className=' text-[#0000008e] text-3xl top-1 left-1 cursor-pointer'>
                                     <BsFillArrowLeftCircleFill />
