@@ -37,7 +37,7 @@ export default function SettingsInterface({userData}: userdatas){
                             <span>Back to Profile</span>
                         </Link>
                     </section>
-                    <section className="bg-white rounded-lg shadow-lg p-6 relative">
+                    <section className="bg-white rounded-lg shadow-lg p-6 relative mb-10">
                         <div className="flex items-center gap-4 mb-6">
                             {userData.profileImage === '' ? (
                                 <Link to="/Profile">
