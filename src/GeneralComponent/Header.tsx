@@ -20,7 +20,8 @@ export default function Header({ userData, SuggestData }: userdatas) {
         setSearchInput(true);
     };
     //! Theme Mode
-    const {theme} = UseTheme()
+    const {theme} = UseTheme()    
+    console.log(theme)
     
     return (
         <header className={`shadow bg-[#fff] flex justify-between px-3 py-2 text-[#000000bc] select-none ${theme ? "bg-[#000]" : "bg-[#fff]"}`}> 
