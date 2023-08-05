@@ -9,7 +9,7 @@ import { LongCard } from '../GeneralComponent/LoadingCard'
 import DeleteModal from './DeleteModal'
 import { SuccessLoginM } from '../Error-SuccessM'
 import { ColorRing } from 'react-loader-spinner'
-import {UseTheme} from '../Usetheme'
+import useThemeStore from '../Usetheme';
 
 
 export default function SettingsInterface({ userData }: userdatas) {
@@ -28,7 +28,8 @@ export default function SettingsInterface({ userData }: userdatas) {
             window.scrollTo(0, 0)
         }, 1000)
     }
-    const { theme, handleChangeTheme } = UseTheme();
+    const theme = useThemeStore((state: any) => state.theme);
+    const toggleTheme = useThemeStore((state: any) => state.toggleTheme)
     return (
         <>
             {userData ? (
@@ -81,7 +82,7 @@ export default function SettingsInterface({ userData }: userdatas) {
                                 <select
                                     id="theme"
                                     className="border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-600"
-                                    onChange={handleChangeTheme}
+                                    onChange={toggleTheme}
                                     value={theme ? 'dark' : 'light'}
                                 >
                                     <option value="light">Light Mode</option>
