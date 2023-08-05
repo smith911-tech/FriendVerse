@@ -15,6 +15,7 @@ setShowDOB: any
 import DatePicker from 'react-date-picker';
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
+import { Switch } from '@headlessui/react'
 export default function UpdateInputValue({
     fullName,
     setFullName,
@@ -76,20 +77,19 @@ export default function UpdateInputValue({
                         checked={showDOB}
                         onChange={() => setShowDOB(!showDOB)}
                     />
-                    <label
-                        htmlFor="showDateOfBirthToggle"
-                        className={`${showDOB
-                                ? 'bg-blue-500'
-                                : 'bg-gray-300'
-                            } rounded-full w-14 h-8 flex items-center cursor-pointer`}
-                    >
-                        <span
-                            className={`${showDOB
-                                    ? 'translate-x-6'
-                                    : 'translate-x-1'
-                                } inline-block w-6 h-6 transform transition-transform bg-white rounded-full shadow-md`}
-                        />
-                    </label>
+                        <Switch
+                            checked={showDOB}
+                            onChange={setShowDOB}
+                            className={`${showDOB ? 'bg-blue-600' : 'bg-gray-200'
+                                } relative inline-flex h-6 w-11 items-center rounded-full`}
+                        >
+                            <span className="sr-only">Enable notifications</span>
+                            <span
+                                className={`${showDOB ? 'translate-x-6' : 'translate-x-1'
+                                    } inline-block h-4 w-4 transform rounded-full bg-white transition`}
+                            />
+                        </Switch>
+                    
                     <span className="text-lg font-semibold text-[#000000d3]">Show Date of Birth</span>
                 </div>
 

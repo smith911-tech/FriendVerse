@@ -1,7 +1,7 @@
 interface userdatas{
     userData: any
 }
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {  BsFillArrowLeftCircleFill } from 'react-icons/bs'
 import { BiSolidUserCircle } from 'react-icons/bi'
 import { Link, useNavigate } from 'react-router-dom'
@@ -27,6 +27,19 @@ export default function SettingsInterface({userData}: userdatas){
         window.scrollTo(0, 0)
         }, 1000)
     }
+    // ! Light and dark mode 
+    // Initialize the theme state based on the value in localStorage
+    const [Theme, setTheme] = useState<boolean>(
+        localStorage.getItem('ThemeMode') === 'true'
+    );
+    const handleChangeTheme = () => {
+        // Toggle the theme when the user selects a different option
+        setTheme(!Theme);
+    };
+    useEffect(() => {
+        // Update localStorage whenever the theme changes
+        localStorage.setItem('ThemeMode', String(Theme));
+    }, [Theme]);
     return(
         <>
         {userData ? (
@@ -79,6 +92,8 @@ export default function SettingsInterface({userData}: userdatas){
                                 <select
                                     id="theme"
                                     className="border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-600"
+                                    onChange={handleChangeTheme}
+                                    value={Theme ? 'dark' : 'light'}
                                 >
                                     <option value="light">Light Mode</option>
                                     <option value="dark">Dark Mode</option>
