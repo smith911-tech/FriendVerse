@@ -13,7 +13,7 @@ export default function ProfileimgUpload({ handleImageUpload, profileImg }: user
                     <span className=' brightness-[0.5]'>
                         <BiSolidUserCircle />
                     </span>
-                    <label htmlFor="ProfileImg" className=' absolute top-1/4 cursor-pointer text-[#fff] text-3xl left-1/4 bg-[#0000008b] px-2 py-2 rounded-2xl brightness-200'>
+                    <label htmlFor="ProfileImg" className=' absolute top-1/4 cursor-pointer text-[#fff] text-3xl left-[20%] bg-[#0000008b] px-2 py-2 rounded-2xl brightness-200'>
                         <abbr title='Upload Image' >
                             <AiOutlineCloudUpload />
                         </abbr>

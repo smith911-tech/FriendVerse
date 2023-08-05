@@ -7,7 +7,7 @@ export default function Privacy() {
     const [LightdarkM, setLightdarkM] = useState<boolean>(
         localStorage.getItem('LightDarkMode') === 'true')
     const handlemode = () => {
-        setLightdarkM((prevValue) => !prevValue);
+        setLightdarkM(!LightdarkM);
     }
     useEffect(() => {
         localStorage.setItem('LightDarkMode', String(LightdarkM));
