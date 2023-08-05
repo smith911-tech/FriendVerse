@@ -12,14 +12,18 @@ import { Link, NavLink } from 'react-router-dom'
 import { Popover } from '@headlessui/react'
 import HeaderSearch from './HeaderSearch'
 import {useState} from 'react'
+import { UseTheme } from '../Usetheme'
 export default function Header({ userData, SuggestData }: userdatas) {
     // ! Opening the post div
     const [isSearchInput, setSearchInput] = useState(false);
     const handleInputClick = () => {
         setSearchInput(true);
     };
+    //! Theme Mode
+    const {theme} = UseTheme()
+    
     return (
-        <header className=' shadow bg-[#fff] flex justify-between px-3 py-2 text-[#000000bc] select-none'> 
+        <header className={`shadow bg-[#fff] flex justify-between px-3 py-2 text-[#000000bc] select-none ${theme ? "bg-[#000]" : "bg-[#fff]"}`}> 
         <div className='flex gap-2'>
                 <img src={logo} alt="" className='w-[40px] object-contain smm500:w-[30px]' />
                 <Popover className="relative sm650:hidden lg1150:hidden">

@@ -1,52 +1,41 @@
-interface userdatas{
+interface userdatas {
     userData: any
 }
-import { useState, useEffect } from 'react'
-import {  BsFillArrowLeftCircleFill } from 'react-icons/bs'
+import { useState } from 'react'
+import { BsFillArrowLeftCircleFill } from 'react-icons/bs'
 import { BiSolidUserCircle } from 'react-icons/bi'
 import { Link, useNavigate } from 'react-router-dom'
 import { LongCard } from '../GeneralComponent/LoadingCard'
 import DeleteModal from './DeleteModal'
 import { SuccessLoginM } from '../Error-SuccessM'
 import { ColorRing } from 'react-loader-spinner'
+import { UseTheme } from '../Usetheme'
 
 
-export default function SettingsInterface({userData}: userdatas){
+export default function SettingsInterface({ userData }: userdatas) {
     const [showDeleteModal, setShowDeleteModal] = useState(false);
-     // ! Sucess message 
-    const [successFul, setSuccessful] = useState<string | boolean>(false) 
+    // ! Sucess message 
+    const [successFul, setSuccessful] = useState<string | boolean>(false)
 
     const navigate = useNavigate()
-    
+
     const handleLogout = () => {
         setSuccessful("Logging out...");
         setTimeout(() => {
-        sessionStorage.removeItem('UserId');
-        setSuccessful(false)
-        navigate("/")
-        window.scrollTo(0, 0)
+            sessionStorage.removeItem('UserId');
+            setSuccessful(false)
+            navigate("/")
+            window.scrollTo(0, 0)
         }, 1000)
     }
-    // ! Light and dark mode 
-    // Initialize the theme state based on the value in localStorage
-    const [Theme, setTheme] = useState<boolean>(
-        localStorage.getItem('ThemeMode') === 'true'
-    );
-    const handleChangeTheme = () => {
-        // Toggle the theme when the user selects a different option
-        setTheme(!Theme);
-    };
-    useEffect(() => {
-        // Update localStorage whenever the theme changes
-        localStorage.setItem('ThemeMode', String(Theme));
-    }, [Theme]);
-    return(
+    const { theme, handleChangeTheme } = UseTheme();
+    return (
         <>
-        {userData ? (
+            {userData ? (
                 <main className="bg-gray-100 px-4 py-4 pb-12">
                     <section className="py-3 sticky top-16 z-[50] bg-[#f3f4f6]">
                         <Link onClick={(() => {
-                            window.scrollTo(0,0)
+                            window.scrollTo(0, 0)
                         })} to="/Profile" className="text-blue-500 flex items-center gap-1">
                             <BsFillArrowLeftCircleFill className="text-xl" />
                             <span>Back to Profile</span>
@@ -93,7 +82,7 @@ export default function SettingsInterface({userData}: userdatas){
                                     id="theme"
                                     className="border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-600"
                                     onChange={handleChangeTheme}
-                                    value={Theme ? 'dark' : 'light'}
+                                    value={theme ? 'dark' : 'light'}
                                 >
                                     <option value="light">Light Mode</option>
                                     <option value="dark">Dark Mode</option>
@@ -115,15 +104,15 @@ export default function SettingsInterface({userData}: userdatas){
                                     <h2 className="text-lg font-semibold">Logout</h2>
                                     <p className="text-gray-600">Are you sure you want to logout?</p>
                                     <button className="border rounded-lg px-6 py-2 bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 w-full transition-colors flex justify-center" onClick={handleLogout}>
-                                        {!successFul ? 
-                                        (<h2>Logout</h2>
-                                        ) : ( 
-                                            <ColorRing
-                                                visible={true}
-                                                height="25"
-                                                width="45"
-                                                colors={['#ffff', '#ffff', '#ffff', '#fff', '#ffff']}
-                                            />
+                                        {!successFul ?
+                                            (<h2>Logout</h2>
+                                            ) : (
+                                                <ColorRing
+                                                    visible={true}
+                                                    height="25"
+                                                    width="45"
+                                                    colors={['#ffff', '#ffff', '#ffff', '#fff', '#ffff']}
+                                                />
                                             )}
                                     </button>
                                 </div>
@@ -144,12 +133,12 @@ export default function SettingsInterface({userData}: userdatas){
                     </section>
                     {showDeleteModal && <DeleteModal setShowDeleteModal={setShowDeleteModal} />}
                 </main>
-        )
-        : 
-        (
-            <LongCard />
-        )
-        }
+            )
+                :
+                (
+                    <LongCard />
+                )
+            }
         </>
     )
 }

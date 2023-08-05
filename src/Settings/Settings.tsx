@@ -67,6 +67,7 @@ export default function Settings() {
         setInputClicked(false);
     };
 
+
     return (
         <main className="relative">
             <header onClick={handleBodyClick} className={`fixed  top-0 w-full z-10  ${isInputClicked ? " brightness-[0.2]" : " brightness-100"}`}>
