@@ -119,7 +119,7 @@ input::-webkit-calendar-picker-indicator {
 
 /* ! background color*/
 .color-Toggle{
-  transition: ease-in-out 0.2s;
+  transition: ease-in-out 0.01s;
 }
 
 /*! card loading animation */
@@ -225,6 +225,6 @@ input::-webkit-calendar-picker-indicator {
   border-radius: 6px;
 }
 .update-user-Date .react-date-picker .react-date-picker__inputGroup__leadingZero{
-  padding-left: 16px;
+  padding-left: 5px;
 }
 
