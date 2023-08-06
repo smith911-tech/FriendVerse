@@ -5,10 +5,13 @@ interface userDatas{
 }
 import { AiOutlineClose } from 'react-icons/ai'
 import { ThreeDots } from 'react-loader-spinner'
+import useThemeStore from '../../Zustand';
 export default function SaveUpdateNav({ handleBodyClick, handleUpdate, Loader }: userDatas) {
+    //! Theme Mode
+    const theme = useThemeStore((state: any) => state.theme);
     return(
         <>
-            <section className='flex justify-between sticky z-20  bg-white h-22 top-0 py-3'>
+            <section className={`flex justify-between sticky z-20  h-22 top-0 py-3 ${theme ? "bg-black" : "bg-white"}`}>
                 <div className='flex gap-3'>
                     <span className=' text-2xl cursor-pointer' onClick={handleBodyClick}><AiOutlineClose /></span>
                     <h2 className=' font-medium'>Edit Profile</h2>

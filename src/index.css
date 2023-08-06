@@ -212,8 +212,6 @@ input::-webkit-calendar-picker-indicator {
 }
 /* ! update page  */
 .update-user-Date .react-date-picker {
-  background-color: white;
-  color: black;
   height: 50px;
   margin-top: 20px;
   width: 100%;

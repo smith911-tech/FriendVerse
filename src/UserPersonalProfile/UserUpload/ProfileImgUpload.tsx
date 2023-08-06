@@ -4,12 +4,19 @@ interface userDatas{
 }
 import { BiSolidUserCircle } from "react-icons/bi";
 import { AiOutlineCloudUpload } from 'react-icons/ai'
+import useThemeStore from '../../Zustand';
 export default function ProfileimgUpload({ handleImageUpload, profileImg }: userDatas){
+    //! Theme Mode
+    const theme = useThemeStore((state: any) => state.theme);
     return(
         <>
             {!profileImg  ? (
                 //! default profile image update
-                <div className=' text-7xl absolute left-4 -translate-y-1/2  border-white rounded-full bg-[#ffffffe6] text-[#000000d7] smm500:text-[80px] smm500:left-1'>
+                <div className={` text-7xl absolute left-4 -translate-y-1/2   rounded-full  smm500:text-[80px] smm500:left-1 
+                ${theme 
+                ? "bg-[#000] text-[#fff] border-black" 
+                : "bg-[#ffffffe6] text-[#000000d7] border-white"}
+                `}>
                     <span className=' brightness-[0.5]'>
                         <BiSolidUserCircle />
                     </span>
