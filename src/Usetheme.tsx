@@ -1,13 +1,18 @@
 // themeStore.js
 import create from 'zustand';
 
-const UseThemeStore = create((set) => ({
-    theme: localStorage.getItem('themeMode') === 'true' || false,
-    toggleTheme: () => set((state : any) => {
-        const newTheme = !state.theme;
-        localStorage.setItem('thememode', newTheme.toString());
-        return { theme: newTheme };
-    }),
+const getInitialTheme = () => {
+  const storedTheme = localStorage.getItem('theme');
+  return storedTheme === 'dark';
+};
+
+const useThemeStore = create((set) => ({
+  theme: getInitialTheme(),
+  toggleTheme: () => set((state: any) => {
+    const newTheme = !state.theme;
+    localStorage.setItem('theme', newTheme ? 'dark' : 'light');
+    return { theme: newTheme };
+  }),
 }));
 
-export default UseThemeStore;
+export default useThemeStore;

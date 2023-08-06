@@ -5,10 +5,11 @@ import { BiSolidUserCircle } from "react-icons/bi";
 import { LongCard } from "../GeneralComponent/LoadingCard";
 import { GoTelescopeFill } from "react-icons/go";
 import { Link } from "react-router-dom";
+import useThemeStore from '../Usetheme';
 
 export default function ProfileLeftbar({ SuggestData }: userdatas): JSX.Element {
     let userid = sessionStorage.getItem('UserId')
-
+    const theme = useThemeStore((state: any) => state.theme);
     return (
 
         <main className="md970:block hidden font-Inter pt-2 px-2">
@@ -16,7 +17,7 @@ export default function ProfileLeftbar({ SuggestData }: userdatas): JSX.Element 
                 {SuggestData.length === 0 ? (
                     <LongCard />
                 ) : (
-                    <section className="bg-white rounded-lg shadow py-2">
+                        <section className={` rounded-lg shadow py-2 ${theme ? "bg-black text-[#ffffffca]" : "bg-white text-[#000000d4]"}`}>
                         <div className="flex text-lg justify-between mx-2">
                             <h2 className="font-extrabold">Suggestions</h2>
                             <span className="text-[#117dd5]"><GoTelescopeFill /></span>
@@ -32,7 +33,7 @@ export default function ProfileLeftbar({ SuggestData }: userdatas): JSX.Element 
                             >
                                 <div>
                                     {data.profileImage === "" ? (
-                                        <div className='text-[48px] rounded-full text-[#000000d7]'>
+                                        <div className={`text-[48px] rounded-full ${theme ? "text-white" : "text-[#000000d7]"}`}>
                                             <BiSolidUserCircle />
                                         </div>
                                     ) : (
@@ -43,10 +44,11 @@ export default function ProfileLeftbar({ SuggestData }: userdatas): JSX.Element 
                                         />
                                     )}
                                 </div>
-                                <div>
-                                    <p className="text-left font-semibold">{data.fullName}</p>
-                                    <p className="text-sm text-left text-[#000000a9]"><span className='select-none'>@</span>{data.username}</p>
-                                </div>
+                                    <div className={`${theme ? "text-[#ffffffca]" : "text-[#000000d4]"}`}>
+                                        <p className="text-left font-semibold">{data.fullName}
+                                        </p>
+                                        <p className="text-sm text-left"><span className='select-none'>@</span>{data.username}</p>
+                                    </div>
                             </div>
                             </Link>
                         ))}

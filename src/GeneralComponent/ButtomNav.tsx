@@ -4,9 +4,11 @@ import { MdOutlineOndemandVideo } from 'react-icons/md'
 import { LuUsers } from "react-icons/lu"
 import { AiOutlineMail } from "react-icons/ai";
 import { NavLink } from 'react-router-dom';
+import useThemeStore from '../Usetheme';
 export default function ButtomNav(){
+    const theme = useThemeStore((state: any) => state.theme);
     return(
-        <nav className='hidden gap-10 px-5 mt-2  bg-white z-[50] w-full justify-center fixed bottom-0 sm650:flex py-3 shadow-black shadow-2xl rounded-t-2xl '>
+        <nav className={`hidden gap-10 px-5 mt-2  z-[50] w-full justify-center fixed bottom-0 sm650:flex py-3 shadow-black shadow-2xl rounded-t-2xl ${theme ? "bg-[black] text-white" : " bg-white text-black"}`}>
             <NavLink className="ActiveLink" to="/Home" >
                 <div className='text-3xl cursor-pointer '> <AiOutlineHome /></div>
                 <NavLink to="/Home" className="UnderHomeNav"></NavLink>

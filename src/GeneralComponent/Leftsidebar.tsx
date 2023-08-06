@@ -8,15 +8,17 @@ import { BiSolidUserCircle } from "react-icons/bi";
 import { SmallCard } from "./LoadingCard";
 import { GoTelescopeFill } from "react-icons/go";
 import { Link } from 'react-router-dom';
+import useThemeStore from '../Usetheme';
 
 export default function Dashboard({ userData, SuggestData }: userdatas): JSX.Element {
     let userid = sessionStorage.getItem('UserId')
+    const theme = useThemeStore((state: any) => state.theme);
 
     return (
         <main className="md970:block hidden font-Inter pt-2 px-2">
             {userData ? (
                 <section className="w-full flex flex-col justify-center">
-                    <div className="bg-white rounded-lg shadow p-1">
+                    <div className={` rounded-lg shadow p-1 ${theme ? "bg-[#000] text-[white]" : "bg-[#ffffffd3] text-[black]"}`}>
                         <div className="relative select-none">
                             {userData.coverImage === "" ? (
                                 <img
@@ -35,7 +37,7 @@ export default function Dashboard({ userData, SuggestData }: userdatas): JSX.Ele
                                 <Link to='/Profile' onClick={(() => {
                                     window.scrollTo(0, 0);
                                 })}>
-                                <div className='text-[48px] absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-4 border-white rounded-full bg-white text-[#000000d7]'>
+                                    <div className={`text-[48px] absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-4  rounded-full ${theme ? "bg-black text-[#fff] border-black" : "bg-white text-[#000000d7] border-white"}`}>
                                     <BiSolidUserCircle />
                                 </div>
                                 </Link>
@@ -54,14 +56,14 @@ export default function Dashboard({ userData, SuggestData }: userdatas): JSX.Ele
                         <div className="mt-8 text-center font-medium mb-2">
                             <h2 className="pb-1 capitalize">{userData.fullName}</h2>
 
-                                <h2 className="text-xs text-[#000000a5] px-2 text-center">{userData.bio}</h2>
+                            <h2 className={`text-xs px-2 text-center ${theme ? "text-[#ffffffd6]" : "text-[#000000a5]"}`}>{userData.bio}</h2>
                         </div>
                         <div className="mb-2 select-none">
-                            <h2 className="text-center font-medium text-[#000000a5]">Following</h2>
+                            <h2 className={`text-center font-medium  ${theme ? "text-[#ffffffd6]" : "text-[#000000a5]"}`}>Following</h2>
                             <p className="text-center font-medium">10</p>
                         </div>
                         <div className="mb-2 select-none">
-                            <h2 className="text-center font-medium text-[#000000a5]">Followers</h2>
+                            <h2 className={`text-center font-medium text-[#000000a5]  ${theme ? "text-[#ffffffd6]" : "text-[#000000a5]"}`}>Followers</h2>
                             <p className="text-center font-medium">33</p>
                         </div>
                         <Link to='/Profile'>
@@ -76,7 +78,7 @@ export default function Dashboard({ userData, SuggestData }: userdatas): JSX.Ele
                 {SuggestData.length === 0 ? (
                     <SmallCard />
                 ) : (
-                        <section className="bg-white rounded-lg shadow py-2">
+                        <section className={` rounded-lg shadow py-2 ${theme ? "bg-black text-white" : "bg-white text-black"}`}>
                             <div className="flex text-lg justify-between mx-2">
                                 <h2 className=" font-extrabold">Suggestions</h2>
                                 <span className=" text-[#117dd5]"><GoTelescopeFill /></span>
@@ -91,7 +93,7 @@ export default function Dashboard({ userData, SuggestData }: userdatas): JSX.Ele
                                 key={data.id}>
                                 <div>
                                     {data.profileImage === "" ? (
-                                        <div className='text-[48px]   rounded-full text-[#000000d7]'>
+                                            <div className={`text-[48px]   rounded-full ${theme ? "text-white" : "text-[#000000d7]"}`}>
                                             <BiSolidUserCircle />
                                         </div>
                                     ) : (
@@ -105,8 +107,7 @@ export default function Dashboard({ userData, SuggestData }: userdatas): JSX.Ele
                                 <div>
                                     <p
                                         className="text-left font-semibold">{data.fullName}</p>
-                                    <p
-                                        className="text-sm text-left text-[#000000a9]"><span className='select-none'>@</span>
+                                        <p className={`text-sm text-left ${theme ? "text-white" : "text-[#000000a9]"}`}><span className='select-none'>@</span>
                                         {data.username}</p>
                                 </div>
                             </div>

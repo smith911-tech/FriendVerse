@@ -125,7 +125,6 @@ input::-webkit-calendar-picker-indicator {
 /*! card loading animation */
 .smallcard .card{
   width:100%;
-    background-color: #fff;
     padding: 10px;
     border-radius: 3px;
 }
@@ -163,7 +162,6 @@ input::-webkit-calendar-picker-indicator {
   animation-iteration-count: infinite;
   animation-name: placeHolderShimmer;
   animation-timing-function: linear;
-  background: #f6f7f8;
   background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
   background-size: 1000px 104px;
   height: 200px;
@@ -172,7 +170,6 @@ input::-webkit-calendar-picker-indicator {
 }
 
 .inter-draw {
-  background: #FFF;
   width: 100%;
   height: 100px;
   position: absolute;
@@ -180,7 +177,6 @@ input::-webkit-calendar-picker-indicator {
 }
 
 .inter-right--top {
-  background: #FFF;
   width: 100%;
   height: 20px;
   position: absolute;
@@ -189,7 +185,6 @@ input::-webkit-calendar-picker-indicator {
 }
 
 .inter-right--bottom {
-  background: #FFF;
   width: 100%;
   height: 50px;
   position: absolute;
@@ -198,7 +193,6 @@ input::-webkit-calendar-picker-indicator {
 }
 
 .inter-crop {
-  background: #FFF;
   width: 20px;
   height: 100%;
   position: absolute;
@@ -212,6 +206,9 @@ input::-webkit-calendar-picker-indicator {
 .progress .react-sweet-progress-circle-outer {
   display: block;
   margin: 0 auto;
+}
+.progress .react-sweet-progress-symbol{
+  color: #117dd5;
 }
 /* ! update page  */
 .update-user-Date .react-date-picker {
