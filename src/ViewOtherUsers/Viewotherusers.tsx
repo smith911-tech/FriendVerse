@@ -7,6 +7,7 @@ import { collection, doc, onSnapshot } from "firebase/firestore"
 import { db } from "../firebase-config"
 import Leftsidebar from "../GeneralComponent/Leftsidebar";
 import ViewUsersData from "./Viewothersdata";
+import useThemeStore from '../Zustand';
 export default function ViewOtherUsers() {
     let userid = sessionStorage.getItem('UserId')
 
@@ -69,13 +70,21 @@ export default function ViewOtherUsers() {
         }
     }, [id, SuggestData]);
 
+    //! Theme Mode
+    const theme = useThemeStore((state: any) => state.theme);
+
+
     return (
         <main className="relative">
             <header onClick={handleBodyClick} className={`fixed  top-0 w-full z-10  ${isInputClicked ? " brightness-[0.2]" : " brightness-100"}`}>
                 <Header userData={userData} SuggestData={SuggestData} />
             </header>
 
-            <article className={` flex justify-between gap-[1%] sm650:px-3 pt-[70px] ${isInputClicked ? " bg-[#000000ca]" : "bg-[#f0f2f5]"}`}>
+            <article className={` flex justify-between gap-[1%] sm650:px-3 pt-[70px] 
+            ${theme 
+                ? isInputClicked ? " bg-[#000000ee]" : "bg-[#1b1d21]" 
+                : isInputClicked ?  "bg-[#000000ca]" : "bg-[#f0f2f5]"
+            }`}>
                 <section
                     onClick={handleBodyClick}
                     className={`pt-2 w-[5%] h-screen sticky top-[70px] md970:w-[25%] sm650:hidden ${isInputClicked ? " brightness-[0.2]" : " brightness-100"}`}

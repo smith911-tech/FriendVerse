@@ -10,6 +10,7 @@ import { BiSolidUserCircle } from "react-icons/bi";
 import { OtherUserCover, OtherUsersProfile } from './OtheProfileModal';
 import OthersProfileDetails from './OthersProfiledetails';
 import { BsThreeDots } from 'react-icons/bs'
+import useThemeStore from '../Zustand';
 export default function ViewUsersData({ data }: userDatas) {
     const navigate = useNavigate();
     let userid = sessionStorage.getItem('UserId')
@@ -41,13 +42,23 @@ export default function ViewUsersData({ data }: userDatas) {
         setShowCmodal(false);
         setShowPmodal(false);
     };
+
+    //! Theme Mode
+    const theme = useThemeStore((state: any) => state.theme);
+
     return (
-        <main className="">
+        <main >
             {data ? (
-                <section className='w-full flex flex-col justify-center bg-white p-1'>
-                    <section className='flex justify-between px-2 py-1 smm500:px-1 sticky top-16 z-[50] bg-white'>
+                <section className={`w-full flex flex-col justify-center p-1
+                ${theme ? " bg-black text-white" : " bg-white  text-black"}
+                `}>
+                    <section className={`flex justify-between px-2 py-2 smm500:px-1 sticky top-16 z-[50] 
+                    ${theme ? "bg-black" : "bg-white"}
+                    `}>
                         <Link to='/Home'>
-                            <div className=' text-[#0000008e] text-3xl top-1 left-1 cursor-pointer'>
+                            <div className={`  text-3xl top-1 left-1 cursor-pointer
+                            ${theme ? "text-white" : "text-[#0000008e]"}
+                            `}>
                                 <BsFillArrowLeftCircleFill />
                             </div>
                         </Link>
@@ -71,7 +82,9 @@ export default function ViewUsersData({ data }: userDatas) {
                             />
                         )}
                         {data.profileImage === "" ? (
-                            <div className=' text-8xl absolute left-4 -translate-y-1/2  border-white rounded-full bg-white text-[#000000d7] smm500:text-[80px] smm500:left-1'>
+                            <div className={` text-8xl absolute left-4 -translate-y-1/2 rounded-full  smm500:text-[80px] smm500:left-1 first-letter:
+                            ${theme ? "bg-[black] text-[white] border-black" : "bg-white text-[#000000d7] border-white "}
+                            `}>
                                 <BiSolidUserCircle />
                             </div>
                         ) : (
@@ -99,7 +112,7 @@ export default function ViewUsersData({ data }: userDatas) {
                         />
                         {/* End Of prodile image modal  */}
                     </div>
-                    <OthersProfileDetails data={data}/>
+                    <OthersProfileDetails data={data} theme={theme} />
                 </section>
             ) : (
                 <LongCard />
