@@ -58,7 +58,7 @@ export default function OthersProfileDetails({
                 </section>
                 <section className=' mb-2'>
                     <p
-                        className={` font-medium ${theme ? "text-[white]" : "text-[#000000c1]"}`}
+                        className={` font-medium ${theme ? "text-[#ffffffd2]" : "text-[#000000c1]"}`}
                         dangerouslySetInnerHTML={{ __html: formattedBio || '' }}
                     />
                 </section>

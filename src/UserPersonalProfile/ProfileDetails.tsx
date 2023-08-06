@@ -10,6 +10,7 @@ import { LiaBirthdayCakeSolid } from 'react-icons/lia'
 import ProfileSLideBtn from './ProfileSlideBtn';
 import UpdateP from './UpdateP';
 import {useState} from 'react'
+import useThemeStore from '../Zustand';
 export default function UserProfileDetails({ 
     userData, 
     handleInputClick, 
@@ -46,6 +47,10 @@ export default function UserProfileDetails({
 
     // ! date of birth hidden or not state
     const [showDOB, setShowDOB] = useState<boolean>(true)
+
+    //! Theme Mode
+    const theme = useThemeStore((state: any) => state.theme);
+
     return(
         <>
             <section className='w-full px-6 py-2 smm500:px-2 '>
@@ -59,25 +64,25 @@ export default function UserProfileDetails({
             <h2 className=' font-semibold text-xl mt-1 '>
                 {userData && userData.fullName}
             </h2>
-            <p className='text-[#000000a5] '>
+            <p className={`${theme ? "text-[#ffffffbc]" : "text-[#000000a5] "}`}>
             <span className='select-none'>@</span>
             {userData && userData.username}</p>
             </section>
             <section className=' mb-2'>
             <p
-                className=" font-medium text-[#000000c1]"
+                className={` font-medium ${theme ? "text-[#ffffffd2]" : "text-[#000000c1]"}`}
                 dangerouslySetInnerHTML={{ __html: formattedBio || '' }}
             />
             </section>
                 <section className={`flex flex-wrap ${userData && userData.showDOB || userData.Location ? "mb-2" : "m-0"}`}>
-                    <h2 className={`flex text-[#000000b9] ${userData.Location ? " mr-2" : "m-0"}`}>
+                    <h2 className={`flex  ${userData.Location ? " mr-2" : "m-0"}`}>
                     <span className=' text-xl '>
                         {userData && userData.Location && <IoLocationOutline />} 
                     </span>
                     {userData && userData.Location}
                 </h2>
                 {userData.showDOB && (
-                        <h2 className='flex text-[#000000b9]'>
+                        <h2 className='flex '>
                                 <span className=' text-xl'>
                                 {userData && userData.dateOfBirth && < LiaBirthdayCakeSolid />}
                                 </span>
@@ -85,12 +90,12 @@ export default function UserProfileDetails({
                             </h2>
                 )}
             </section>
-            <ul className='flex gap-7 font-medium text-[#000000a5] mb-2'>
-                <li>
-                <span className=' text-[black] select-none'>33</span> Followers</li>
-                <li className=' list-disc'>
-                    <span className=' text-[black] select-none'>10</span> Following</li>
-            </ul>
+                <ul className={`flex gap-7 font-medium mb-2 ${theme ? "text-[#ffffffda]" : "text-[#000000a5]"}`}>
+                    <li>
+                        <span className={`select-none ${theme ? "text-[white]" : "text-[black] "}`}>33</span> Followers</li>
+                    <li className=' list-disc'>
+                        <span className={`select-none ${theme ? "text-[white]" : "text-[black] "}`}>10</span> Following</li>
+                </ul>
             <hr />
             <ProfileSLideBtn />
         </section>
