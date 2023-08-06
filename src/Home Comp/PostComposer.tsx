@@ -74,7 +74,7 @@ export default function PostSection({
             </header>
 
             {isInputClicked && (
-                <div className={`absolute top-0 left-0 right-0 mx-auto p-4 z-[30] rounded-2xl shadow md970:w-[90%] sm650:-top-9 ${theme ? "bg-black" : "bg-white "}`}>
+                <div className={`absolute top-0 left-0 right-0 mx-auto p-4 z-[30] rounded-2xl shadow md970:w-[90%] sm650:-top-9 ${theme ? "bg-black text-white" : "bg-white text-black"}`}>
                     <section className="flex justify-between mb-1">
                         <h2 className='text-xl font-bold smm500:text-lg'>Create Post</h2>
                         <span className="text-xl bg-[#f0f2f5] mb-2 rounded-full text-[#0000009b] px-1 py-1 cursor-pointer smm500:text-lg" onClick={handleBodyClick}>
@@ -87,7 +87,8 @@ export default function PostSection({
                             {userData ? (
                                 <section>
                                     {userData.profileImage === "" ? (
-                                        <div className='text-[48px] rounded-full text-[#000000d7] smm500:text-[40px]'>
+                                        <div className={`text-[48px] rounded-full  smm500:text-[40px] 
+                                        ${theme ? "text-white" : "text-[#000000d7]"}`}>
                                             <BiSolidUserCircle />
                                         </div>
                                     ) : (
@@ -99,7 +100,8 @@ export default function PostSection({
                                     )}
                                 </section>
                             ) : (
-                                    <div className='text-[48px] rounded-full text-[#000000d7] smm500:text-[40px]'>
+                                    <div className={`text-[48px] rounded-full  smm500:text-[40px] 
+                                        ${theme ? "text-white" : "text-[#000000d7]"}`}>
                                     <BiSolidUserCircle />
                                 </div>
                             )}
@@ -109,10 +111,11 @@ export default function PostSection({
                         </h2>
                     </section>
                     <section>
-                        <textarea ref={inputRef} className="w-full  text-xl pt-2 mt-2 outline-none smm500:text-lg" name="" id="" rows={5} placeholder={`What's on your mind, ${firstName}?`} ></textarea>
+                        <textarea ref={inputRef} className={`w-full  text-xl pt-2 mt-2 outline-none smm500:text-lg ${theme ? "bg-black text-white" : "bg-white text-black"}`} name="" id="" rows={5} placeholder={`What's on your mind, ${firstName}?`} ></textarea>
                     </section>
                     <section className=" text-2xl flex justify-between border border-[#000000b6] border-solid gap-2 py-2 px-3 mb-3 smm500:border-[0.1px] smm500:py-1 smm500:px-2">
-                        <h2 className=" font-medium text-[#000000b8] text-xl smm500:text-base">Add to your post</h2>
+                        <h2 className={`font-medium text-xl smm500:text-base 
+                        ${theme ? "text-white" : " text-[#000000b8] "}`}>Add to your post</h2>
                         <div className="flex gap-3 ">
                             <span className=" cursor-pointer text-[#45bd62] mt-1 smm500:text-lg">
                                 <abbr title="Photo">

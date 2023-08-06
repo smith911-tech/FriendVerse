@@ -86,7 +86,7 @@ export default function HomePage() {
             }`}>
             <section
                     onClick={handleBodyClick}
-                    className={`${isInputClicked ? " brightness-[0.2]" : " brightness-100"}`}>
+                    className={`pt-2 w-[5%] h-screen sticky top-[70px] md970:w-[25%] sm650:hidden  ${isInputClicked ? " brightness-[0.2]" : " brightness-100"}`}>
                     <Leftsidebar 
                     userData={userData} 
                     SuggestData={SuggestData} />
