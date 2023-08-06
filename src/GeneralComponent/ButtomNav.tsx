@@ -4,7 +4,7 @@ import { MdOutlineOndemandVideo } from 'react-icons/md'
 import { LuUsers } from "react-icons/lu"
 import { AiOutlineMail } from "react-icons/ai";
 import { NavLink } from 'react-router-dom';
-import useThemeStore from '../Usetheme';
+import useThemeStore from '../Zustand';
 export default function ButtomNav(){
     const theme = useThemeStore((state: any) => state.theme);
     return(

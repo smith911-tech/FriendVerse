@@ -10,6 +10,7 @@ import { TfiGallery } from 'react-icons/tfi'
 import { ImFileVideo } from 'react-icons/im'
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import useThemeStore from '../Zustand'
 export default function PostSection({
     handleBodyClick,
     userData,
@@ -26,18 +27,20 @@ export default function PostSection({
         }
     }, [isInputClicked]);
 
-
+    //! Theme Mode
+    const theme = useThemeStore((state: any) => state.theme);
     return (
     
         <>
-            <header className="bg-white mb-2 py-2 px-5 rounded-2xl shadow md970:w-[90%] block mt-0 mx-auto select-none  smm500:py-[1px] smm500:px-2">
+            <header className={` mb-2 py-2 px-5 rounded-2xl shadow md970:w-[90%] block mt-0 mx-auto select-none  smm500:py-[1px] smm500:px-2 ${theme ? "bg-black" : "bg-white"}`}>
                 <nav className="flex justify-between gap-2">
                     <div>
                         {userData ? (
                             <section>
                                 {userData.profileImage === "" ? (
                                     <Link to='/Profile'>
-                                    <div className='text-[48px] rounded-full text-[#000000d7]'>
+                                        <div className={`text-[48px] rounded-full 
+                                        ${theme ? "text-white" : "text-[#000000d7]"}`}>
                                         <BiSolidUserCircle />
                                     </div>
                                     </Link>
@@ -52,7 +55,8 @@ export default function PostSection({
                                 )}
                             </section>
                         ) : (
-                            <div className='text-[48px] rounded-full text-[#000000d7]'>
+                                <div className={`text-[48px] rounded-full 
+                                        ${theme ? "text-white" : "text-[#000000d7]"}`}>
                                 <BiSolidUserCircle />
                             </div>
                         )}
@@ -62,14 +66,15 @@ export default function PostSection({
                         readOnly
                         type="text"
                         onClick={handleInputClick}
-                        className="w-[90%] cursor-pointer h-10 bg-[#f0f2f5] rounded-2xl mt-1 px-4 outline-none"
+                        className={`w-[90%] cursor-pointer h-10  rounded-2xl mt-1 px-4 outline-none 
+                        ${theme ? "bg-[#1b1d21]" : "bg-[#f0f2f5]"}`}
                         placeholder={`What's on your mind, ${firstName}?`}
                     />
                 </nav>
             </header>
 
             {isInputClicked && (
-                <div className="absolute top-0 left-0 right-0 mx-auto bg-white p-4 z-[30] rounded-2xl shadow md970:w-[90%] sm650:-top-9 ">
+                <div className={`absolute top-0 left-0 right-0 mx-auto p-4 z-[30] rounded-2xl shadow md970:w-[90%] sm650:-top-9 ${theme ? "bg-black" : "bg-white "}`}>
                     <section className="flex justify-between mb-1">
                         <h2 className='text-xl font-bold smm500:text-lg'>Create Post</h2>
                         <span className="text-xl bg-[#f0f2f5] mb-2 rounded-full text-[#0000009b] px-1 py-1 cursor-pointer smm500:text-lg" onClick={handleBodyClick}>

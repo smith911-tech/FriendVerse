@@ -9,7 +9,7 @@ import { LongCard } from '../GeneralComponent/LoadingCard'
 import DeleteModal from './DeleteModal'
 import { SuccessLoginM } from '../Error-SuccessM'
 import { ColorRing } from 'react-loader-spinner'
-import useThemeStore from '../Usetheme';
+import useThemeStore from '../Zustand';
 
 
 export default function SettingsInterface({ userData }: userdatas) {
