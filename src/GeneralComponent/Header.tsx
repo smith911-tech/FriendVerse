@@ -12,7 +12,7 @@ import { Link, NavLink } from 'react-router-dom'
 import { Popover } from '@headlessui/react'
 import HeaderSearch from './HeaderSearch'
 import { useState } from 'react'
-import useThemeStore from '../Usetheme';
+import useThemeStore from '../Zustand';
 export default function Header({ userData, SuggestData }: userdatas) {
     // ! Opening the post div
     const [isSearchInput, setSearchInput] = useState(false);
@@ -21,9 +21,9 @@ export default function Header({ userData, SuggestData }: userdatas) {
     };
     
     const theme = useThemeStore((state: any) => state.theme);
-    console.log(theme)
+
     return (
-        <header className={`shadow bg-[#fff] flex justify-between px-3 py-2 text-[#000000bc] select-none `}> 
+        <header className={`shadow  flex justify-between px-3 py-2 text-[#000000bc] select-none ${theme ? "bg-[#000]  " : "bg-[#fff]"} `}> 
         <div className='flex gap-2'>
                 <img src={logo} alt="" className='w-[40px] object-contain smm500:w-[30px]' />
                 <Popover className="relative sm650:hidden lg1150:hidden">
@@ -37,7 +37,7 @@ export default function Header({ userData, SuggestData }: userdatas) {
                     </Popover.Panel>
                 </Popover>
         </div>
-            <nav className='flex gap-14 px-5 mt-2 sm650:hidden Header-Class'>
+            <nav className={`flex gap-14 px-5 mt-2 sm650:hidden Header-Class ${theme ? "text-[white]" : "text-[black]"}`}>
 
                 <NavLink className="ActiveLink" to="/Home" >
                 <div className='text-3xl cursor-pointer '> <AiOutlineHome /></div>
@@ -76,7 +76,7 @@ export default function Header({ userData, SuggestData }: userdatas) {
                             <Link to='/Profile' onClick={(() => {
                                 window.scrollTo(0, 0);
                             })}>
-                                <div className='text-[48px] rounded-full text-[#000000d7]  smm500:text-[40px]'>
+                                <div className={`text-[48px] rounded-full  smm500:text-[40px] ${theme ? "text-[white]" : "text-[#000000d7]"}`}>
                                     <BiSolidUserCircle />
                                 </div>
                         </Link>
@@ -93,7 +93,7 @@ export default function Header({ userData, SuggestData }: userdatas) {
                         )}
                     </section>
                 ) : (
-                        <div className='text-[48px] rounded-full text-[#000000d7] smm500:text-[40px]'>
+                        <div className={`text-[48px] rounded-full  smm500:text-[40px] ${theme ? "text-[white]" : "text-[#000000d7]"}`}>
                             <BiSolidUserCircle />
                         </div>
                 )}

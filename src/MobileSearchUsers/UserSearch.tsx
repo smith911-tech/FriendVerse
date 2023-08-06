@@ -4,6 +4,7 @@ import ButtomNav from "../GeneralComponent/ButtomNav";
 import { collection,  onSnapshot } from "firebase/firestore"
 import { db } from '../firebase-config'
 import UserSearchData from "./UserSearchData";
+import useThemeStore from '../Zustand';
 export default function UserSearch() {
     const navigate = useNavigate();
     let userid = sessionStorage.getItem('UserId')
@@ -52,9 +53,12 @@ export default function UserSearch() {
         setInputClicked(!isInputClicked);
     };
 
+    //! Theme Mode
+    const theme = useThemeStore((state: any) => state.theme);
+
 
     return (
-        <main className="relative bg-[#f0f2f5] h-screen">
+        <main className={`relative h-screen ${theme ? "bg-[#1b1d21]" : "bg-[#f0f2f5]"}`}>
             <UserSearchData SuggestData={SuggestData} />
             <footer onClick={handleBodyClick} >
                 <ButtomNav />

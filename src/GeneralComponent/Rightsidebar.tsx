@@ -9,44 +9,47 @@ import { BiSolidUserCircle } from "react-icons/bi";
 import VerfiyId from "./VerifyBox";
 import ProfileProgress from "../Home Comp/ProfileProgress";
 import { Link } from "react-router-dom";
+import useThemeStore from '../Zustand';
 export default function SideDashboard({ SuggestData, userData }: userdatas):JSX.Element {
     const [searchTerm, setSearchTerm] = useState<string>("");
+    const theme = useThemeStore((state: any) => state.theme);
 
-
-    function getSuggestions() {
-        const regex = new RegExp(`${searchTerm}`);
-        return SuggestData.filter((data: any) => regex.test(data.fullName || data.username)).slice(0, 5);
+    function getSuggestions(searchTerm: any) {
+        const escapedTerm = searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // Escape special characters
+        const regex = new RegExp(escapedTerm, 'i'); // 'i' flag for case-insensitive matching
+        return SuggestData.filter((data:  any) => regex.test(data.fullName || data.username)).slice(0, 5);
     }
+
     let userid = sessionStorage.getItem('UserId')
     return (
         <main className="lg1150:block hidden px-1 pt-2 ">
-            <section className="bg-[white]  px-2 py-2 shadow relative mb-8">
+            <section className={`${theme ? "bg-black" : "bg-[white] "} px-2 py-2 shadow relative mb-8`}>
                 <div className="flex relative">
                     <input type="text"
-                        className="w-full py-2 pl-10 pr-1  outline-[#117DD5] border rounded-2xl  border-solid bg-[#eff3f4]" placeholder="Search"
+                        className={`w-full py-2 pl-10 pr-1  outline-[#117DD5] border  rounded-2xl  border-solid ${theme ? "bg-black text-white border-[#117DD5]" : "bg-[#eff3f4] text-black border-white"}`} placeholder="Search"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)} />
-                    <div className='text-xl cursor-pointer absolute top-[10px] left-3'><CiSearch /></div>
+                    <div className={`text-xl cursor-pointer absolute top-[10px] left-3 ${theme ? " text-white" : "text-black"}`}><CiSearch /></div>
                 </div>
                 {searchTerm && (
-                    <div className={`absolute bg-white w-full   shadow z-10 -ml-2 overflow-y-auto overflow-x-hidden ${getSuggestions().length === 0 ? " h-[inherit] " : "h-44 "}`}>
-                        {getSuggestions().length === 0 ? (
-                            <button className="ml-2 py-3 w-full font-semibold flex justify-center gap-2">
+                    <div className={`absolute w-full   shadow z-10 -ml-2 overflow-y-auto overflow-x-hidden ${getSuggestions(searchTerm).length === 0 ? " h-[inherit] " : "h-44 "} ${theme ? "bg-black" : "bg-white "}`}>
+                        {getSuggestions(searchTerm).length === 0 ? (
+                            <button className={`ml-2 py-3 w-full font-semibold flex justify-center gap-2 ${theme ? "text-white" : "text-black"}`}>
                                 <span className=" text-2xl text-red-600"><GoAlertFill /></span>
                                 <h2>User doesn't exist</h2>
                             </button>
                         ) : (
-                                getSuggestions().filter((data: any) => data.id !== userid).map((data : any) => (
+                                getSuggestions(searchTerm).filter((data: any) => data.id !== userid).map((data : any) => (
                                 <Link to={`/${data.username}`}>
                                 <button
-                                    className="cursor-pointer w-full select-none flex  my-4 ml-1 rounded-2xl hover:bg-[#e1e6e7] gap-2"
+                                    className={`cursor-pointer w-full select-none flex  my-4 ml-1 rounded-2xl gap-2 ${theme ? "hover:bg-[#ffffff17]" : "hover:bg-[#e1e6e7]"}`}
                                     onClick={() => 
                                     { setSearchTerm('')  
                                     window.scrollTo(0, 0); }}
                                     key={data.id}>
                                         <div>
                                         {data.profileImage === "" ? (
-                                            <div className='text-[48px]   rounded-full text-[#000000d7]'>
+                                            <div className={`text-[48px] rounded-full ${theme ? "text-white" : "text-[#000000d7]"}`}>
                                                 <BiSolidUserCircle />
                                             </div>
                                         ) : (
@@ -57,11 +60,10 @@ export default function SideDashboard({ SuggestData, userData }: userdatas):JSX.
                                             />
                                         )}
                                         </div>
-                                        <div>
-                                        <p 
-                                        className="text-left font-semibold">{data.fullName}</p>
-                                        <p 
-                                        className="text-sm text-left text-[#000000a9]"><span className='select-none'>@</span>{data.username}</p>
+                                            <div className={`${theme ? "text-white" : "text-[#000000a9]"}`}>
+                                        <p className="text-left font-semibold">{data.fullName}
+                                        </p>
+                                        <p className="text-sm text-left"><span className='select-none'>@</span>{data.username}</p>
                                         </div>
                                 </button>
                                     </Link>

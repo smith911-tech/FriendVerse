@@ -9,7 +9,7 @@ import { LongCard } from '../GeneralComponent/LoadingCard'
 import DeleteModal from './DeleteModal'
 import { SuccessLoginM } from '../Error-SuccessM'
 import { ColorRing } from 'react-loader-spinner'
-import useThemeStore from '../Usetheme';
+import useThemeStore from '../Zustand';
 
 
 export default function SettingsInterface({ userData }: userdatas) {
@@ -33,8 +33,8 @@ export default function SettingsInterface({ userData }: userdatas) {
     return (
         <>
             {userData ? (
-                <main className="bg-gray-100 px-4 py-4 pb-12">
-                    <section className="py-3 sticky top-16 z-[50] bg-[#f3f4f6]">
+                <main className={`-100 px-4 py-4 pb-12 ${theme ? "bg-black" : "bg-gray"}`}>
+                    <section className={`py-3 sticky top-16 z-[50] ${theme ? "bg-black" : "bg-[#f3f4f6]"}`}>
                         <Link onClick={(() => {
                             window.scrollTo(0, 0)
                         })} to="/Profile" className="text-blue-500 flex items-center gap-1">
@@ -42,7 +42,7 @@ export default function SettingsInterface({ userData }: userdatas) {
                             <span>Back to Profile</span>
                         </Link>
                     </section>
-                    <section className="bg-white rounded-lg shadow-lg p-6 relative mb-10">
+                    <section className={` rounded-lg shadow-lg p-6 relative mb-10 ${theme ? "bg-black text-white" : "bg-white text-black"}`}>
                         <div className="flex items-center gap-4 mb-6">
                             {userData.profileImage === '' ? (
                                 <Link to="/Profile">
@@ -70,7 +70,8 @@ export default function SettingsInterface({ userData }: userdatas) {
                                 <h2 className="text-lg font-semibold">Privacy Settings</h2>
                                 <select
                                     id="postsPrivacy"
-                                    className="border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-600"
+                                    className={`border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-600 
+                                    ${theme ? "bg-black" : "bg-white"}`}
                                 >
                                     <option value="public">Public</option>
                                     <option value="private">Private</option>
@@ -81,7 +82,8 @@ export default function SettingsInterface({ userData }: userdatas) {
                                 <h2 className="text-lg font-semibold">Theme Settings</h2>
                                 <select
                                     id="theme"
-                                    className="border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-600"
+                                    className={`border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-600 
+                                    ${theme ? "bg-black" : "bg-white"}`}
                                     onChange={toggleTheme}
                                     value={theme ? 'dark' : 'light'}
                                 >
@@ -91,9 +93,10 @@ export default function SettingsInterface({ userData }: userdatas) {
                             </div>
                             <hr />
                             <div className="space-y-4">
-                                <div className="bg-blue-50 rounded-lg p-4 space-y-2 select-none">
+                                <div className={`rounded-lg p-4 space-y-2 select-none 
+                                ${theme ? "dark:bg-gray-800 bg-blue-800" : "bg-blue-50 "}`}>
                                     <h2 className="text-lg font-semibold">Identity Verification</h2>
-                                    <p className="text-gray-600 ">
+                                    <p className={`text-gray-600 ${theme ? "text-gray-300 dark:text-gray-400" : "text-gray-600 "}`}>
                                         Ensure your account's security by verifying your identity with a valid identification document.
                                     </p>
                                     <button className="bg-blue-500 text-white px-6 py-2 rounded-lg w-full hover:bg-blue-600 transition-colors">
@@ -101,9 +104,10 @@ export default function SettingsInterface({ userData }: userdatas) {
                                     </button>
                                 </div>
                                 <hr />
-                                <div className="bg-red-50 rounded-lg p-4 space-y-2 select-none">
+                                <div className={` rounded-lg p-4 space-y-2 select-none 
+                                ${theme ? "dark:bg-gray-800 bg-red-800" : "bg-red-50  "}`}>
                                     <h2 className="text-lg font-semibold">Logout</h2>
-                                    <p className="text-gray-600">Are you sure you want to logout?</p>
+                                    <p className={`${theme ? "text-gray-300 dark:text-gray-400" : "text-gray-600"}`}>Are you sure you want to logout?</p>
                                     <button className="border rounded-lg px-6 py-2 bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 w-full transition-colors flex justify-center" onClick={handleLogout}>
                                         {!successFul ?
                                             (<h2>Logout</h2>

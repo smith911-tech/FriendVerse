@@ -10,6 +10,7 @@ import { TfiGallery } from 'react-icons/tfi'
 import { ImFileVideo } from 'react-icons/im'
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import useThemeStore from '../Zustand'
 export default function PostSection({
     handleBodyClick,
     userData,
@@ -26,18 +27,20 @@ export default function PostSection({
         }
     }, [isInputClicked]);
 
-
+    //! Theme Mode
+    const theme = useThemeStore((state: any) => state.theme);
     return (
     
         <>
-            <header className="bg-white mb-2 py-2 px-5 rounded-2xl shadow md970:w-[90%] block mt-0 mx-auto select-none  smm500:py-[1px] smm500:px-2">
+            <header className={` mb-2 py-2 px-5 rounded-2xl shadow md970:w-[90%] block mt-0 mx-auto select-none  smm500:py-[1px] smm500:px-2 ${theme ? "bg-black" : "bg-white"}`}>
                 <nav className="flex justify-between gap-2">
                     <div>
                         {userData ? (
                             <section>
                                 {userData.profileImage === "" ? (
                                     <Link to='/Profile'>
-                                    <div className='text-[48px] rounded-full text-[#000000d7]'>
+                                        <div className={`text-[48px] rounded-full 
+                                        ${theme ? "text-white" : "text-[#000000d7]"}`}>
                                         <BiSolidUserCircle />
                                     </div>
                                     </Link>
@@ -52,7 +55,8 @@ export default function PostSection({
                                 )}
                             </section>
                         ) : (
-                            <div className='text-[48px] rounded-full text-[#000000d7]'>
+                                <div className={`text-[48px] rounded-full 
+                                        ${theme ? "text-white" : "text-[#000000d7]"}`}>
                                 <BiSolidUserCircle />
                             </div>
                         )}
@@ -62,14 +66,15 @@ export default function PostSection({
                         readOnly
                         type="text"
                         onClick={handleInputClick}
-                        className="w-[90%] cursor-pointer h-10 bg-[#f0f2f5] rounded-2xl mt-1 px-4 outline-none"
+                        className={`w-[90%] cursor-pointer h-10  rounded-2xl mt-1 px-4 outline-none 
+                        ${theme ? "bg-[#1b1d21]" : "bg-[#f0f2f5]"}`}
                         placeholder={`What's on your mind, ${firstName}?`}
                     />
                 </nav>
             </header>
 
             {isInputClicked && (
-                <div className="absolute top-0 left-0 right-0 mx-auto bg-white p-4 z-[30] rounded-2xl shadow md970:w-[90%] sm650:-top-9 ">
+                <div className={`absolute top-0 left-0 right-0 mx-auto p-4 z-[30] rounded-2xl shadow md970:w-[90%] sm650:-top-9 ${theme ? "bg-black text-white" : "bg-white text-black"}`}>
                     <section className="flex justify-between mb-1">
                         <h2 className='text-xl font-bold smm500:text-lg'>Create Post</h2>
                         <span className="text-xl bg-[#f0f2f5] mb-2 rounded-full text-[#0000009b] px-1 py-1 cursor-pointer smm500:text-lg" onClick={handleBodyClick}>
@@ -82,7 +87,8 @@ export default function PostSection({
                             {userData ? (
                                 <section>
                                     {userData.profileImage === "" ? (
-                                        <div className='text-[48px] rounded-full text-[#000000d7] smm500:text-[40px]'>
+                                        <div className={`text-[48px] rounded-full  smm500:text-[40px] 
+                                        ${theme ? "text-white" : "text-[#000000d7]"}`}>
                                             <BiSolidUserCircle />
                                         </div>
                                     ) : (
@@ -94,7 +100,8 @@ export default function PostSection({
                                     )}
                                 </section>
                             ) : (
-                                    <div className='text-[48px] rounded-full text-[#000000d7] smm500:text-[40px]'>
+                                    <div className={`text-[48px] rounded-full  smm500:text-[40px] 
+                                        ${theme ? "text-white" : "text-[#000000d7]"}`}>
                                     <BiSolidUserCircle />
                                 </div>
                             )}
@@ -104,10 +111,11 @@ export default function PostSection({
                         </h2>
                     </section>
                     <section>
-                        <textarea ref={inputRef} className="w-full  text-xl pt-2 mt-2 outline-none smm500:text-lg" name="" id="" rows={5} placeholder={`What's on your mind, ${firstName}?`} ></textarea>
+                        <textarea ref={inputRef} className={`w-full  text-xl pt-2 mt-2 outline-none smm500:text-lg ${theme ? "bg-black text-white" : "bg-white text-black"}`} name="" id="" rows={5} placeholder={`What's on your mind, ${firstName}?`} ></textarea>
                     </section>
                     <section className=" text-2xl flex justify-between border border-[#000000b6] border-solid gap-2 py-2 px-3 mb-3 smm500:border-[0.1px] smm500:py-1 smm500:px-2">
-                        <h2 className=" font-medium text-[#000000b8] text-xl smm500:text-base">Add to your post</h2>
+                        <h2 className={`font-medium text-xl smm500:text-base 
+                        ${theme ? "text-white" : " text-[#000000b8] "}`}>Add to your post</h2>
                         <div className="flex gap-3 ">
                             <span className=" cursor-pointer text-[#45bd62] mt-1 smm500:text-lg">
                                 <abbr title="Photo">

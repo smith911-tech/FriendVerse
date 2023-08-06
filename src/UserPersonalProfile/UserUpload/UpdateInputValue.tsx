@@ -16,6 +16,7 @@ import DatePicker from 'react-date-picker';
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import { Switch } from '@headlessui/react'
+import useThemeStore from '../../Zustand';
 export default function UpdateInputValue({
     fullName,
     setFullName,
@@ -30,13 +31,16 @@ export default function UpdateInputValue({
     showDOB,
     setShowDOB,
 }: userDatas){
+    //! Theme Mode
+    const theme = useThemeStore((state: any) => state.theme);
     return(
         <>
             <section className='mt-16 w-full flex flex-col gap-4 items-center'>
                 <input
                     type="text"
-                    className='w-full py-3 px-4 border border-gray-300 rounded-md text-lg placeholder-gray-500 focus:outline-none focus:border-blue-500'
-
+                    className={`w-full py-3 px-4 border border-gray-300 rounded-md text-lg placeholder-gray-500 focus:outline-none focus:border-blue-500 ${theme 
+                    ? "bg-[#1b1d21]" 
+                    : "bg-[white]"}`}
                     placeholder='Fullname'
                     maxLength={35}
                     value={fullName}
@@ -44,14 +48,18 @@ export default function UpdateInputValue({
                 />
                 <input
                     type="text"
-                    className='w-full py-3 px-4 border border-gray-300 rounded-md text-lg placeholder-gray-500 focus:outline-none focus:border-blue-500'
+                    className={`w-full py-3 px-4 border border-gray-300 rounded-md text-lg placeholder-gray-500 focus:outline-none focus:border-blue-500 ${theme 
+                    ? "bg-[#1b1d21]" 
+                    : "bg-[white]"}`}
                     placeholder='Username'
                     value={userName}
                     onChange={(e) => setUserName(e.target.value)}
                     maxLength={35}
                 />
                 <textarea
-                    className='w-full py-3 px-4 border border-gray-300 rounded-md text-lg placeholder-gray-500 focus:outline-none focus:border-blue-500'
+                    className={`w-full py-3 px-4 border border-gray-300 rounded-md text-lg placeholder-gray-500 focus:outline-none focus:border-blue-500 ${theme 
+                    ? "bg-[#1b1d21]" 
+                    : "bg-[white]"}`}
                     placeholder='Bio'
                     name=""
                     cols={30}
@@ -63,7 +71,9 @@ export default function UpdateInputValue({
                 </textarea>
                 <input
                     type="text"
-                    className='w-full py-3 px-4 border border-gray-300 rounded-md text-lg placeholder-gray-500 focus:outline-none focus:border-blue-500'
+                    className={`w-full py-3 px-4 border border-gray-300 rounded-md text-lg placeholder-gray-500 focus:outline-none focus:border-blue-500 ${theme
+                        ? "bg-[#1b1d21]"
+                        : "bg-[white]"}`}
                     placeholder='Location'
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
@@ -90,7 +100,7 @@ export default function UpdateInputValue({
                             />
                         </Switch>
                     
-                    <span className="text-lg font-semibold text-[#000000d3]">Show Date of Birth</span>
+                    <span className="text-lg font-semibold ">Show Date of Birth</span>
                 </div>
 
                 {/* Date of Birth section */}
@@ -103,7 +113,9 @@ export default function UpdateInputValue({
                         maxDate={new Date("01-01-2010")}
                         onChange={setDateOfBirth}
                         value={dateOfBirth}
-                        className="mt-4"
+                        className={`mt-4 ${theme 
+                        ? "bg-[#1b1d21]" 
+                        : "bg-[white]"}`}
                     />
             </section>
         </>

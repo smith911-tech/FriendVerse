@@ -22,8 +22,9 @@ export default function HeaderSearch({SuggestData, Popover, isSearchInput}: user
     const [searchTerm, setSearchTerm] = useState<string>("");
 
 
-    function getSuggestions() {
-        const regex = new RegExp(`${searchTerm}`);
+    function getSuggestions(searchTerm: any) {
+        const escapedTerm = searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // Escape special characters
+        const regex = new RegExp(escapedTerm, 'i'); // 'i' flag for case-insensitive matching
         return SuggestData.filter((data: any) => regex.test(data.fullName || data.username)).slice(0, 5);
     }
     let userid = sessionStorage.getItem('UserId')
@@ -37,14 +38,14 @@ export default function HeaderSearch({SuggestData, Popover, isSearchInput}: user
                 <input type="text" className='w-full h-9 bg-[#f0f2f5] outline-none rounded-lg px-3' placeholder='Search FriendVerse' ref={inputRef} value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
             </section>
             {searchTerm && (
-                <div className={`absolute bg-white w-full   shadow z-10 -ml-2 overflow-y-auto overflow-x-hidden ${getSuggestions().length === 0 ? " h-[inherit] " : "h-44 "}`}>
-                    {getSuggestions().length === 0 ? (
+                <div className={`absolute bg-white w-full   shadow z-10 -ml-2 overflow-y-auto overflow-x-hidden ${getSuggestions(searchTerm).length === 0 ? " h-[inherit] " : "h-44 "}`}>
+                    {getSuggestions(searchTerm).length === 0 ? (
                         <button className="ml-2 py-3 w-full font-semibold flex justify-center gap-2">
                             <span className=" text-2xl text-red-600"><GoAlertFill /></span>
                             <h2>User doesn't exist</h2>
                         </button>
                     ) : (
-                        getSuggestions().filter((data: any) => data.id !== userid).map((data: any) => (
+                        getSuggestions(searchTerm).filter((data: any) => data.id !== userid).map((data: any) => (
                             <Link to={`/${data.username}`}>
                                 <button
                                     className="cursor-pointer w-full select-none flex  my-4 ml-1 rounded-2xl hover:bg-[#e1e6e7] gap-2"

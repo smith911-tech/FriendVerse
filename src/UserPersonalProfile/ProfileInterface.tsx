@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom';
 import ProfileDetails from './ProfileDetails';
 import { useState } from 'react';
 import { UserCoverImg, UserProfileImg } from './UserModai/UserProfileModal';
+import useThemeStore from '../Zustand';
 
 export default function UserProfile({ 
     userData, 
@@ -39,20 +40,27 @@ export default function UserProfile({
         setShowCmodal(false);
         setShowPmodal(false);
     };
+    //! Theme Mode
+    const theme = useThemeStore((state: any) => state.theme);
+
     return(
         <main>
         <section className='relative'>
                 {userData ? (
-                    <section className="w-full flex flex-col justify-center bg-white">
-                        <div className="bg-white rounded-lg shadow p-1">
-                            <section className='flex justify-between px-2 py-1 smm500:px-1 sticky top-16 z-[50] bg-white'>
+                    <section className={`w-full flex flex-col justify-center 
+                    ${theme ? "bg-black text-white" : "bg-white text-black"}`}>
+                        <div className={`rounded-lg shadow p-1 
+                        ${theme ? "bg-black" : "bg-white "}`}>
+                            <section className={`flex justify-between px-2 py-2 smm500:px-1 sticky top-16 z-[50] ${theme ? "bg-black" : "bg-white "}`}>
                             <Link to='/Home'>
-                                <div className=' text-[#0000008e] text-3xl top-1 left-1 cursor-pointer'>
+                                <div className={`text-3xl top-1 left-1 cursor-pointer 
+                                ${theme ? "text-[#ffffffe2]" : "text-[#0000008e]"}`}>
                                     <BsFillArrowLeftCircleFill />
                                 </div>
                             </Link>
                             <Link to='/Profile/Settings'>
-                            <div className=' text-[#0000008e] text-3xl top-1 right-1 cursor-pointer bg-white'>
+                                    <div className={`text-3xl top-1 right-1 cursor-pointer 
+                                    ${theme ? "text-[#ffffffe2]" : "text-[#0000008e]"}`}>
                                 <BsFillGearFill />
                             </div>
                             </Link>
@@ -73,7 +81,10 @@ export default function UserProfile({
                                     />
                                 )}
                                 {userData.profileImage === "" ? (
-                                    <div className=' text-8xl absolute left-4 -translate-y-1/2  border-white rounded-full bg-white text-[#000000d7] smm500:text-[80px] smm500:left-1'>
+                                    <div className={`text-8xl absolute left-4 -translate-y-1/2   rounded-full  smm500:text-[80px] smm500:left-1 
+                                    ${theme 
+                                    ? "text-[#fff] bg-black border-black " 
+                                    : "bg-white text-[#000000d7] border-white"}`}>
                                         <BiSolidUserCircle />
                                     </div>
                                 ) : (

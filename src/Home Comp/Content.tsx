@@ -7,7 +7,7 @@ interface userdatas{
     handleBodyClick: () => void,
 }
 
-export default function Content({ userData, isInputClicked, handleInputClick, handleBodyClick }: userdatas): JSX.Element {
+export default function Content({ userData, isInputClicked, handleInputClick, handleBodyClick }: userdatas) {
 
     return (
         <main className='relative'>
