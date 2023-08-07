@@ -8,6 +8,7 @@ import { deleteUser } from "firebase/auth"
 import { useNavigate } from "react-router-dom";
 import { FilldetailsError } from '../Error-SuccessM'
 import { useState } from "react";
+import useThemeStore from '../Zustand';
 export default function DeleteModal({ setShowDeleteModal }: userdats){
     // ! error message
     const [error, setError] = useState<string | boolean>(false)
@@ -51,32 +52,48 @@ export default function DeleteModal({ setShowDeleteModal }: userdats){
             }, 2000)
         }
     };
+    const theme = useThemeStore((state: any) => state.theme);
 
 
 
     return(
         <>
-            <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-                <div className="bg-white p-4 rounded-lg w-[400px] select-none">
-                    <h2 className="text-xl font-bold mb-4">Confirm Account Deletion</h2>
-                    <p className="mb-4">Are you sure you want to delete your account?</p>
+            <div
+                className={`fixed inset-0 flex items-center justify-center ${theme ? 'bg-black bg-opacity-50' : 'bg-white bg-opacity-50'
+                    } z-50`}
+            >
+                <div
+                    className={`${theme ? 'bg-gray-800' : 'bg-white'
+                        } p-4 rounded-lg w-[400px] select-none`}
+                >
+                    <h2
+                        className={`${theme ? 'text-white' : 'text-black'
+                            } text-xl font-bold mb-4`}
+                    >
+                        Confirm Account Deletion
+                    </h2>
+                    <p className={`${theme ? 'text-white' : 'text-black'} mb-4`}>
+                        Are you sure you want to delete your account?
+                    </p>
                     <div className="flex justify-between">
                         <button
-                            className="bg-red-500 text-white px-4 py-2 rounded-lg"
-                        onClick={handleDelete}>
+                            className={`${theme ? 'bg-red-500' : 'bg-red-500'
+                                } text-white px-4 py-2 rounded-lg`}
+                            onClick={handleDelete}
+                        >
                             Yes, Delete
                         </button>
                         <button
-                            className="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg"
+                            className={`${theme ? 'bg-gray-700' : 'bg-gray-300'
+                                } ${theme ? 'text-white' : 'text-gray-700'
+                                } px-4 py-2 rounded-lg`}
                             onClick={() => setShowDeleteModal(false)}
                         >
                             Cancel
                         </button>
                     </div>
                 </div>
-                {error && <FilldetailsError
-                    error={error}
-                />}
+                {error && <FilldetailsError error={error} />}
             </div>
         </>
     )
