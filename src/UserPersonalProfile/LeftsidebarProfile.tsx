@@ -44,8 +44,8 @@ export default function ProfileLeftbar({ SuggestData }: userdatas): JSX.Element 
                                         />
                                     )}
                                 </div>
-                                    <div className={`${theme ? "text-[#ffffffca]" : "text-[#000000d4]"}`}>
-                                        <p className="text-left font-semibold">{data.fullName}
+                                    <div className={`w-full ${theme ? "text-[#ffffffca]" : "text-[#000000d4]"}`}>
+                                        <p className="text-left font-semibold whitespace-nowrap overflow-hidden w-[70%] text-ellipsis">{data.fullName}
                                         </p>
                                         <p className="text-sm text-left"><span className='select-none'>@</span>{data.username}</p>
                                     </div>

@@ -25,9 +25,6 @@ export default function Signup() {
     const [dateOfBirth, setDateOfBirth] = useState<string>("");
     const [isChecked, setIsChecked] = useState<boolean>(false);
     const [userName, setUsername] = useState<string>("");
-    // ! date of birth hidden or not state
-    const [showDOB] = useState<boolean>(true)
-    
 
     // ! email validation 
     const isValidEmail = (email: string): boolean => {
@@ -107,7 +104,9 @@ export default function Signup() {
                         bio: "Hey, i'm new at Friend Verse",
                         coverImage: "",
                         Location : "",
-                        showDOB: showDOB
+                        showDOB: true,
+                        followers: 0,
+                        following: 0
                     });
                 } catch (e) {
                     console.error("Error adding document: ", e);

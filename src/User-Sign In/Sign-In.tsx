@@ -68,6 +68,7 @@ export default function SignIn() {
         else if (!userid) {
             navigate('/')
         }
+        window.scrollTo(0, 0);
     }, [])
     return (
         <main className="bg-[#1B1D21] h-[120vh] px-[29px] py-[61px] text-white w-full">

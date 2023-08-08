@@ -104,10 +104,10 @@ export default function Dashboard({ userData, SuggestData }: userdatas): JSX.Ele
                                         />
                                     )}
                                 </div>
-                                <div>
+                                <div className='w-full'>
                                     <p
-                                        className="text-left font-semibold">{data.fullName}</p>
-                                        <p className={`text-sm text-left ${theme ? "text-white" : "text-[#000000a9]"}`}><span className='select-none'>@</span>
+                                        className="text-left font-semibold whitespace-nowrap overflow-hidden w-[70%] text-ellipsis">{data.fullName}</p>
+                                        <p className={` wor text-sm text-left ${theme ? "text-white" : "text-[#000000a9]"}`}><span className='select-none'>@</span>
                                         {data.username}</p>
                                 </div>
                             </div>
