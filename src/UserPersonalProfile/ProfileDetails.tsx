@@ -53,7 +53,11 @@ export default function UserProfileDetails({
 
     return(
         <>
-            <section className='w-full px-6 py-2 smm500:px-2 '>
+            <section className={`w-full px-6 py-2 smm500:px-2  
+            ${theme
+                ? isInputClicked ? " bg-[#000000] opacity-30 cursor-default" : "bg-[#000] cursor-auto"
+                : isInputClicked ? "bg-[#000000ca] cursor-default" : "bg-[#fff] cursor-auto"
+                }`}>
             <button onClick={handleInputClick} className='block my-0 ml-auto bg-[#3b82f6] text-white font-semibold py-1 px-2 rounded-lg'>
                 <div className='flex gap-[2px] select-none'>
                     <p className='mt-1'><BsFillPencilFill /></p>
@@ -97,7 +101,8 @@ export default function UserProfileDetails({
                         <span className={`select-none ${theme ? "text-[white]" : "text-[black] "}`}>10</span> Following</li>
                 </ul>
             <hr />
-                <ProfileSLideBtn isInputClicked={isInputClicked} handleBodyClick={handleBodyClick} />
+                <ProfileSLideBtn 
+                handleBodyClick={handleBodyClick} />
         </section>
             <UpdateP
             isInputClicked={isInputClicked} 

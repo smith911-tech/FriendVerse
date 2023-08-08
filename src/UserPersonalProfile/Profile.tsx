@@ -69,6 +69,7 @@ export default function userPersonalProfile() {
     };
     const handleInputClick = () => {
         setInputClicked(true);
+        window.scrollTo(0, 0)
     };
 
     //! Theme Mode

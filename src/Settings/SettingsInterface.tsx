@@ -141,7 +141,10 @@ export default function SettingsInterface({ userData }: userdatas) {
             )
                 :
                 (
-                    <LongCard />
+                    <div className='h-screen'>
+                        <LongCard />
+                    </div>
+                    
                 )
             }
         </>

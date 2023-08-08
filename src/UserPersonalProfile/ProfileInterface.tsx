@@ -122,7 +122,9 @@ export default function UserProfile({
                         />
                     </section>
                 ) : (
-                    <SmallCard />
+                    <div className='h-screen'>
+                        <SmallCard />
+                    </div>
                 )}
         </section>
         </main>
