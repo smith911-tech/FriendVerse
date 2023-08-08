@@ -33,8 +33,8 @@ export default function SettingsInterface({ userData }: userdatas) {
     return (
         <>
             {userData ? (
-                <main className={`-100 px-4 py-4 pb-12 ${theme ? "bg-black" : "bg-gray"}`}>
-                    <section className={`py-3 sticky top-16 z-[50] ${theme ? "bg-black" : "bg-[#f3f4f6]"}`}>
+                <main className={` px-4 py-4 pb-12 ${theme ? "bg-black" : "bg-gray"}`}>
+                    <section className={`py-3 sticky top-16 z-30 ${theme ? "bg-black" : "bg-[#f3f4f6]"}`}>
                         <Link onClick={(() => {
                             window.scrollTo(0, 0)
                         })} to="/Profile" className="text-blue-500 flex items-center gap-1">

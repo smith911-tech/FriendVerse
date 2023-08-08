@@ -53,8 +53,8 @@ export default function Dashboard({ userData, SuggestData }: userdatas): JSX.Ele
                                     </Link>
                             )}
                         </div>
-                        <div className="mt-8 text-center font-medium mb-2">
-                            <h2 className="pb-1 capitalize">{userData.fullName}</h2>
+                        <div className="mt-8 text-center font-medium mb-2 w-full">
+                            <h2 className="pb-1 capitalize whitespace-nowrap overflow-hidden w-[100%] text-ellipsis">{userData.fullName}</h2>
 
                             <h2 className={`text-xs px-2 text-center ${theme ? "text-[#ffffffd6]" : "text-[#000000a5]"}`}>{userData.bio}</h2>
                         </div>

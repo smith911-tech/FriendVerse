@@ -32,7 +32,8 @@ export default function Header({ userData, SuggestData }: userdatas) {
                     <AiOutlineSearch />
                 </span>
                 </Popover.Button>
-                    <Popover.Panel className="absolute z-[50] bg-white top-0 w-[320px] -left-14 shadow-2xl pt-2 px-2">
+                    <Popover.Panel className={`absolute z-[50] top-0 w-[320px] -left-14 shadow-2xl pt-2 px-2 
+                    ${theme ? "bg-black text-white" : " bg-white text-black"}`}>
                         <HeaderSearch SuggestData={SuggestData} Popover={Popover} handleInputClick={handleInputClick} isSearchInput={isSearchInput}/>
                     </Popover.Panel>
                 </Popover>
