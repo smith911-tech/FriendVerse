@@ -23,7 +23,7 @@ export default function Header({ userData, SuggestData }: userdatas) {
     const theme = useThemeStore((state: any) => state.theme);
 
     return (
-        <header className={`shadow  flex justify-between px-3 py-2 text-[#000000bc] select-none ${theme ? "bg-[#000]  " : "bg-[#fff]"} `}> 
+        <header className={` shadow  flex justify-between px-3 py-2 text-[#000000bc] select-none ${theme ? "bg-[#000]  " : "bg-[#fff]"} `}> 
         <div className='flex gap-2'>
                 <img src={logo} alt="" className='w-[40px] object-contain smm500:w-[30px]' />
                 <Popover className="relative sm650:hidden lg1150:hidden">

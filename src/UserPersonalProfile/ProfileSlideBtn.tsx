@@ -102,7 +102,7 @@ export default function ProfileSides({handleBodyClick, isInputClicked}: userdata
                     </div>
                 </Slider>
             </main>
-            <section className={` ${isInputClicked ? " brightness-[0.2] cursor-default" : " brightness-100 cursor-auto"}`} onClick={handleBodyClick}>
+            <section className={` ${isInputClicked ? " brightness-[0.2] cursor-default" : " brightness-100 cursor-autom"}`} onClick={handleBodyClick}>
                 {clicked.verb && <Verbs />}
                 {clicked.reverb && <Reverb />}
                 {clicked.liked && <Liked />}
