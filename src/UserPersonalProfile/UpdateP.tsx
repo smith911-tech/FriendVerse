@@ -161,7 +161,8 @@ export default function UpdateProfile({
     return (
         <>
             {isInputClicked && (
-                <div className={` absolute top-0 left-0 right-0 mx-auto  px-4 pb-4  shadow md970:w-[100%] sm650:-top-9 rounded-t-2xl h-[35rem]  overflow-y-auto z-[60] ${theme ? "bg-black" : "bg-white"}`}>
+                <div className=' absolute top-0 left-0 right-0 bg-black h-[36rem]'>
+                <div className={` absolute top-0 left-0 right-0 mx-auto  px-4 pb-5  shadow md970:w-[100%] sm650:-top-9 rounded-t-2xl h-[35rem]  overflow-y-auto z-[60] ${theme ? "bg-black" : "bg-white"}`}>
                     <SaveUpdateNav 
                     handleUpdate={handleUpdate}
                     handleBodyClick={handleBodyClick}
@@ -195,6 +196,7 @@ export default function UpdateProfile({
                         setShowDOB={setShowDOB}
                         />
                     </div>
+                </div>
                 </div>
             )}
             {error && <FilldetailsError error={error} />}

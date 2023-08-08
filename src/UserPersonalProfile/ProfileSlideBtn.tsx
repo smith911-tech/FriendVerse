@@ -7,7 +7,10 @@ import Verbs from './Verbs';
 import Reverb from './Reverbs';
 import Liked from './Liked';
 import Impressions from './Impression';
-
+interface userdatas{
+    handleBodyClick : () => void
+    isInputClicked: boolean
+}
 type ClickedState = {
     verb: boolean;
     reverb: boolean;
@@ -15,7 +18,7 @@ type ClickedState = {
     impression: boolean;
 };
 
-export default function ProfileSides() {
+export default function ProfileSides({handleBodyClick, isInputClicked}: userdatas) {
     let settings = {
         speed: 700,
         slidesToShow: 4,
@@ -99,7 +102,7 @@ export default function ProfileSides() {
                     </div>
                 </Slider>
             </main>
-            <section>
+            <section className={` ${isInputClicked ? " brightness-[0.2] cursor-default" : " brightness-100 cursor-auto"}`} onClick={handleBodyClick}>
                 {clicked.verb && <Verbs />}
                 {clicked.reverb && <Reverb />}
                 {clicked.liked && <Liked />}

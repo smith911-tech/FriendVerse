@@ -97,7 +97,7 @@ export default function UserProfileDetails({
                         <span className={`select-none ${theme ? "text-[white]" : "text-[black] "}`}>10</span> Following</li>
                 </ul>
             <hr />
-            <ProfileSLideBtn />
+                <ProfileSLideBtn isInputClicked={isInputClicked} handleBodyClick={handleBodyClick} />
         </section>
             <UpdateP
             isInputClicked={isInputClicked} 
