@@ -49,9 +49,7 @@ export default function UserProfile({
                 {userData ? (
                     <section className={`w-full flex flex-col justify-center 
                     ${theme ? "bg-black text-white" : "bg-white text-black"}`}>
-                        <div className={`rounded-lg shadow p-1 
-                        ${theme ? "bg-black" : "bg-white "}`}>
-                            <section className={`flex justify-between px-2 py-2 smm500:px-1 sticky top-16 z-[50] ${theme ? "bg-black" : "bg-white "}`}>
+                        <section className={`flex justify-between px-2 py-2 smm500:px-1 sticky top-16 z-[50] ${theme ? "bg-black" : "bg-white "}`}>
                             <Link to='/Home'>
                                 <div className={`text-3xl top-1 left-1 cursor-pointer 
                                 ${theme ? "text-[#ffffffe2]" : "text-[#0000008e]"}`}>
@@ -59,12 +57,14 @@ export default function UserProfile({
                                 </div>
                             </Link>
                             <Link to='/Profile/Settings'>
-                                    <div className={`text-3xl top-1 right-1 cursor-pointer 
+                                <div className={`text-3xl top-1 right-1 cursor-pointer 
                                     ${theme ? "text-[#ffffffe2]" : "text-[#0000008e]"}`}>
-                                <BsFillGearFill />
-                            </div>
+                                    <BsFillGearFill />
+                                </div>
                             </Link>
-                            </section> 
+                        </section> 
+                        <div className={`rounded-lg shadow p-1 
+                        ${theme ? "bg-black" : "bg-white "}`}>
                             <div className="relative select-none">
                                 {userData.coverImage === "" ? (
                                     <img
@@ -122,7 +122,9 @@ export default function UserProfile({
                         />
                     </section>
                 ) : (
-                    <SmallCard />
+                    <div className='h-screen'>
+                        <SmallCard />
+                    </div>
                 )}
         </section>
         </main>

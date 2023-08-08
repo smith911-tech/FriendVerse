@@ -9,6 +9,7 @@ import { useEffect, useRef, useState} from "react";
 import { GoAlertFill } from 'react-icons/go'
 import { Link } from "react-router-dom";
 import { BiSolidUserCircle } from 'react-icons/bi'
+import useThemeStore from '../Zustand';
 
 export default function HeaderSearch({SuggestData, Popover, isSearchInput}: userdatas){
     
@@ -29,16 +30,21 @@ export default function HeaderSearch({SuggestData, Popover, isSearchInput}: user
     }
     let userid = sessionStorage.getItem('UserId')
 
+    const theme = useThemeStore((state: any) => state.theme);
+
     return(
         <header>
             <section className='flex gap-2 pb-4'>
-                <Popover.Button  className=' text-4xl pb-2 rounded-full hover:bg-[#f0f2f5] h-9'>
+                <Popover.Button className={` text-4xl pb-2 rounded-full h-9
+                ${theme ? "hover:bg-[#1b1d21] " : "hover:bg-[#f0f2f5] "}`}>
                     <BiLeftArrowAlt />
                 </Popover.Button>
-                <input type="text" className='w-full h-9 bg-[#f0f2f5] outline-none rounded-lg px-3' placeholder='Search FriendVerse' ref={inputRef} value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+                <input type="text" className={`w-full h-9 outline-none rounded-lg px-3 
+                ${theme ? "bg-[#1b1d21]" : "bg-[#f0f2f5]"}`} placeholder='Search FriendVerse' ref={inputRef} value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
             </section>
             {searchTerm && (
-                <div className={`absolute bg-white w-full   shadow z-10 -ml-2 overflow-y-auto overflow-x-hidden ${getSuggestions(searchTerm).length === 0 ? " h-[inherit] " : "h-44 "}`}>
+                <div className={`absolute w-full   shadow z-10 -ml-2 overflow-y-auto overflow-x-hidden ${getSuggestions(searchTerm).length === 0 ? " h-[inherit] " : "h-44 "} 
+                ${theme ? "bg-black" : "bg-white"}`}>
                     {getSuggestions(searchTerm).length === 0 ? (
                         <button className="ml-2 py-3 w-full font-semibold flex justify-center gap-2">
                             <span className=" text-2xl text-red-600"><GoAlertFill /></span>
@@ -48,14 +54,15 @@ export default function HeaderSearch({SuggestData, Popover, isSearchInput}: user
                         getSuggestions(searchTerm).filter((data: any) => data.id !== userid).map((data: any) => (
                             <Link to={`/${data.username}`}>
                                 <button
-                                    className="cursor-pointer w-full select-none flex  my-4 ml-1 rounded-2xl hover:bg-[#e1e6e7] gap-2"
+                                    className={`cursor-pointer w-full select-none flex  my-4 ml-1 rounded-2xl gap-2
+                                    ${theme ? "hover:bg-[#1b1d21] " : "hover:bg-[#f0f2f5] "}`}
                                     onClick={() => {setSearchTerm('')
                                         window.scrollTo(0, 0);
                                 }}
                                     key={data.id}>
                                     <div>
                                         {data.profileImage === "" ? (
-                                            <div className='text-[48px]   rounded-full text-[#000000d7]'>
+                                            <div className='text-[48px]   rounded-full '>
                                                 <BiSolidUserCircle />
                                             </div>
                                         ) : (
@@ -66,11 +73,12 @@ export default function HeaderSearch({SuggestData, Popover, isSearchInput}: user
                                             />
                                         )}
                                     </div>
-                                    <div>
+                                    <div className='full'>
                                         <p
-                                            className="text-left font-semibold">{data.fullName}</p>
+                                            className="text-left font-semibold whitespace-nowrap overflow-hidden w-[100%] text-ellipsis">{data.fullName}</p>
                                         <p
-                                            className="text-sm text-left text-[#000000a9]"><span className='select-none'>@</span>{data.username}</p>
+                                            className={`text-sm text-left
+                                            ${theme ? "text-[#ffffffcd]" : " text-[#000000a9]"}`}><span className='select-none'>@</span>{data.username}</p>
                                     </div>
                                 </button>
                             </Link>

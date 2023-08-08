@@ -80,7 +80,7 @@ export default function UserSearchData({ SuggestData }: userdatas){
                                         )}
                                     </div>
                                     <div>
-                                        <p className="text-left font-semibold">{data.fullName}</p>
+                                        <p className="text-left font-semibold whitespace-nowrap overflow-hidden w-[90%] text-ellipsis">{data.fullName}</p>
                                         <p
                                             className={`text-sm text-left ${theme ? "text-[#ffffffd4]" : "text-[#000000a9]"}`}><span className='select-none'>@</span>{data.username}</p>
                                     </div>

@@ -69,6 +69,7 @@ export default function userPersonalProfile() {
     };
     const handleInputClick = () => {
         setInputClicked(true);
+        window.scrollTo(0, 0)
     };
 
     //! Theme Mode
@@ -79,7 +80,7 @@ export default function userPersonalProfile() {
 
     return (
         <main className="relative">
-            <header onClick={handleBodyClick} className={`fixed  top-0 w-full z-10  ${isInputClicked ? " brightness-[0.2]" : " brightness-100"}`}>
+            <header onClick={handleBodyClick} className={`fixed  top-0 w-full z-[500]  ${isInputClicked ? " brightness-[0.2]" : " brightness-100"}`}>
                 <Header userData={userData} SuggestData={SuggestData} />
             </header>
 
@@ -96,7 +97,7 @@ export default function userPersonalProfile() {
                         SuggestData={SuggestData} />
                 </section>
                 <section
-                    className=" w-[95%] mt-4 rounded-2xl  md800:w-[60%] sm650:w-[100%] smm500:mt-0 h-screen">
+                    className=" w-[95%] mt-4 rounded-2xl  md800:w-[60%] sm650:w-[100%] smm500:mt-0">
                     <ProfileInterface 
                     userData={userData} 
                     handleInputClick={handleInputClick}

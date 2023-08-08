@@ -11,7 +11,7 @@ export default function SaveUpdateNav({ handleBodyClick, handleUpdate, Loader }:
     const theme = useThemeStore((state: any) => state.theme);
     return(
         <>
-            <section className={`flex justify-between sticky z-20  h-22 top-0 py-3 ${theme ? "bg-black" : "bg-white"}`}>
+            <section className={`flex justify-between sticky z-20  h-22 -top-2 py-3 ${theme ? "bg-black" : "bg-white"}`}>
                 <div className='flex gap-3'>
                     <span className=' text-2xl cursor-pointer' onClick={handleBodyClick}><AiOutlineClose /></span>
                     <h2 className=' font-medium'>Edit Profile</h2>

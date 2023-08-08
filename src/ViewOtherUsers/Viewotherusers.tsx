@@ -94,7 +94,7 @@ export default function ViewOtherUsers() {
                         SuggestData={SuggestData} />
                 </section>
                 <section
-                    className=" w-[95%] mt-4 rounded-2xl  md800:w-[60%] sm650:w-[100%] smm500:mt-0 h-screen">
+                    className=" w-[95%] mt-4 rounded-2xl  md800:w-[60%] sm650:w-[100%] smm500:mt-0">
                     <ViewUsersData data={data}/>
                 </section>
                 <section

@@ -2,6 +2,7 @@ interface userdatas {
     userData: any
 }
 import { useState } from 'react'
+import { auth } from '../firebase-config'
 import { BsFillArrowLeftCircleFill } from 'react-icons/bs'
 import { BiSolidUserCircle } from 'react-icons/bi'
 import { Link, useNavigate } from 'react-router-dom'
@@ -18,23 +19,28 @@ export default function SettingsInterface({ userData }: userdatas) {
     const [successFul, setSuccessful] = useState<string | boolean>(false)
 
     const navigate = useNavigate()
-
     const handleLogout = () => {
-        setSuccessful("Logging out...");
-        setTimeout(() => {
-            sessionStorage.removeItem('UserId');
-            setSuccessful(false)
-            navigate("/")
-            window.scrollTo(0, 0)
-        }, 1000)
-    }
+        auth.signOut()
+            .then(() => {
+                setSuccessful("Logging out...");
+                setTimeout(() => {
+                    sessionStorage.removeItem('UserId');
+                    setSuccessful(false)
+                    navigate("/")
+                    window.scrollTo(0, 0)
+                }, 1000)
+            })
+            .catch((error: any) => {
+                console.error("Error logging out:", error);
+            });
+    };
     const theme = useThemeStore((state: any) => state.theme);
     const toggleTheme = useThemeStore((state: any) => state.toggleTheme)
     return (
         <>
             {userData ? (
-                <main className={`-100 px-4 py-4 pb-12 ${theme ? "bg-black" : "bg-gray"}`}>
-                    <section className={`py-3 sticky top-16 z-[50] ${theme ? "bg-black" : "bg-[#f3f4f6]"}`}>
+                <main className={` px-4 py-4 pb-12 ${theme ? "bg-black" : "bg-gray"}`}>
+                    <section className={`py-3 sticky top-16 z-30 ${theme ? "bg-black" : "bg-[#f3f4f6]"}`}>
                         <Link onClick={(() => {
                             window.scrollTo(0, 0)
                         })} to="/Profile" className="text-blue-500 flex items-center gap-1">
@@ -66,7 +72,7 @@ export default function SettingsInterface({ userData }: userdatas) {
                         </div>
                         <hr className="mb-6" />
                         <div className="space-y-4">
-                            <div className="flex items-center justify-between">
+                            <div className="flex items-center justify-between gap-1">
                                 <h2 className="text-lg font-semibold">Privacy Settings</h2>
                                 <select
                                     id="postsPrivacy"
@@ -78,7 +84,7 @@ export default function SettingsInterface({ userData }: userdatas) {
                                 </select>
                             </div>
                             <hr />
-                            <div className="flex items-center justify-between">
+                            <div className="flex items-center justify-between gap-1">
                                 <h2 className="text-lg font-semibold">Theme Settings</h2>
                                 <select
                                     id="theme"
@@ -141,7 +147,10 @@ export default function SettingsInterface({ userData }: userdatas) {
             )
                 :
                 (
-                    <LongCard />
+                    <div className='h-screen'>
+                        <LongCard />
+                    </div>
+                    
                 )
             }
         </>

@@ -5,7 +5,7 @@ interface userdatas {
     showDOB: boolean
     setShowDOB: any
 }
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { db, storage } from '../firebase-config';
 import { doc, updateDoc } from 'firebase/firestore';
 import SaveUpdateNav from './UserUpload/SaveUpdateNav';
@@ -156,12 +156,21 @@ export default function UpdateProfile({
 
     //! Theme Mode
     const theme = useThemeStore((state: any) => state.theme);
-
+    useEffect(() => {
+        if (isInputClicked) {
+            // Add the 'overflow-hidden' class to the body when the modal is shown
+            document.body.classList.add('overflow-hidden');
+        } else {
+            // Remove the 'overflow-hidden' class from the body when the modal is hidden
+            document.body.classList.remove('overflow-hidden');
+        }
+    }, [isInputClicked]);
 
     return (
         <>
             {isInputClicked && (
-                <div className={` absolute top-0 left-0 right-0 mx-auto  px-4 pb-4  shadow md970:w-[100%] sm650:-top-9 rounded-t-2xl h-[35rem]  overflow-y-auto z-[60] ${theme ? "bg-black" : "bg-white"}`}>
+                <div className=' absolute -top-[46px] left-0 right-0 bg-black h-[36rem] pt-6 z-50'>
+                <div className={` right-0 mx-auto  px-4 pb-5 pt-2  shadow md970:w-[100%] sm650:-top-9 rounded-t-2xl h-[37rem]  overflow-y-auto z-[60] ${theme ? "bg-black" : "bg-white"}`}>
                     <SaveUpdateNav 
                     handleUpdate={handleUpdate}
                     handleBodyClick={handleBodyClick}
@@ -195,6 +204,7 @@ export default function UpdateProfile({
                         setShowDOB={setShowDOB}
                         />
                     </div>
+                </div>
                 </div>
             )}
             {error && <FilldetailsError error={error} />}
