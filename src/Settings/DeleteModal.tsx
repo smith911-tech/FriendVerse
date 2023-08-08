@@ -38,6 +38,10 @@ export default function DeleteModal({ setShowDeleteModal }: userdats){
             // Delete the user from Firebase Authentication
             await deleteUser(user);
 
+            // Remove the userid from sessionStorage
+            auth.signOut()
+            sessionStorage.removeItem("UserId");
+
             // Navigate to the desired location (e.g., "/")
             navigate("/");
 
