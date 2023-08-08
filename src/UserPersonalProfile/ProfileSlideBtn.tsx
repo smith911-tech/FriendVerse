@@ -9,7 +9,6 @@ import Liked from './Liked';
 import Impressions from './Impression';
 interface userdatas{
     handleBodyClick : () => void
-    isInputClicked: boolean
 }
 type ClickedState = {
     verb: boolean;
@@ -18,7 +17,7 @@ type ClickedState = {
     impression: boolean;
 };
 
-export default function ProfileSides({handleBodyClick, isInputClicked}: userdatas) {
+export default function ProfileSides({handleBodyClick}: userdatas) {
     let settings = {
         speed: 700,
         slidesToShow: 4,
