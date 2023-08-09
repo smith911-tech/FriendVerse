@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 import ProfileDetails from './ProfileDetails';
 import { useState } from 'react';
 import { UserCoverImg, UserProfileImg } from './UserModai/UserProfileModal';
-import useThemeStore from '../Zustand';
+import { useThemeStore} from '../Zustand';
 
 export default function UserProfile({ 
     userData, 

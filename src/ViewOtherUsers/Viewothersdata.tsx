@@ -10,7 +10,7 @@ import { BiSolidUserCircle } from "react-icons/bi";
 import { OtherUserCover, OtherUsersProfile } from './OtheProfileModal';
 import OthersProfileDetails from './OthersProfiledetails';
 import { BsThreeDots } from 'react-icons/bs'
-import useThemeStore from '../Zustand';
+import {useThemeStore} from '../Zustand';
 export default function ViewUsersData({ data }: userDatas) {
     const navigate = useNavigate();
     let userid = sessionStorage.getItem('UserId')

@@ -7,7 +7,7 @@ import { collection, doc, onSnapshot } from "firebase/firestore"
 import { db } from "../firebase-config"
 import Leftsidebar from "../GeneralComponent/Leftsidebar";
 import ViewUsersData from "./Viewothersdata";
-import useThemeStore from '../Zustand';
+import {useThemeStore} from '../Zustand';
 export default function ViewOtherUsers() {
     let userid = sessionStorage.getItem('UserId')
 

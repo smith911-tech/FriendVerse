@@ -4,7 +4,7 @@ import ButtomNav from "../GeneralComponent/ButtomNav";
 import { collection,  onSnapshot } from "firebase/firestore"
 import { db } from '../firebase-config'
 import UserSearchData from "./UserSearchData";
-import useThemeStore from '../Zustand';
+import {useThemeStore} from '../Zustand';
 export default function UserSearch() {
     const navigate = useNavigate();
     let userid = sessionStorage.getItem('UserId')

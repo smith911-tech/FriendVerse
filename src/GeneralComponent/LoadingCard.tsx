@@ -1,4 +1,4 @@
-import useThemeStore from '../Zustand';
+import {useThemeStore} from '../Zustand';
 export function SmallCard() {
     const theme = useThemeStore((state: any) => state.theme);
     return(

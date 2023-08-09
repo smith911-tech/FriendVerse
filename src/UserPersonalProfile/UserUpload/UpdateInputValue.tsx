@@ -16,7 +16,7 @@ import DatePicker from 'react-date-picker';
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import { Switch } from '@headlessui/react'
-import useThemeStore from '../../Zustand';
+import {useThemeStore} from '../../Zustand';
 export default function UpdateInputValue({
     fullName,
     setFullName,

@@ -7,7 +7,7 @@ import ButtomNav from "../GeneralComponent/ButtomNav";
 import { collection, doc, onSnapshot } from "firebase/firestore"
 import { db } from '../firebase-config'
 import NotificationContent from "./NotificationContent";
-import useThemeStore from '../Zustand';
+import {useThemeStore} from '../Zustand';
 
 export default function NotificationComp() {
     const navigate = useNavigate();

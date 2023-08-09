@@ -7,7 +7,7 @@ import ButtomNav from "../GeneralComponent/ButtomNav";
 import { collection, doc, onSnapshot } from "firebase/firestore"
 import { db } from '../firebase-config'
 import VideoSection from "./VideoSection";
-import useThemeStore from '../Zustand';
+import {useThemeStore} from '../Zustand';
 
 export default function VideoContent() {
     const navigate = useNavigate();

@@ -9,7 +9,7 @@ import { BiSolidUserCircle } from "react-icons/bi";
 import VerfiyId from "./VerifyBox";
 import ProfileProgress from "../Home Comp/ProfileProgress";
 import { Link } from "react-router-dom";
-import useThemeStore from '../Zustand';
+import {useThemeStore} from '../Zustand';
 export default function SideDashboard({ SuggestData, userData }: userdatas):JSX.Element {
     const [searchTerm, setSearchTerm] = useState<string>("");
     const theme = useThemeStore((state: any) => state.theme);

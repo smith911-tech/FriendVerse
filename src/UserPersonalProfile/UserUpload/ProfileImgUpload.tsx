@@ -4,7 +4,7 @@ interface userDatas{
 }
 import { BiSolidUserCircle } from "react-icons/bi";
 import { AiOutlineCloudUpload } from 'react-icons/ai'
-import useThemeStore from '../../Zustand';
+import {useThemeStore} from '../../Zustand';
 export default function ProfileimgUpload({ handleImageUpload, profileImg }: userDatas){
     //! Theme Mode
     const theme = useThemeStore((state: any) => state.theme);
