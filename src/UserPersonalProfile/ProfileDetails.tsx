@@ -10,7 +10,7 @@ import { LiaBirthdayCakeSolid } from 'react-icons/lia'
 import ProfileSLideBtn from './ProfileSlideBtn';
 import UpdateP from './UpdateP';
 import {useState} from 'react'
-import useThemeStore from '../Zustand';
+import {useThemeStore} from '../Zustand';
 export default function UserProfileDetails({ 
     userData, 
     handleInputClick, 

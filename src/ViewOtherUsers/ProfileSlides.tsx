@@ -6,7 +6,7 @@ import Reverb from './OthersReverbs';
 import Liked from './Othersliked';
 import Impressions from './Othersimpression';
 import { useState } from 'react';
-import useThemeStore from '../Zustand';
+import {useThemeStore} from '../Zustand';
 type ClickedState = {
     verb: boolean;
     reverb: boolean;

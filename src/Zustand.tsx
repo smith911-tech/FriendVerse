@@ -15,4 +15,4 @@ const useThemeStore = create((set) => ({
   }),
 }));
 
-export default useThemeStore;
+export {useThemeStore}

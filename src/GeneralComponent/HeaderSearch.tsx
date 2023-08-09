@@ -9,7 +9,7 @@ import { useEffect, useRef, useState} from "react";
 import { GoAlertFill } from 'react-icons/go'
 import { Link } from "react-router-dom";
 import { BiSolidUserCircle } from 'react-icons/bi'
-import useThemeStore from '../Zustand';
+import {useThemeStore} from '../Zustand';
 
 export default function HeaderSearch({SuggestData, Popover, isSearchInput}: userdatas){
     

@@ -1,7 +1,7 @@
 import Slider from 'react-slick'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import useThemeStore from '../Zustand';
+import {useThemeStore} from '../Zustand';
 import { useState } from 'react';
 import Verbs from './Verbs';
 import Reverb from './Reverbs';

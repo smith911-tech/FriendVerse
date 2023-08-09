@@ -5,7 +5,7 @@ import { BiSolidUserCircle } from "react-icons/bi";
 import { LongCard } from "../GeneralComponent/LoadingCard";
 import { GoTelescopeFill } from "react-icons/go";
 import { Link } from "react-router-dom";
-import useThemeStore from '../Zustand';
+import {useThemeStore} from '../Zustand';
 
 export default function ProfileLeftbar({ SuggestData }: userdatas): JSX.Element {
     let userid = sessionStorage.getItem('UserId')

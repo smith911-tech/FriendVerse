@@ -7,7 +7,7 @@ import { collection, doc,  onSnapshot } from "firebase/firestore"
 import { db } from "../firebase-config"
 import ProfileLeftbar from "./LeftsidebarProfile";
 import ProfileInterface from "./ProfileInterface";
-import useThemeStore from '../Zustand';
+import {useThemeStore} from '../Zustand';
 export default function userPersonalProfile() {
     const navigate = useNavigate();
     let userid = sessionStorage.getItem('UserId')

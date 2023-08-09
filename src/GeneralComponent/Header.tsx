@@ -12,7 +12,7 @@ import { Link, NavLink } from 'react-router-dom'
 import { Popover } from '@headlessui/react'
 import HeaderSearch from './HeaderSearch'
 import { useState } from 'react'
-import useThemeStore from '../Zustand';
+import {useThemeStore} from '../Zustand';
 export default function Header({ userData, SuggestData }: userdatas) {
     // ! Opening the post div
     const [isSearchInput, setSearchInput] = useState(false);

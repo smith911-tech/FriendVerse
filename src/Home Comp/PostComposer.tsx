@@ -10,7 +10,7 @@ import { TfiGallery } from 'react-icons/tfi'
 import { ImFileVideo } from 'react-icons/im'
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import useThemeStore from '../Zustand'
+import {useThemeStore} from '../Zustand'
 export default function PostSection({
     handleBodyClick,
     userData,

@@ -14,7 +14,7 @@ import ProfileimgUpload from "./UserUpload/ProfileImgUpload";
 import UpdateInputValue from './UserUpload/UpdateInputValue';
 import { FilldetailsError, SuccessLoginM } from '../Error-SuccessM';
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
-import useThemeStore from '../Zustand';
+import {useThemeStore} from '../Zustand';
 export default function UpdateProfile({ 
     isInputClicked, 
     userData, 

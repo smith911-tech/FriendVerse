@@ -5,7 +5,7 @@ interface userDatas{
 }
 import { AiOutlineClose } from 'react-icons/ai'
 import { ThreeDots } from 'react-loader-spinner'
-import useThemeStore from '../../Zustand';
+import {useThemeStore} from '../../Zustand';
 export default function SaveUpdateNav({ handleBodyClick, handleUpdate, Loader }: userDatas) {
     //! Theme Mode
     const theme = useThemeStore((state: any) => state.theme);

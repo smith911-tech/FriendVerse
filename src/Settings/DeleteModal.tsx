@@ -8,7 +8,7 @@ import { deleteUser } from "firebase/auth"
 import { useNavigate } from "react-router-dom";
 import { FilldetailsError } from '../Error-SuccessM'
 import { useState } from "react";
-import useThemeStore from '../Zustand';
+import {useThemeStore} from '../Zustand';
 export default function DeleteModal({ setShowDeleteModal }: userdats){
     // ! error message
     const [error, setError] = useState<string | boolean>(false)

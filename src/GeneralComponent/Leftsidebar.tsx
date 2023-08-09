@@ -8,7 +8,7 @@ import { BiSolidUserCircle } from "react-icons/bi";
 import { SmallCard } from "./LoadingCard";
 import { GoTelescopeFill } from "react-icons/go";
 import { Link } from 'react-router-dom';
-import useThemeStore from '../Zustand';
+import {useThemeStore} from '../Zustand';
 
 export default function Dashboard({ userData, SuggestData }: userdatas): JSX.Element {
     let userid = sessionStorage.getItem('UserId')
