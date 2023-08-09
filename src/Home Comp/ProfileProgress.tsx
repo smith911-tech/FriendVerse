@@ -6,7 +6,7 @@ interface userdatas {
 import { Progress } from 'react-sweet-progress';
 import "react-sweet-progress/lib/style.css";
 import { MdOutlineVerifiedUser } from "react-icons/md";
-import useThemeStore from '../Zustand';
+import {useThemeStore} from '../Zustand';
 export default function ProfileProgress({userData}: userdatas): JSX.Element {
     const theme = useThemeStore((state: any) => state.theme);
     let percentage = 0;

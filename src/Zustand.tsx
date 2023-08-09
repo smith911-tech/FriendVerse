@@ -1,5 +1,5 @@
 // themeStore.js
-import create from 'zustand';
+import {create} from 'zustand';
 
 const getInitialTheme = () => {
   const storedTheme = localStorage.getItem('theme');
@@ -14,5 +14,4 @@ const useThemeStore = create((set) => ({
     return { theme: newTheme };
   }),
 }));
-
 export {useThemeStore}
