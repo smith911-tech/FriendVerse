@@ -80,9 +80,9 @@ export default function OthersProfileDetails({
                 </section>
                 <ul className={`flex gap-7 font-medium mb-2 ${theme ? "text-[#ffffffda]" : "text-[#000000a5]"}`}>
                     <li>
-                        <span className={`select-none ${theme ? "text-[white]" : "text-[black] "}`}>33</span> Followers</li>
+                        <span className={`select-none ${theme ? "text-[white]" : "text-[black] "}`}>{data.followers}</span> Followers</li>
                     <li className=' list-disc'>
-                        <span className={`select-none ${theme ? "text-[white]" : "text-[black] "}`}>10</span> Following</li>
+                        <span className={`select-none ${theme ? "text-[white]" : "text-[black] "}`}>{data.following}</span> Following</li>
                 </ul>
                 <hr />
                 <OtherUsersSlidesbtn />
