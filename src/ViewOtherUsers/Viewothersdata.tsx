@@ -1,5 +1,9 @@
 interface userDatas {
     data: any;
+    userData: any
+    isInputClicked : boolean
+    handleInputClick:  () => void
+    handleBodyClick: () => void
 }
 import { useState, useEffect } from 'react'
 import { LongCard } from '../GeneralComponent/LoadingCard'
@@ -11,7 +15,13 @@ import { OtherUserCover, OtherUsersProfile } from './OtheProfileModal';
 import OthersProfileDetails from './OthersProfiledetails';
 import { BsThreeDots } from 'react-icons/bs'
 import {useThemeStore} from '../Zustand';
-export default function ViewUsersData({ data }: userDatas) {
+export default function ViewUsersData({ 
+    data, 
+    userData, 
+    isInputClicked,
+    handleInputClick,
+    handleBodyClick
+}: userDatas) {
     const navigate = useNavigate();
     let userid = sessionStorage.getItem('UserId')
     useEffect(() => {
@@ -47,14 +57,15 @@ export default function ViewUsersData({ data }: userDatas) {
     const theme = useThemeStore((state: any) => state.theme);
 
     return (
-        <main >
+        <main className='relative'>
             {data ? (
                 <section className={`w-full flex flex-col justify-center p-1
-                ${theme ? " bg-black text-white" : " bg-white  text-black"}
+                ${theme ? isInputClicked ? " bg-black text-white" : " bg-black text-white"
+                    : isInputClicked ? " text-black" : "bg-white text-black"}
                 `}>
-                    <section className={`flex justify-between px-2 py-2 smm500:px-1 sticky top-16 z-[50] 
+                    <section onClick={handleBodyClick} className={`flex justify-between px-2 py-2 smm500:px-1 sticky top-16 z-[50] 
                     ${theme ? "bg-black" : "bg-white"}
-                    `}>
+                    ${isInputClicked ? " brightness-[0.2]" : " brightness-100"}`}>
                         <Link to='/Home'>
                             <div className={`  text-3xl top-1 left-1 cursor-pointer
                             ${theme ? "text-white" : "text-[#0000008e]"}
@@ -66,12 +77,12 @@ export default function ViewUsersData({ data }: userDatas) {
                     <BsThreeDots />
                         </div>
                     </section>
-                    <div className="relative select-none">
+                    <div className="relative select-none" onClick={handleBodyClick}>
                         {data.coverImage === "" ? (
                             <img
                                 src={defaultcoverimg}
                                 alt="Cover"
-                                className="w-full rounded-t-lg h-44 smm500:h-32 object-cover"
+                                className={`w-full rounded-t-lg h-44 smm500:h-32 object-cover ${isInputClicked ? " brightness-[0.2]" : " brightness-100"}` }
                             />
                         ) : (
                             <img
@@ -82,7 +93,7 @@ export default function ViewUsersData({ data }: userDatas) {
                             />
                         )}
                         {data.profileImage === "" ? (
-                            <div className={` text-8xl absolute left-4 -translate-y-1/2 rounded-full  smm500:text-[80px] smm500:left-1 first-letter:
+                            <div className={` ${isInputClicked ? " brightness-[0.2]" : " brightness-100"} text-8xl absolute left-4 -translate-y-1/2 rounded-full  smm500:text-[80px] smm500:left-1 first-letter:
                             ${theme ? "bg-[black] text-[white] border-black" : "bg-white text-[#000000d7] border-white "}
                             `}>
                                 <BiSolidUserCircle />
@@ -93,7 +104,7 @@ export default function ViewUsersData({ data }: userDatas) {
                             onClick={handleShowProfileImg}
                                 src={data.profileImage}
                                 alt="Profile"
-                                className="w-24 h-24 rounded-full absolute left-4 -translate-y-1/2 border border-white object-cover bg-white smm500:h-23 smm500:w-23 smm500:left-1 cursor-pointer"
+                                    className={`w-24 h-24 rounded-full absolute left-4 -translate-y-1/2 border border-white object-cover bg-white smm500:h-23 smm500:w-23 smm500:left-1 cursor-pointer ${isInputClicked ? " brightness-[0.2]" : " brightness-100"}`}
                             />
                         )}
                         {/* cover image modal */}
@@ -112,7 +123,14 @@ export default function ViewUsersData({ data }: userDatas) {
                         />
                         {/* End Of prodile image modal  */}
                     </div>
-                    <OthersProfileDetails data={data} theme={theme} />
+                    <OthersProfileDetails 
+                    data={data} 
+                    theme={theme} 
+                    userData={userData} 
+                    isInputClicked={isInputClicked}
+                    handleInputClick={handleInputClick}
+                    handleBodyClick={handleBodyClick}
+                    />
                 </section>
             ) : (
                 <LongCard />

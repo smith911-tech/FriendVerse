@@ -65,10 +65,13 @@ export default function HomePage() {
     const [isInputClicked, setInputClicked] = useState(false);
     const handleInputClick = () => {
         setInputClicked(true);
+        document.body.style.overflow = 'hidden'; 
+        window.scrollTo(0,0)
     };
 
     const handleBodyClick = () => {
         setInputClicked(false);
+        document.body.style.overflow = 'auto';
     };
     //! Theme Mode
     const theme = useThemeStore((state: any) => state.theme);

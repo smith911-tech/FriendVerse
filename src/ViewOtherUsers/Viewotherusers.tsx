@@ -56,7 +56,14 @@ export default function ViewOtherUsers() {
 
     const handleBodyClick = () => {
         setInputClicked(false);
+        document.body.style.overflow = 'auto';
     };
+    const handleInputClick = () => {
+        setInputClicked(true);
+        document.body.style.overflow = 'hidden'; 
+        window.scrollTo(0,0)
+    };
+
 
     // ! getting other users data
     const { id } = useParams(); 
@@ -94,7 +101,13 @@ export default function ViewOtherUsers() {
                 </section>
                 <section
                     className=" w-[95%] mt-4 rounded-2xl  md800:w-[60%] sm650:w-[100%] smm500:mt-0">
-                    <ViewUsersData data={data}/>
+                    <ViewUsersData 
+                    data={data} 
+                    userData={userData}   
+                    isInputClicked={isInputClicked}
+                    handleInputClick={handleInputClick}
+                    handleBodyClick={handleBodyClick}
+                    />
                 </section>
                 <section
                     onClick={handleBodyClick}

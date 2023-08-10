@@ -66,10 +66,12 @@ export default function userPersonalProfile() {
 
     const handleBodyClick = () => {
         setInputClicked(false);
+        document.body.style.overflow = 'auto';
     };
     const handleInputClick = () => {
         setInputClicked(true);
         window.scrollTo(0, 0)
+        document.body.style.overflow = 'hidden'; 
     };
 
     //! Theme Mode
