@@ -51,7 +51,6 @@ export default function ViewOtherUsers() {
         };
     }, []);
 
-
     // ! Opening the post div
     const [isInputClicked, setInputClicked] = useState(false);
 

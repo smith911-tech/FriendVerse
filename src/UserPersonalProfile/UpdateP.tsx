@@ -101,7 +101,7 @@ export default function UpdateProfile({
             return;
         }
 
-        const DataDocRef = doc(db, "users", userid as string);
+        const DataDocRef = doc(db, "users", userid as string)
         try {
             // Upload the profileImg to Firebase Storage if it's not null
             if (profileImgUrl) {
@@ -129,6 +129,7 @@ export default function UpdateProfile({
                     coverImage: "",
                 });
             }
+            
             (
                 await updateDoc(DataDocRef, {
                     fullName: fullName,
@@ -136,7 +137,7 @@ export default function UpdateProfile({
                     dateOfBirth: dateOfBirth,
                     bio: bio,
                     Location: location,
-                    showDOB: showDOB
+                    showDOB: showDOB,
                 })
             )
             handleBodyClick();

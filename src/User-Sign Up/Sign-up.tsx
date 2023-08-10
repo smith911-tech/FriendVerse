@@ -105,8 +105,8 @@ export default function Signup() {
                         coverImage: "",
                         Location : "",
                         showDOB: true,
-                        followers: 0,
-                        following: 0
+                        followers: [],
+                        following: []
                     });
                 } catch (e) {
                     console.error("Error adding document: ", e);
