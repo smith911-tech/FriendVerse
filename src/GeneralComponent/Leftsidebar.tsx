@@ -60,11 +60,11 @@ export default function Dashboard({ userData, SuggestData }: userdatas): JSX.Ele
                         </div>
                         <div className="mb-2 select-none">
                             <h2 className={`text-center font-medium  ${theme ? "text-[#ffffffd6]" : "text-[#000000a5]"}`}>Following</h2>
-                            <p className="text-center font-medium">{userData.following}</p>
+                            <p className="text-center font-medium">0</p>
                         </div>
                         <div className="mb-2 select-none">
                             <h2 className={`text-center font-medium text-[#000000a5]  ${theme ? "text-[#ffffffd6]" : "text-[#000000a5]"}`}>Followers</h2>
-                            <p className="text-center font-medium">{userData.followers}</p>
+                            <p className="text-center font-medium">0</p>
                         </div>
                         <Link to='/Profile'>
                         <h2 className="text-[#117DD5] text-center font-bold mb-2 select-none">View profile</h2>

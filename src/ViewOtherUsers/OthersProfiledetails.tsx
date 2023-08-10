@@ -6,6 +6,8 @@ import { IoLocationOutline } from 'react-icons/io5'
 import { LiaBirthdayCakeSolid } from 'react-icons/lia'
 import OtherUsersSlidesbtn from './ProfileSlides';
 import { AiOutlineMail } from 'react-icons/ai'
+import { db } from '../firebase-config';
+import { doc, updateDoc } from 'firebase/firestore';
 export default function OthersProfileDetails({
     data,
     theme
@@ -36,8 +38,26 @@ export default function OthersProfileDetails({
         "August", "September", "October", "November", "December"
     ];
     //! Formatting the date to show as "15 January 2004"
-    const formattedDate = `${DODValue.getDate()} ${monthNames[DODValue.getMonth()]} ${DODValue.getFullYear()}`;
+    const formattedDate = `${DODValue.getDate()} ${monthNames[DODValue.getMonth()]} ${DODValue.getFullYear()}`
+    let userid = sessionStorage.getItem('UserId')
 
+
+
+    const handleFollow = async () => {
+        try{
+            const DataDocRef = doc(db, "users", userid as string)
+                
+            await updateDoc(DataDocRef, {
+
+            })
+        }
+        catch{
+        }
+    }
+    handleFollow()
+    // const handleUnfollow = () => {
+
+    // }
     return (
         <>
             <section className={`w-full px-6 py-2 smm500:px-2 ${theme ? "text-white" : "text-black"}`}>
@@ -45,7 +65,8 @@ export default function OthersProfileDetails({
                     <div className='text-3xl mt-1 text-[#b6a8a8ae]'>
                         <AiOutlineMail/>
                     </div>
-                <button className=' bg-[#3b82f6] text-white font-semibold py-1 px-4 rounded-xl '>Follow
+                <button className=' bg-[#3b82f6] text-white font-semibold py-1 px-4 rounded-xl '>
+                Follow
                 </button>
                 </div>
                 <section className=' mb-2 mt-2'>
@@ -80,9 +101,9 @@ export default function OthersProfileDetails({
                 </section>
                 <ul className={`flex gap-7 font-medium mb-2 ${theme ? "text-[#ffffffda]" : "text-[#000000a5]"}`}>
                     <li>
-                        <span className={`select-none ${theme ? "text-[white]" : "text-[black] "}`}>{data.followers}</span> Followers</li>
+                        <span className={`select-none ${theme ? "text-[white]" : "text-[black] "}`}>0</span> Followers</li>
                     <li className=' list-disc'>
-                        <span className={`select-none ${theme ? "text-[white]" : "text-[black] "}`}>{data.following}</span> Following</li>
+                        <span className={`select-none ${theme ? "text-[white]" : "text-[black] "}`}>0</span> Following</li>
                 </ul>
                 <hr />
                 <OtherUsersSlidesbtn />

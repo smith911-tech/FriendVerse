@@ -96,9 +96,9 @@ export default function UserProfileDetails({
             </section>
                 <ul className={`flex gap-7 font-medium mb-2 ${theme ? "text-[#ffffffda]" : "text-[#000000a5]"}`}>
                     <li>
-                        <span className={`select-none ${theme ? "text-[white]" : "text-[black] "}`}>{userData.following}</span> Followers</li>
+                        <span className={`select-none ${theme ? "text-[white]" : "text-[black] "}`}>0</span> Followers</li>
                     <li className=' list-disc'>
-                        <span className={`select-none ${theme ? "text-[white]" : "text-[black] "}`}>{userData.followers}</span> Following</li>
+                        <span className={`select-none ${theme ? "text-[white]" : "text-[black] "}`}>0</span> Following</li>
                 </ul>
             <hr />
                 <ProfileSLideBtn 
