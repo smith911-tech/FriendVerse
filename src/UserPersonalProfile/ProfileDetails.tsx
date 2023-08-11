@@ -51,6 +51,29 @@ export default function UserProfileDetails({
     //! Theme Mode
     const theme = useThemeStore((state: any) => state.theme);
 
+    let Followers;
+    let Following;
+
+    if (userData) {
+        const followersCount = userData.Followers.length;
+
+
+        if (followersCount > 9999) {
+            Followers = (followersCount / 1000).toFixed(1) + 'k';
+        } else {
+            Followers = followersCount.toString();
+        }
+
+        const followingCount = userData.Following.length;
+        console.log(followingCount);
+
+        if (followingCount > 9999) {
+            Following = (followingCount / 1000).toFixed(1) + 'k';
+        } else {
+            Following = followingCount.toString();
+        }
+    }
+
     return(
         <>
             <section className={`w-full px-6 py-2 smm500:px-2  
@@ -96,9 +119,9 @@ export default function UserProfileDetails({
             </section>
                 <ul className={`flex gap-7 font-medium mb-2 ${theme ? "text-[#ffffffda]" : "text-[#000000a5]"}`}>
                     <li>
-                        <span className={`select-none ${theme ? "text-[white]" : "text-[black] "}`}>0</span> Followers</li>
+                        <span className={`select-none ${theme ? "text-[white]" : "text-[black] "}`}>{Followers}</span> Followers</li>
                     <li className=' list-disc'>
-                        <span className={`select-none ${theme ? "text-[white]" : "text-[black] "}`}>0</span> Following</li>
+                        <span className={`select-none ${theme ? "text-[white]" : "text-[black] "}`}>{Following}</span> Following</li>
                 </ul>
             <hr />
                 <ProfileSLideBtn 

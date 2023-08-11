@@ -14,6 +14,31 @@ export default function Dashboard({ userData, SuggestData }: userdatas): JSX.Ele
     let userid = sessionStorage.getItem('UserId')
     const theme = useThemeStore((state: any) => state.theme);
 
+
+    let Followers;
+    let Following;
+
+if(userData) {
+    const followersCount = userData.Followers.length;
+
+    
+    if (followersCount > 9999) {
+        Followers = (followersCount / 1000).toFixed(1) + 'k';
+    } else {
+        Followers = followersCount.toString();
+    }
+
+    const followingCount = userData.Following.length;
+    console.log(followingCount);
+
+    if (followingCount > 9999) {
+        Following = (followingCount / 1000).toFixed(1) + 'k';
+    } else {
+        Following = followingCount.toString();
+    }
+}
+
+
     return (
         <main className="md970:block hidden font-Inter pt-2 px-2">
             {userData ? (
@@ -60,11 +85,11 @@ export default function Dashboard({ userData, SuggestData }: userdatas): JSX.Ele
                         </div>
                         <div className="mb-2 select-none">
                             <h2 className={`text-center font-medium  ${theme ? "text-[#ffffffd6]" : "text-[#000000a5]"}`}>Following</h2>
-                            <p className="text-center font-medium">0</p>
+                            <p className="text-center font-medium">{Following}</p>
                         </div>
                         <div className="mb-2 select-none">
                             <h2 className={`text-center font-medium text-[#000000a5]  ${theme ? "text-[#ffffffd6]" : "text-[#000000a5]"}`}>Followers</h2>
-                            <p className="text-center font-medium">0</p>
+                            <p className="text-center font-medium">{Followers}</p>
                         </div>
                         <Link to='/Profile'>
                         <h2 className="text-[#117DD5] text-center font-bold mb-2 select-none">View profile</h2>
