@@ -96,6 +96,29 @@ export default function OthersProfileDetails({
     const handleMouseLeave = () => {
         setIsHovered(false);
     };
+    let Followers;
+    let Following;
+
+    if (data) {
+        const followersCount = data.Followers.length;
+
+
+        if (followersCount > 9999) {
+            Followers = (followersCount / 1000).toFixed(1) + 'k';
+        } else {
+            Followers = followersCount.toString();
+        }
+
+        const followingCount = data.Following.length;
+        console.log(followingCount);
+
+        if (followingCount > 9999) {
+            Following = (followingCount / 1000).toFixed(1) + 'k';
+        } else {
+            Following = followingCount.toString();
+        }
+    }
+
     
     return (
         <main className='relative'>
@@ -151,9 +174,9 @@ export default function OthersProfileDetails({
                 </section>
                 <ul onClick={handleBodyClick} className={`flex gap-7 font-medium mb-2 ${theme ? "text-[#ffffffda]" : "text-[#000000a5]"}`}>
                     <li>
-                        <span className={`select-none ${theme ? "text-[white]" : "text-[black] "}`}>0</span> Followers</li>
+                        <span className={`select-none ${theme ? "text-[white]" : "text-[black] "}`}>{Followers}</span> Followers</li>
                     <li className=' list-disc'>
-                        <span className={`select-none ${theme ? "text-[white]" : "text-[black] "}`}>0</span> Following</li>
+                        <span className={`select-none ${theme ? "text-[white]" : "text-[black] "}`}>{Following}</span> Following</li>
                 </ul>
                 <hr />
                 <section onClick={handleBodyClick}>
@@ -161,8 +184,8 @@ export default function OthersProfileDetails({
                 </section>
             </section>
             {isInputClicked && (
-                <section className='absolute -top-10 left-1/2 transform -translate-x-1/2 shadow-2xl'>
-                    <main className={`py-4 px-3 w-96 ${theme ? "bg-black text-white" : "bg-white text-black"}  rounded-xl`}>
+                <section className='absolute -top-10 left-1/2 transform -translate-x-1/2 shadow-2xl smm500:-top-32'>
+                    <main className={`py-4 px-3 w-96 smm500:w-64 ${theme ? "bg-black text-white" : "bg-white text-black"}  rounded-xl`}>
                         <h2 className='font-semibold text-lg mb-1'>Unfollow {data.username}</h2>
                         <p className={`font-medium mb-2 ${theme ? " text-[#ffffffb8]" : "text-[#00000098]"}`}>Are you sure you want to unfollow this user? <br />
                             <span className="text-red-700 font-bold">
