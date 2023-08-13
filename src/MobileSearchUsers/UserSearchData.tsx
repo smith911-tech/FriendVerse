@@ -56,7 +56,7 @@ export default function UserSearchData({ SuggestData }: userdatas){
                         </button>
                     ) : (
                         getSuggestions(searchTerm).filter((data: any) => data.id !== userid).map((data: any) => (
-                            <Link to={`/${data.username}`} onClick={(() => {
+                            <Link to={`/User/${data.username}`} onClick={(() => {
                                 window.scrollTo(0, 0);
                             })}>
                                 <button

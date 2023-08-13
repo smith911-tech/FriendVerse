@@ -40,7 +40,7 @@ export default function SideDashboard({ SuggestData, userData }: userdatas):JSX.
                             </button>
                         ) : (
                                 getSuggestions(searchTerm).filter((data: any) => data.id !== userid).map((data : any) => (
-                                <Link to={`/${data.username}`}>
+                                <Link to={`/User/${data.username}`}>
                                 <button
                                     className={`cursor-pointer w-full select-none flex  my-4 ml-1 rounded-2xl gap-2 ${theme ? "hover:bg-[#ffffff17]" : "hover:bg-[#e1e6e7]"}`}
                                     onClick={() => 
