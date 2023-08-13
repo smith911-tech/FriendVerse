@@ -13,11 +13,8 @@ export default function VideoContent() {
     const navigate = useNavigate();
     let userid = sessionStorage.getItem('UserId')
     useEffect(() => {
-        if (userid) {
-            navigate("/VideoContent")
-        }
-        else if (!userid) {
-            navigate('/')
+        if (!userid) {
+            navigate("/")
         }
     }, [])
 

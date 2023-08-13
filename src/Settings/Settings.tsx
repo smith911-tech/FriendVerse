@@ -12,11 +12,8 @@ export default function Settings() {
     const navigate = useNavigate();
     let userid = sessionStorage.getItem('UserId')
     useEffect(() => {
-        if (userid) {
-            navigate("/Profile/Settings")
-        }
-        else if (!userid) {
-            navigate('/')
+        if (!userid) {
+            navigate("/")
         }
     }, [])
 

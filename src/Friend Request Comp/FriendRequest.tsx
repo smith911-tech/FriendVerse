@@ -12,10 +12,7 @@ export default function FriendRequest() {
     const navigate = useNavigate();
     let userid = sessionStorage.getItem('UserId')
     useEffect(() => {
-        if (userid) {
-            navigate("/FriendRequest")
-        }
-        else if (!userid) {
+        if (!userid) {
             navigate('/')
         }
     }, [])

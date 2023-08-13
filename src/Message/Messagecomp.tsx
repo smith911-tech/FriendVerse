@@ -12,16 +12,13 @@ export default function MessageComp() {
     const navigate = useNavigate();
     let userid = sessionStorage.getItem('UserId')
     useEffect(() => {
-        if (userid) {
-            navigate("/Message")
-        }
-        else if (!userid) {
+        if (!userid) {
             navigate('/')
         }
     }, [])
 
 
-    // ! fetching personal userdata 
+    // ! fetching personal usedata 
     const [userData, setUserData] = useState<any>(null);
 
     // ! data fetched

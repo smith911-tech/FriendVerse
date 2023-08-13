@@ -9,11 +9,8 @@ export default function UserSearch() {
     const navigate = useNavigate();
     let userid = sessionStorage.getItem('UserId')
     useEffect(() => {
-        if (userid) {
-            navigate("/UserSearch")
-        }
-        else if (!userid) {
-            navigate('/')
+        if (!userid) {
+            navigate("/")
         }
     }, [])
     useEffect(() => {
