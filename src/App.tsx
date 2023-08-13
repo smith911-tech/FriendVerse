@@ -20,6 +20,7 @@ import {
     ViewOtherUsers,
     UserSearch,
     Settings,
+    FollowFollowersC
 } from "./Import";
 
 function App() {
@@ -93,6 +94,9 @@ function App() {
 
                         {/*  Settings */}
                         <Route path="/Profile/Settings" element={<Settings />} />
+
+                        {/* Profile FollowFollowersC */}
+                        <Route path="/FollowersCount" element={<FollowFollowersC />} />
 
                     </Routes>
                 </BrowserRouter>

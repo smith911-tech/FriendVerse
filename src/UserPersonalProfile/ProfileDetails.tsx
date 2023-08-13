@@ -11,6 +11,7 @@ import ProfileSLideBtn from './ProfileSlideBtn';
 import UpdateP from './UpdateP';
 import {useState} from 'react'
 import {useThemeStore} from '../Zustand';
+import { Link } from 'react-router-dom';
 export default function UserProfileDetails({ 
     userData, 
     handleInputClick, 
@@ -117,11 +118,19 @@ export default function UserProfileDetails({
                             </h2>
                 )}
             </section>
-                <ul className={`flex gap-7 font-medium mb-2 ${theme ? "text-[#ffffffda]" : "text-[#000000a5]"}`}>
-                    <li>
-                        <span className={`select-none ${theme ? "text-[white]" : "text-[black] "}`}>{Followers}</span> Followers</li>
-                    <li className=' list-disc'>
-                        <span className={`select-none ${theme ? "text-[white]" : "text-[black] "}`}>{Following}</span> Following</li>
+                <ul className={`flex  font-medium mb-2 ${theme ? "text-[#ffffffda]" : "text-[#000000a5]"}`}>
+                    <li className='flex gap-1'>
+                        <span 
+                        className={`select-none ${theme ? "text-[white]" : "text-[black] "}`}>{Followers}</span>    
+                        <Link to='/FollowersCount' className=' hover:underline'
+                        >Followers</Link>
+                    </li>
+                    <li className='list-disc ml-7'></li>
+                    <li className=' gap-1 flex'>
+                        <span className={`select-none ${theme ? "text-[white]" : "text-[black] "}`}>{Following}</span> 
+                        <Link to='/FollowersCount' className=' cursor-pointer hover:underline'
+                        >Following</Link>
+                    </li>
                 </ul>
             <hr />
                 <ProfileSLideBtn 

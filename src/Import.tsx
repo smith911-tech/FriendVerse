@@ -16,6 +16,7 @@ import NotificationComp from "./Notification/Notification";
 import ViewOtherUsers from "./ViewOtherUsers/Viewotherusers";
 import UserSearch from "./MobileSearchUsers/UserSearch";
 import Settings from "./Settings/Settings";
+import FollowFollowersC from "./UserPersonalProfile/Follow&FollowersC";
 
 export {
     SignIn,
@@ -36,4 +37,5 @@ export {
     ViewOtherUsers,
     UserSearch,
     Settings,
+    FollowFollowersC,
 }
