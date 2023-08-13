@@ -13,8 +13,11 @@ export default function NotificationComp() {
     const navigate = useNavigate();
     let userid = sessionStorage.getItem('UserId')
     useEffect(() => {
-        if (!userid) {
-            navigate("/")
+        if (userid) {
+            navigate("/Notifications")
+        }
+        else if (!userid) {
+            navigate('/')
         }
     }, [])
 

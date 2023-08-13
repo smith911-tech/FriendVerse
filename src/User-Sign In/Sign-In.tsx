@@ -74,7 +74,7 @@ export default function SignIn() {
         return () => {
             unsubscribe();
         };
-    }, []);
+    }, [])
     return (
         <main className="bg-[#1B1D21] h-[120vh] px-[29px] py-[61px] text-white w-full">
             <section className="bg-[black]  px-4 pb-28 sm500:w-[450px] block mx-auto my-0 md734:w-[80%] md734:pb-36 lg1440:w-[1000px]  relative">

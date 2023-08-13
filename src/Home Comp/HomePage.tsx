@@ -12,7 +12,10 @@ export default function HomePage() {
     const navigate = useNavigate();
     let userid = sessionStorage.getItem('UserId')
     useEffect(() => {
-        if (!userid) {
+        if (userid) {
+            navigate("/Home")
+        }
+        else if (!userid) {
             navigate('/')
         }
     }, [])

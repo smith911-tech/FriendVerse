@@ -25,7 +25,10 @@ export default function ViewUsersData({
     const navigate = useNavigate();
     let userid = sessionStorage.getItem('UserId')
     useEffect(() => {
-        if (!userid) {
+        const desiredPath = window.location.pathname;
+        if (userid && desiredPath !== '/') {
+            navigate(desiredPath);
+        } else {
             navigate('/');
         }
     }, [navigate, userid]);
