@@ -20,6 +20,7 @@ import {
     ViewOtherUsers,
     UserSearch,
     Settings,
+    FollowFollowersC
 } from "./Import";
 
 function App() {
@@ -43,9 +44,6 @@ function App() {
 
                         {/* Sign Up page */}
                         <Route path="/Siginup" element={<Signup />} />
-
-                        {/* 404 error */}
-                        <Route path="*" element={<Page404 />} />
 
                         {/* forgotpassword */}
                         <Route
@@ -86,13 +84,19 @@ function App() {
                         <Route path="/Notifications" element={<NotificationComp />} />
 
                         {/*  ViewOtherUsers */}
-                        <Route path="/:id" element={<ViewOtherUsers />} />
+                        <Route path="/User/:id" element={<ViewOtherUsers />} />
 
                         {/*  ViewOtherUsers */}
                         <Route path="/UserSearch" element={<UserSearch />} />
 
                         {/*  Settings */}
                         <Route path="/Profile/Settings" element={<Settings />} />
+
+                        {/* Profile FollowFollowersC */}
+                        <Route path="/FollowersCount" element={<FollowFollowersC />} />
+
+                        {/* 404 error */}
+                        <Route path="*" element={<Page404 />} />
 
                     </Routes>
                 </BrowserRouter>

@@ -52,7 +52,7 @@ export default function HeaderSearch({SuggestData, Popover, isSearchInput}: user
                         </button>
                     ) : (
                         getSuggestions(searchTerm).filter((data: any) => data.id !== userid).map((data: any) => (
-                            <Link to={`/${data.username}`}>
+                            <Link to={`/User/${data.username}`}>
                                 <button
                                     className={`cursor-pointer w-full select-none flex  my-4 ml-1 rounded-2xl gap-2
                                     ${theme ? "hover:bg-[#1b1d21] " : "hover:bg-[#f0f2f5] "}`}

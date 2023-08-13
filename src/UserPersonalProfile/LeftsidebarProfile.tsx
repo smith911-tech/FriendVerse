@@ -23,7 +23,7 @@ export default function ProfileLeftbar({ SuggestData }: userdatas): JSX.Element 
                             <span className="text-[#117dd5]"><GoTelescopeFill /></span>
                         </div>
                         {SuggestData.filter((data: any) => data.id !== userid).slice(0, 8).map((data: any) => (
-                            <Link to={`/${data.username}`}>
+                            <Link to={`/User/${data.username}`}>
                             <div
                                 className="cursor-pointer w-full select-none flex my-4 ml-1 rounded-2xl gap-2"
                                 key={data.id}

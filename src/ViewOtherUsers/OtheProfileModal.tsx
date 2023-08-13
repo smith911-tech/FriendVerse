@@ -32,7 +32,7 @@ export function OtherUserCover({ data, handleCloseModal, showCmodal }: userdatas
                             className="object-contain top-0 h-[60vh] w-screen"
                         />
 
-                        <span className="absolute -top-10 right-[10%] text-white text-[40px] cursor-pointer ">
+                        <span className="absolute -top-10 right-[10%] text-white text-[40px] cursor-pointer smm500:top-0">
                             <AiOutlineClose onClick={handleCloseModal} />
                         </span>
                     </div>
@@ -72,7 +72,7 @@ export function OtherUsersProfile({ showPmodal, handleCloseModal, data}: userdat
                             alt="Profile"
                             className="w-60 h-60 rounded-full object-cover bg-white sm:h-20 sm:w-20"
                         />
-                        <span className="absolute top-10 right-[10%] text-white text-[40px] cursor-pointer ">
+                        <span className="absolute top-10 right-[10%] text-white text-[40px] cursor-pointer smm500:top-0">
                             <AiOutlineClose onClick={handleCloseModal} />
                         </span>
                     </div>
