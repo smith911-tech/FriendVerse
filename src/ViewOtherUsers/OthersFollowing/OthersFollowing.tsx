@@ -7,7 +7,7 @@ import { collection, doc, onSnapshot } from "firebase/firestore"
 import { db } from "../../firebase-config"
 import ProfileLeftbar from "../../UserPersonalProfile/LeftsidebarProfile";
 import { useThemeStore } from '../../Zustand';
-export default function OtherFollowingInterface() {
+export default function OthersFollowingInterface() {
     const navigate = useNavigate();
     let userid = sessionStorage.getItem('UserId')
     useEffect(() => {
