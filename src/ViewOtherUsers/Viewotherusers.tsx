@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Rightsidebar from "../GeneralComponent/Rightsidebar";
 import Header from "../GeneralComponent/Header";
 import ButtomNav from "../GeneralComponent/ButtomNav";
@@ -10,6 +10,15 @@ import ViewUsersData from "./Viewothersdata";
 import {useThemeStore} from '../Zustand';
 export default function ViewOtherUsers() {
     let userid = sessionStorage.getItem('UserId')
+    const navigate  =  useNavigate()
+    useEffect(() => {
+        const desiredPath = window.location.pathname;
+        if (userid && desiredPath !== '/') {
+            navigate(desiredPath);
+        } else {
+            navigate('/');
+        }
+    }, [navigate, userid]);
 
 
     // ! fetching personal userdata 

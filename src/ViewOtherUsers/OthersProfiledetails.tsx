@@ -13,6 +13,7 @@ import { AiOutlineMail } from 'react-icons/ai'
 import { db } from '../firebase-config';
 import {useState} from 'react'
 import { doc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
+import { Link } from 'react-router-dom'
 export default function OthersProfileDetails({
     data,
     theme,
@@ -172,12 +173,12 @@ export default function OthersProfileDetails({
                         </h2>
                     )}
                 </section>
-                <ul onClick={handleBodyClick} className={`flex gap-7 font-medium mb-2 ${theme ? "text-[#ffffffda]" : "text-[#000000a5]"}`}>
-                    <li>
-                        <span className={`select-none ${theme ? "text-[white]" : "text-[black] "}`}>{Followers}</span> Followers</li>
-                    <li className=' list-disc'>
-                        <span className={`select-none ${theme ? "text-[white]" : "text-[black] "}`}>{Following}</span> Following</li>
-                </ul>
+                <div onClick={handleBodyClick} className={`flex gap-7 font-medium mb-2 ${theme ? "text-[#ffffffda]" : "text-[#000000a5]"}`}>
+                    <Link className='hover:underline' to={`/User/${data.username}/Followers`}>
+                        <span className={`select-none ${theme ? "text-[white]" : "text-[black] "}`}>{Followers}</span> Followers</Link>
+                    <Link to={`/User/${data.username}/Following`} className=' list-disc hover:underline'>
+                        <span  className={`select-none ${theme ? "text-[white]" : "text-[black] "}`}>{Following}</span> Following</Link>
+                </div>
                 <hr />
                 <section onClick={handleBodyClick}>
                     <OtherUsersSlidesbtn />
