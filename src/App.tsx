@@ -22,6 +22,8 @@ import {
     Settings,
     FollowersInterface,
     FollowingInterface,
+    OthersFollowersInterface,
+    OthersFollowingInterface,
 } from "./Import";
 
 function App() {
@@ -98,6 +100,12 @@ function App() {
 
                         {/* Profile Following */}
                         <Route path="/Following" element={<FollowingInterface />} />
+
+                        {/*OthersFollowersInterface on there page */}
+                        <Route path="/User/:id/Followers" element={<OthersFollowersInterface />} />
+
+                        {/* OthersFollowingInterface on there page */}
+                        <Route path="/User/:id/Following" element={<OthersFollowingInterface />} />
 
                         {/* 404 error */}
                         <Route path="*" element={<Page404 />} />
