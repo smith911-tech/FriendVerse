@@ -122,13 +122,13 @@ export default function UserProfileDetails({
                     <li className='flex gap-1'>
                         <span 
                         className={`select-none ${theme ? "text-[white]" : "text-[black] "}`}>{Followers}</span>    
-                        <Link to='/FollowersCount' className=' hover:underline'
+                        <Link to='/Followers' className=' hover:underline'
                         >Followers</Link>
                     </li>
                     <li className='list-disc ml-7'></li>
                     <li className=' gap-1 flex'>
                         <span className={`select-none ${theme ? "text-[white]" : "text-[black] "}`}>{Following}</span> 
-                        <Link to='/FollowersCount' className=' cursor-pointer hover:underline'
+                        <Link to='/Following' className=' cursor-pointer hover:underline'
                         >Following</Link>
                     </li>
                 </ul>
