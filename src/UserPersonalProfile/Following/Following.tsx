@@ -1,9 +1,12 @@
+interface userDatas{
+    userData: any | null
+}
 import FollowersFollowingH from '../FollowingFollowersH'
 
-export default function Following() {
+export default function Following({userData}: userDatas) {
     return (
         <main>
-            <FollowersFollowingH />
+            <FollowersFollowingH userData={userData}/>
         </main>
     )
 }
