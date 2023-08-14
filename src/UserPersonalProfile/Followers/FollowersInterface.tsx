@@ -7,13 +7,12 @@ import { collection, doc, onSnapshot } from "firebase/firestore"
 import { db } from "../../firebase-config"
 import ProfileLeftbar from "../LeftsidebarProfile";
 import { useThemeStore } from '../../Zustand';
-import FFInterface from "./FFInterface";
-export default function FollowFollowersC() {
+export default function FollowersInterface() {
     const navigate = useNavigate();
     let userid = sessionStorage.getItem('UserId')
     useEffect(() => {
         if (userid) {
-            navigate("/FollowersCount")
+            navigate("/Profile")
         }
         else if (!userid) {
             navigate('/')
@@ -94,7 +93,6 @@ export default function FollowFollowersC() {
                 </section>
                 <section
                     className=" w-[95%] mt-4 rounded-2xl  md800:w-[60%] sm650:w-[100%] smm500:mt-0">
-                        <FFInterface />
                 </section>
                 <section
                     onClick={handleBodyClick}
