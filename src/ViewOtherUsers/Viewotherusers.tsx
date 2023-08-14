@@ -74,7 +74,7 @@ export default function ViewOtherUsers() {
     };
 
 
-    // ! getting other users data
+    // ! getting other users data personal data with id 
     const { id } = useParams(); 
     const [data, setData] = useState<any>();
 

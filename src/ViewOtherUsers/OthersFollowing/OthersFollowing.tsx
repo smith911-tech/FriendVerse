@@ -7,19 +7,18 @@ import { collection, doc, onSnapshot } from "firebase/firestore"
 import { db } from "../../firebase-config"
 import ProfileLeftbar from "../../UserPersonalProfile/LeftsidebarProfile";
 import { useThemeStore } from '../../Zustand';
+import OFollowingInterface from "./OFollowingInterface";
 export default function OthersFollowingInterface() {
     const navigate = useNavigate();
     let userid = sessionStorage.getItem('UserId')
     useEffect(() => {
-        if (userid) {
-            navigate("/Following")
+        const desiredPath = window.location.pathname;
+        if (userid && desiredPath !== '/') {
+            navigate(desiredPath);
+        } else {
+            navigate('/');
         }
-        else if (!userid) {
-            navigate('/')
-        }
-    }, [])
-
-
+    }, [navigate, userid]);
     // ! fetching personal userdata 
     const [userData, setUserData] = useState<any>(null);
 
@@ -94,7 +93,7 @@ export default function OthersFollowingInterface() {
                 </section>
                 <section
                     className=" w-[95%] mt-4 rounded-2xl  md800:w-[60%] sm650:w-[100%] smm500:mt-0 min-h-screen">
-                    
+                    <OFollowingInterface />
                 </section>
                 <section
                     onClick={handleBodyClick}
