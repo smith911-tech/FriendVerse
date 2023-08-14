@@ -97,7 +97,7 @@ function App() {
                         <Route path="/Followers" element={<FollowersInterface />} />
 
                         {/* Profile Following */}
-                        <Route path="/Following" element={<FollowersInterface />} />
+                        <Route path="/Following" element={<FollowingInterface />} />
 
                         {/* 404 error */}
                         <Route path="*" element={<Page404 />} />

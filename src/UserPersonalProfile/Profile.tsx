@@ -44,6 +44,12 @@ export default function userPersonalProfile() {
         }
     }, []);
 
+    // ! name that will apear on the followers count page
+    let name = userData && userData.fullName
+    sessionStorage.setItem("name", name);
+    let username = userData && userData.username
+    sessionStorage.setItem("username", username);
+
 
     //! states
     const [SuggestData, setSuggestData] = useState<any[]>([]);

@@ -66,7 +66,6 @@ export default function UserProfileDetails({
         }
 
         const followingCount = userData.Following.length;
-        console.log(followingCount);
 
         if (followingCount > 9999) {
             Following = (followingCount / 1000).toFixed(1) + 'k';

@@ -1,13 +1,9 @@
-interface UserDatas{
-    userData: any | null,
-}
-
 import FollowersFollowingH from '../FollowingFollowersH'
 
-export default function Followers({userData}: UserDatas) {
+export default function Followers() {
     return(
-        <main>
-            <FollowersFollowingH userData={userData}/>
+        <main className='min-h-screen bg-white'>
+            <FollowersFollowingH />
         </main>
     )
 }
