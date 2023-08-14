@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Rightsidebar from "../GeneralComponent/Rightsidebar";
 import Header from "../GeneralComponent/Header";
 import ButtomNav from "../GeneralComponent/ButtomNav";
@@ -10,6 +10,15 @@ import ViewUsersData from "./Viewothersdata";
 import {useThemeStore} from '../Zustand';
 export default function ViewOtherUsers() {
     let userid = sessionStorage.getItem('UserId')
+    const navigate  =  useNavigate()
+    useEffect(() => {
+        const desiredPath = window.location.pathname;
+        if (userid && desiredPath !== '/') {
+            navigate(desiredPath);
+        } else {
+            navigate('/');
+        }
+    }, [navigate, userid]);
 
 
     // ! fetching personal userdata 
@@ -65,7 +74,7 @@ export default function ViewOtherUsers() {
     };
 
 
-    // ! getting other users data
+    // ! getting other users data personal data with id 
     const { id } = useParams(); 
     const [data, setData] = useState<any>();
 
@@ -78,6 +87,12 @@ export default function ViewOtherUsers() {
 
     //! Theme Mode
     const theme = useThemeStore((state: any) => state.theme);
+
+    // ! name that will apear on the followers count page
+    let name = data && data.fullName
+    sessionStorage.setItem("Oname", name);
+    let username = data && data.username
+    sessionStorage.setItem("Ousername", username);
 
 
     return (
@@ -100,7 +115,7 @@ export default function ViewOtherUsers() {
                         SuggestData={SuggestData} />
                 </section>
                 <section
-                    className=" w-[95%] mt-4 rounded-2xl  md800:w-[60%] sm650:w-[100%] smm500:mt-0">
+                    className=" w-[95%] mt-4 rounded-2xl  md800:w-[60%] sm650:w-[100%] smm500:mt-0 min-h-screen">
                     <ViewUsersData 
                     data={data} 
                     userData={userData}   

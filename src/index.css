@@ -59,6 +59,12 @@ body {
   width: 2rem;
 }
 
+/* ! Profile active */
+.ProfileActiveF.active{
+    border-bottom: 7px #1d9bf0 solid;
+    border-radius: 5px 5px 5px 5px;
+}
+
 /* ! phone numeber drop-down */
 .inputDrowndopDiv  {
   color: white;

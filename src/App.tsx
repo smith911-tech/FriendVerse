@@ -20,7 +20,10 @@ import {
     ViewOtherUsers,
     UserSearch,
     Settings,
-    FollowFollowersC
+    FollowersInterface,
+    FollowingInterface,
+    OthersFollowersInterface,
+    OthersFollowingInterface,
 } from "./Import";
 
 function App() {
@@ -92,8 +95,17 @@ function App() {
                         {/*  Settings */}
                         <Route path="/Profile/Settings" element={<Settings />} />
 
-                        {/* Profile FollowFollowersC */}
-                        <Route path="/FollowersCount" element={<FollowFollowersC />} />
+                        {/* Profile Followers */}
+                        <Route path="/Followers" element={<FollowersInterface />} />
+
+                        {/* Profile Following */}
+                        <Route path="/Following" element={<FollowingInterface />} />
+
+                        {/*OthersFollowersInterface on there page */}
+                        <Route path="/User/:id/Followers" element={<OthersFollowersInterface />} />
+
+                        {/* OthersFollowingInterface on there page */}
+                        <Route path="/User/:id/Following" element={<OthersFollowingInterface />} />
 
                         {/* 404 error */}
                         <Route path="*" element={<Page404 />} />

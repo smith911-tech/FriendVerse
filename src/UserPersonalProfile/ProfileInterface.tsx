@@ -6,7 +6,7 @@ interface userdatas{
 }
 import defaultcoverimg from '../assets/DefalutCoverImg.jpg'
 import { BiSolidUserCircle } from "react-icons/bi";
-import { SmallCard } from "../GeneralComponent/LoadingCard";
+import { LongCard } from "../GeneralComponent/LoadingCard";
 import { BsFillArrowLeftCircleFill, BsFillGearFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import ProfileDetails from './ProfileDetails';
@@ -122,8 +122,7 @@ export default function UserProfile({
                         />
                     </section>
                 ) : (
-                    <div className='h-screen'>
-                        <SmallCard />
+                        <div className='h-screen'><LongCard />
                     </div>
                 )}
         </section>

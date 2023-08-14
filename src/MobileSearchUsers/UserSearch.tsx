@@ -58,7 +58,7 @@ export default function UserSearch() {
 
 
     return (
-        <main className={`relative h-screen ${theme ? "bg-[#1b1d21]" : "bg-[#f0f2f5]"}`}>
+        <main className={`relative min-h-screen ${theme ? "bg-[#1b1d21]" : "bg-[#f0f2f5]"}`}>
             <UserSearchData SuggestData={SuggestData} />
             <footer onClick={handleBodyClick} >
                 <ButtomNav />

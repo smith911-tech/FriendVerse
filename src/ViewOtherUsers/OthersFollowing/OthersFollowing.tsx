@@ -1,27 +1,24 @@
 import { useEffect, useState } from "react";
-import Leftsidebar from "../GeneralComponent/Leftsidebar";
-import { useNavigate } from "react-router-dom";
-import Rightsidebar from "../GeneralComponent/Rightsidebar";
-import Header from "../GeneralComponent/Header";
-import ButtomNav from "../GeneralComponent/ButtomNav";
+import { useNavigate, useParams } from "react-router-dom";
+import Rightsidebar from "../../GeneralComponent/Rightsidebar";
+import Header from "../../GeneralComponent/Header";
+import ButtomNav from "../../GeneralComponent/ButtomNav";
 import { collection, doc, onSnapshot } from "firebase/firestore"
-import { db } from '../firebase-config'
-import NotificationContent from "./NotificationContent";
-import {useThemeStore} from '../Zustand';
-
-export default function NotificationComp() {
+import { db } from "../../firebase-config"
+import ProfileLeftbar from "../../UserPersonalProfile/LeftsidebarProfile";
+import { useThemeStore } from '../../Zustand';
+import OFollowingInterface from "./OFollowingInterface";
+export default function OthersFollowingInterface() {
     const navigate = useNavigate();
     let userid = sessionStorage.getItem('UserId')
     useEffect(() => {
-        if (userid) {
-            navigate("/Notifications")
+        const desiredPath = window.location.pathname;
+        if (userid && desiredPath !== '/') {
+            navigate(desiredPath);
+        } else {
+            navigate('/');
         }
-        else if (!userid) {
-            navigate('/')
-        }
-    }, [])
-
-
+    }, [navigate, userid]);
     // ! fetching personal userdata 
     const [userData, setUserData] = useState<any>(null);
 
@@ -34,6 +31,7 @@ export default function NotificationComp() {
                 if (snapshot.exists()) {
                     const data = snapshot.data();
                     setUserData(data);
+
                 } else {
                     setUserData(null);
                 }
@@ -67,15 +65,29 @@ export default function NotificationComp() {
 
     const handleBodyClick = () => {
         setInputClicked(false);
+        document.body.style.overflow = 'auto';
     };
-
     //! Theme Mode
     const theme = useThemeStore((state: any) => state.theme);
+
+    // ! getting other users data personal data with id 
+    const { id } = useParams();
+    const [data, setData] = useState<any>();
+
+    useEffect(() => {
+        const userDetails = SuggestData && SuggestData.find((data: any) => data.username === id);
+        if (userDetails) {
+            setData(userDetails);
+        }
+    }, [id, SuggestData]);
+    data
+
+
 
 
     return (
         <main className="relative">
-            <header onClick={handleBodyClick} className={`fixed  top-0 w-full z-10  ${isInputClicked ? " brightness-[0.2]" : " brightness-100"}`}>
+            <header onClick={handleBodyClick} className={`fixed  top-0 w-full z-[500]  ${isInputClicked ? " brightness-[0.2]" : " brightness-100"}`}>
                 <Header userData={userData} SuggestData={SuggestData} />
             </header>
 
@@ -88,13 +100,12 @@ export default function NotificationComp() {
                     onClick={handleBodyClick}
                     className={`pt-2 w-[5%] h-screen sticky top-[70px] md970:w-[25%] sm650:hidden ${isInputClicked ? " brightness-[0.2]" : " brightness-100"}`}
                 >
-                    <Leftsidebar
-                        userData={userData}
+                    <ProfileLeftbar
                         SuggestData={SuggestData} />
                 </section>
                 <section
                     className=" w-[95%] mt-4 rounded-2xl  md800:w-[60%] sm650:w-[100%] smm500:mt-0 min-h-screen">
-                    <NotificationContent />
+                    <OFollowingInterface />
                 </section>
                 <section
                     onClick={handleBodyClick}
@@ -105,9 +116,7 @@ export default function NotificationComp() {
                     />
                 </section>
             </article>
-            <footer onClick={handleBodyClick} >
-                <ButtomNav />
-            </footer>
+            <ButtomNav />
         </main>
     )
 }

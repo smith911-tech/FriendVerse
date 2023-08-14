@@ -44,6 +44,12 @@ export default function userPersonalProfile() {
         }
     }, []);
 
+    // ! name that will apear on the followers count page
+    let name = userData && userData.fullName
+    sessionStorage.setItem("name", name);
+    let username = userData && userData.username
+    sessionStorage.setItem("username", username);
+
 
     //! states
     const [SuggestData, setSuggestData] = useState<any[]>([]);
@@ -99,7 +105,7 @@ export default function userPersonalProfile() {
                         SuggestData={SuggestData} />
                 </section>
                 <section
-                    className=" w-[95%] mt-4 rounded-2xl  md800:w-[60%] sm650:w-[100%] smm500:mt-0">
+                    className=" w-[95%] mt-4 rounded-2xl  md800:w-[60%] sm650:w-[100%] smm500:mt-0 min-h-screen">
                     <ProfileInterface 
                     userData={userData} 
                     handleInputClick={handleInputClick}

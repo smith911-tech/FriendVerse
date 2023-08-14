@@ -5,9 +5,9 @@ interface userDatas {
     handleInputClick:  () => void
     handleBodyClick: () => void
 }
-import { useState, useEffect } from 'react'
+import { useState} from 'react'
 import { LongCard } from '../GeneralComponent/LoadingCard'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { BsFillArrowLeftCircleFill } from 'react-icons/bs';
 import defaultcoverimg from '../assets/DefalutCoverImg.jpg'
 import { BiSolidUserCircle } from "react-icons/bi";
@@ -22,16 +22,6 @@ export default function ViewUsersData({
     handleInputClick,
     handleBodyClick
 }: userDatas) {
-    const navigate = useNavigate();
-    let userid = sessionStorage.getItem('UserId')
-    useEffect(() => {
-        const desiredPath = window.location.pathname;
-        if (userid && desiredPath !== '/') {
-            navigate(desiredPath);
-        } else {
-            navigate('/');
-        }
-    }, [navigate, userid]);
     const [showPmodal, setShowPmodal] = useState<boolean>(false)
     const [showCmodal, setShowCmodal] = useState<boolean>(false)
 
