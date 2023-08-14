@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Rightsidebar from "../../GeneralComponent/Rightsidebar";
 import Header from "../../GeneralComponent/Header";
 import ButtomNav from "../../GeneralComponent/ButtomNav";
@@ -69,6 +69,18 @@ export default function OthersFollowingInterface() {
     };
     //! Theme Mode
     const theme = useThemeStore((state: any) => state.theme);
+
+    // ! getting other users data personal data with id 
+    const { id } = useParams();
+    const [data, setData] = useState<any>();
+
+    useEffect(() => {
+        const userDetails = SuggestData && SuggestData.find((data: any) => data.username === id);
+        if (userDetails) {
+            setData(userDetails);
+        }
+    }, [id, SuggestData]);
+    data
 
 
 

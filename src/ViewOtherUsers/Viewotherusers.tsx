@@ -88,6 +88,12 @@ export default function ViewOtherUsers() {
     //! Theme Mode
     const theme = useThemeStore((state: any) => state.theme);
 
+    // ! name that will apear on the followers count page
+    let name = data && data.fullName
+    sessionStorage.setItem("Oname", name);
+    let username = data && data.username
+    sessionStorage.setItem("Ousername", username);
+
 
     return (
         <main className="relative">
