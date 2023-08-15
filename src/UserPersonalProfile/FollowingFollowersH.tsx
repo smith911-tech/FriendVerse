@@ -7,7 +7,8 @@ export default function FollowersFollowingH(){
     const username = sessionStorage.getItem('username')
     const name = sessionStorage.getItem('name')
     return(
-        <header className="py-3 select-none">
+        <header className={`py-3 select-none sticky top-14 z-[60] 
+        ${theme ? "bg-black" : "bg-white"}`}>
             <section className='flex px-2 gap-5'>
                 <Link to='/Profile' className={`text-2xl m-2 p-2 rounded-full transition-all cursor-pointer 
                 ${theme ? "hover:bg-[#ffffff7d] " : "hover:bg-[#00000050] "}`}>

@@ -94,8 +94,8 @@ export default function FollowingInterface() {
                         SuggestData={SuggestData} />
                 </section>
                 <section
-                    className=" w-[95%] mt-4 rounded-2xl  md800:w-[60%] sm650:w-[100%] smm500:mt-0 min-h-screen">
-                        <Following />
+                    className=" w-[95%] mt-4 rounded-2xl  md800:w-[60%] sm650:w-[100%] smm500:mt-0">
+                        <Following userData={userData} SuggestData={SuggestData}/>
                 </section>
                 <section
                     onClick={handleBodyClick}
