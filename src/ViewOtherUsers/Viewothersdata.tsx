@@ -53,7 +53,7 @@ export default function ViewUsersData({
                 ${theme ? isInputClicked ? " bg-black text-white" : " bg-black text-white"
                     : isInputClicked ? " text-black" : "bg-white text-black"}
                 `}>
-                    <section onClick={handleBodyClick} className={`flex justify-between px-2 py-2 smm500:px-1 sticky top-16 z-[50] 
+                    <section onClick={handleBodyClick} className={`flex justify-between px-2 py-2 smm500:px-1 sticky top-14 z-[50] 
                     ${theme ? "bg-black" : "bg-white"}
                     ${isInputClicked ? " brightness-[0.2]" : " brightness-100"}`}>
                         <Link to='/Home'>
