@@ -50,10 +50,10 @@ body {
 
 /* ! active link */
 .ActiveLink.active {
-  color: blue;
+  color: #1d9bf0;
 }
 .UnderHomeNav.active{
-  border-bottom: 4px blue solid;
+  border-bottom: 4px #1d9bf0 solid;
   display: block;
   margin: 4px auto 0 auto;
   width: 2rem;

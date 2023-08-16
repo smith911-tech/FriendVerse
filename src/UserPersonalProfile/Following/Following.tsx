@@ -68,7 +68,21 @@ export default function Following({ userData, SuggestData }: UserDatas) {
         if (userData && SuggestData) {
             setIsLoading(false);
         }
-    }, [userData, SuggestData]);
+    }, [userData, SuggestData]);;
+
+        const handleShare = async (Username: string) => {
+            try {
+                await navigator.share({
+                    title: "ssss",
+                    text: 'Check out this awesome content!',
+                    url: `/User/${Username}`,
+                });
+            } catch (error) {
+                console.error('Error sharing:', error);
+            }
+        };
+
+
 
 
     return (
@@ -121,7 +135,7 @@ export default function Following({ userData, SuggestData }: UserDatas) {
                                         >
                                             {hoverStates[user.id] ? "Unfollow" : "Following"}
                                         </button>
-                                        <div className='text-3xl hover:text-blue-500 transition-all cursor-pointer'>
+                                        <div onClick={(() => handleShare(user.username))} className='text-2xl transition-all cursor-pointer hover:bg-[#1d9cf068] pt-1 rounded-full px-1 mt-1'>
                                             <BiDotsHorizontalRounded />
                                         </div>
                                     </aside>
