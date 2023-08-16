@@ -6,6 +6,9 @@ import { db } from '../../firebase-config';
 import { useState, useEffect } from 'react'
 import { doc, updateDoc, arrayRemove } from 'firebase/firestore';
 import { Oval } from 'react-loader-spinner'
+import { Popover } from '@headlessui/react'
+import { RiShareForwardBoxLine } from 'react-icons/Ri'
+import { MdOutlineGroupRemove } from 'react-icons/md'
 interface UserDatas {
     userData: any;
     SuggestData: any;
@@ -70,10 +73,10 @@ export default function Following({ userData, SuggestData }: UserDatas) {
         }
     }, [userData, SuggestData]);;
 
-        const handleShare = async (Username: string) => {
+        const handleShare = async (Username: string, name: string) => {
             try {
                 await navigator.share({
-                    title: "ssss",
+                    title: `${name}(@${Username})`,
                     text: 'Check out this awesome content!',
                     url: `/User/${Username}`,
                 });
@@ -81,8 +84,6 @@ export default function Following({ userData, SuggestData }: UserDatas) {
                 console.error('Error sharing:', error);
             }
         };
-
-
 
 
     return (
@@ -107,8 +108,8 @@ export default function Following({ userData, SuggestData }: UserDatas) {
                     suggestedUsers.map((user: any) => (
                         <Link to={`/User/${user.username}`} key={user.id}
                             className={`select-none py-1 transition-all ${theme
-                                ? "hover:bg-[#ffffff27]"
-                                : "hover:bg-[#00000020]"}`}>
+                                ? "hover:bg-[#ffffff16]"
+                                : "hover:bg-[#00000010]"}`}>
                             <section className='flex w-full'>
                                 <section>
                                     {user.profileImage === '' ? (
@@ -120,7 +121,7 @@ export default function Following({ userData, SuggestData }: UserDatas) {
                                     )}
                                 </section>
                                 <section className='flex flex-col ml-1'>
-                                    <p className='font-bold text-lg'>{user.fullName}</p>
+                                    <p className='font-bold text-base'>{user.fullName}</p>
                                     <p className={`-mt-[2px] font-semibold text-sm ${theme ? 'text-[#ffffffc3]' : 'text-[#0000009f]'}`}>
                                         @{user.username}
                                     </p>
@@ -135,13 +136,34 @@ export default function Following({ userData, SuggestData }: UserDatas) {
                                         >
                                             {hoverStates[user.id] ? "Unfollow" : "Following"}
                                         </button>
-                                        <div onClick={(() => handleShare(user.username))} className='text-2xl transition-all cursor-pointer hover:bg-[#1d9cf068] pt-1 rounded-full px-1 mt-1'>
+                                        <Popover className='relative'>
+                                        <Popover.Button  className='text-2xl transition-all cursor-pointer hover:bg-[#1d9cf068] pt-1 rounded-full px-1 mt-1 outline-none'>
                                             <BiDotsHorizontalRounded />
-                                        </div>
+                                        </Popover.Button>
+                                        <Popover.Panel  onClick={handleIconClick} className={`absolute  right-7 w-52 top-0 pt-2 pb-4  rounded-2xl ${theme 
+                                        ? "shadow-white shadow-ShareProfilePopupW bg-black"
+                                        : "shadow-black shadow-2xl bg-white"}`}>
+
+                                        <Popover.Button  onClick = {(() => handleShare(user.username, user.fullName))}                                         
+                                        className={`flex gap-2 py-1 mt-2 w-full px-3 ${theme 
+                                        ? "hover:bg-[#ffffff16]" : "hover:bg-[#00000010]" }`}>
+                                            <span className=' text-xl mt-[3px]'><RiShareForwardBoxLine /></span>
+                                            <p className=' font-semibold'>Share profile via...</p>
+                                        </Popover.Button>
+
+                                        <Popover.Button onClick={() => handleUnfollow(user.id)} 
+                                        className={`flex gap-2 py-1 mt-2 w-full  px-3 ${theme 
+                                        ? "hover:bg-[#ffffff16]" : "hover:bg-[#00000010]" }`}>
+                                            <span className=' text-xl mt-[3px]'><MdOutlineGroupRemove /></span>
+                                            <p className=' font-semibold  text-left whitespace-nowrap text-ellipsis overflow-hidden w-full '>Remove @{user.username}</p>
+                                        </Popover.Button>
+
+                                        </Popover.Panel>    
+                                        </Popover>
                                     </aside>
                                 </div>
                             </section>
-                            <p className='font-medium ml-[52px]'>{user.bio}</p>
+                            <p className='font-medium ml-[52px] text-sm'>{user.bio}</p>
                         </Link>
                     ))
                 )}

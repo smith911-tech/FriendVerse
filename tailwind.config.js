@@ -36,6 +36,10 @@ export default {
       fontFamily: {
         "Belanosima": ['Belanosima', "sans-serif"],
         "Inter": [ 'Inter', "sans-serif"]
+      },
+      boxShadow: {
+        ShareProfilePopupW: '3px 3px 8px rgba(255, 255, 255, 0.5), -3px -3px 8px rgba(255, 255, 255, 0.5)',
+        
       }
     },
   },

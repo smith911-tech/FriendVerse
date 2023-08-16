@@ -52,12 +52,11 @@ export default function UserProfileDetails({
     //! Theme Mode
     const theme = useThemeStore((state: any) => state.theme);
 
-    let Followers;
-    let Following;
+    let Followers = '0';
+    let Following = '0';
 
     if (userData) {
-        const followersCount = userData.Followers.length;
-
+        const followersCount = userData.Followers?.length || 0;
 
         if (followersCount > 9999) {
             Followers = (followersCount / 1000).toFixed(1) + 'k';
@@ -65,7 +64,7 @@ export default function UserProfileDetails({
             Followers = followersCount.toString();
         }
 
-        const followingCount = userData.Following.length;
+        const followingCount = userData.Following?.length || 0;
 
         if (followingCount > 9999) {
             Following = (followingCount / 1000).toFixed(1) + 'k';
@@ -73,6 +72,7 @@ export default function UserProfileDetails({
             Following = followingCount.toString();
         }
     }
+
 
     return(
         <>
