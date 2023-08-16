@@ -97,11 +97,11 @@ export default function OthersProfileDetails({
     const handleMouseLeave = () => {
         setIsHovered(false);
     };
-    let Followers;
-    let Following;
+    let Followers = '0'
+    let Following = '0'
 
     if (data) {
-        const followersCount = data.Followers.length;
+        const followersCount = data.Followers?.length || 0;
 
 
         if (followersCount > 9999) {
@@ -110,7 +110,7 @@ export default function OthersProfileDetails({
             Followers = followersCount.toString();
         }
 
-        const followingCount = data.Following.length;
+        const followingCount = data.Following?.length || 0;
 
         if (followingCount > 9999) {
             Following = (followingCount / 1000).toFixed(1) + 'k';
@@ -118,6 +118,7 @@ export default function OthersProfileDetails({
             Following = followingCount.toString();
         }
     }
+
 
     
     return (
@@ -127,7 +128,7 @@ export default function OthersProfileDetails({
                     <div onClick={handleBodyClick} className='text-3xl mt-1 text-[#b6a8a8ae]'>
                         <AiOutlineMail/>
                     </div>
-                    {userData.Following.includes(data.id) ? (
+                    {userData.Following?.includes(data.id) ? (
                                 <button
                                     className={`${isHovered ? 'bg-[red] px-[18.5px]' : 'bg-[#3b82f6]'} text-white font-semibold py-1 px-4 rounded-xl`}
                                     onClick={handleInputClick}

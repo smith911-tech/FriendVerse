@@ -9,33 +9,43 @@ import { SmallCard } from "./LoadingCard";
 import { GoTelescopeFill } from "react-icons/go";
 import { Link } from 'react-router-dom';
 import {useThemeStore} from '../Zustand';
+import {useState, useEffect} from 'react'
 
 export default function Dashboard({ userData, SuggestData }: userdatas): JSX.Element {
     let userid = sessionStorage.getItem('UserId')
     const theme = useThemeStore((state: any) => state.theme);
 
 
-    let Followers;
-    let Following;
+    let Followers = '0';
+    let Following = '0';
 
-if(userData) {
-    const followersCount = userData.Followers.length;
+    if (userData) {
+        const followersCount = userData.Followers?.length || 0;
 
-    
-    if (followersCount > 9999) {
-        Followers = (followersCount / 1000).toFixed(1) + 'k';
-    } else {
-        Followers = followersCount.toString();
+        if (followersCount > 9999) {
+            Followers = (followersCount / 1000).toFixed(1) + 'k';
+        } else {
+            Followers = followersCount.toString();
+        }
+
+        const followingCount = userData.Following?.length || 0;
+
+        if (followingCount > 9999) {
+            Following = (followingCount / 1000).toFixed(1) + 'k';
+        } else {
+            Following = followingCount.toString();
+        }
     }
 
-    const followingCount = userData.Following.length;
 
-    if (followingCount > 9999) {
-        Following = (followingCount / 1000).toFixed(1) + 'k';
-    } else {
-        Following = followingCount.toString();
-    }
-}
+
+    const [shuffledData, setShuffledData] = useState(SuggestData.slice());
+
+    useEffect(() => {
+        const shuffled = [...SuggestData].sort(() => Math.random() - 0.5);
+        setShuffledData(shuffled);
+    }, [SuggestData]);
+
 
 
     return (
@@ -107,7 +117,7 @@ if(userData) {
                                 <h2 className=" font-extrabold">Suggestions</h2>
                                 <span className=" text-[#117dd5]"><GoTelescopeFill /></span>
                         </div>
-                        {SuggestData.filter((data: any) => data.id !== userid).slice(0, 3).map((data: any) =>(
+                        {shuffledData.filter((data: any) => data.id !== userid).slice(0, 3).map((data: any) =>(
                             <Link to={`/User/${data.username}`}>
                             <div
                                 className="cursor-pointer w-full select-none flex  my-4 ml-1 rounded-2xl gap-2"
@@ -131,7 +141,7 @@ if(userData) {
                                 <div className='w-full'>
                                     <p
                                         className="text-left font-semibold whitespace-nowrap overflow-hidden w-[70%] text-ellipsis">{data.fullName}</p>
-                                        <p className={` wor text-sm text-left ${theme ? "text-white" : "text-[#000000a9]"}`}><span className='select-none'>@</span>
+                                        <p className={` text-sm text-left ${theme ? "text-white" : "text-[#000000a9]"}`}><span className='select-none'>@</span>
                                         {data.username}</p>
                                 </div>
                             </div>

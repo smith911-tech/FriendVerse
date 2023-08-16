@@ -1,6 +1,7 @@
 interface userdatas {
     SuggestData: any
 }
+import { useState, useEffect } from "react";
 import { BiSolidUserCircle } from "react-icons/bi";
 import { LongCard } from "../GeneralComponent/LoadingCard";
 import { GoTelescopeFill } from "react-icons/go";
@@ -10,6 +11,15 @@ import {useThemeStore} from '../Zustand';
 export default function ProfileLeftbar({ SuggestData }: userdatas): JSX.Element {
     let userid = sessionStorage.getItem('UserId')
     const theme = useThemeStore((state: any) => state.theme);
+
+
+    const [shuffledData, setShuffledData] = useState(SuggestData.slice());
+
+    useEffect(() => {
+        const shuffled = [...SuggestData].sort(() => Math.random() - 0.5);
+        setShuffledData(shuffled);
+    }, [SuggestData]);
+
     return (
 
         <main className="md970:block hidden font-Inter pt-2 px-2">
@@ -22,7 +32,7 @@ export default function ProfileLeftbar({ SuggestData }: userdatas): JSX.Element 
                             <h2 className="font-extrabold">Suggestions</h2>
                             <span className="text-[#117dd5]"><GoTelescopeFill /></span>
                         </div>
-                        {SuggestData.filter((data: any) => data.id !== userid).slice(0, 8).map((data: any) => (
+                        {shuffledData.filter((data: any) => data.id !== userid).slice(0, 8).map((data: any) => (
                             <Link to={`/User/${data.username}`}>
                             <div
                                 className="cursor-pointer w-full select-none flex my-4 ml-1 rounded-2xl gap-2"
