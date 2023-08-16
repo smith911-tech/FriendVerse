@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react'
 import { doc, updateDoc, arrayRemove } from 'firebase/firestore';
 import { Oval } from 'react-loader-spinner'
 import { Popover } from '@headlessui/react'
-import { RiShareForwardBoxLine } from 'react-icons/Ri'
+import { RiShareForwardBoxLine } from 'react-icons/ri'
 import { MdOutlineGroupRemove } from 'react-icons/md'
 interface UserDatas {
     userData: any;

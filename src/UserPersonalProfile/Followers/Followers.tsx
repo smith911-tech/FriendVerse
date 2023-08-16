@@ -9,7 +9,7 @@ import { useState, useEffect } from 'react'
 import { doc, updateDoc, arrayRemove, arrayUnion } from 'firebase/firestore';
 import { Oval } from 'react-loader-spinner'
 import { Popover } from '@headlessui/react'
-import { RiShareForwardBoxLine } from 'react-icons/Ri'
+import { RiShareForwardBoxLine } from 'react-icons/ri'
 import { MdOutlineGroupRemove } from 'react-icons/md'
 import FollowersFollowingH from '../FollowingFollowersH'
 import { useThemeStore } from '../../Zustand';
