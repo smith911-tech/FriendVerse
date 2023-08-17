@@ -1,7 +1,7 @@
 import { useThemeStore } from "../Zustand";
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes } from 'styled-components';  
 
-const shimmer = keyframes`
+    const shimmer = keyframes`
     0% {
         background-position: -300px 0;
     }
@@ -10,7 +10,7 @@ const shimmer = keyframes`
     }
 `;
 
-const placeHolderShimmer = keyframes`
+    const placeHolderShimmer = keyframes`
     0% {
         background-position: -1000px 0;
     }
@@ -18,7 +18,7 @@ const placeHolderShimmer = keyframes`
         background-position: 1000px 0;
     }
 `;
-const Inter_draw = styled.section`
+    const Inter_draw = styled.section`
     width: 100%;
     height: 100px;
     position: absolute;
