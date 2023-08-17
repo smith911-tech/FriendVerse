@@ -5,7 +5,7 @@ export default function OFollowingInterface() {
     return(
         <main className={`min-h-screen 
         ${theme ? "bg-black text-white" : "bg-white text-black"}`}>
-            <OFollowingFollowersH />
+            
         </main>
     )
 }

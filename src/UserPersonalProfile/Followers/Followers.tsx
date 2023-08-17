@@ -182,7 +182,7 @@ export default function Followers({ userData, SuggestData }: UserDatas) {
                                             <Popover.Button className='text-2xl transition-all cursor-pointer hover:bg-[#1d9cf068] pt-1 rounded-full px-1 mt-1 outline-none'>
                                                 <BiDotsHorizontalRounded />
                                             </Popover.Button>
-                                            <Popover.Panel onClick={handleIconClick} className={`absolute  right-7 w-52 top-0 pt-2 pb-4  rounded-2xl ${theme
+                                            <Popover.Panel  className={`absolute  right-7 w-52 top-0 pt-2 pb-4  rounded-2xl ${theme
                                                 ? "shadow-white shadow-ShareProfilePopupW bg-black"
                                                 : "shadow-black shadow-2xl bg-white"}`}>
 
