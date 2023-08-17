@@ -23,6 +23,7 @@
     "react-slick": "^0.29.0",
     "react-sweet-progress": "^1.1.2",
     "slick-carousel": "^1.8.1",
+    "styled-components": "^6.0.7",
     "zustand": "^4.4.0"
   },
   "devDependencies": {
