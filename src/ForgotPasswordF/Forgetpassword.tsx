@@ -5,6 +5,7 @@ import "react-phone-number-input/style.css";
 import { FaXmark } from "react-icons/fa6"
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import { FilldetailsError, SuccessLoginM } from "../Error-SuccessM";
+import { ColorRing } from 'react-loader-spinner'
 export default function Forgetpasword() {
     //! back to signin page function
     const navigate = useNavigate();
@@ -17,12 +18,15 @@ export default function Forgetpasword() {
     // ! Sucess message 
     const [successFul, setSuccessful] = useState<string | boolean>(false)
 
+    // ! Submit preloader state
+    const [loader, setLoader] = useState<boolean>(false)
+
     //! input state
     const [email, setEmail] = useState<string>("")
     const handleReset = async (e: any) => {
+        setLoader(true)
         e.preventDefault();
         const auth = getAuth();
-
         try {
             await sendPasswordResetEmail(auth, email);
             setSuccessful('Please check your email.');
@@ -31,8 +35,9 @@ export default function Forgetpasword() {
                 navigate("/");
             }, 2000);
         } catch (error: any) {
+            setLoader(false)
             if (error.code === 'auth/user-not-found') {
-                setError('User not found');
+                setError('Please check the Email');
             }
             if (error.code === 'auth/too-many-requests') {
                 setError('To many resquest');
@@ -42,8 +47,7 @@ export default function Forgetpasword() {
             }
             setTimeout(() => {
                 setError(false);
-            }, 2000);
-            
+            }, 3000);
         }
     }
 
@@ -75,9 +79,18 @@ export default function Forgetpasword() {
                                     setEmail(e.target.value)
                                 }
                             />
-                        <button className="block mx-auto my-0 mt-6 py-2 px-10  text-black bg-[#D9D9D9] rounded-[30px] font-sans font-bold select-none">
-                            Submit
-                        </button>
+                    <button className="block mx-auto my-0 py-2 px-10  text-black bg-[#D9D9D9] rounded-[30px] font-sans font-bold select-none mt-11">
+                        {loader ? (
+                            <ColorRing
+                                visible={true}
+                                height="25"
+                                width="45"
+                                colors={['#000000', '#00000', '#FFD700', '#E84118', '#000000']}
+                            />
+                        ) : (
+                            <span>Submit</span>
+                        )}
+                    </button>
                     </form>
                     {/* End of logo */}
                 {error && <FilldetailsError
