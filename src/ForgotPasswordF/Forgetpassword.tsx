@@ -1,27 +1,54 @@
 import Logo from "../assets/Logo.png";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import PhoneInput from "react-phone-number-input";
+import { useState, ChangeEvent } from "react";
 import "react-phone-number-input/style.css";
 import { FaXmark } from "react-icons/fa6"
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
+import { FilldetailsError, SuccessLoginM } from "../Error-SuccessM";
 export default function Forgetpasword() {
     //! back to signin page function
     const navigate = useNavigate();
     const BackToSignup = () => {
         navigate("/");
     };
+    // ! error message
+    const [error, setError] = useState<string | boolean>(false)
 
-    // ! change input between email and phone number
-    const [changeInput, setChangeInput] = useState<boolean>(true);
-    const HandleChangeInput = () => {
-        setChangeInput(!changeInput);
-    };
+    // ! Sucess message 
+    const [successFul, setSuccessful] = useState<string | boolean>(false)
 
-    // input states
-    const [phoneNumber, setPhonenumber] = useState<string>("");
+    //! input state
+    const [email, setEmail] = useState<string>("")
+    const handleReset = async (e: any) => {
+        e.preventDefault();
+        const auth = getAuth();
+
+        try {
+            await sendPasswordResetEmail(auth, email);
+            setSuccessful('Please check your email.');
+
+            setTimeout(() => {
+                navigate("/");
+            }, 2000);
+        } catch (error: any) {
+            if (error.code === 'auth/user-not-found') {
+                setError('User not found');
+            }
+            if (error.code === 'auth/too-many-requests') {
+                setError('To many resquest');
+            }
+            if (error.code === 'auth/network-request-failed') {
+                setError('Network error');
+            }
+            setTimeout(() => {
+                setError(false);
+            }, 2000);
+            
+        }
+    }
+
     return (
-        <>
-            <main className="bg-[#1B1D21] h-[100vh] px-[29px] py-[61px] text-white w-full">
+            <main className="bg-[#1B1D21] h-[100vh] px-[29px] py-[61px] text-white w-full relative" >
                 <section className="bg-[black]  px-4 pb-28 sm500:w-[450px] block mx-auto my-0 md734:w-[600px] md734:pb-30  changePageanimation relative">
                     <div className="absolute text-2xl top-3 cursor-pointer"
                         onClick={BackToSignup}>
@@ -38,50 +65,28 @@ export default function Forgetpasword() {
                             Forgot Password
                         </h2>
                     </div>
-                    <section>
-                        {changeInput ? (
+                    <form onSubmit={handleReset}>
                             <input
                                 type="email"
-                                className="bg-transparent border border-solid border-[#ffffffd5] h-10 px-4 w-full block mx-auto my-0 md734:w-[450px]  lg1280:h-11 mb-1"
+                                className="bg-transparent border border-solid border-[#ffffffd5] h-10 px-4 w-full block mx-auto my-0 md734:w-[450px]  lg1280:h-11 mb-1 "
                                 placeholder="Email address"
+                                value={email}
+                                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                    setEmail(e.target.value)
+                                }
                             />
-                        ) : (
-                            <div className="inputDrowndopDiv  w-full block mx-auto my-0 md734:w-[450px]   mb-1">
-                                {/* phone number drop down input */}
-                                <PhoneInput
-                                    international
-                                    className="lg1280:h-11"
-                                    placeholder="Phone number"
-                                    value={phoneNumber}
-                                    onChange={(e: any) => {
-                                        setPhonenumber(e.target.value);
-                                    }}
-                                />
-                                {/*end of  phone number drop down input */}
-                            </div>
-                        )}
-                        {changeInput ? (
-                            <p
-                                onClick={HandleChangeInput}
-                                className="text-right mb-4 text-[#117DD5] cursor-pointer font-seri font-semibold  md734:text-center md734:ml-60    text-sm select-none my-2"
-                            >
-                                Use Phone Number instead
-                            </p>
-                        ) : (
-                            <p
-                                onClick={HandleChangeInput}
-                                className="text-right mb-4 text-[#117DD5] cursor-pointer font-seri font-semibold  md734:text-center md734:ml-60    text-sm select-none my-2"
-                            >
-                                Use Email address instead
-                            </p>
-                        )}
-                        <button className="block mx-auto my-0 mt-4 py-2 px-10  text-black bg-[#D9D9D9] rounded-[30px] font-sans font-bold select-none">
+                        <button className="block mx-auto my-0 mt-6 py-2 px-10  text-black bg-[#D9D9D9] rounded-[30px] font-sans font-bold select-none">
                             Submit
                         </button>
-                    </section>
+                    </form>
                     {/* End of logo */}
+                {error && <FilldetailsError
+                    error={error}
+                />}
+                {successFul && <SuccessLoginM
+                    successFul={successFul}
+                />}
                 </section>
             </main>
-        </>
     );
 }
