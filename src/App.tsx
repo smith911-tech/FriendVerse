@@ -6,8 +6,6 @@ import {
     Signup,
     Page404,
     Forgetpasword,
-    Otp,
-    Newpassword,
     HomePage,
     TermsandCondition,
     Privacy,
@@ -53,11 +51,6 @@ function App() {
                             path="/Forgotpassword"
                             element={<Forgetpasword />}
                         />
-                        {/* Otp page */}
-                        <Route path="/Otpverification" element={<Otp />} />
-
-                        {/* Create a new passowrd  */}
-                        <Route path="/Newpassword" element={<Newpassword />} />
 
                         {/*  TermsandCondition */}
                         <Route path='/T&C' element={<TermsandCondition />} />
