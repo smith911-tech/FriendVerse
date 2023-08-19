@@ -5,7 +5,7 @@ interface userData {
 import { Link } from "react-router-dom";
 import { LongCard } from "../GeneralComponent/LoadingCard";
 import { useThemeStore } from '../Zustand';
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import { BiSolidUserCircle } from 'react-icons/bi'
 import { doc, updateDoc, arrayRemove, arrayUnion } from 'firebase/firestore';
 import { db } from '../firebase-config';
@@ -15,13 +15,6 @@ export default function RequestContent({ userData, SuggestData }: userData) {
     let userid = sessionStorage.getItem('UserId')
     const followerid = new Set(userData && userData.Following);
     const suggestedUsers = SuggestData && SuggestData.filter((user: any) => followerid.has(user.id));
-
-    // ! shuffled data
-    const [shuffledData, setShuffledData] = useState(SuggestData.slice());
-    useEffect(() => {
-        const shuffled = [...SuggestData].sort(() => Math.random() - 0.5);
-        setShuffledData(shuffled);
-    }, [SuggestData])
 
     const [hoverStates, setHoverStates] = useState(Array(suggestedUsers.length).fill(false));
 
@@ -86,7 +79,7 @@ export default function RequestContent({ userData, SuggestData }: userData) {
         <main className={`${theme ? "bg-black text-[#ffffffe0]" : "bg-[#ffff] text-black"} mb-1`}>
             <article className=" py-2 px-1">
             {SuggestData.length > 0 ? (
-                shuffledData.filter((data: any) => data.id !== userid).map((data: any)  => (
+                SuggestData.filter((data: any) => data.id !== userid).map((data: any)  => (
                     <Link to={`/User/${data.username}`} key={data.id}>
                         <div className="flex w-full">
                             {data.profileImage === '' ? (
