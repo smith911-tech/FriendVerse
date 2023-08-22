@@ -24,18 +24,26 @@ export default function OthersProfileDetails({
 }: userdatas){
 
 
-    //! Regular expression to find URLs in the bio text
-    const urlRegex = /(https?:\/\/[^\s]+)/g;
-    //! Function to replace URLs with anchor tags
+    const urlRegex = /(https?:\/\/[^\s]+|www\.[^\s]+|(?!www\.)[^\s]+\.[^\s]+)/g;
+
     const replaceUrlsWithLinks = (text: string) => {
-        return text.replace(urlRegex, (url) => `<a href="${url}" target="_blank" rel="noopener noreferrer" class="text-blue-500">${removeHttpFromUrl(url)}</a>`);
-    };
-    //! Function to remove "http://" or "https://" from the URL
-    const removeHttpFromUrl = (url: string) => {
-        return url.replace(/^(https?:\/\/)/, '');
+        return text.replace(urlRegex, (url) => {
+            if (url.startsWith('http') || url.startsWith('www.')) {
+                const actualUrl = url.startsWith('www.') ? 'http://' + url : url;
+                return `<a href="${actualUrl}" target="_blank" rel="noopener noreferrer" class="text-blue-500">${removeHttpFromUrl(
+                    url
+                )}</a>`;
+            } else {
+                return `<a href="http://${url}" target="_blank" rel="noopener noreferrer" class="text-blue-500">${url}</a>`;
+            }
+        });
     };
 
-    const formattedBio = data.bio ? replaceUrlsWithLinks(data.bio) : null;
+    const removeHttpFromUrl = (url: string) => {
+        return url.replace(/^(https?:\/\/|www\.)/, '');
+    };
+
+    const formattedBio =  data.bio ? replaceUrlsWithLinks(data.bio) : null;
 
 
     // ! Data of birth convertion from timestamp

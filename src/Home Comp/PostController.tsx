@@ -41,14 +41,9 @@ export default function PostController({
     // ! for when you post a youtube url
     const [previewData, setPreviewData] = useState<any>(null);
     // Helper function to check if a string is a link
-    const isLink = (text: string) => {
-        const urlPattern = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
-        return urlPattern.test(text);
-    };
-
     useEffect(() => {
         if (inputValue) {
-            if (isLink(inputValue)) {
+            if (isYouTubeLink(inputValue)) {
                 fetchPreviewData();
             } else {
                 setPreviewData(null); // Clear preview data when the input is not a link
@@ -58,18 +53,29 @@ export default function PostController({
         }
     }, [inputValue]);
 
-    const fetchPreviewData = async () => {
-        try {
-            const response = await axios.get(
-                `https://noembed.com/embed?url=${inputValue}`
-                
-            );
-            setPreviewData(response.data);
-        } catch (error) {
-            console.error(error);
-            setPreviewData(null);
-        }
-    };
+        const fetchPreviewData = async () => {
+            try {
+                if (isYouTubeLink(inputValue)) {
+                    const response = await axios.get(
+                        `https://noembed.com/embed?url=${inputValue}`
+                    );
+                    setPreviewData(response.data);
+                    console.log(response.data);
+                } else {
+                    setPreviewData(null); // Clear preview data for non-YouTube links
+                }
+            } catch (error) {
+                console.error(error);
+                setPreviewData(null);
+            }
+        };
+
+        const isYouTubeLink = (url: string) => {
+            // Regular expression to match YouTube URLs
+            const youtubePattern = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+/;
+            return youtubePattern.test(url);
+        };
+
     return(
         <>
             {isInputClicked && (
@@ -81,7 +87,7 @@ export default function PostController({
                         </span>
                     </section>
                     <hr />
-                    <section className="flex gap-2 mt-2 select-none">
+                    <section className="flex gap-2 mt-2 select-none pb-1">
                         <div>
                             {userData ? (
                                 <section>
@@ -124,15 +130,19 @@ export default function PostController({
                             {characterCount}/{328}
                         </div>
                         {previewData && (
-                            <div className="mt-8">
-                                <img
-                                    src={previewData.thumbnail_url}
-                                    alt="YouTube Thumbnail"
-                                    className="mb-4 w-full"
-                                />
-                                <h2 className="text-lg font-semibold">{previewData.title}</h2>
-                                <p className="text-gray-600">{previewData.author_name}</p>
-                                <p className="mt-2">{previewData.description}</p>
+                            <div className="mt-8 border-t border-gray-200 pt-4">
+                                <div className="flex items-center space-x-4">
+                                    <img
+                                        src={previewData.thumbnail_url}
+                                        alt="YouTube Thumbnail"
+                                        className="w-20 h-20 object-cover rounded"
+                                    />
+                                    <div>
+                                        <h2 className="text-lg font-semibold">{previewData.title}</h2>
+                                        <p className="text-gray-600">{previewData.author_name}</p>
+                                    </div>
+                                </div>
+                                <p className="mt-4 text-gray-700">{previewData.description}</p>
                             </div>
                         )}
                     </section>
