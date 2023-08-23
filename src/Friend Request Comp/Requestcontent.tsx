@@ -88,7 +88,7 @@ export default function RequestContent({ userData, SuggestData }: userData) {
                                     <BiSolidUserCircle />
                                 </div>
                             ) : (
-                                <img src={data.profileImage} alt='Profile' className='w-12 h-12 rounded-full object-cover' />
+                                <img src={data.profileImage} alt='Profile' className='w-12 h-12 rounded-full object-cover' loading='lazy'/>
                             )}
                             <section className='flex flex-col ml-1'>
                                 <p className='font-bold text-base flex'>

@@ -80,12 +80,14 @@ export default function Dashboard({ userData, SuggestData }: userdatas): JSX.Ele
                                     src={defaultcoverimg}
                                     alt="Cover"
                                     className="w-full rounded-t-lg h-32 object-cover"
+                                    loading='lazy'
                                 />
                             ) : (
                                 <img
                                     src={userData.coverImage}
                                     alt="Cover"
                                     className="w-full rounded-t-lg h-32 object-cover"
+                                    loading='lazy'
                                 />
                             )}
                             {userData.profileImage === "" ? (
@@ -103,6 +105,7 @@ export default function Dashboard({ userData, SuggestData }: userdatas): JSX.Ele
                                 <img
                                     src={userData.profileImage}
                                     alt="Profile"
+                                    loading='lazy'
                                     className="w-16 h-16 rounded-full absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-4 border-white object-cover bg-white"
                                 />
                                     </Link>
@@ -164,7 +167,8 @@ export default function Dashboard({ userData, SuggestData }: userdatas): JSX.Ele
                                         <img
                                             src={data.profileImage}
                                             alt="Profile"
-                                                className="w-12 h-12 rounded-full   object-cover "
+                                            loading='lazy'
+                                            className="w-12 h-12 rounded-full   object-cover "
                                         />
                                     )}
                                 </div>

@@ -51,6 +51,7 @@ export default function ProfileLeftbar({ SuggestData }: userdatas): JSX.Element 
                                         <img
                                             src={data.profileImage}
                                             alt="Profile"
+                                            loading='lazy'
                                             className="w-12 h-12 rounded-full object-cover "
                                         />
                                     )}
