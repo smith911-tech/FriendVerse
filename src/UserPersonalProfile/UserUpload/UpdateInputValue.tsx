@@ -42,7 +42,7 @@ export default function UpdateInputValue({
                     ? "bg-[#1b1d21]" 
                     : "bg-[white]"}`}
                     placeholder='Fullname'
-                    maxLength={35}
+                    maxLength={20}
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                 />

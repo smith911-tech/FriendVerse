@@ -72,14 +72,16 @@ export default function ViewUsersData({
                             <img
                                 src={defaultcoverimg}
                                 alt="Cover"
+                                loading='lazy'
                                 className={`w-full rounded-t-lg h-44 smm500:h-32 object-cover ${isInputClicked ? " brightness-[0.2]" : " brightness-100"}` }
                             />
                         ) : (
                             <img
                             onClick={handleShowCoverImg}
-                                src={data.coverImage}
-                                alt="Cover"
-                                className="w-full rounded-t-lg h-44  object-cover smm500:h-32 cursor-pointer"
+                            src={data.coverImage}
+                            loading='lazy'
+                            alt="CoverImg"
+                            className="w-full rounded-t-lg h-44  object-cover smm500:h-32 cursor-pointer"
                             />
                         )}
                         {data.profileImage === "" ? (
@@ -93,6 +95,7 @@ export default function ViewUsersData({
                             <img
                             onClick={handleShowProfileImg}
                                 src={data.profileImage}
+                                loading='lazy'
                                 alt="Profile"
                                     className={`w-24 h-24 rounded-full absolute left-4 -translate-y-1/2 border border-white object-cover bg-white smm500:h-23 smm500:w-23 smm500:left-1 cursor-pointer ${isInputClicked ? " brightness-[0.2]" : " brightness-100"}`}
                             />
