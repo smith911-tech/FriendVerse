@@ -9,6 +9,7 @@ import { useState} from "react";
 import { BiSolidUserCircle } from 'react-icons/bi'
 import { doc, updateDoc, arrayRemove, arrayUnion } from 'firebase/firestore';
 import { db } from '../firebase-config';
+import { VscVerifiedFilled } from 'react-icons/vsc'
 export default function RequestContent({ userData, SuggestData }: userData) {
     //! Theme Mode
     const theme = useThemeStore((state: any) => state.theme);
@@ -90,7 +91,14 @@ export default function RequestContent({ userData, SuggestData }: userData) {
                                 <img src={data.profileImage} alt='Profile' className='w-12 h-12 rounded-full object-cover' />
                             )}
                             <section className='flex flex-col ml-1'>
-                                <p className='font-bold text-base'>{data.fullName}</p>
+                                <p className='font-bold text-base flex'>
+                                    {data.fullName}
+                                    {data && data.Verify && (
+                                        <span className='text-[#1d9bf0] mt-1'>
+                                            <VscVerifiedFilled />
+                                        </span>
+                                    )}
+                                </p>
                                 <p className={`-mt-[2px] font-semibold text-sm ${theme ? 'text-[#ffffffc3]' : 'text-[#0000009f]'}`}>
                                     @{data.username}
                                 </p>

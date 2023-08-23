@@ -13,6 +13,7 @@ import { RiShareForwardBoxLine } from 'react-icons/ri'
 import { MdOutlineGroupRemove } from 'react-icons/md'
 import FollowersFollowingH from '../FollowingFollowersH'
 import { useThemeStore } from '../../Zustand';
+import { VscVerifiedFilled } from 'react-icons/vsc'
 
 export default function Followers({ userData, SuggestData }: UserDatas) {
     let userid = sessionStorage.getItem('UserId')
@@ -156,7 +157,14 @@ export default function Followers({ userData, SuggestData }: UserDatas) {
                                     )}
                                 </section>
                                 <section className='flex flex-col ml-1'>
-                                    <p className='font-bold text-base'>{user.fullName}</p>
+                                    <p className='font-bold text-base flex'>
+                                        {user.fullName}
+                                        {user && user.Verify && (
+                                            <span className='text-[#1d9bf0] text-xl mt-[2px]'>
+                                                <VscVerifiedFilled />
+                                            </span>
+                                        )}
+                                    </p>
                                     <p className={`-mt-[2px] font-semibold text-sm ${theme ? 'text-[#ffffffc3]' : 'text-[#0000009f]'}`}>
                                         @{user.username}
                                     </p>

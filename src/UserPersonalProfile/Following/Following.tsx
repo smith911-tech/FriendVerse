@@ -9,6 +9,7 @@ import { Oval } from 'react-loader-spinner'
 import { Popover } from '@headlessui/react'
 import { RiShareForwardBoxLine } from 'react-icons/ri'
 import { MdOutlineGroupRemove } from 'react-icons/md'
+import { VscVerifiedFilled } from 'react-icons/vsc'
 interface UserDatas {
     userData: any;
     SuggestData: any;
@@ -121,7 +122,14 @@ export default function Following({ userData, SuggestData }: UserDatas) {
                                     )}
                                 </section>
                                 <section className='flex flex-col ml-1'>
-                                    <p className='font-bold text-base'>{user.fullName}</p>
+                                    <p className='font-bold text-base flex'>
+                                        {user.fullName}
+                                        {user && user.Verify && (
+                                            <span className='text-[#1d9bf0] text-xl mt-[2px]'>
+                                                <VscVerifiedFilled />
+                                            </span>
+                                        )}
+                                    </p>
                                     <p className={`-mt-[2px] font-semibold text-sm ${theme ? 'text-[#ffffffc3]' : 'text-[#0000009f]'}`}>
                                         @{user.username}
                                     </p>

@@ -14,6 +14,7 @@ import { db } from '../firebase-config';
 import {useState} from 'react'
 import { doc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
 import { Link } from 'react-router-dom'
+import { VscVerifiedFilled } from 'react-icons/vsc'
 export default function OthersProfileDetails({
     data,
     theme,
@@ -152,8 +153,13 @@ export default function OthersProfileDetails({
                     )}
                 </div>
                 <section onClick={handleBodyClick} className=' mb-2 mt-2'>
-                    <h2 className=' font-semibold text-xl mt-1 '>
-                        {data.fullName}
+                    <h2 className=' font-semibold text-xl mt-1 flex'>
+                        {data && data.fullName}
+                        {data && data.Verify && (
+                            <span className='text-[#1d9bf0] mt-1 text-[22px]'>
+                                <VscVerifiedFilled />
+                            </span>
+                        )}
                     </h2>
                     <p className={`${theme ? "text-[#ffffffbc]" : "text-[#000000a5] "}`}>
                         <span className='select-none'>@</span>

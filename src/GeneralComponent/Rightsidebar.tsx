@@ -11,6 +11,7 @@ import ProfileProgress from "../Home Comp/ProfileProgress";
 import { Link } from "react-router-dom";
 import {useThemeStore} from '../Zustand';
 import { SuccessLoginM, FilldetailsError } from '../Error-SuccessM'
+import { VscVerifiedFilled } from 'react-icons/vsc'
 export default function SideDashboard({ SuggestData, userData }: userdatas):JSX.Element {
     const [searchTerm, setSearchTerm] = useState<string>("");
     const theme = useThemeStore((state: any) => state.theme);
@@ -67,7 +68,12 @@ export default function SideDashboard({ SuggestData, userData }: userdatas):JSX.
                                         )}
                                         </div>
                                             <div className={`${theme ? "text-white" : "text-[#000000a9]"}`}>
-                                        <p className="text-left font-semibold">{data.fullName}
+                                        <p className="text-left font-semibold flex">{data.fullName}
+                                    {data && data.Verify && (
+                                    <span className='text-[#1d9bf0] mt-1 '>
+                                        <VscVerifiedFilled />
+                                    </span>
+                                )}
                                         </p>
                                         <p className="text-sm text-left"><span className='select-none'>@</span>{data.username}</p>
                                         </div>

@@ -12,6 +12,7 @@ import UpdateP from './UpdateP';
 import {useState} from 'react'
 import {useThemeStore} from '../Zustand';
 import { Link } from 'react-router-dom';
+import { VscVerifiedFilled } from 'react-icons/vsc'
 export default function UserProfileDetails({ 
     userData, 
     handleInputClick, 
@@ -95,8 +96,13 @@ export default function UserProfileDetails({
                 </div>
             </button>
             <section className=' mb-2'>
-            <h2 className=' font-semibold text-xl mt-1 '>
-                {userData && userData.fullName}
+            <h2 className=' font-semibold text-xl mt-1 flex'>
+                {userData && userData.fullName} 
+                {userData && userData.Verify && (
+                <span className='text-[#1d9bf0] mt-1 text-[22px]'>
+                    <VscVerifiedFilled />
+                </span>
+                )}
             </h2>
             <p className={`${theme ? "text-[#ffffffbc]" : "text-[#000000a5] "}`}>
             <span className='select-none'>@</span>

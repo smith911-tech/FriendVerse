@@ -10,6 +10,7 @@ import { GoTelescopeFill } from "react-icons/go";
 import { Link } from 'react-router-dom';
 import {useThemeStore} from '../Zustand';
 import {useState, useEffect} from 'react'
+import { VscVerifiedFilled } from 'react-icons/vsc'
 
 export default function Dashboard({ userData, SuggestData }: userdatas): JSX.Element {
     let userid = sessionStorage.getItem('UserId')
@@ -108,7 +109,13 @@ export default function Dashboard({ userData, SuggestData }: userdatas): JSX.Ele
                             )}
                         </div>
                         <div className="mt-8 text-center font-medium mb-2 w-full">
-                            <h2 className="pb-1 capitalize whitespace-nowrap overflow-hidden w-[100%] text-ellipsis">{userData.fullName}</h2>
+                            <h2 className="pb-1 capitalize whitespace-nowrap overflow-hidden w-[100%] text-ellipsis flex justify-center">{userData.fullName}
+                                {userData && userData.Verify && (
+                                    <span className='text-[#1d9bf0] mt-1'>
+                                        <VscVerifiedFilled />
+                                    </span>
+                                )}
+                            </h2>
 
                             <p
                                 className={`text-xs px-2 text-center ${theme ? "text-[#ffffffd6]" : "text-[#000000a5]"}`}
@@ -163,7 +170,13 @@ export default function Dashboard({ userData, SuggestData }: userdatas): JSX.Ele
                                 </div>
                                 <div className='w-full'>
                                     <p
-                                        className="text-left font-semibold whitespace-nowrap overflow-hidden w-[70%] text-ellipsis">{data.fullName}</p>
+                                        className="text-left font-semibold whitespace-nowrap overflow-hidden w-[75%] text-ellipsis flex">{data.fullName}
+                                        {data && data.Verify && (
+                                    <span className='text-[#1d9bf0] mt-1 '>
+                                        <VscVerifiedFilled />
+                                    </span>
+                                )}
+                                    </p>
                                         <p className={` text-sm text-left ${theme ? "text-white" : "text-[#000000a9]"}`}><span className='select-none'>@</span>
                                         {data.username}</p>
                                 </div>
