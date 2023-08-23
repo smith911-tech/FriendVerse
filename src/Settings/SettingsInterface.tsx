@@ -8,15 +8,17 @@ import { BiSolidUserCircle } from 'react-icons/bi'
 import { Link, useNavigate } from 'react-router-dom'
 import { LongCard } from '../GeneralComponent/LoadingCard'
 import DeleteModal from './DeleteModal'
-import { SuccessLoginM } from '../Error-SuccessM'
-import { ColorRing } from 'react-loader-spinner'
+import { SuccessLoginM, FilldetailsError} from '../Error-SuccessM'
 import {useThemeStore} from '../Zustand';
-
+import { db } from '../firebase-config';
+import { doc, updateDoc } from 'firebase/firestore';
 
 export default function SettingsInterface({ userData }: userdatas) {
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     // ! Sucess message 
     const [successFul, setSuccessful] = useState<string | boolean>(false)
+    // ! error message
+    const [error, setError] = useState<string | boolean>(false)
 
     const navigate = useNavigate()
     const handleLogout = () => {
@@ -36,6 +38,38 @@ export default function SettingsInterface({ userData }: userdatas) {
     };
     const theme = useThemeStore((state: any) => state.theme);
     const toggleTheme = useThemeStore((state: any) => state.toggleTheme)
+
+    let userid = sessionStorage.getItem('UserId')
+
+    const handleVerify = async (_e: any) => {
+        const DataDocRef = doc(db, "users", userid as string);
+        if (userData && userData.Verify) {
+            setSuccessful("Verified Already");
+        }
+        else if (userData && userData.bio && userData.Location && userData.coverImage && userData.profileImage !== "") {
+            try {
+                await updateDoc(DataDocRef, {
+                    Verify: true
+                });
+                setSuccessful("Verified Successfully");
+            } catch (error) {
+                console.log(error);
+            }
+        } else if (userData && userData.bio || userData.Location || userData.coverImage || userData.profileImage === "") {
+            try {
+                await updateDoc(DataDocRef, {
+                    Verify: false
+                });
+                setError("Complete Profile");
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        setTimeout(() => {
+            setSuccessful(false);
+            setError(false)
+        }, 2000);
+    };
     return (
         <>
             {userData ? (
@@ -105,8 +139,8 @@ export default function SettingsInterface({ userData }: userdatas) {
                                     <p className={`text-gray-600 ${theme ? "text-gray-300 dark:text-gray-400" : "text-gray-600 "}`}>
                                         Ensure your account's security by verifying your identity with a valid identification document.
                                     </p>
-                                    <button className="bg-blue-500 text-white px-6 py-2 rounded-lg w-full hover:bg-blue-600 transition-colors">
-                                        Get Verified
+                                    <button onClick={handleVerify} className="bg-blue-500 text-white px-6 py-2 rounded-lg w-full hover:bg-blue-600 transition-colors">
+                                        {userData && userData.Verify ? "Verified" : "Get Verified"}
                                     </button>
                                 </div>
                                 <hr />
@@ -115,16 +149,7 @@ export default function SettingsInterface({ userData }: userdatas) {
                                     <h2 className="text-lg font-semibold">Logout</h2>
                                     <p className={`${theme ? "text-gray-300 dark:text-gray-400" : "text-gray-600"}`}>Are you sure you want to logout?</p>
                                     <button className="border rounded-lg px-6 py-2 bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 w-full transition-colors flex justify-center" onClick={handleLogout}>
-                                        {!successFul ?
-                                            (<h2>Logout</h2>
-                                            ) : (
-                                                <ColorRing
-                                                    visible={true}
-                                                    height="25"
-                                                    width="45"
-                                                    colors={['#ffff', '#ffff', '#ffff', '#fff', '#ffff']}
-                                                />
-                                            )}
+                                        <h2>Logout</h2>
                                     </button>
                                 </div>
                                 <hr />
@@ -138,10 +163,15 @@ export default function SettingsInterface({ userData }: userdatas) {
                                 </div>
                             </div>
                         </div>
+                    </section>
+                    <div className='fixed top-7 right-[20%] z-50 w-96'>
                         {successFul && <SuccessLoginM
                             successFul={successFul}
                         />}
-                    </section>
+                        {error && <FilldetailsError
+                            error={error}
+                        />}
+                    </div>
                     {showDeleteModal && <DeleteModal setShowDeleteModal={setShowDeleteModal} />}
                 </main>
             )

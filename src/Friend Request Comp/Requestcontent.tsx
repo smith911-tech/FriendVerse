@@ -76,7 +76,7 @@ export default function RequestContent({ userData, SuggestData }: userData) {
     };
 
     return (
-        <main className={`${theme ? "bg-black text-[#ffffffe0]" : "bg-[#ffff] text-black"} mb-1`}>
+        <main className={`${theme ? "bg-black text-[#ffffffe0]" : "bg-[#ffff] text-black"} mb-10`}>
             <article className=" py-2 px-1">
             {SuggestData.length > 0 ? (
                 SuggestData.filter((data: any) => data.id !== userid).map((data: any)  => (

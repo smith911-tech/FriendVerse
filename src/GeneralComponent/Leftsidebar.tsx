@@ -46,6 +46,28 @@ export default function Dashboard({ userData, SuggestData }: userdatas): JSX.Ele
         setShuffledData(shuffled);
     }, [SuggestData]);
 
+    // ! this will convert any link in my bio and make it clickable when its updated
+    const urlRegex = /(https?:\/\/[^\s]+|www\.[^\s]+|(?!www\.)[^\s]+\.[^\s]+)/g;
+
+    const replaceUrlsWithLinks = (text: string) => {
+        return text.replace(urlRegex, (url) => {
+            if (url.startsWith('http') || url.startsWith('www.')) {
+                const actualUrl = url.startsWith('www.') ? 'http://' + url : url;
+                return `<a href="${actualUrl}" target="_blank" rel="noopener noreferrer" class="text-blue-500">${removeHttpFromUrl(
+                    url
+                )}</a>`;
+            } else {
+                return `<a href="http://${url}" target="_blank" rel="noopener noreferrer" class="text-blue-500">${url}</a>`;
+            }
+        });
+    };
+
+    const removeHttpFromUrl = (url: string) => {
+        return url.replace(/^(https?:\/\/|www\.)/, '');
+    };
+
+    const formattedBio = userData && userData.bio ? replaceUrlsWithLinks(userData.bio) : null;
+
     return (
         <main className="md970:block hidden font-Inter pt-2 px-2">
             {userData ? (
@@ -88,7 +110,10 @@ export default function Dashboard({ userData, SuggestData }: userdatas): JSX.Ele
                         <div className="mt-8 text-center font-medium mb-2 w-full">
                             <h2 className="pb-1 capitalize whitespace-nowrap overflow-hidden w-[100%] text-ellipsis">{userData.fullName}</h2>
 
-                            <h2 className={`text-xs px-2 text-center ${theme ? "text-[#ffffffd6]" : "text-[#000000a5]"}`}>{userData.bio}</h2>
+                            <p
+                                className={`text-xs px-2 text-center ${theme ? "text-[#ffffffd6]" : "text-[#000000a5]"}`}
+                                dangerouslySetInnerHTML={{ __html: formattedBio || '' }}
+                            />
                         </div>
                         <div className="mb-2 select-none">
                             <h2 className={`text-center font-medium  ${theme ? "text-[#ffffffd6]" : "text-[#000000a5]"}`}>Following</h2>
@@ -106,7 +131,7 @@ export default function Dashboard({ userData, SuggestData }: userdatas): JSX.Ele
             ) : (
                 <SmallCard />
             )}
-            <section className="mt-6">
+            <section className="mt-2">
                 {SuggestData.length === 0 ? (
                     <SmallCard />
                 ) : (
