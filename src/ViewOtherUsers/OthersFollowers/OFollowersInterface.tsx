@@ -13,6 +13,7 @@ import { doc, updateDoc, arrayRemove, arrayUnion } from 'firebase/firestore';
 import { Oval } from 'react-loader-spinner'
 import { Popover } from '@headlessui/react'
 import { RiShareForwardBoxLine } from 'react-icons/ri'
+import { VscVerifiedFilled } from 'react-icons/vsc'
 export default function OFollwersInterface({ data, SuggestData, userData }: userdatas) {
     let userid = sessionStorage.getItem('UserId')
     const theme = useThemeStore((state: any) => state.theme);
@@ -136,7 +137,14 @@ export default function OFollwersInterface({ data, SuggestData, userData }: user
                                     )}
                                 </section>
                                 <section className='flex flex-col ml-1'>
-                                    <p className='font-bold text-base'>{user.fullName}</p>
+                                    <p className='font-bold text-base flex'>
+                                        {user.fullName}
+                                        {user && user.Verify && (
+                                            <span className='text-[#1d9bf0] mt-1 '>
+                                                <VscVerifiedFilled />
+                                            </span>
+                                        )}
+                                    </p>
                                     <p className={`-mt-[2px] font-semibold text-sm ${theme ? 'text-[#ffffffc3]' : 'text-[#0000009f]'}`}>
                                         @{user.username}
                                     </p>

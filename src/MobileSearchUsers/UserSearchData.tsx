@@ -8,6 +8,7 @@ import { GoAlertFill } from 'react-icons/go'
 import { Link } from "react-router-dom";
 import { BiSolidUserCircle } from 'react-icons/bi'
 import {useThemeStore} from '../Zustand';
+import { VscVerifiedFilled } from 'react-icons/vsc'
 export default function UserSearchData({ SuggestData }: userdatas){
     const inputRef = useRef<HTMLInputElement>(null);
     useEffect(() => {
@@ -80,7 +81,13 @@ export default function UserSearchData({ SuggestData }: userdatas){
                                         )}
                                     </div>
                                     <div>
-                                        <p className="text-left font-semibold whitespace-nowrap overflow-hidden w-[90%] text-ellipsis">{data.fullName}</p>
+                                        <p className="text-left font-semibold text-ellipsis flex">{data.fullName}
+                                            {data && data.Verify && (
+                                                <span className='text-[#1d9bf0] mt-1'>
+                                                    <VscVerifiedFilled />
+                                                </span>
+                                            )}
+                                        </p>
                                         <p
                                             className={`text-sm text-left ${theme ? "text-[#ffffffd4]" : "text-[#000000a9]"}`}><span className='select-none'>@</span>{data.username}</p>
                                     </div>

@@ -10,6 +10,8 @@ import VerfiyId from "./VerifyBox";
 import ProfileProgress from "../Home Comp/ProfileProgress";
 import { Link } from "react-router-dom";
 import {useThemeStore} from '../Zustand';
+import { SuccessLoginM, FilldetailsError } from '../Error-SuccessM'
+import { VscVerifiedFilled } from 'react-icons/vsc'
 export default function SideDashboard({ SuggestData, userData }: userdatas):JSX.Element {
     const [searchTerm, setSearchTerm] = useState<string>("");
     const theme = useThemeStore((state: any) => state.theme);
@@ -21,8 +23,13 @@ export default function SideDashboard({ SuggestData, userData }: userdatas):JSX.
     }
 
     let userid = sessionStorage.getItem('UserId')
+
+    // ! Sucess message 
+    const [successFul, setSuccessful] = useState<string | boolean>(false)
+    // ! error message
+    const [error, setError] = useState<string | boolean>(false)
     return (
-        <main className="lg1150:block hidden px-1 pt-2 ">
+        <main className="lg1150:block hidden px-1 pt-2 relative">
             <section className={`${theme ? "bg-black" : "bg-[white] "} px-2 py-2 shadow relative mb-8`}>
                 <div className="flex relative">
                     <input type="text"
@@ -61,7 +68,12 @@ export default function SideDashboard({ SuggestData, userData }: userdatas):JSX.
                                         )}
                                         </div>
                                             <div className={`${theme ? "text-white" : "text-[#000000a9]"}`}>
-                                        <p className="text-left font-semibold">{data.fullName}
+                                        <p className="text-left font-semibold flex">{data.fullName}
+                                    {data && data.Verify && (
+                                    <span className='text-[#1d9bf0] mt-1 '>
+                                        <VscVerifiedFilled />
+                                    </span>
+                                )}
                                         </p>
                                         <p className="text-sm text-left"><span className='select-none'>@</span>{data.username}</p>
                                         </div>
@@ -72,8 +84,17 @@ export default function SideDashboard({ SuggestData, userData }: userdatas):JSX.
                     </div>
                 )}
             </section>
-            <VerfiyId />
+            <VerfiyId 
+            userData={userData} 
+            setSuccessful={setSuccessful} 
+            setError={setError}/>
             <ProfileProgress userData={userData}/>
+            {successFul && <SuccessLoginM
+                successFul={successFul}
+            />}
+            {error && <FilldetailsError
+                error={error}
+            />}
         </main>
     )
 }

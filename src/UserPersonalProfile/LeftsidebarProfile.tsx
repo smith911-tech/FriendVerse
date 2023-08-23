@@ -7,6 +7,7 @@ import { LongCard } from "../GeneralComponent/LoadingCard";
 import { GoTelescopeFill } from "react-icons/go";
 import { Link } from "react-router-dom";
 import {useThemeStore} from '../Zustand';
+import { VscVerifiedFilled } from 'react-icons/vsc'
 
 export default function ProfileLeftbar({ SuggestData }: userdatas): JSX.Element {
     let userid = sessionStorage.getItem('UserId')
@@ -55,7 +56,12 @@ export default function ProfileLeftbar({ SuggestData }: userdatas): JSX.Element 
                                     )}
                                 </div>
                                     <div className={`w-full ${theme ? "text-[#ffffffca]" : "text-[#000000d4]"}`}>
-                                        <p className="text-left font-semibold whitespace-nowrap overflow-hidden w-[70%] text-ellipsis">{data.fullName}
+                                        <p className="text-left font-semibold whitespace-nowrap overflow-hidden w-[70%] text-ellipsis flex">{data.fullName}
+                                            {data && data.Verify && (
+                                                <span className='text-[#1d9bf0] mt-1 '>
+                                                    <VscVerifiedFilled />
+                                                </span>
+                                            )}
                                         </p>
                                         <p className="text-sm text-left"><span className='select-none'>@</span>{data.username}</p>
                                     </div>

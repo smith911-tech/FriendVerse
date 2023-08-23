@@ -145,6 +145,15 @@ export default function UpdateProfile({
             setTimeout(() => {
                 setUserClickedRemoveCover(false)
             }, 50)
+            if (userData && userData.bio || userData.Location || userData.coverImage || userData.profileImage === "") {
+            try {
+            await updateDoc(DataDocRef, {
+                Verify: false
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
         } catch (error) {
             setError("Error")
             setTimeout(() => {
