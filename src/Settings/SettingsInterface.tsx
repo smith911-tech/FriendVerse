@@ -164,7 +164,7 @@ export default function SettingsInterface({ userData }: userdatas) {
                             </div>
                         </div>
                     </section>
-                    <div className='fixed top-7 right-[20%] z-50 w-96'>
+                    <div className='fixed top-7 right-[60px] z-50 w-96'>
                         {successFul && <SuccessLoginM
                             successFul={successFul}
                         />}
