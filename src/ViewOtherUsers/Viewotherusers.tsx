@@ -94,6 +94,10 @@ export default function ViewOtherUsers() {
     let username = data && data.username
     sessionStorage.setItem("Ousername", username);
 
+    useEffect(() => {
+        window.scrollTo(0, 0); // Scroll to the top of the page when component is mounted
+    }, []);
+
 
     return (
         <main className="relative">

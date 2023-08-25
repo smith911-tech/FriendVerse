@@ -122,7 +122,7 @@ export default function Followers({ userData, SuggestData }: UserDatas) {
     };
 
     return(
-        <main className={`min-h-screen 
+        <main className={`min-h-screen pb-7
         ${theme ? "bg-black text-white" : "bg-white text-black"}`}>
             <FollowersFollowingH />
             <section className='px-2 flex flex-col gap-4 w-full'>

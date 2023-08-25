@@ -102,7 +102,7 @@ export default function OFollowingInterface({data, userData, SuggestData}: userd
         }
     }
     return(
-        <main className={`min-h-screen 
+        <main className={`min-h-screen pb-7
         ${theme ? "bg-black text-white" : "bg-white text-black"}`}>
             <OFollowingFollowersH data={data}/>
             <section className='px-2 flex flex-col gap-4 w-full'>
