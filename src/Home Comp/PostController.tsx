@@ -17,9 +17,10 @@ export default function PostController({
     const firstName = userData?.fullName?.split(' ')[0] ?? 'Loading....';
     const inputRef = useRef<HTMLTextAreaElement>(null);
     const [inputValue, setInputValue] = useState<string>('')
-    // const [uploadVideo, setUploadVideo] = useState<string>('')
+    const [UploadedVideo, setUploadedVideo] = useState<string>('')
     const [uploadedImages, setUploadedImages] = useState<string[]>([]);
     const [selectedImgFiles, setSelectedImgFiles] = useState<File[]>([]);
+    const [selectedVidFile, setSelectedVidFile] = useState<File | null>(null);
 
 
     useEffect(() => {
@@ -94,6 +95,10 @@ export default function PostController({
 
         setUploadedImages([...uploadedImages, ...newImages]);
         setSelectedImgFiles([...selectedImgFiles, ...newFiles]);
+
+        // Clear any selected video
+        setUploadedVideo('');
+        setSelectedVidFile(null);
     };
 
     //! Function to handle image removal
@@ -107,8 +112,30 @@ export default function PostController({
         setUploadedImages(updatedImages);
         setSelectedImgFiles(updatedFiles);
     };
-    console.log(selectedImgFiles);
-    
+
+    // ! Video upload 
+    const handleVideoUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        if (file) {
+            const videoUrl = URL.createObjectURL(file);
+            setUploadedVideo(videoUrl);
+            setSelectedVidFile(file)
+        }
+        // Clear any selected images
+        setUploadedImages([]);
+        setSelectedImgFiles([]);
+    };
+
+    // ! handle remove video
+    const handleVideoRemoval = () => {
+        // Clear the UploadedVideo state
+        setUploadedVideo('');
+        setSelectedVidFile(null);
+    };
+
+    console.log(selectedVidFile)
+    console.log(selectedImgFiles)
+
 
     return(
         <>
@@ -121,6 +148,7 @@ export default function PostController({
                         </span>
                     </section>
                     <hr />
+                    <main className="overflow-y-auto h-[270px] ">
                     <section className="flex gap-2 mt-2 select-none pb-1">
                         <div>
                             {userData ? (
@@ -149,7 +177,7 @@ export default function PostController({
                             {userData && userData.fullName}
                         </h2>
                     </section>
-                    <section className=" overflow-y-auto h-52 pr-2">
+                    <section className=" pr-2">
                         <textarea
                             ref={inputRef}
                             className={`w-full text-xl pt-2 mt-2 outline-none smm500:text-lg ${theme ? "bg-black text-white" : "bg-white text-black"}`}
@@ -163,7 +191,8 @@ export default function PostController({
                         <div className={`text-right select-none text-[#7e7e7e] smm500:text-sm mt-1 ${characterCount === 0  ? "text-[#ff0000a8]" : "text-[#7e7e7e]"}`}>
                             {characterCount}/{520}
                         </div>
-                        {!uploadedImages.length && YoutubeData && (
+                        {/* embed youtube details  */}
+                        {!UploadedVideo && !uploadedImages.length && YoutubeData && (
                             <div className="mt-8 border-t border-gray-200 pt-4 select-none">
                                 <div className="flex items-center space-x-4">
                                     <img
@@ -179,6 +208,7 @@ export default function PostController({
                                 <p className="mt-4 text-gray-700">{YoutubeData.description}</p>
                             </div>
                         )}
+                        {/* uploaded image */}
                         <section className="flex flex-col-reverse">
                             {uploadedImages.map((imageUrl, index) => (
                                 <div key={index} className="relative">
@@ -189,7 +219,20 @@ export default function PostController({
                                 </div>
                             ))}
                         </section>
+                        {/* uploaded video*/}
+                        {UploadedVideo && (
+                            <div className="relative">
+                                <video controls className="w-full h-96">
+                                    <source src={UploadedVideo} type="video/mp4" />
+                                    Your browser does not support the video tag.
+                                </video>
+                                    <span className=" absolute text-xl p-1 rounded-full top-2 right-3 text-[#fff] bg-[#000000c1] cursor-pointer" onClick={handleVideoRemoval}>
+                                        <FaXmark />
+                                    </span>
+                            </div>
+                        )}
                     </section>
+                    </main>
                     <section className=" text-2xl flex justify-between border border-[#000000b6] border-solid gap-2 py-2 px-3 mb-3 smm500:border-[0.1px] smm500:py-1 smm500:px-2">
                         <h2 className={`font-medium text-xl smm500:text-base select-none 
                         ${theme ? "text-white" : " text-[#000000b8] "}`}>Add to your post</h2>
@@ -200,11 +243,12 @@ export default function PostController({
                                 </abbr>
                                 <input type="file" name="" id="UploadImg" className="hidden" multiple accept="image/*" onChange={handleImageUpload} />
                             </label>
-                            <label className=" cursor-pointer text-[#f5533d] mt-1 smm500:text-lg">
+                            <label htmlFor="UploadVideo" className=" cursor-pointer text-[#f5533d] mt-1 smm500:text-lg">
                                 <abbr title="Video">
                                     <ImFileVideo />
                                 </abbr>
-                                <input type="file" name="" id="UploadVideo" className="hidden" />
+                                <input type="file" name="" id="UploadVideo" className="hidden" accept="video/*"
+                                    onChange={handleVideoUpload} />
                             </label>
                         </div>
                     </section>
