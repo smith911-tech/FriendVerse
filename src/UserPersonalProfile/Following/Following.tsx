@@ -88,7 +88,7 @@ export default function Following({ userData, SuggestData }: UserDatas) {
 
 
     return (
-        <main className={`min-h-[85vh] ${theme ? 'bg-black text-white' : 'bg-white text-black'}`}>
+        <main className={`min-h-[85vh] pb-7 ${theme ? 'bg-black text-white' : 'bg-white text-black'}`}>
             <FollowersFollowingH />
             <section className='px-2 flex flex-col gap-4 w-full'>
                 {isLoading ? (
@@ -108,7 +108,7 @@ export default function Following({ userData, SuggestData }: UserDatas) {
                 ) : (
                     suggestedUsers.map((user: any) => (
                         <Link to={`/User/${user.username}`} key={user.id}
-                            className={`select-none py-1 transition-all ${theme
+                            className={`select-none py-1 transition-all  ${theme
                                 ? "hover:bg-[#ffffff16]"
                                 : "hover:bg-[#00000010]"}`}>
                             <section className='flex w-full'>

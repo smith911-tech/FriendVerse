@@ -105,7 +105,7 @@ export default function OFollwersInterface({ data, SuggestData, userData }: user
         <main className={`min-h-screen 
         ${theme ? "bg-black text-white" : "bg-white text-black"}`}>
             <OFollowingFollowersH data={data}/>
-            <section className='px-2 flex flex-col gap-4 w-full'>
+            <section className='px-2 flex flex-col gap-4 w-full pb-7'>
                 {isLoading ? (
                     <div className='flex justify-center mt-4'><Oval
                         height={80}
