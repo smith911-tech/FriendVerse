@@ -248,9 +248,14 @@ export default function PostController({
                         )}
                             {showCodeBlock && (
                                 <div className="mt-4">
-                                    <textarea placeholder="Enter your code here..." 
-                                    className={`w-full p-2 border-2 border-solid ${theme ? "border-[#ffffffa7] bg-black" : "border-black bg-white"}`} name="" id=""  rows={5} value={codeInput}
-                                        onChange={(e) => setCodeInput(e.target.value)}></textarea>
+                                    <textarea 
+                                    maxLength={1000} 
+                                    placeholder="Enter your code here..." 
+                                    className={`w-full p-2 border-2 border-solid ${theme ? "border-[#ffffffa7] bg-black" : "border-black bg-white"}`} 
+                                    name="" 
+                                    id=""  
+                                    rows={5} value={codeInput}
+                                    onChange={(e) => setCodeInput(e.target.value)}></textarea>
                                 </div>
                             )}
                             {showCodeBlock && (
