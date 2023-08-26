@@ -10,6 +10,11 @@ import { BiSolidUserCircle } from 'react-icons/bi';
 import { useEffect, useRef, useState } from "react";
 import { useThemeStore } from '../Zustand'
 import axios from 'axios';
+import { BsCodeSquare } from 'react-icons/bs'
+// @ts-ignore
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+// @ts-ignore
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 export default function PostController({
     handleBodyClick, 
@@ -21,6 +26,9 @@ export default function PostController({
     const [uploadedImages, setUploadedImages] = useState<string[]>([]);
     const [selectedImgFiles, setSelectedImgFiles] = useState<File[]>([]);
     const [selectedVidFile, setSelectedVidFile] = useState<File | null>(null);
+    const [showCodeBlock, setShowCodeBlock] = useState<boolean>(false);
+    const [codeInput, setCodeInput] = useState<string>('')
+
 
 
     useEffect(() => {
@@ -99,6 +107,10 @@ export default function PostController({
         // Clear any selected video
         setUploadedVideo('');
         setSelectedVidFile(null);
+
+        //  clear any code 
+        setShowCodeBlock(false);
+        setCodeInput('');
     };
 
     //! Function to handle image removal
@@ -124,6 +136,10 @@ export default function PostController({
         // Clear any selected images
         setUploadedImages([]);
         setSelectedImgFiles([]);
+
+        //  clear any code 
+        setShowCodeBlock(false);
+        setCodeInput('');
     };
 
     // ! handle remove video
@@ -135,7 +151,6 @@ export default function PostController({
 
     console.log(selectedVidFile)
     console.log(selectedImgFiles)
-
 
     return(
         <>
@@ -192,7 +207,7 @@ export default function PostController({
                             {characterCount}/{520}
                         </div>
                         {/* embed youtube details  */}
-                        {!UploadedVideo && !uploadedImages.length && YoutubeData && (
+                        {!UploadedVideo && !showCodeBlock && !uploadedImages.length && YoutubeData && (
                             <div className="mt-8 border-t border-gray-200 pt-4 select-none">
                                 <div className="flex items-center space-x-4">
                                     <img
@@ -231,6 +246,20 @@ export default function PostController({
                                     </span>
                             </div>
                         )}
+                            {showCodeBlock && (
+                                <div className="mt-4">
+                                    <textarea placeholder="Enter your code here..." 
+                                    className={`w-full p-2 border-2 border-solid ${theme ? "border-[#ffffffa7] bg-black" : "border-black bg-white"}`} name="" id=""  rows={5} value={codeInput}
+                                        onChange={(e) => setCodeInput(e.target.value)}></textarea>
+                                </div>
+                            )}
+                            {showCodeBlock && (
+                                <div className="mt-4">
+                                    <SyntaxHighlighter showLineNumbers={true} language="javascript" style={vscDarkPlus}>
+                                        {codeInput}
+                                    </SyntaxHighlighter>
+                                </div>
+                            )}
                     </section>
                     </main>
                     <section className=" text-2xl flex justify-between border border-[#000000b6] border-solid gap-2 py-2 px-3 mb-3 smm500:border-[0.1px] smm500:py-1 smm500:px-2">
@@ -249,6 +278,20 @@ export default function PostController({
                                 </abbr>
                                 <input type="file" name="" id="UploadVideo" className="hidden" accept="video/*"
                                     onChange={handleVideoUpload} />
+                            </label>
+                            <label onClick={() => {
+                                setShowCodeBlock(!showCodeBlock);
+                                setCodeInput('');
+                                // Clear any selected images
+                                setUploadedImages([]);
+                                setSelectedImgFiles([]);
+                                // Clear any selected video
+                                setUploadedVideo('');
+                                setSelectedVidFile(null);
+                            }}  className=" cursor-pointer text-[#653df5] mt-1 smm500:text-lg">
+                                <abbr title="Code">
+                                    <BsCodeSquare />
+                                </abbr>
                             </label>
                         </div>
                     </section>
