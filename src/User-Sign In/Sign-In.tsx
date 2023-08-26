@@ -132,7 +132,7 @@ export default function SignIn() {
                         )}
                     </div>
                 </section>
-                <button  className="block mx-auto my-0 py-2 px-10  text-black bg-[#D9D9D9] rounded-[30px] font-sans font-bold select-none">
+                <button disabled={loader}  className="block mx-auto my-0 py-2 px-10  text-black bg-[#D9D9D9] rounded-[30px] font-sans font-bold select-none">
                     {loader ? (
                         <ColorRing
                             visible={true}

@@ -17,6 +17,7 @@ export default function SaveUpdateNav({ handleBodyClick, handleUpdate, Loader }:
                     <h2 className=' font-medium'>Edit Profile</h2>
                 </div>
                 <button
+                    disabled={Loader}
                     onClick={handleUpdate}
                     className=' bg-[#3b82f6] text-white font-medium py-1 px-4 rounded-3xl'>
                     {Loader ? (
