@@ -80,8 +80,7 @@ export default function UserProfileDetails({
             Following = followingCount.toString();
         }
     }
-
-
+    
     return(
         <>
             <section className={`w-full px-6 py-2 smm500:px-2  

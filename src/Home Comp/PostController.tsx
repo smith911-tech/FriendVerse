@@ -163,7 +163,7 @@ export default function PostController({
                         </span>
                     </section>
                     <hr />
-                    <main className="overflow-y-auto h-[270px] ">
+                    <main className="overflow-y-auto h-[280px] ">
                     <section className="flex gap-2 mt-2 select-none pb-1">
                         <div>
                             {userData ? (
@@ -248,9 +248,14 @@ export default function PostController({
                         )}
                             {showCodeBlock && (
                                 <div className="mt-4">
-                                    <textarea placeholder="Enter your code here..." 
-                                    className={`w-full p-2 border-2 border-solid ${theme ? "border-[#ffffffa7] bg-black" : "border-black bg-white"}`} name="" id=""  rows={5} value={codeInput}
-                                        onChange={(e) => setCodeInput(e.target.value)}></textarea>
+                                    <textarea 
+                                    maxLength={1000} 
+                                    placeholder="Enter your code here..." 
+                                    className={`w-full p-2 border-2 border-solid ${theme ? "border-[#ffffffa7] bg-black" : "border-black bg-white"}`} 
+                                    name="" 
+                                    id=""  
+                                    rows={5} value={codeInput}
+                                    onChange={(e) => setCodeInput(e.target.value)}></textarea>
                                 </div>
                             )}
                             {showCodeBlock && (
@@ -262,7 +267,8 @@ export default function PostController({
                             )}
                     </section>
                     </main>
-                    <section className=" text-2xl flex justify-between border border-[#000000b6] border-solid gap-2 py-2 px-3 mb-3 smm500:border-[0.1px] smm500:py-1 smm500:px-2">
+                    <section className={` text-2xl flex justify-between border border-solid gap-2 py-2 px-3 mb-3 smm500:border-[0.1px] smm500:py-1 smm500:px-2
+                    ${theme ? "border-[#ffffff84]" : "border-[#000000b6] "}`}>
                         <h2 className={`font-medium text-xl smm500:text-base select-none 
                         ${theme ? "text-white" : " text-[#000000b8] "}`}>Add to your post</h2>
                         <div className="flex gap-3 ">
@@ -288,14 +294,14 @@ export default function PostController({
                                 // Clear any selected video
                                 setUploadedVideo('');
                                 setSelectedVidFile(null);
-                            }}  className=" cursor-pointer text-[#653df5] mt-1 smm500:text-lg">
+                            }} className=" cursor-pointer text-[#3b82f6] mt-1 smm500:text-lg">
                                 <abbr title="Code">
                                     <BsCodeSquare />
                                 </abbr>
                             </label>
                         </div>
                     </section>
-                    <button className=" my-3 text-center w-full py-3 bg-[#3b82f6] text-white text-xl font-medium rounded-xl sm650:py-2 smm500:py-1 smm500:text-lg select-none">Verb</button>
+                    <button className=" my-3 text-center w-full py-[6px] bg-[#3b82f6] text-white text-xl font-medium  smm500:py-1 smm500:text-lg select-none">Post</button>
                 </div>
             )}
         </>
