@@ -15,6 +15,9 @@ import { BsCodeSquare } from 'react-icons/bs'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 // @ts-ignore
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { db, storage } from '../firebase-config';
+import { addDoc, collection,  updateDoc } from 'firebase/firestore';
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 
 export default function PostController({
     handleBodyClick, 
@@ -28,7 +31,7 @@ export default function PostController({
     const [selectedVidFile, setSelectedVidFile] = useState<File | null>(null);
     const [showCodeBlock, setShowCodeBlock] = useState<boolean>(false);
     const [codeInput, setCodeInput] = useState<string>('')
-
+    const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
 
 
     useEffect(() => {
@@ -151,6 +154,84 @@ export default function PostController({
 
     console.log(selectedVidFile)
     console.log(selectedImgFiles)
+    // ! getting the userid from the local storage 
+    let userid = sessionStorage.getItem('UserId')
+
+
+    // ! Handle post
+    const handlePost = async () => {
+        // Disable the post button while processing
+        setButtonDisabled(true);
+
+        if (inputValue.trim() === '') {
+            // Handle case when article is empty
+            // Clear input values and state
+            setInputValue('');
+            setSelectedImgFiles([]);
+            setUploadedImages([]);
+            setUploadedVideo('');
+            setSelectedVidFile(null);
+            setShowCodeBlock(false);
+            setCodeInput('');
+            setButtonDisabled(false); // Re-enable the button
+            return;
+        }
+
+        // Create a new post document in Firestore
+        const postRef = await addDoc(collection(db, 'posts'), {
+            Author: userid as string, // Assuming there's a user ID in userData
+            article: inputValue,
+            time: new Date(),
+        });
+
+        // ! Image Upload
+        if (uploadedImages && uploadedImages.length > 0) {
+            // Upload images to Firebase Storage
+            const imageUrls = [];
+            for (const imageFile of selectedImgFiles) {
+                const storageRef = ref(storage, `Posts/${postRef.id}/${imageFile.name}`);
+                const uploadTask = uploadBytesResumable(storageRef, imageFile);
+
+                await uploadTask;
+                const imageUrl = await getDownloadURL(storageRef);
+                imageUrls.push(imageUrl);
+            }
+
+            // Update the post document with image URLs
+            await updateDoc(postRef, { images: imageUrls });
+        }
+
+        // ! Video Upload
+        if (UploadedVideo) {
+            const videoStorageRef = ref(storage, `Posts/${postRef.id}/${selectedVidFile?.name}`);
+            const videoUploadTask = uploadBytesResumable(videoStorageRef, selectedVidFile as any);
+            await videoUploadTask;
+
+            // Get the download URL for the uploaded video
+            const videoUrl = await getDownloadURL(videoStorageRef);
+
+            // Update the post document with video URL
+            await updateDoc(postRef, { video: videoUrl });
+        }
+
+        // ! Code Upload
+        if (codeInput) {
+            await updateDoc(postRef, { Code: codeInput });
+        }
+
+        // Reset input values and state
+        setInputValue('');
+        setSelectedImgFiles([]);
+        setUploadedImages([]);
+        setUploadedVideo('');
+        setSelectedVidFile(null);
+        setShowCodeBlock(false);
+        setCodeInput('');
+
+        // Re-enable the button
+        setButtonDisabled(false);
+        // Clear other state values as needed
+    }
 
     return(
         <>
@@ -301,7 +382,7 @@ export default function PostController({
                             </label>
                         </div>
                     </section>
-                    <button className=" my-3 text-center w-full py-[6px] bg-[#3b82f6] text-white text-xl font-medium  smm500:py-1 smm500:text-lg select-none">Post</button>
+                    <button onClick={handlePost} disabled={buttonDisabled} className=" my-3 text-center w-full py-[6px] bg-[#3b82f6] text-white text-xl font-medium  smm500:py-1 smm500:text-lg select-none">Post</button>
                 </div>
             )}
         </>
