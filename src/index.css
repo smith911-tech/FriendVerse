@@ -136,6 +136,9 @@ input::-webkit-calendar-picker-indicator {
 .progress .react-sweet-progress-symbol{
   color: #117dd5;
 }
+.progressPost .react-sweet-progress-symbol {
+  display: none;
+}
 /* ! update page  */
 .update-user-Date .react-date-picker {
   height: 50px;
