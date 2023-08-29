@@ -18,6 +18,9 @@ import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { db, storage } from '../firebase-config';
 import { addDoc, collection,  updateDoc } from 'firebase/firestore';
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+// @ts-ignore
+import { Progress } from 'react-sweet-progress';
+import "react-sweet-progress/lib/style.css";
 
 export default function PostController({
     handleBodyClick, 
@@ -31,6 +34,7 @@ export default function PostController({
     const [selectedVidFile, setSelectedVidFile] = useState<File | null>(null);
     const [showCodeBlock, setShowCodeBlock] = useState<boolean>(false);
     const [codeInput, setCodeInput] = useState<string>('')
+    const [uploadProgress, setUploadProgress] = useState(0);
 
 
     useEffect(() => {
@@ -150,9 +154,6 @@ export default function PostController({
         setUploadedVideo('');
         setSelectedVidFile(null);
     };
-
-    console.log(selectedVidFile)
-    console.log(selectedImgFiles)
     // ! getting the userid from the local storage 
     let userid = sessionStorage.getItem('UserId')
 
@@ -174,11 +175,26 @@ export default function PostController({
 
             // Image Upload
             if (uploadedImages && uploadedImages.length > 0) {
-                // Upload images to Firebase Storage
                 const imageUrls = [];
+                let totalBytesTransferred = 0;
+                let totalBytes = 0;
+
                 for (const imageFile of selectedImgFiles) {
                     const storageRef = ref(storage, `Posts/${postRef.id}/${imageFile.name}`);
                     const uploadTask = uploadBytesResumable(storageRef, imageFile);
+                    totalBytes += imageFile.size; // Add to the total bytes
+
+                    // Track the upload progress for images
+                    uploadTask.on('state_changed',
+                        (snapshot) => {
+                            totalBytesTransferred += snapshot.bytesTransferred; // Update transferred bytes
+                            const progress = Math.floor((totalBytesTransferred / totalBytes) * 100);
+                            setUploadProgress(progress);
+                        },
+                        (error) => {
+                            console.error('Image upload error:', error);
+                        }
+                    );
 
                     await uploadTask;
                     const imageUrl = await getDownloadURL(storageRef);
@@ -190,12 +206,23 @@ export default function PostController({
             }
 
             // Video Upload
+            
             if (UploadedVideo) {
                 const videoStorageRef = ref(storage, `Posts/${postRef.id}/${selectedVidFile?.name}`);
                 const videoUploadTask = uploadBytesResumable(videoStorageRef, selectedVidFile as any);
-                await videoUploadTask;
 
-                // Get the download URL for the uploaded video
+                // Track the upload progress for video
+                videoUploadTask.on('state_changed',
+                    (snapshot) => {
+                        const progress = Math.floor((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                        setUploadProgress(progress);
+                    },
+                    (error) => {
+                        console.error('Video upload error:', error);
+                    }
+                );
+
+                await videoUploadTask;
                 const videoUrl = await getDownloadURL(videoStorageRef);
 
                 // Update the post document with video URL
@@ -218,13 +245,16 @@ export default function PostController({
         } catch (error) {
             console.error('Error occurred while handling the post:', error);
         }
+        finally {
+            handleBodyClick()
+            setUploadProgress(0);
+        }
     }
-
 
     return(
         <>
             {isInputClicked && (
-                <div className={`absolute top-0 left-0 right-0 mx-auto p-4 z-[30] rounded-2xl shadow md970:w-[90%] sm650:-top-9 ${theme ? "bg-black text-white" : "bg-white text-black"}`}>
+                <div className={`absolute top-0 left-0 right-0 mx-auto p-4 z-[30] rounded-2xl shadow md970:w-[90%] sm650:-top-9  ${theme ? "bg-black text-white" : "bg-white text-black"}`}>
                     <section className="flex justify-between mb-1 select-none">
                         <h2 className='text-xl font-bold smm500:text-lg'>Create Post</h2>
                         <span className="text-xl bg-[#f0f2f5] mb-2 rounded-full text-[#0000009b] px-1 py-1 cursor-pointer smm500:text-lg" onClick={handleBodyClick}>
@@ -371,6 +401,22 @@ export default function PostController({
                         </div>
                     </section>
                     <button onClick={handlePost} className=" my-3 text-center w-full py-[6px] bg-[#3b82f6] text-white text-xl font-medium  smm500:py-1 smm500:text-lg select-none">Post</button>
+                    {uploadProgress > 0 &&(
+                        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 progressPost bg-[#ffffff32] inset-4 w-full h-full">
+                            <div className=" absolute top-1/4  left-1/2 transform -translate-x-1/2">
+                                <Progress
+                                    type="circle"
+                                    percent={uploadProgress}
+                                    theme={{
+                                        success: {
+                                            symbol: '100%',
+                                            color: '#328fdb'
+                                        }
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    )}
                 </div>
             )}
         </>
