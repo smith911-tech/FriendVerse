@@ -21,6 +21,7 @@ import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 // @ts-ignore
 import { Progress } from 'react-sweet-progress';
 import "react-sweet-progress/lib/style.css";
+import { Oval } from "react-loader-spinner";
 
 export default function PostController({
     handleBodyClick, 
@@ -34,7 +35,8 @@ export default function PostController({
     const [selectedVidFile, setSelectedVidFile] = useState<File | null>(null);
     const [showCodeBlock, setShowCodeBlock] = useState<boolean>(false);
     const [codeInput, setCodeInput] = useState<string>('')
-    const [uploadProgress, setUploadProgress] = useState(0);
+    const [uploadProgress, setUploadProgress] = useState<number>(0);
+    const [Loading, setLoading] = useState<boolean>(false)
 
 
     useEffect(() => {
@@ -161,8 +163,10 @@ export default function PostController({
     // Handle post with network error handling
     const handlePost = async () => {
         try {
+            setLoading(true)
             if (!inputValue && (!uploadedImages || uploadedImages.length === 0) && !UploadedVideo && !codeInput) {
                 // Don't create a post if all relevant fields are empty
+                setLoading(false)
                 return;
             }
 
@@ -244,10 +248,12 @@ export default function PostController({
             setCodeInput('');
         } catch (error) {
             console.error('Error occurred while handling the post:', error);
+            setLoading(false)
         }
         finally {
             handleBodyClick()
             setUploadProgress(0);
+            setLoading(false)
         }
     }
 
@@ -401,18 +407,28 @@ export default function PostController({
                         </div>
                     </section>
                     <button onClick={handlePost} className=" my-3 text-center w-full py-[6px] bg-[#3b82f6] text-white text-xl font-medium  smm500:py-1 smm500:text-lg select-none">Post</button>
-                    {uploadProgress > 0 &&(
+                    {uploadProgress > 0 && (
+                        <div className=" absolute top-[50px] w-[92%] progressPost">
+                            <Progress
+                                percent={uploadProgress}
+                            />
+                        </div>
+
+                    )}
+                    {Loading &&(
                         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 progressPost bg-[#ffffff32] inset-4 w-full h-full">
-                            <div className=" absolute top-1/4  left-1/2 transform -translate-x-1/2">
-                                <Progress
-                                    type="circle"
-                                    percent={uploadProgress}
-                                    theme={{
-                                        success: {
-                                            symbol: '100%',
-                                            color: '#328fdb'
-                                        }
-                                    }}
+                            <div className=" absolute top-[30%]  left-1/2 transform -translate-x-1/2">
+                                <Oval
+                                    height={110}
+                                    width={110}
+                                    color="#3b82f6"
+                                    wrapperStyle={{}}
+                                    wrapperClass=""
+                                    visible={true}
+                                    ariaLabel='oval-loading'
+                                    secondaryColor="#619af"
+                                    strokeWidth={5}
+                                    strokeWidthSecondary={5}
                                 />
                             </div>
                         </div>
