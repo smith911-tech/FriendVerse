@@ -129,15 +129,8 @@ input::-webkit-calendar-picker-indicator {
 
 
 /* !  progress */
-.progress .react-sweet-progress-circle-outer {
-  display: block;
-  margin: 0 auto;
-}
-.progress .react-sweet-progress-symbol{
-  color: #117dd5;
-}
-.progressPost .react-sweet-progress-symbol {
-  display: none;
+.HomeProgress .ant-progress-text {
+  color: #117dd5 !important;
 }
 /* ! update page  */
 .update-user-Date .react-date-picker {

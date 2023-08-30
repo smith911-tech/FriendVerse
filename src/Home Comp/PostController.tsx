@@ -18,10 +18,9 @@ import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { db, storage } from '../firebase-config';
 import { addDoc, collection,  updateDoc } from 'firebase/firestore';
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
-// @ts-ignore
-import { Progress } from 'react-sweet-progress';
-import "react-sweet-progress/lib/style.css";
+import { Progress } from 'antd';
 import { Oval } from "react-loader-spinner";
+import { message} from 'antd';
 
 export default function PostController({
     handleBodyClick, 
@@ -159,6 +158,11 @@ export default function PostController({
     // ! getting the userid from the local storage 
     let userid = sessionStorage.getItem('UserId')
 
+    // ! posted popup
+    const confirm = () => {
+        message.success('Post succesfully');
+    };
+
 
     // Handle post with network error handling
     const handlePost = async () => {
@@ -246,6 +250,7 @@ export default function PostController({
             setSelectedVidFile(null);
             setShowCodeBlock(false);
             setCodeInput('');
+            confirm()
         } catch (error) {
             console.error('Error occurred while handling the post:', error);
             setLoading(false)
@@ -408,15 +413,19 @@ export default function PostController({
                     </section>
                     <button onClick={handlePost} className=" my-3 text-center w-full py-[6px] bg-[#3b82f6] text-white text-xl font-medium  smm500:py-1 smm500:text-lg select-none">Post</button>
                     {uploadProgress > 0 && (
-                        <div className=" absolute top-[50px] w-[92%] progressPost">
+                        <div className=" absolute top-[42px] w-[95%] ">
                             <Progress
-                                percent={uploadProgress}
+                            className="PostProgres"
+                            percent={uploadProgress} 
+                            showInfo={false} 
+                            status="active"
                             />
                         </div>
 
                     )}
                     {Loading &&(
-                        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 progressPost bg-[#ffffff32] inset-4 w-full h-full">
+                        <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 progressPost inset-4 w-full h-full rounded-2xl
+                        ${theme ? "bg-[#ffffff32] " : "bg-[#0000007b]"}`}>
                             <div className=" absolute top-[30%]  left-1/2 transform -translate-x-1/2">
                                 <Oval
                                     height={110}

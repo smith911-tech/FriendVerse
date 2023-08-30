@@ -1,10 +1,7 @@
 interface userdatas {
     userData : any,
 }
-
-// @ts-ignore
-import { Progress } from 'react-sweet-progress';
-import "react-sweet-progress/lib/style.css";
+import { Progress} from 'antd';
 import { MdOutlineVerifiedUser } from "react-icons/md";
 import {useThemeStore} from '../Zustand';
 export default function ProfileProgress({userData}: userdatas): JSX.Element {
@@ -31,19 +28,10 @@ export default function ProfileProgress({userData}: userdatas): JSX.Element {
 
 
     return (
-        <div className={` rounded-lg shadow p-4 select-none mb-8  progress ${theme ? "bg-black text-white" : "bg-white text-black"}`}>
+        <div className={` rounded-lg shadow p-4 select-none mb-8  ${theme ? "bg-black text-white" : "bg-white text-black"}`}>
             <h2 className=' text-lg font-semibold mb-2'>Complete your Profile</h2>
-            <Progress
-                type="circle"
-                percent={percentage}
-                theme={{
-                    success: {
-                        symbol: '🏄‍',
-                        color: '#328fdb'
-                    }
-                }}
-            />
-            <section className='flex flex-col gap-2 font-bold text-[#000000b6]'>
+            <Progress className='HomeProgress flex justify-center items-center ' type="circle" percent={percentage} strokeColor={{ '0%': '#108ee9', '100%': '#87d068' }} />
+            <section className='flex flex-col gap-2 font-bold text-[#000000b6] mt-3'>
 
                 <div className='flex justify-between'>
                     <section className='flex gap-1'>
