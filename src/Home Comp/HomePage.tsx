@@ -101,6 +101,7 @@ export default function HomePage() {
                     handleBodyClick={handleBodyClick} 
                     handleInputClick={handleInputClick}
                     isInputClicked={isInputClicked}
+                    SuggestData={SuggestData}
                     />
             </section>
             <section 
