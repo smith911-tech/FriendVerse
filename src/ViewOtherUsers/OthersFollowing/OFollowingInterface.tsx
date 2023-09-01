@@ -1,4 +1,4 @@
-interface userdatas{
+interface Props{
     data: any
     userData: any
     SuggestData: any
@@ -14,7 +14,7 @@ import { Oval } from 'react-loader-spinner'
 import { Popover } from '@headlessui/react'
 import { RiShareForwardBoxLine } from 'react-icons/ri'
 import { VscVerifiedFilled } from 'react-icons/vsc'
-export default function OFollowingInterface({data, userData, SuggestData}: userdatas) {
+export default function OFollowingInterface({data, userData, SuggestData}: Props) {
     let userid = sessionStorage.getItem('UserId')
     const theme = useThemeStore((state: any) => state.theme);
     const followerid = new Set(data && data.Following);

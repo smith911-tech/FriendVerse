@@ -1,7 +1,7 @@
 import PostComposer from "./PostComposer";
 import PostSection from "./Postsection";
 
-interface userdatas{
+interface Props{
     userData : any
     isInputClicked : boolean
     handleInputClick: () => void
@@ -14,7 +14,7 @@ export default function Content({
     isInputClicked, 
     handleInputClick, 
     handleBodyClick,
-    SuggestData}: userdatas) {
+    SuggestData}: Props) {
 
     return (
         <main className='relative'>
@@ -24,7 +24,7 @@ export default function Content({
             handleInputClick={handleInputClick} 
             handleBodyClick={handleBodyClick}
             /> 
-            <section>
+            <section className={`${isInputClicked ? " brightness-[0.2]" : " brightness-100"}`} onClick={handleBodyClick}>
                 <PostSection SuggestData={SuggestData} />
             </section>
         </main>

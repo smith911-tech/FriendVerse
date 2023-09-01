@@ -7,7 +7,7 @@ import Verbs from './Verbs';
 import Reverb from './Reverbs';
 import Liked from './Liked';
 import Impressions from './Impression';
-interface userdatas{
+interface Props{
     handleBodyClick : () => void
 }
 type ClickedState = {
@@ -17,7 +17,7 @@ type ClickedState = {
     impression: boolean;
 };
 
-export default function ProfileSides({handleBodyClick}: userdatas) {
+export default function ProfileSides({handleBodyClick}: Props) {
     let settings = {
         speed: 700,
         slidesToShow: 4,

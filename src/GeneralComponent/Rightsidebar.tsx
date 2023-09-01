@@ -1,4 +1,4 @@
-interface userdatas {
+interface Props {
     SuggestData : any,
     userData : any
 }
@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 import {useThemeStore} from '../Zustand';
 import { SuccessLoginM, FilldetailsError } from '../Error-SuccessM'
 import { VscVerifiedFilled } from 'react-icons/vsc'
-export default function SideDashboard({ SuggestData, userData }: userdatas):JSX.Element {
+export default function SideDashboard({ SuggestData, userData }: Props):JSX.Element {
     const [searchTerm, setSearchTerm] = useState<string>("");
     const theme = useThemeStore((state: any) => state.theme);
 

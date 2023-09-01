@@ -1,4 +1,4 @@
-interface userDatas{
+interface Props{
 fullName: string
 setFullName : any
 userName : string
@@ -30,7 +30,7 @@ export default function UpdateInputValue({
     setDateOfBirth,
     showDOB,
     setShowDOB,
-}: userDatas){
+}: Props){
     //! Theme Mode
     const theme = useThemeStore((state: any) => state.theme);
     return(

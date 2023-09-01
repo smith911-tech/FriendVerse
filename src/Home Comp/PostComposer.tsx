@@ -1,4 +1,4 @@
-interface userdatas {
+interface Props {
     handleBodyClick: () => void,
     handleInputClick: () => void,
     isInputClicked: boolean,
@@ -13,7 +13,7 @@ export default function PostSection({
     userData,
     isInputClicked,
     handleInputClick,
-}: userdatas): JSX.Element {
+}: Props): JSX.Element {
     const firstName = userData?.fullName?.split(' ')[0] ?? 'Loading....';
 
     //! Theme Mode

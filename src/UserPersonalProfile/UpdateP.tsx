@@ -1,4 +1,4 @@
-interface userdatas {
+interface Props {
     isInputClicked: boolean,
     userData: any,
     handleBodyClick: () => void
@@ -21,7 +21,7 @@ export default function UpdateProfile({
     handleBodyClick,
     showDOB,
     setShowDOB,
-    }: userdatas) {
+    }: Props) {
 
     // ! dataofbirth formatter
     const dateofbirthValue = userData && userData.dateOfBirth;

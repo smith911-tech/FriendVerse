@@ -10,12 +10,12 @@ import { Popover } from '@headlessui/react'
 import { RiShareForwardBoxLine } from 'react-icons/ri'
 import { MdOutlineGroupRemove } from 'react-icons/md'
 import { VscVerifiedFilled } from 'react-icons/vsc'
-interface UserDatas {
+interface Props {
     userData: any;
     SuggestData: any;
 }
 
-export default function Following({ userData, SuggestData }: UserDatas) {
+export default function Following({ userData, SuggestData }: Props) {
     let userid = sessionStorage.getItem('UserId')
     const theme = useThemeStore((state: any) => state.theme);
     const followingIds = new Set(userData && userData.Following);

@@ -1,10 +1,10 @@
-interface userdatas {
+interface Props {
     userData : any,
 }
 import { Progress} from 'antd';
 import { MdOutlineVerifiedUser } from "react-icons/md";
 import {useThemeStore} from '../Zustand';
-export default function ProfileProgress({userData}: userdatas): JSX.Element {
+export default function ProfileProgress({userData}: Props): JSX.Element {
     const theme = useThemeStore((state: any) => state.theme);
     let percentage = 0;
     if (userData) {

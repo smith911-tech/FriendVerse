@@ -1,4 +1,4 @@
-interface userdatas {
+interface Props {
     SuggestData : any
     Popover : any
     handleInputClick: () => void
@@ -12,7 +12,7 @@ import { BiSolidUserCircle } from 'react-icons/bi'
 import {useThemeStore} from '../Zustand';
 import { VscVerifiedFilled } from 'react-icons/vsc'
 
-export default function HeaderSearch({SuggestData, Popover, isSearchInput}: userdatas){
+export default function HeaderSearch({SuggestData, Popover, isSearchInput}: Props){
     
     const inputRef = useRef<HTMLInputElement>(null);
     useEffect(() => {

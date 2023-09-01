@@ -2,13 +2,13 @@ import { AiOutlineClose } from 'react-icons/ai'
 import {useEffect} from 'react'
 
 
-interface userdatas{
+interface Props{
     userData : any
     handleCloseModal: () => void
     showCmodal: boolean
 
 }
-export function UserCoverImg({ userData, handleCloseModal, showCmodal }: userdatas) {
+export function UserCoverImg({ userData, handleCloseModal, showCmodal }: Props) {
     useEffect(() => {
         if (showCmodal) {
             // Add the 'overflow-hidden' class to the body when the modal is shown
@@ -43,13 +43,13 @@ export function UserCoverImg({ userData, handleCloseModal, showCmodal }: userdat
 }
 
 
-interface userdatas2 {
+interface Props2 {
     userData: any
     handleCloseModal: () => void
     showPmodal: boolean
 
 }
-export function UserProfileImg({showPmodal, handleCloseModal, userData}: userdatas2){
+export function UserProfileImg({showPmodal, handleCloseModal, userData}: Props2){
     useEffect(() => {
         if (showPmodal) {
             // Add the 'overflow-hidden' class to the body when the modal is shown

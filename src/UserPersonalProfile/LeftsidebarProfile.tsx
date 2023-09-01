@@ -1,4 +1,4 @@
-interface userdatas {
+interface Props {
     SuggestData: any
 }
 import { useState, useEffect } from "react";
@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import {useThemeStore} from '../Zustand';
 import { VscVerifiedFilled } from 'react-icons/vsc'
 
-export default function ProfileLeftbar({ SuggestData }: userdatas): JSX.Element {
+export default function ProfileLeftbar({ SuggestData }: Props): JSX.Element {
     let userid = sessionStorage.getItem('UserId')
     const theme = useThemeStore((state: any) => state.theme);
 

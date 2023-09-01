@@ -1,4 +1,4 @@
-interface userdatas {
+interface Props {
     userData: any
     SuggestData: any
 }
@@ -13,7 +13,7 @@ import { Popover } from '@headlessui/react'
 import HeaderSearch from './HeaderSearch'
 import { useState } from 'react'
 import {useThemeStore} from '../Zustand';
-export default function Header({ userData, SuggestData }: userdatas) {
+export default function Header({ userData, SuggestData }: Props) {
     // ! Opening the post div
     const [isSearchInput, setSearchInput] = useState(false);
     const handleInputClick = () => {

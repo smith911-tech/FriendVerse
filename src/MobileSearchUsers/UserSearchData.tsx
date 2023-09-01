@@ -1,4 +1,4 @@
-interface userdatas{
+interface Props{
     SuggestData: any
 }
 import { AiOutlineSearch } from 'react-icons/ai'
@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import { BiSolidUserCircle } from 'react-icons/bi'
 import {useThemeStore} from '../Zustand';
 import { VscVerifiedFilled } from 'react-icons/vsc'
-export default function UserSearchData({ SuggestData }: userdatas){
+export default function UserSearchData({ SuggestData }: Props){
     const inputRef = useRef<HTMLInputElement>(null);
     useEffect(() => {
         if (inputRef.current) {

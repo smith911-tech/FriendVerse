@@ -1,4 +1,4 @@
-interface userDatas{
+interface Props{
     handleBodyClick: () => void,
     handleUpdate: (_e: any) => void,
     Loader: any
@@ -6,7 +6,7 @@ interface userDatas{
 import { AiOutlineClose } from 'react-icons/ai'
 import { ThreeDots } from 'react-loader-spinner'
 import {useThemeStore} from '../../Zustand';
-export default function SaveUpdateNav({ handleBodyClick, handleUpdate, Loader }: userDatas) {
+export default function SaveUpdateNav({ handleBodyClick, handleUpdate, Loader }: Props) {
     //! Theme Mode
     const theme = useThemeStore((state: any) => state.theme);
     return(

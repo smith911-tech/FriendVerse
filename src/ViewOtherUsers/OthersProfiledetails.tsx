@@ -1,4 +1,4 @@
-interface userdatas {
+interface Props {
     data: any | null
     theme : any
     userData: any
@@ -22,7 +22,7 @@ export default function OthersProfileDetails({
     handleInputClick,
     isInputClicked,
     handleBodyClick
-}: userdatas){
+}: Props){
 
 
     const urlRegex = /(https?:\/\/[^\s]+|www\.[^\s]+|(?!www\.)[^\s]+\.[^\s]+)/g;

@@ -1,4 +1,4 @@
-interface userdatas {
+interface Props {
     handleBodyClick: () => void,
     isInputClicked: boolean,
     userData: any,
@@ -24,7 +24,7 @@ import { message} from 'antd';
 
 export default function PostController({
     handleBodyClick, 
-    isInputClicked, userData}: userdatas){
+    isInputClicked, userData}: Props){
     const firstName = userData?.fullName?.split(' ')[0] ?? 'Loading....';
     const inputRef = useRef<HTMLTextAreaElement>(null);
     const [inputValue, setInputValue] = useState<string>('')

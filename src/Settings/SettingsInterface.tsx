@@ -1,4 +1,4 @@
-interface userdatas {
+interface Props {
     userData: any
 }
 import { useState } from 'react'
@@ -13,7 +13,7 @@ import {useThemeStore} from '../Zustand';
 import { db } from '../firebase-config';
 import { doc, updateDoc } from 'firebase/firestore';
 
-export default function SettingsInterface({ userData }: userdatas) {
+export default function SettingsInterface({ userData }: Props) {
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     // ! Sucess message 
     const [successFul, setSuccessful] = useState<string | boolean>(false)

@@ -1,4 +1,4 @@
-interface userDatas{
+interface Props{
     coverImg: string,
     handleRemoveCoverClick: () => void
     handleImageCUpload: (event: any) => void
@@ -12,7 +12,7 @@ export default function CoverimgUpload({
     handleImageCUpload, 
     handleRemoveCoverClick,
     userClickedRemoveCover,
-}: userDatas){
+}: Props){
     return(
         <>
             {!coverImg  && !userClickedRemoveCover ? (

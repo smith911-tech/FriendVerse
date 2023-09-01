@@ -1,4 +1,4 @@
-interface UserDatas {
+interface Props {
     userData: any;
     SuggestData: any;
 }
@@ -15,7 +15,7 @@ import FollowersFollowingH from '../FollowingFollowersH'
 import { useThemeStore } from '../../Zustand';
 import { VscVerifiedFilled } from 'react-icons/vsc'
 
-export default function Followers({ userData, SuggestData }: UserDatas) {
+export default function Followers({ userData, SuggestData }: Props) {
     let userid = sessionStorage.getItem('UserId')
     const theme = useThemeStore((state: any) => state.theme);
     const followerid = new Set(userData && userData.Followers);

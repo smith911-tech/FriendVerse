@@ -9,6 +9,7 @@ import { LongCard } from '../GeneralComponent/LoadingCard'
 import { BiSolidUserCircle, BiTimeFive, BiDotsHorizontal } from 'react-icons/bi'
 import { Link } from "react-router-dom"
 import { VscVerifiedFilled } from 'react-icons/vsc'
+import PostedMedia from "./PostedMedia"
 
 export default function Postsection({SuggestData}: userDats) {
     let userid = sessionStorage.getItem('UserId')
@@ -62,7 +63,6 @@ export default function Postsection({SuggestData}: userDats) {
         }
     };
 
-    // ! display like when it was posted 
     // Sort the Posts array based on the post timestamps
     const sortedPosts = Posts.slice().sort((a, b) => b.time.toMillis() - a.time.toMillis());
 
@@ -77,7 +77,7 @@ export default function Postsection({SuggestData}: userDats) {
                         if (authorData) {
                             const formattedDate = formatPostDate(post.time);
                             return (
-                                <div className={` py-3 rounded-md mb-8 ${theme 
+                                <article className={` py-3 rounded-md mb-8 ${theme 
                                 ? "bg-black text-[#ffff]" : "bg-white text-[#000000]"}`} key={post.id}>
                                     <main className="flex px-2 justify-between">
                                         <aside className="flex">
@@ -100,7 +100,7 @@ export default function Postsection({SuggestData}: userDats) {
                                             )}
                                         </section>
                                         <span>
-                                                <Link to={`${userid !== post.author ? `/User/${authorData.username}` : '/Profile'}`}className=' ml-2 text-sm font-medium flex'>
+                                                <Link to={`${userid !== post.author ? `/User/${authorData.username}` : '/Profile'}`}className=' ml-2 text-sm font-medium flex hover:underline'>
                                                     {authorData.fullName}
                                                     {authorData.Verify && (
                                                         <span className='text-[#1d9bf0] mt-[2px]'>
@@ -122,7 +122,10 @@ export default function Postsection({SuggestData}: userDats) {
                                             <BiDotsHorizontal />
                                         </aside>
                                     </main>
-                                </div>
+                                    <section>
+                                        <PostedMedia post={post}/>
+                                    </section>
+                                </article>
                             );
                         } else {
                             return null;

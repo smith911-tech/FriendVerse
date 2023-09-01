@@ -1,4 +1,4 @@
-interface userdatas{
+interface Props{
     userData : any,
     handleInputClick: () => void,
     isInputClicked : boolean,
@@ -19,7 +19,7 @@ export default function UserProfile({
     handleInputClick, 
     isInputClicked,
     handleBodyClick
-}: userdatas): JSX.Element{
+}: Props): JSX.Element{
     const [showPmodal, setShowPmodal] = useState<boolean>(false)
     const [showCmodal, setShowCmodal] = useState<boolean>(false)
 
