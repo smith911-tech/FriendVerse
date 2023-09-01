@@ -1,11 +1,11 @@
-interface userDatas{
+interface Props{
     handleImageUpload: (event :any ) => void,
     profileImg: string
 }
 import { BiSolidUserCircle } from "react-icons/bi";
 import { AiOutlineCloudUpload } from 'react-icons/ai'
 import {useThemeStore} from '../../Zustand';
-export default function ProfileimgUpload({ handleImageUpload, profileImg }: userDatas){
+export default function ProfileimgUpload({ handleImageUpload, profileImg }: Props){
     //! Theme Mode
     const theme = useThemeStore((state: any) => state.theme);
     return(

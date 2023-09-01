@@ -9,6 +9,10 @@ import { LongCard } from '../GeneralComponent/LoadingCard'
 import { BiSolidUserCircle, BiTimeFive, BiDotsHorizontal } from 'react-icons/bi'
 import { Link } from "react-router-dom"
 import { VscVerifiedFilled } from 'react-icons/vsc'
+import Postedarticle from "./PostedContent/Postedarticle"
+import PostedVideo from "./PostedContent/PostedVideos"
+import PostedCode from "./PostedContent/PostedCode"
+import PostedImages from "./PostedContent/PostedImages"
 
 export default function Postsection({SuggestData}: userDats) {
     let userid = sessionStorage.getItem('UserId')
@@ -62,7 +66,6 @@ export default function Postsection({SuggestData}: userDats) {
         }
     };
 
-    // ! display like when it was posted 
     // Sort the Posts array based on the post timestamps
     const sortedPosts = Posts.slice().sort((a, b) => b.time.toMillis() - a.time.toMillis());
 
@@ -77,14 +80,14 @@ export default function Postsection({SuggestData}: userDats) {
                         if (authorData) {
                             const formattedDate = formatPostDate(post.time);
                             return (
-                                <div className={` py-3 rounded-md mb-8 ${theme 
+                                <article className={` py-3 rounded-md mb-4 ${theme 
                                 ? "bg-black text-[#ffff]" : "bg-white text-[#000000]"}`} key={post.id}>
                                     <main className="flex px-2 justify-between">
                                         <aside className="flex">
                                         <section>
                                             {authorData.profileImage === "" ? (
                                                 <Link to={`${userid !== post.author ? `/User/${authorData.username}` : '/Profile'}`}>
-                                                    <div className={`text-[40px] rounded-full 
+                                                    <div className={`text-[40px] rounded-full select-none 
                                         ${theme ? "text-white" : "text-[#000000d7]"}`}>
                                                         <BiSolidUserCircle />
                                                     </div>
@@ -94,13 +97,13 @@ export default function Postsection({SuggestData}: userDats) {
                                                     <img
                                                         src={authorData.profileImage}
                                                         alt="Profile"
-                                                        className="w-10 h-10 rounded-full object-cover"
+                                                        className="w-10 h-10 rounded-full object-cover select-none "
                                                     />
                                                 </Link>
                                             )}
                                         </section>
                                         <span>
-                                                <Link to={`${userid !== post.author ? `/User/${authorData.username}` : '/Profile'}`}className=' ml-2 text-sm font-medium flex'>
+                                                <Link to={`${userid !== post.author ? `/User/${authorData.username}` : '/Profile'}`} className=' ml-2 text-sm font-medium flex hover:underline select-none '>
                                                     {authorData.fullName}
                                                     {authorData.Verify && (
                                                         <span className='text-[#1d9bf0] mt-[2px]'>
@@ -122,7 +125,13 @@ export default function Postsection({SuggestData}: userDats) {
                                             <BiDotsHorizontal />
                                         </aside>
                                     </main>
-                                </div>
+                                    <section>
+                                        <Postedarticle post={post}/>
+                                        {post.video ? <PostedVideo post={post}/> : null}
+                                        {post.Code ? <PostedCode post={post} /> : null}
+                                        {post.images ? <PostedImages post={post} /> : null}
+                                    </section>
+                                </article>
                             );
                         } else {
                             return null;

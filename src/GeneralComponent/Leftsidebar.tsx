@@ -1,4 +1,4 @@
-interface userdatas{
+interface Props{
     userData : any,
     SuggestData : any
 }
@@ -12,7 +12,7 @@ import {useThemeStore} from '../Zustand';
 import {useState, useEffect} from 'react'
 import { VscVerifiedFilled } from 'react-icons/vsc'
 
-export default function Dashboard({ userData, SuggestData }: userdatas): JSX.Element {
+export default function Dashboard({ userData, SuggestData }: Props): JSX.Element {
     let userid = sessionStorage.getItem('UserId')
     const theme = useThemeStore((state: any) => state.theme);
 

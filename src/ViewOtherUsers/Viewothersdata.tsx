@@ -1,4 +1,4 @@
-interface userDatas {
+interface Props {
     data: any;
     userData: any
     isInputClicked : boolean
@@ -21,7 +21,7 @@ export default function ViewUsersData({
     isInputClicked,
     handleInputClick,
     handleBodyClick
-}: userDatas) {
+}: Props) {
     const [showPmodal, setShowPmodal] = useState<boolean>(false)
     const [showCmodal, setShowCmodal] = useState<boolean>(false)
 

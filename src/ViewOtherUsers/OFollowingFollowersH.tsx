@@ -1,11 +1,11 @@
-interface userdatas{
+interface Props{
     data: any
 }
 import { AiOutlineArrowLeft } from 'react-icons/ai'
 import { Link, NavLink } from 'react-router-dom'
 import { useThemeStore } from '../Zustand';
 
-export default function OFollowingFollowersH({data}: userdatas) {
+export default function OFollowingFollowersH({data}: Props) {
     const theme = useThemeStore((state: any) => state.theme);
     const username = sessionStorage.getItem('Ousername')
     const name = sessionStorage.getItem('Oname')

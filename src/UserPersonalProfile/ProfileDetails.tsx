@@ -1,4 +1,4 @@
-interface userdatas {
+interface Props {
     userData: any | null,
     handleInputClick : () => void,
     isInputClicked : boolean,
@@ -18,7 +18,7 @@ export default function UserProfileDetails({
     handleInputClick, 
     isInputClicked,
     handleBodyClick
-}: userdatas): JSX.Element{
+}: Props): JSX.Element{
 
 
     const urlRegex = /(https?:\/\/[^\s]+|www\.[^\s]+|(?!www\.)[^\s]+\.[^\s]+)/g;

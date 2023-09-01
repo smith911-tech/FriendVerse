@@ -1,4 +1,4 @@
-interface userdatas {
+interface Props {
     handleBodyClick: () => void,
     isInputClicked: boolean,
     userData: any,
@@ -24,7 +24,7 @@ import { message} from 'antd';
 
 export default function PostController({
     handleBodyClick, 
-    isInputClicked, userData}: userdatas){
+    isInputClicked, userData}: Props){
     const firstName = userData?.fullName?.split(' ')[0] ?? 'Loading....';
     const inputRef = useRef<HTMLTextAreaElement>(null);
     const [inputValue, setInputValue] = useState<string>('')
@@ -49,12 +49,12 @@ export default function PostController({
 
     const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         const newValue = e.target.value;
-        if (newValue.length <= 520) {
+        if (newValue.length <= 820) {
             setInputValue(newValue);
         }
     };
 
-    const characterCount = 520 - inputValue.length;
+    const characterCount = 820 - inputValue.length;
 
 
     // ! for when you post a youtube url
@@ -314,7 +314,7 @@ export default function PostController({
                             placeholder={`What's on your mind, ${firstName}?`}
                         />
                         <div className={`text-right select-none text-[#7e7e7e] smm500:text-sm mt-1 ${characterCount === 0  ? "text-[#ff0000a8]" : "text-[#7e7e7e]"}`}>
-                            {characterCount}/{520}
+                            {characterCount}/{820}
                         </div>
                         {/* embed youtube details  */}
                         {!UploadedVideo && !showCodeBlock && !uploadedImages.length && YoutubeData && (
@@ -359,7 +359,6 @@ export default function PostController({
                             {showCodeBlock && (
                                 <div className="mt-4">
                                     <textarea 
-                                    maxLength={1000} 
                                     placeholder="Enter your code here..." 
                                     className={`w-full p-2 border-2 border-solid ${theme ? "border-[#ffffffa7] bg-black" : "border-black bg-white"}`} 
                                     name="" 
