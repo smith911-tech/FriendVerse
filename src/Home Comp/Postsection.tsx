@@ -9,9 +9,10 @@ import { LongCard } from '../GeneralComponent/LoadingCard'
 import { BiSolidUserCircle, BiTimeFive, BiDotsHorizontal } from 'react-icons/bi'
 import { Link } from "react-router-dom"
 import { VscVerifiedFilled } from 'react-icons/vsc'
-import Postedarticle from "./Postedarticle"
-import PostedVideo from "./PostedVideos"
-import PostedCode from "./PostedCode"
+import Postedarticle from "./PostedContent/Postedarticle"
+import PostedVideo from "./PostedContent/PostedVideos"
+import PostedCode from "./PostedContent/PostedCode"
+import PostedImages from "./PostedContent/PostedImages"
 
 export default function Postsection({SuggestData}: userDats) {
     let userid = sessionStorage.getItem('UserId')
@@ -128,6 +129,7 @@ export default function Postsection({SuggestData}: userDats) {
                                         <Postedarticle post={post}/>
                                         {post.video ? <PostedVideo post={post}/> : null}
                                         {post.Code ? <PostedCode post={post} /> : null}
+                                        {post.images ? <PostedImages post={post} /> : null}
                                     </section>
                                 </article>
                             );
