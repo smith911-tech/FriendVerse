@@ -9,7 +9,9 @@ import { LongCard } from '../GeneralComponent/LoadingCard'
 import { BiSolidUserCircle, BiTimeFive, BiDotsHorizontal } from 'react-icons/bi'
 import { Link } from "react-router-dom"
 import { VscVerifiedFilled } from 'react-icons/vsc'
-import PostedMedia from "./PostedMedia"
+import Postedarticle from "./Postedarticle"
+import PostedVideo from "./PostedVideos"
+import PostedCode from "./PostedCode"
 
 export default function Postsection({SuggestData}: userDats) {
     let userid = sessionStorage.getItem('UserId')
@@ -77,14 +79,14 @@ export default function Postsection({SuggestData}: userDats) {
                         if (authorData) {
                             const formattedDate = formatPostDate(post.time);
                             return (
-                                <article className={` py-3 rounded-md mb-8 ${theme 
+                                <article className={` py-3 rounded-md mb-4 ${theme 
                                 ? "bg-black text-[#ffff]" : "bg-white text-[#000000]"}`} key={post.id}>
                                     <main className="flex px-2 justify-between">
                                         <aside className="flex">
                                         <section>
                                             {authorData.profileImage === "" ? (
                                                 <Link to={`${userid !== post.author ? `/User/${authorData.username}` : '/Profile'}`}>
-                                                    <div className={`text-[40px] rounded-full 
+                                                    <div className={`text-[40px] rounded-full select-none 
                                         ${theme ? "text-white" : "text-[#000000d7]"}`}>
                                                         <BiSolidUserCircle />
                                                     </div>
@@ -94,13 +96,13 @@ export default function Postsection({SuggestData}: userDats) {
                                                     <img
                                                         src={authorData.profileImage}
                                                         alt="Profile"
-                                                        className="w-10 h-10 rounded-full object-cover"
+                                                        className="w-10 h-10 rounded-full object-cover select-none "
                                                     />
                                                 </Link>
                                             )}
                                         </section>
                                         <span>
-                                                <Link to={`${userid !== post.author ? `/User/${authorData.username}` : '/Profile'}`}className=' ml-2 text-sm font-medium flex hover:underline'>
+                                                <Link to={`${userid !== post.author ? `/User/${authorData.username}` : '/Profile'}`} className=' ml-2 text-sm font-medium flex hover:underline select-none '>
                                                     {authorData.fullName}
                                                     {authorData.Verify && (
                                                         <span className='text-[#1d9bf0] mt-[2px]'>
@@ -123,7 +125,9 @@ export default function Postsection({SuggestData}: userDats) {
                                         </aside>
                                     </main>
                                     <section>
-                                        <PostedMedia post={post}/>
+                                        <Postedarticle post={post}/>
+                                        {post.video ? <PostedVideo post={post}/> : null}
+                                        {post.Code ? <PostedCode post={post} /> : null}
                                     </section>
                                 </article>
                             );
