@@ -24,7 +24,7 @@ export default function Content({
             handleInputClick={handleInputClick} 
             handleBodyClick={handleBodyClick}
             /> 
-            <section className={` mb-5 ${isInputClicked ? " brightness-[0.2]" : " brightness-100"}`} onClick={handleBodyClick}>
+            <section className={` pb-20 ${isInputClicked ? " brightness-[0.2]" : " brightness-100"}`} onClick={handleBodyClick}>
                 <PostSection SuggestData={SuggestData} />
             </section>
         </main>
