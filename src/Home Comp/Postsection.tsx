@@ -5,7 +5,6 @@ import { collection, onSnapshot } from "firebase/firestore"
 import { db } from '../firebase-config'
 import {useState, useEffect} from 'react'
 import { useThemeStore } from '../Zustand'
-import { LongCard } from '../GeneralComponent/LoadingCard'
 import { BiSolidUserCircle, BiTimeFive, BiDotsHorizontal } from 'react-icons/bi'
 import { Link } from "react-router-dom"
 import { VscVerifiedFilled } from 'react-icons/vsc'
@@ -13,6 +12,8 @@ import Postedarticle from "./PostedContent/Postedarticle"
 import PostedVideo from "./PostedContent/PostedVideos"
 import PostedCode from "./PostedContent/PostedCode"
 import PostedImages from "./PostedContent/PostedImages"
+import Postedbtn from "./PostedContent/Postedbtn"
+import { RotatingLines } from "react-loader-spinner";
 
 export default function Postsection({SuggestData}: userDats) {
     let userid = sessionStorage.getItem('UserId')
@@ -73,7 +74,15 @@ export default function Postsection({SuggestData}: userDats) {
         <main>
             <section className="md970:w-[90%] block mb-0 mx-auto mt-4">
                 {isLoading ? ( // Render loading state
-                    <LongCard />
+                        <div className=" flex justify-center">
+                            <RotatingLines
+                                strokeColor="grey"
+                                strokeWidth="5"
+                                animationDuration="0.75"
+                                width="50"
+                                visible={true}
+                            />
+                        </div>
                 ) : (
                     sortedPosts.map((post) => {
                         const authorData = SuggestData.find((user: any) => user.id === post.author);
@@ -131,7 +140,7 @@ export default function Postsection({SuggestData}: userDats) {
                                         {post.Code ? <PostedCode post={post} /> : null}
                                         {post.images ? <PostedImages post={post} /> : null}
                                     </section>
-                                    
+                                    <Postedbtn />
                                 </article>
                             );
                         } else {
