@@ -43,19 +43,22 @@ export default function PostedImages({ post }: Props) {
         }
     };
 
-
     return (
         <main>
             {selectedImageIndex !== null && (
                 <div className="relative select-none bg-[#80808034] w-full ">
                     <Slider {...settings} initialSlide={selectedImageIndex} ref={sliderRef}>
                         {images.map((image: any, index: number) => (
-                            <div key={index} className="w-full">
+                            <div key={index} className="w-full relative">
                                 <img
                                     src={image}
                                     alt={`Full Image ${index + 1}`}
                                     className="w-[80%] object-contain h-72 my-1 mx-auto"
                                 />
+                                <button  title="Download" className="text-2xl absolute bottom-2 right-2">
+                                        <MdSaveAlt />
+                                    </button>
+                                
                             </div>
                         ))}
                     </Slider>
@@ -74,9 +77,6 @@ export default function PostedImages({ post }: Props) {
                             <TbCircleArrowRightFilled className="text-white w-6 h-6 smm500:w-4 smm500:h-4" />
                         </div>
                     </div>
-                    <button className="text-2xl absolute bottom-5 right-2">
-                        <MdSaveAlt />
-                    </button>
                 </div>
             )}
             {selectedImageIndex === null && (

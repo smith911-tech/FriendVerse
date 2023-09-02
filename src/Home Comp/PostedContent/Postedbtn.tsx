@@ -41,19 +41,19 @@ export default function Postedbtn() {
                 <button className={`flex mt-1 w-[33%] justify-center py-[3px] rounded gap-1 
                 ${theme ? "hover:bg-[#ffffff3c]" : "hover:bg-[#0000004f]"}`}>
                     <span className={`text-2xl ${theme ? "text-[#ffffffd3]" : "text-[#00000087]"} `}>
-                        <GoComment />
+                        <BiRepost />
                     </span>
                     <span className={`text-[15px] ${theme ? "text-[#ffffffd3]" : "text-[#000000b7]"}`}>
-                        Comment
+                        Repost
                     </span>
                 </button>
                 <button className={`flex mt-1 w-[33%] justify-center py-[3px] rounded gap-1 
                 ${theme ? "hover:bg-[#ffffff3c]" : "hover:bg-[#0000004f]"}`}>
                     <span className={`text-2xl ${theme ? "text-[#ffffffd3]" : "text-[#00000087]"} `}>
-                        <BiRepost />
+                        <GoComment />
                     </span>
                     <span className={`text-[15px] ${theme ? "text-[#ffffffd3]" : "text-[#000000b7]"}`}>
-                        Repost
+                        Comment
                     </span>
                 </button>
             </article>
