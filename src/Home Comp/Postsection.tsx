@@ -131,6 +131,7 @@ export default function Postsection({SuggestData}: userDats) {
                                         {post.Code ? <PostedCode post={post} /> : null}
                                         {post.images ? <PostedImages post={post} /> : null}
                                     </section>
+                                    
                                 </article>
                             );
                         } else {
