@@ -29,27 +29,30 @@ export default function Postedbtn() {
             <hr />
             </section>
             <article className="flex gap-[1%]">
-                <button className='flex mt-1 w-[33%] justify-center py-[3px] rounded gap-1 hover:bg-[#0000004f]'>
-                    <span className=' text-2xl text-[#00000087]'>
+                <button className={`flex mt-1 w-[33%] justify-center py-[3px] rounded gap-1 
+                ${theme ? "hover:bg-[#ffffff3c]" : "hover:bg-[#0000004f]"}`}>
+                    <span className={`text-2xl ${theme ? "text-[#ffffffd3]" : "text-[#00000087]"} `}>
                         <BiLike />
                     </span>
-                    <span className='text-[15px] text-[#000000b7]'>
+                    <span className={`text-[15px] ${theme ? "text-[#ffffffd3]" : "text-[#000000b7]"}`}>
                         Like
                     </span>
                 </button>
-                <button className='flex mt-1 w-[33%] justify-center py-[3px] rounded gap-1 hover:bg-[#0000004f]'>
-                    <span className=' text-2xl text-[#00000087]'>
+                <button className={`flex mt-1 w-[33%] justify-center py-[3px] rounded gap-1 
+                ${theme ? "hover:bg-[#ffffff3c]" : "hover:bg-[#0000004f]"}`}>
+                    <span className={`text-2xl ${theme ? "text-[#ffffffd3]" : "text-[#00000087]"} `}>
                         <GoComment />
                     </span>
-                    <span className=' text-[15px] text-[#000000b7]'>
+                    <span className={`text-[15px] ${theme ? "text-[#ffffffd3]" : "text-[#000000b7]"}`}>
                         Comment
                     </span>
                 </button>
-                <button className='flex mt-1 w-[33%] justify-center py-[3px] rounded gap-1 hover:bg-[#0000004f]'>
-                    <span className=' text-2xl text-[#00000087]'>
+                <button className={`flex mt-1 w-[33%] justify-center py-[3px] rounded gap-1 
+                ${theme ? "hover:bg-[#ffffff3c]" : "hover:bg-[#0000004f]"}`}>
+                    <span className={`text-2xl ${theme ? "text-[#ffffffd3]" : "text-[#00000087]"} `}>
                         <BiRepost />
                     </span>
-                    <span className=' text-[15px] text-[#000000b7]'>
+                    <span className={`text-[15px] ${theme ? "text-[#ffffffd3]" : "text-[#000000b7]"}`}>
                         Repost
                     </span>
                 </button>
