@@ -3,11 +3,11 @@ interface Props {
 }
 import { useState, useEffect } from "react";
 import { BiSolidUserCircle } from "react-icons/bi";
-import { LongCard } from "../GeneralComponent/LoadingCard";
 import { GoTelescopeFill } from "react-icons/go";
 import { Link } from "react-router-dom";
 import {useThemeStore} from '../Zustand';
 import { VscVerifiedFilled } from 'react-icons/vsc'
+import { RotatingLines } from "react-loader-spinner";
 
 export default function ProfileLeftbar({ SuggestData }: Props): JSX.Element {
     let userid = sessionStorage.getItem('UserId')
@@ -26,7 +26,17 @@ export default function ProfileLeftbar({ SuggestData }: Props): JSX.Element {
         <main className="md970:block hidden font-Inter pt-2 px-2">
             <section >
                 {SuggestData.length === 0 ? (
-                    <LongCard />
+                    <div className={`min-h-[80vh]  w-full ${theme ? "bg-black " : "bg-white "}`}>
+                        <div className=" flex justify-center">
+                            <RotatingLines
+                                strokeColor="grey"
+                                strokeWidth="5"
+                                animationDuration="0.75"
+                                width="50"
+                                visible={true}
+                            />
+                        </div>
+                    </div>
                 ) : (
                         <section className={` rounded-lg shadow py-2 ${theme ? "bg-black text-[#ffffffca]" : "bg-white text-[#000000d4]"}`}>
                         <div className="flex text-lg justify-between mx-2">

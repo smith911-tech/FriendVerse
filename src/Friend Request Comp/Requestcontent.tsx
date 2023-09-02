@@ -3,13 +3,13 @@ interface userData {
     SuggestData: any
 }
 import { Link } from "react-router-dom";
-import { LongCard } from "../GeneralComponent/LoadingCard";
 import { useThemeStore } from '../Zustand';
 import { useState} from "react";
 import { BiSolidUserCircle } from 'react-icons/bi'
 import { doc, updateDoc, arrayRemove, arrayUnion } from 'firebase/firestore';
 import { db } from '../firebase-config';
 import { VscVerifiedFilled } from 'react-icons/vsc'
+import { RotatingLines } from "react-loader-spinner";
 export default function RequestContent({ userData, SuggestData }: userData) {
     //! Theme Mode
     const theme = useThemeStore((state: any) => state.theme);
@@ -126,7 +126,17 @@ export default function RequestContent({ userData, SuggestData }: userData) {
                 ))
             ):
             (
-                <LongCard />
+                <div className=" min-h-screen  w-full">
+                    <div className=" flex justify-center">
+                                <RotatingLines
+                                    strokeColor="grey"
+                                    strokeWidth="5"
+                                    animationDuration="0.75"
+                                    width="50"
+                                    visible={true}
+                                />
+                    </div>
+                </div>
             )}
             </article>
         </main>
