@@ -28,7 +28,7 @@ export default function Postedbtn() {
             </div>
             <hr />
             </section>
-            <article className="flex gap-[1%]">
+            <article className="flex gap-[1%] justify-center">
                 <button className={`flex mt-1 w-[33%] justify-center py-[3px] rounded gap-1 
                 ${theme ? "hover:bg-[#ffffff3c]" : "hover:bg-[#0000004f]"}`}>
                     <span className={`text-2xl ${theme ? "text-[#ffffffd3]" : "text-[#00000087]"} `}>

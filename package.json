@@ -11,9 +11,10 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.16",
+    "@types/file-saver": "^2.0.5",
     "@types/react-slick": "^0.23.10",
     "antd": "^5.8.5",
-    "axios": "^1.4.0",
+    "axios": "^1.5.0",
     "firebase": "^9.23.0",
     "react": "^18.2.0",
     "react-date-picker": "^10.2.0",
