@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { AiOutlineClose } from 'react-icons/ai';
 import { TbCircleArrowRightFilled, TbCircleArrowLeftFilled } from 'react-icons/tb'
 import { MdSaveAlt } from 'react-icons/md'
+// import FileSaver from 'file-saver';
 
 interface Props {
     post: any;
@@ -42,6 +43,13 @@ export default function PostedImages({ post }: Props) {
             (sliderRef.current as Slider).slickPrev();
         }
     };
+    
+
+    function handleDownload(url: string, filename: string) {
+        window.open(url)
+        console.log(filename)
+    }
+
 
     return (
         <main>
@@ -55,10 +63,13 @@ export default function PostedImages({ post }: Props) {
                                     alt={`Full Image ${index + 1}`}
                                     className="w-[80%] object-contain h-72 my-1 mx-auto"
                                 />
-                                <button  title="Download" className="text-2xl absolute bottom-2 right-2">
-                                        <MdSaveAlt />
-                                    </button>
-                                
+                                <button
+                                    onClick={() => handleDownload('https://firebasestorage.googleapis.com/v0/b/friend-verse.appspot.com/o/Posts%2FOZRiNkSYLQc0A4oQ1S9B%2Fhouse-1836070_1920.jpg?alt=media&token=06068113-ba42-47f1-b94e-f660a875d875', `image.jpg`)}
+                                    title="Download"
+                                    className="text-2xl absolute bottom-2 right-2"
+                                >
+                                    <MdSaveAlt />
+                                </button>
                             </div>
                         ))}
                     </Slider>
