@@ -5,7 +5,6 @@ import "slick-carousel/slick/slick-theme.css";
 import { AiOutlineClose } from 'react-icons/ai';
 import { TbCircleArrowRightFilled, TbCircleArrowLeftFilled } from 'react-icons/tb'
 import { MdSaveAlt } from 'react-icons/md'
-// import FileSaver from 'file-saver';
 
 interface Props {
     post: any;
@@ -44,11 +43,23 @@ export default function PostedImages({ post }: Props) {
         }
     };
     
+    const downloadFile = async (url: string) => {
+        try{
+            const response = await fetch(url)
+            const file = await response.blob()
+            console.log(response)
+            const link = document.createElement("a")
+            link.href = URL.createObjectURL(file)
+            link.download = new Date().getTime() as unknown as string;
+            link.click()
+        }
+        catch(error){
+            console.error(error);
+            
+        }
+    };
 
-    function handleDownload(url: string, filename: string) {
-        window.open(url)
-        console.log(filename)
-    }
+
 
 
     return (
@@ -59,12 +70,13 @@ export default function PostedImages({ post }: Props) {
                         {images.map((image: any, index: number) => (
                             <div key={index} className="w-full relative">
                                 <img
+                                    loading="lazy"
                                     src={image}
                                     alt={`Full Image ${index + 1}`}
                                     className="w-[80%] object-contain h-72 my-1 mx-auto"
                                 />
-                                <button
-                                    onClick={() => handleDownload('https://firebasestorage.googleapis.com/v0/b/friend-verse.appspot.com/o/Posts%2FOZRiNkSYLQc0A4oQ1S9B%2Fhouse-1836070_1920.jpg?alt=media&token=06068113-ba42-47f1-b94e-f660a875d875', `image.jpg`)}
+                                <button 
+                                    onClick={() => downloadFile(image)}
                                     title="Download"
                                     className="text-2xl absolute bottom-2 right-2"
                                 >
@@ -109,10 +121,11 @@ export default function PostedImages({ post }: Props) {
                             `}>
                                 <img
                                     src={image}
+                                    loading="lazy"
                                     className={`
                                         object-cover h-80 cursor-pointer
-                                        ${images.length === 1 ? 'w-full h-64' : ''}
-                                        ${images.length === 2 ? 'w-full h-64' : ''}
+                                        ${images.length === 1 ? 'w-full h-56' : ''}
+                                        ${images.length === 2 ? 'w-full h-56' : ''}
                                         ${images.length === 3 ? `w-full h-[150px]` : ''}
                                         ${images.length === 4 ? `w-full h-[150px]` : ''}
                                     `}
