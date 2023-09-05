@@ -44,22 +44,30 @@ export default function PostedImages({ post }: Props) {
     };
     
     const downloadFile = async (url: string) => {
-        try{
-            const response = await fetch(url)
-            const file = await response.blob()
-            console.log(response)
-            const link = document.createElement("a")
-            link.href = URL.createObjectURL(file)
-            link.download = new Date().getTime() as unknown as string;
-            link.click()
-        }
-        catch(error){
-            console.error(error);
-            
+        try {
+            const response = await fetch(url);
+
+            if (!response.ok) {
+                throw new Error(`Fetch failed with status: ${response.status}`);
+            }
+
+            const file = await response.blob();
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(file);
+
+            // Extract the filename from the URL (similar to your original code)
+            const filename = Date.now() as unknown as string;
+
+            link.download = filename; // Use the extracted file name
+            link.click();
+        } catch (error: any) {
+            if (error.name === "NetworkError") {
+                console.error("Network error:", error.message);
+            } else {
+                console.error("Other error:", error.stack);
+            }
         }
     };
-
-
 
 
     return (
@@ -70,7 +78,6 @@ export default function PostedImages({ post }: Props) {
                         {images.map((image: any, index: number) => (
                             <div key={index} className="w-full relative">
                                 <img
-                                    loading="lazy"
                                     src={image}
                                     alt={`Full Image ${index + 1}`}
                                     className="w-[80%] object-contain h-72 my-1 mx-auto"
@@ -121,7 +128,6 @@ export default function PostedImages({ post }: Props) {
                             `}>
                                 <img
                                     src={image}
-                                    loading="lazy"
                                     className={`
                                         object-cover h-80 cursor-pointer
                                         ${images.length === 1 ? 'w-full h-56' : ''}
