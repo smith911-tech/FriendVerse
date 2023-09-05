@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { AiOutlineClose } from 'react-icons/ai';
 import { TbCircleArrowRightFilled, TbCircleArrowLeftFilled } from 'react-icons/tb'
 import { MdSaveAlt } from 'react-icons/md'
+import { RotatingLines } from "react-loader-spinner";
 
 interface Props {
     post: any;
@@ -13,6 +14,7 @@ interface Props {
 export default function PostedImages({ post }: Props) {
     const images = post.images || [];
     const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+    const [downloading, setDownloading] = useState<boolean>(false);
 
     const settings = {
         dots: false,
@@ -45,6 +47,8 @@ export default function PostedImages({ post }: Props) {
     
     const downloadFile = async (url: string) => {
         try {
+            setDownloading(true); // Start the download, show spinner
+
             const response = await fetch(url);
 
             if (!response.ok) {
@@ -66,8 +70,11 @@ export default function PostedImages({ post }: Props) {
             } else {
                 console.error("Other error:", error.stack);
             }
+        } finally {
+            setDownloading(false); // Download is complete, hide spinner
         }
     };
+
 
 
     return (
@@ -82,10 +89,22 @@ export default function PostedImages({ post }: Props) {
                                     alt={`Full Image ${index + 1}`}
                                     className="w-[80%] object-contain h-72 my-1 mx-auto"
                                 />
-                                <button 
+                                {downloading && 
+                                <div className="absolute bottom-2 right-2">
+                                <RotatingLines
+                                strokeColor="black"
+                                strokeWidth="5"
+                                animationDuration="0.75"
+                                width="25"
+                                visible={true}
+                            />
+                                </div>}
+                                <button
                                     onClick={() => downloadFile(image)}
                                     title="Download"
-                                    className="text-2xl absolute bottom-2 right-2"
+                                    className={`text-2xl absolute bottom-2 right-2
+                                    ${downloading ? "hidden" : "block"}`}
+                                    disabled={downloading}
                                 >
                                     <MdSaveAlt />
                                 </button>
@@ -95,13 +114,15 @@ export default function PostedImages({ post }: Props) {
                     <button className="text-2xl absolute top-2 right-2" onClick={closeFullInterface}>
                         <AiOutlineClose />
                     </button>
-                    <div className="absolute top-1/2 transform -translate-y-1/2 left-1"
+                    <div className={`absolute top-1/2 transform -translate-y-1/2 left-1 
+                    ${images.length === 1 ? `hidden` : ''}`}
                     onClick={goToPrevSlide}>
                         <div className="bg-gray-800 p-1 rounded-full cursor-pointer">
                             <TbCircleArrowLeftFilled className="text-white w-6 h-6 smm500:w-4 smm500:h-4" />
                         </div>
                     </div>
-                    <div className="absolute top-1/2 transform -translate-y-1/2 right-1"
+                    <div className={`absolute top-1/2 transform -translate-y-1/2 right-1
+                    ${images.length === 1 ? `hidden` : ''}`}
                     onClick={goToNextSlide}>
                         <div className="bg-gray-800 p-1 rounded-full cursor-pointer">
                             <TbCircleArrowRightFilled className="text-white w-6 h-6 smm500:w-4 smm500:h-4" />
