@@ -6,6 +6,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { TbCircleArrowRightFilled, TbCircleArrowLeftFilled } from 'react-icons/tb'
 import { MdSaveAlt } from 'react-icons/md'
 import { RotatingLines } from "react-loader-spinner";
+import { useThemeStore } from '../../Zustand'
 
 interface Props {
     post: any;
@@ -75,6 +76,9 @@ export default function PostedImages({ post }: Props) {
         }
     };
 
+        //! Theme Mode
+    const theme = useThemeStore((state: any) => state.theme);
+
 
 
     return (
@@ -92,7 +96,7 @@ export default function PostedImages({ post }: Props) {
                                 {downloading && 
                                 <div className="absolute bottom-2 right-2">
                                 <RotatingLines
-                                strokeColor="black"
+                                strokeColor={`${theme ? "grey" : "black"}`}
                                 strokeWidth="5"
                                 animationDuration="0.75"
                                 width="25"
