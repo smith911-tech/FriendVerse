@@ -11,6 +11,8 @@ import { Link } from 'react-router-dom';
 import {useThemeStore} from '../Zustand';
 import {useState, useEffect} from 'react'
 import { VscVerifiedFilled } from 'react-icons/vsc'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 export default function Dashboard({ userData, SuggestData }: Props): JSX.Element {
     let userid = sessionStorage.getItem('UserId')
@@ -76,18 +78,18 @@ export default function Dashboard({ userData, SuggestData }: Props): JSX.Element
                     <div className={` rounded-lg shadow p-1 ${theme ? "bg-[#000] text-[white]" : "bg-[#ffffffd3] text-[black]"}`}>
                         <div className="relative select-none">
                             {userData.coverImage === "" ? (
-                                <img
+                                <LazyLoadImage
+                                    effect="blur"
                                     src={defaultcoverimg}
                                     alt="Cover"
-                                    className="w-full rounded-t-lg h-32 object-cover"
-                                    loading='lazy'
+                                    className="w-screen rounded-t-lg h-32 object-cover"
                                 />
                             ) : (
-                                <img
+                                <LazyLoadImage
+                                    effect="blur"
                                     src={userData.coverImage}
                                     alt="Cover"
-                                    className="w-full rounded-t-lg h-32 object-cover"
-                                    loading='lazy'
+                                    className="w-screen rounded-t-lg h-32 object-cover"
                                 />
                             )}
                             {userData.profileImage === "" ? (
@@ -103,9 +105,9 @@ export default function Dashboard({ userData, SuggestData }: Props): JSX.Element
                                     window.scrollTo(0, 0);
                                 })}>
                                 <img
+                                    loading='lazy'
                                     src={userData.profileImage}
                                     alt="Profile"
-                                    loading='lazy'
                                     className="w-16 h-16 rounded-full absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-4 border-white object-cover bg-white"
                                 />
                                     </Link>
@@ -164,10 +166,11 @@ export default function Dashboard({ userData, SuggestData }: Props): JSX.Element
                                             <BiSolidUserCircle />
                                         </div>
                                     ) : (
-                                        <img
+                                        <LazyLoadImage
+                                    effect="blur"
                                             src={data.profileImage}
                                             alt="Profile"
-                                            loading='lazy'
+    
                                             className="w-12 h-12 rounded-full   object-cover "
                                         />
                                     )}

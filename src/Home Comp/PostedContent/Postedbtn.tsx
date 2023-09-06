@@ -2,7 +2,8 @@ import { AiTwotoneLike } from 'react-icons/ai'
 import { useThemeStore } from '../../Zustand';
 import { TbBrandGoogleAnalytics } from 'react-icons/tb'
 import { BiLike, BiRepost } from 'react-icons/bi'
-import { GoComment } from 'react-icons/go'
+import { TbMessage } from 'react-icons/tb'
+import { FaShare } from 'react-icons/fa'
 export default function Postedbtn() {
     const theme = useThemeStore((state: any) => state.theme);
     return (
@@ -29,31 +30,40 @@ export default function Postedbtn() {
             <hr />
             </section>
             <article className="flex gap-[1%] justify-center">
-                <button className={`flex mt-1 w-[33%] justify-center py-[3px] rounded gap-1 
+                <button className={`flex mt-1 w-[33%] justify-center py-[7px] rounded gap-1 
                 ${theme ? "hover:bg-[#ffffff3c]" : "hover:bg-[#0000004f]"}`}>
-                    <span className={`text-2xl ${theme ? "text-[#ffffffd3]" : "text-[#00000087]"} `}>
+                    <span className={`text-2xl smm500:text-lg ${theme ? "text-[#ffffffd3]" : "text-[#00000087]"} `}>
                         <BiLike />
                     </span>
-                    <span className={`text-[15px] ${theme ? "text-[#ffffffd3]" : "text-[#000000b7]"}`}>
+                    <span className={`text-[15px] smm500:text-[12px] ${theme ? "text-[#ffffffd3]" : "text-[#000000b7]"}`}>
                         Like
                     </span>
                 </button>
-                <button className={`flex mt-1 w-[33%] justify-center py-[3px] rounded gap-1 
+                <button className={`flex mt-1 w-[33%] justify-center py-[7px] rounded gap-1 
                 ${theme ? "hover:bg-[#ffffff3c]" : "hover:bg-[#0000004f]"}`}>
-                    <span className={`text-2xl ${theme ? "text-[#ffffffd3]" : "text-[#00000087]"} `}>
+                    <span className={`text-2xl smm500:text-lg ${theme ? "text-[#ffffffd3]" : "text-[#00000087]"} `}>
                         <BiRepost />
                     </span>
-                    <span className={`text-[15px] ${theme ? "text-[#ffffffd3]" : "text-[#000000b7]"}`}>
+                    <span className={`text-[15px] smm500:text-[12px]  ${theme ? "text-[#ffffffd3]" : "text-[#000000b7]"}`}>
                         Repost
                     </span>
                 </button>
-                <button className={`flex mt-1 w-[33%] justify-center py-[3px] rounded gap-1 
+                <button className={`flex mt-1 w-[33%] justify-center py-[7px] rounded gap-1 
                 ${theme ? "hover:bg-[#ffffff3c]" : "hover:bg-[#0000004f]"}`}>
-                    <span className={`text-2xl ${theme ? "text-[#ffffffd3]" : "text-[#00000087]"} `}>
-                        <GoComment />
+                    <span className={`text-2xl smm500:text-lg ${theme ? "text-[#ffffffd3]" : "text-[#00000087]"} `}>
+                        <TbMessage />
                     </span>
-                    <span className={`text-[15px] ${theme ? "text-[#ffffffd3]" : "text-[#000000b7]"}`}>
+                    <span className={`text-[15px] smm500:text-[12px]  ${theme ? "text-[#ffffffd3]" : "text-[#000000b7]"}`}>
                         Comment
+                    </span>
+                </button>
+                <button className={`flex mt-1 w-[33%] justify-center py-[7px] rounded gap-1 
+                ${theme ? "hover:bg-[#ffffff3c]" : "hover:bg-[#0000004f]"}`}>
+                    <span className={`text-2xl smm500:text-lg ${theme ? "text-[#ffffffd3]" : "text-[#00000087]"} `}>
+                        <FaShare />
+                    </span>
+                    <span className={`text-[15px] smm500:text-[12px]  ${theme ? "text-[#ffffffd3]" : "text-[#000000b7]"}`}>
+                        Share
                     </span>
                 </button>
             </article>

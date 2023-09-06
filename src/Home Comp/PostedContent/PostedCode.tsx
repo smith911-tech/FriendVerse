@@ -41,8 +41,8 @@ export default function PostedCode({ post }: Props) {
                     onMouseLeave={() => setShowCopyButton(false)}
                 >
                     {showCopyButton && (
-                        <button
-                            className={`absolute top-2 right-2 mt-1 mr-2 bg-gray-800 ${buttonColor}  p-2 rounded cursor-pointer`}
+                        <button title='copy'
+                            className={`fixed right-10  mt-3 mr-2 bg-gray-800 ${buttonColor}  p-2 rounded cursor-pointer`}
                             onClick={handleCopyClick}
                         >
                             <BsFillClipboardFill />

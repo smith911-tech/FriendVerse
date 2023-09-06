@@ -12,6 +12,8 @@ import { Link } from "react-router-dom";
 import {useThemeStore} from '../Zustand';
 import { SuccessLoginM, FilldetailsError } from '../Error-SuccessM'
 import { VscVerifiedFilled } from 'react-icons/vsc'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 export default function SideDashboard({ SuggestData, userData }: Props):JSX.Element {
     const [searchTerm, setSearchTerm] = useState<string>("");
     const theme = useThemeStore((state: any) => state.theme);
@@ -60,7 +62,8 @@ export default function SideDashboard({ SuggestData, userData }: Props):JSX.Elem
                                                 <BiSolidUserCircle />
                                             </div>
                                         ) : (
-                                            <img
+                                            <LazyLoadImage
+                                    effect="blur"
                                                 src={data.profileImage}
                                                 alt="Profile"
                                                 className="w-12 h-12 rounded-full   object-cover   "

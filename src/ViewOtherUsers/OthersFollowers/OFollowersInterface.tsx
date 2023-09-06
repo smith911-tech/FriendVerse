@@ -14,6 +14,8 @@ import { Oval } from 'react-loader-spinner'
 import { Popover } from '@headlessui/react'
 import { RiShareForwardBoxLine } from 'react-icons/ri'
 import { VscVerifiedFilled } from 'react-icons/vsc'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 export default function OFollwersInterface({ data, SuggestData, userData }: Props) {
     let userid = sessionStorage.getItem('UserId')
     const theme = useThemeStore((state: any) => state.theme);
@@ -133,7 +135,8 @@ export default function OFollwersInterface({ data, SuggestData, userData }: Prop
                                             <BiSolidUserCircle />
                                         </div>
                                     ) : (
-                                        <img src={user.profileImage} alt='Profile' className='w-12 h-12 rounded-full object-cover' />
+                                        <LazyLoadImage
+                                    effect="blur" src={user.profileImage} alt='Profile' className='w-12 h-12 rounded-full object-cover' />
                                     )}
                                 </section>
                                 <section className='flex flex-col ml-1'>

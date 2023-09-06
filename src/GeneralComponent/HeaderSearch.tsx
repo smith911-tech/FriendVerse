@@ -11,6 +11,8 @@ import { Link } from "react-router-dom";
 import { BiSolidUserCircle } from 'react-icons/bi'
 import {useThemeStore} from '../Zustand';
 import { VscVerifiedFilled } from 'react-icons/vsc'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 export default function HeaderSearch({SuggestData, Popover, isSearchInput}: Props){
     
@@ -67,7 +69,8 @@ export default function HeaderSearch({SuggestData, Popover, isSearchInput}: Prop
                                                 <BiSolidUserCircle />
                                             </div>
                                         ) : (
-                                            <img
+                                            <LazyLoadImage
+                                                effect="blur"
                                                 src={data.profileImage}
                                                 alt="Profile"
                                                 className="w-12 h-12 rounded-full   object-cover   "

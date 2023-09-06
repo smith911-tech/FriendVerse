@@ -8,6 +8,8 @@ import { BiSolidUserCircle } from 'react-icons/bi';
 import { Link } from "react-router-dom";
 import {useThemeStore} from '../Zustand'
 import PostController from './PostController';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 export default function PostSection({
     handleBodyClick,
     userData,
@@ -35,7 +37,8 @@ export default function PostSection({
                                     </Link>
                                 ) : (
                                     <Link to='/Profile'>
-                                    <img
+                                    <LazyLoadImage
+                                        effect="blur"
                                         src={userData.profileImage}
                                         alt="Profile"
                                         className="w-12 h-12 rounded-full object-cover"

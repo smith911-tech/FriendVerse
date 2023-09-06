@@ -13,6 +13,8 @@ import { Popover } from '@headlessui/react'
 import HeaderSearch from './HeaderSearch'
 import { useState } from 'react'
 import {useThemeStore} from '../Zustand';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 export default function Header({ userData, SuggestData }: Props) {
     // ! Opening the post div
     const [isSearchInput, setSearchInput] = useState(false);
@@ -25,7 +27,7 @@ export default function Header({ userData, SuggestData }: Props) {
     return (
         <header className={` shadow  flex justify-between px-3 py-2 text-[#000000bc] select-none ${theme ? "bg-[#000]  " : "bg-[#fff]"} `}> 
         <div className='flex gap-2'>
-                <img src={logo} alt="" className='w-[40px] object-contain smm500:w-[30px]' />
+                <img  src={logo} alt="" className='w-[40px] object-contain smm500:w-[30px]' />
                 <Popover className="relative sm650:hidden lg1150:hidden">
                 <Popover.Button className='outline-none ' onClick={handleInputClick}>
                 <span className='text-2xl  p-2 bg-[#f0f2f5] mt-1 rounded-full cursor-pointer lg1150:hidden block '>
@@ -85,7 +87,8 @@ export default function Header({ userData, SuggestData }: Props) {
                                 <Link to='/Profile' onClick={(() => {
                                     window.scrollTo(0, 0);
                                 })}>
-                            <img
+                            <LazyLoadImage
+                                effect="blur"
                                 src={userData.profileImage}
                                 alt="Profile"
                                 loading='lazy'

@@ -12,6 +12,8 @@ import { SuccessLoginM, FilldetailsError} from '../Error-SuccessM'
 import {useThemeStore} from '../Zustand';
 import { db } from '../firebase-config';
 import { doc, updateDoc } from 'firebase/firestore';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 export default function SettingsInterface({ userData }: Props) {
     const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -92,7 +94,8 @@ export default function SettingsInterface({ userData }: Props) {
                                 </Link>
                             ) : (
                                 <Link to="/Profile">
-                                    <img
+                                    <LazyLoadImage
+                                    effect="blur"
                                         src={userData.profileImage}
                                         alt="Profile"
                                         className="w-16 h-16 rounded-full object-cover"

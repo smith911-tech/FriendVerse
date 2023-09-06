@@ -10,6 +10,8 @@ import { Popover } from '@headlessui/react'
 import { RiShareForwardBoxLine } from 'react-icons/ri'
 import { MdOutlineGroupRemove } from 'react-icons/md'
 import { VscVerifiedFilled } from 'react-icons/vsc'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 interface Props {
     userData: any;
     SuggestData: any;
@@ -118,7 +120,8 @@ export default function Following({ userData, SuggestData }: Props) {
                                             <BiSolidUserCircle />
                                         </div>
                                     ) : (
-                                        <img src={user.profileImage} alt='Profile' className='w-12 h-12 rounded-full object-cover' />
+                                        <LazyLoadImage
+                                    effect="blur" src={user.profileImage} alt='Profile' className='w-12 h-12 rounded-full object-cover' />
                                     )}
                                 </section>
                                 <section className='flex flex-col ml-1'>

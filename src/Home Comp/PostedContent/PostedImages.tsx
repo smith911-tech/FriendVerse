@@ -7,6 +7,9 @@ import { TbCircleArrowRightFilled, TbCircleArrowLeftFilled } from 'react-icons/t
 import { MdSaveAlt } from 'react-icons/md'
 import { RotatingLines } from "react-loader-spinner";
 import { useThemeStore } from '../../Zustand'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+import { useInView } from "react-intersection-observer";
 
 interface Props {
     post: any;
@@ -79,19 +82,29 @@ export default function PostedImages({ post }: Props) {
         //! Theme Mode
     const theme = useThemeStore((state: any) => state.theme);
 
+    const [inView, setInView] = useState(false);
 
+    // Use the useInView hook to determine when the image is in view
+    const { ref, inView: isImageInView } = useInView({
+        triggerOnce: true,
+    });
+
+    if (isImageInView && !inView) {
+        setInView(true);
+    }
 
     return (
         <main>
             {selectedImageIndex !== null && (
-                <div className="relative select-none bg-[#80808034] w-full ">
+                <div className="relative select-none bg-[#80808034] w-full">
                     <Slider {...settings} initialSlide={selectedImageIndex} ref={sliderRef}>
                         {images.map((image: any, index: number) => (
                             <div key={index} className="w-full relative">
-                                <img
+                                <LazyLoadImage
+                                    effect="blur"
                                     src={image}
                                     alt={`Full Image ${index + 1}`}
-                                    className="w-[80%] object-contain h-72 my-1 mx-auto"
+                                    className="w-[80vw] object-contain h-72 my-1 mx-auto"
                                 />
                                 {downloading && 
                                 <div className="absolute bottom-2 right-2">
@@ -143,7 +156,7 @@ export default function PostedImages({ post }: Props) {
                         ${images.length === 4 ? `grid grid-cols-4 grid-rows-2 gap-2` : ''}
                     `}>
                         {images.map((image: any, index: number) => (
-                            <div key={index} className={`
+                            <div key={index} ref={ref} className={`
                                 ${images.length === 1 ? `col-span-5` : ''}
                                 ${images.length === 2 ? `col-span-2 row-start-1` : ''}
                                 ${images.length === 3 ? `col-span-2 row-start-1 ${index === 2 ? "col-span-4 row-start-2" : ""}` : ''}
@@ -151,14 +164,16 @@ export default function PostedImages({ post }: Props) {
                                     ${index === 3 ? "col-span-2 row-start-2" : ""}`
                                     : ''}
                             `}>
-                                <img
+                                <LazyLoadImage
                                     src={image}
+                                    effect="blur"
                                     className={`
-                                        object-cover h-80 cursor-pointer
-                                        ${images.length === 1 ? 'w-full h-56' : ''}
-                                        ${images.length === 2 ? 'w-full h-56' : ''}
-                                        ${images.length === 3 ? `w-full h-[150px]` : ''}
-                                        ${images.length === 4 ? `w-full h-[150px]` : ''}
+                                        ${inView ? 'w-screen' : 'w-full'}
+                                        object-cover h-80 cursor-pointer w-full
+                                        ${images.length === 1 ? ' h-56' : ''}
+                                        ${images.length === 2 ? ' h-56' : ''}
+                                        ${images.length === 3 ? ` h-[150px]` : ''}
+                                        ${images.length === 4 ? ` h-[150px]` : ''}
                                     `}
                                     onClick={() => handleImageClick(index)}
                                 />

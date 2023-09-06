@@ -14,6 +14,8 @@ import { MdOutlineGroupRemove } from 'react-icons/md'
 import FollowersFollowingH from '../FollowingFollowersH'
 import { useThemeStore } from '../../Zustand';
 import { VscVerifiedFilled } from 'react-icons/vsc'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 export default function Followers({ userData, SuggestData }: Props) {
     let userid = sessionStorage.getItem('UserId')
@@ -153,7 +155,8 @@ export default function Followers({ userData, SuggestData }: Props) {
                                             <BiSolidUserCircle />
                                         </div>
                                     ) : (
-                                        <img src={user.profileImage} alt='Profile' className='w-12 h-12 rounded-full object-cover' />
+                                        <LazyLoadImage
+                                    effect="blur" src={user.profileImage} alt='Profile' className='w-12 h-12 rounded-full object-cover' />
                                     )}
                                 </section>
                                 <section className='flex flex-col ml-1'>
