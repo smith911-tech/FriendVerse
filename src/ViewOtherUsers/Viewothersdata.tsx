@@ -72,14 +72,15 @@ export default function ViewUsersData({
                     <div className="relative select-none" onClick={handleBodyClick}>
                         {data.coverImage === "" ? (
                             <LazyLoadImage
-                                    effect="blur"
+                                effect="blur"
                                 src={defaultcoverimg}
                                 alt="Cover"
-                                className={`w-screen rounded-t-lg h-44 smm500:h-32 object-cover ${isInputClicked ? " brightness-[0.2]" : " brightness-100"}` }
+                                className={`w-screen rounded-t-lg h-44 smm500:h-32 object-cover ${isInputClicked ? 
+                                "brightness-[0.2]" : " brightness-100"}` }
                             />
                         ) : (
                             <LazyLoadImage
-                                    effect="blur"
+                            effect="blur"
                             onClick={handleShowCoverImg}
                             src={data.coverImage}
                             alt="CoverImg"
