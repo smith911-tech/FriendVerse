@@ -100,12 +100,14 @@ export default function PostedImages({ post }: Props) {
                     <Slider {...settings} initialSlide={selectedImageIndex} ref={sliderRef}>
                         {images.map((image: any, index: number) => (
                             <div key={index} className="w-full relative">
-                                <LazyLoadImage
-                                    effect="blur"
-                                    src={image}
-                                    alt={`Full Image ${index + 1}`}
-                                    className="w-[80vw] object-contain h-72 my-1 mx-auto"
-                                />
+                                <div className="flex justify-center items-center">
+                                    <LazyLoadImage
+                                        effect="blur"
+                                        src={image}
+                                        alt={`Full Image ${index + 1}`}
+                                        className="w-[80vw] object-contain h-72 my-1"
+                                    />
+                                </div>
                                 {downloading && 
                                 <div className="absolute bottom-2 right-2">
                                 <RotatingLines
