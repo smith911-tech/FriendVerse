@@ -10,6 +10,8 @@ import { doc, updateDoc, arrayRemove, arrayUnion } from 'firebase/firestore';
 import { db } from '../firebase-config';
 import { VscVerifiedFilled } from 'react-icons/vsc'
 import { RotatingLines } from "react-loader-spinner";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 export default function RequestContent({ userData, SuggestData }: userData) {
     //! Theme Mode
     const theme = useThemeStore((state: any) => state.theme);
@@ -88,7 +90,7 @@ export default function RequestContent({ userData, SuggestData }: userData) {
                                     <BiSolidUserCircle />
                                 </div>
                             ) : (
-                                <img src={data.profileImage} alt='Profile' className='w-12 h-12 rounded-full object-cover' loading='lazy'/>
+                                <LazyLoadImage effect="blur" src={data.profileImage} alt='Profile' className='w-12 h-12 rounded-full object-cover' loading='lazy'/>
                             )}
                             <section className='flex flex-col ml-1'>
                                 <p className='font-bold text-base flex'>

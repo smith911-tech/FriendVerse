@@ -21,6 +21,8 @@ import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { Progress } from 'antd';
 import { Oval } from "react-loader-spinner";
 import { message} from 'antd';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 export default function PostController({
     handleBodyClick, 
@@ -284,7 +286,8 @@ export default function PostController({
                                             <BiSolidUserCircle />
                                         </div>
                                     ) : (
-                                        <img
+                                        <LazyLoadImage
+                                        effect="blur"
                                             src={userData.profileImage}
                                             alt="Profile"
                                             className="w-12 h-12 rounded-full object-cover smm500:h-10 smm500:w-10"
@@ -320,7 +323,8 @@ export default function PostController({
                         {!UploadedVideo && !showCodeBlock && !uploadedImages.length && YoutubeData && (
                             <div className="mt-8 border-t border-gray-200 pt-4 select-none">
                                 <div className="flex items-center space-x-4">
-                                    <img
+                                    <LazyLoadImage
+                                    effect="blur"
                                         src={YoutubeData.thumbnail_url}
                                         alt="YouTube Thumbnail"
                                         className="w-20 h-20 object-cover rounded"
@@ -337,7 +341,7 @@ export default function PostController({
                         <section className="flex flex-col-reverse">
                             {uploadedImages.map((imageUrl, index) => (
                                 <div key={index} className="relative">
-                                <img className="w-full mb-2 object-cover h-full" key={index} src={imageUrl} alt={`Uploaded ${index}`} />
+                                    <LazyLoadImage effect="blur" className="w-full mb-2 object-cover h-full" key={index} src={imageUrl} alt={`Uploaded ${index}`} />
                                     <span className=" absolute text-xl p-1 rounded-full top-2 right-3 text-[#fff] bg-[#000000c1] cursor-pointer" onClick={() => handleImageRemove(index)}>
                                     <FaXmark />
                                 </span>
