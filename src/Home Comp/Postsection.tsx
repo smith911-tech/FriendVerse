@@ -14,6 +14,8 @@ import PostedCode from "./PostedContent/PostedCode"
 import PostedImages from "./PostedContent/PostedImages"
 import Postedbtn from "./PostedContent/Postedbtn"
 import { RotatingLines } from "react-loader-spinner";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 export default function Postsection({SuggestData}: userDats) {
     let userid = sessionStorage.getItem('UserId')
@@ -103,7 +105,8 @@ export default function Postsection({SuggestData}: userDats) {
                                                 </Link>
                                             ) : (
                                                 <Link to={`${userid !== post.author ? `/User/${authorData.username}` : '/Profile'}`}>
-                                                    <img
+                                                    <LazyLoadImage
+                                                        effect="blur"
                                                         src={authorData.profileImage}
                                                         alt="Profile"
                                                         className="w-10 h-10 rounded-full object-cover select-none "

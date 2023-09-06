@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 import {useThemeStore} from '../Zustand';
 import { VscVerifiedFilled } from 'react-icons/vsc'
 import { RotatingLines } from "react-loader-spinner";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 export default function ProfileLeftbar({ SuggestData }: Props): JSX.Element {
     let userid = sessionStorage.getItem('UserId')
@@ -58,7 +60,8 @@ export default function ProfileLeftbar({ SuggestData }: Props): JSX.Element {
                                             <BiSolidUserCircle />
                                         </div>
                                     ) : (
-                                        <img
+                                        <LazyLoadImage
+                                    effect="blur"
                                             src={data.profileImage}
                                             alt="Profile"
                                             loading='lazy'

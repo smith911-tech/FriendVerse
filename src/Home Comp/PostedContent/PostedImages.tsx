@@ -168,7 +168,7 @@ export default function PostedImages({ post }: Props) {
                                     src={image}
                                     effect="blur"
                                     className={`
-                                    ${inView ? 'w-screen' : 'w-full'}
+                                        ${inView ? 'w-screen' : 'w-full'}
                                         object-cover h-80 cursor-pointer w-full
                                         ${images.length === 1 ? ' h-56' : ''}
                                         ${images.length === 2 ? ' h-56' : ''}

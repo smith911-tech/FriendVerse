@@ -15,6 +15,8 @@ import { OtherUserCover, OtherUsersProfile } from './OtheProfileModal';
 import OthersProfileDetails from './OthersProfiledetails';
 import { BsThreeDots } from 'react-icons/bs'
 import {useThemeStore} from '../Zustand';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 export default function ViewUsersData({ 
     data, 
     userData, 
@@ -69,19 +71,19 @@ export default function ViewUsersData({
                     </section>
                     <div className="relative select-none" onClick={handleBodyClick}>
                         {data.coverImage === "" ? (
-                            <img
+                            <LazyLoadImage
+                                    effect="blur"
                                 src={defaultcoverimg}
                                 alt="Cover"
-                                loading='lazy'
-                                className={`w-full rounded-t-lg h-44 smm500:h-32 object-cover ${isInputClicked ? " brightness-[0.2]" : " brightness-100"}` }
+                                className={`w-screen rounded-t-lg h-44 smm500:h-32 object-cover ${isInputClicked ? " brightness-[0.2]" : " brightness-100"}` }
                             />
                         ) : (
-                            <img
+                            <LazyLoadImage
+                                    effect="blur"
                             onClick={handleShowCoverImg}
                             src={data.coverImage}
-                            loading='lazy'
                             alt="CoverImg"
-                            className="w-full rounded-t-lg h-44  object-cover smm500:h-32 cursor-pointer"
+                            className="w-screen rounded-t-lg h-44  object-cover smm500:h-32 cursor-pointer"
                             />
                         )}
                         {data.profileImage === "" ? (
