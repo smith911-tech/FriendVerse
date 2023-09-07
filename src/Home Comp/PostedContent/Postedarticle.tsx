@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 interface Props {
     post: any
 }
@@ -11,6 +12,11 @@ export default function Postedarticle({post}:Props) {
     const toggleReadMore = () => {
         setShowFullArticle(!showFullArticle);
     };
+
+    const navigate = useNavigate()
+    const handleViewPost = (id: string) => {
+        navigate(`/Home/${id}`)
+    }
     return(
         <main>
             <article className=" pt-2  px-2">
