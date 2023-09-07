@@ -7,17 +7,19 @@ import ButtomNav from "../../GeneralComponent/ButtomNav";
 import { collection, doc, onSnapshot } from "firebase/firestore"
 import { db } from '../../firebase-config'
 import { useThemeStore } from '../../Zustand';
+import ViewPostContent from "./ViewPostContent";
 export default function ViewPost() {
     const navigate = useNavigate();
     let userid = sessionStorage.getItem('UserId')
     useEffect(() => {
-        if (userid) {
-            navigate("/Home")
+        window.scrollTo(0, 0);
+        const desiredPath = window.location.pathname;
+        if (userid && desiredPath !== '/') {
+            navigate(desiredPath);
+        } else {
+            navigate('/');
         }
-        else if (!userid) {
-            navigate('/')
-        }
-    }, [])
+    }, [navigate, userid]);
 
 
     // ! fetching personal userdata 
@@ -62,11 +64,6 @@ export default function ViewPost() {
 
     // ! Opening the post div
     const [isInputClicked, setInputClicked] = useState(false);
-    const handleInputClick = () => {
-        setInputClicked(true);
-        document.body.style.overflow = 'hidden';
-        window.scrollTo(0, 0)
-    };
 
     const handleBodyClick = () => {
         setInputClicked(false);
@@ -95,7 +92,7 @@ export default function ViewPost() {
                 </section>
                 <section
                     className=" w-[95%] mt-4 rounded-2xl  md800:w-[60%] sm650:w-[100%] smm500:mt-0 min-h-screen">
-
+                    <ViewPostContent  />
                 </section>
                 <section
                     onClick={handleBodyClick}

@@ -22,9 +22,15 @@ export default function Postedarticle({post}:Props) {
             return null
         }
     }
+    const handleStopNavigate = (event: React.MouseEvent<HTMLDivElement>) => {
+        event.preventDefault();
+        event.stopPropagation();
+    };
+
+
     return(
         <main>
-            <article className=" pt-2  px-2" >
+            <article className=" pt-2  px-2" onClick={() => handleViewPost(post && post.id)}>
                 <div>
                     {showFullArticle ? (
                         <div >
@@ -50,12 +56,14 @@ export default function Postedarticle({post}:Props) {
                         ))
                     )}
                     {fullArticle.length > 320 && (
-                        <button
+                        <div onClick={handleStopNavigate}>
+                        <button 
                             onClick={toggleReadMore}
                             className="text-blue-500 hover:underline cursor-pointer select-none"
                         >
                             {showFullArticle ? 'Read Less' : 'Read More'}
                         </button>
+                        </div>
                     )}
                 </div>
             </article>

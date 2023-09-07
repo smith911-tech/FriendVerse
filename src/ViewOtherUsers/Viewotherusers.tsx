@@ -12,6 +12,7 @@ export default function ViewOtherUsers() {
     let userid = sessionStorage.getItem('UserId')
     const navigate  =  useNavigate()
     useEffect(() => {
+        window.scrollTo(0, 0);
         const desiredPath = window.location.pathname;
         if (userid && desiredPath !== '/') {
             navigate(desiredPath);
@@ -93,10 +94,6 @@ export default function ViewOtherUsers() {
     sessionStorage.setItem("Oname", name);
     let username = data && data.username
     sessionStorage.setItem("Ousername", username);
-
-    useEffect(() => {
-        window.scrollTo(0, 0); // Scroll to the top of the page when component is mounted
-    }, []);
 
 
     return (
