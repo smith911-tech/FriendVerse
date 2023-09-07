@@ -3,14 +3,26 @@ interface Props {
 }
 import { useThemeStore } from '../../Zustand';
 import { AiOutlineArrowLeft } from 'react-icons/ai'
+import { useNavigate } from 'react-router-dom';
+import {useEffect} from 'react'
 
 export default function ViewPostContent({Post}: Props){
     //! Theme Mode
     const theme = useThemeStore((state: any) => state.theme);
+
     function HandleBack() {
-        window.history.go(-3);
+        navigate("/Home")
     }
-    console.log(Post)
+    const navigate = useNavigate()
+    const handlePopState = () => {
+        if (window.location.pathname === `/Post/${Post.id}`) {
+            navigate(-1)
+        }
+    };
+    useEffect(() => {
+        window.addEventListener('popstate', handlePopState);
+    }, [navigate]);
+
 
     return(
         <main>
