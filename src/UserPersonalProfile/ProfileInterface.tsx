@@ -51,7 +51,7 @@ export default function UserProfile({
                 {userData ? (
                     <section className={`w-full flex flex-col justify-center 
                     ${theme ? "bg-black text-white" : "bg-white text-black"}`}>
-                        <section className={`flex justify-between px-2 py-2 smm500:px-1 sticky top-14 z-[50] ${theme ? "bg-black" : "bg-white "}`}>
+                        <section className={`flex justify-between px-2 py-2 smm500:px-1 sticky top-16 z-[50] ${theme ? "bg-black" : "bg-white "}`}>
                             <Link to='/Home'>
                                 <div className={`text-3xl top-1 left-1 cursor-pointer 
                                 ${theme ? "text-[#ffffffe2]" : "text-[#0000008e]"}`}>

@@ -1,4 +1,4 @@
-interface userdats{
+interface Props{
     userData: any
     setSuccessful: any
     setError: any
@@ -6,7 +6,7 @@ interface userdats{
 import {useThemeStore} from '../Zustand';
 import { db } from '../firebase-config';
 import { doc, updateDoc } from 'firebase/firestore';
-export default function VerfiyId({ userData, setSuccessful, setError }:userdats) {
+export default function VerfiyId({ userData, setSuccessful, setError }:Props) {
     // ! Theme 
     const theme = useThemeStore((state: any) => state.theme);
     let userid = sessionStorage.getItem('UserId')
