@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Leftsidebar from "../../GeneralComponent/Leftsidebar";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Rightsidebar from "../../GeneralComponent/Rightsidebar";
 import Header from "../../GeneralComponent/Header";
 import ButtomNav from "../../GeneralComponent/ButtomNav";
@@ -69,8 +69,30 @@ export default function ViewPost() {
         setInputClicked(false);
         document.body.style.overflow = 'auto';
     };
+    const [Posts, setPosts] = useState<any[]>([]); useEffect(() => {
+        const handleSnapshot = (snapshot: any) => {
+            const data = snapshot.docs.map((doc: any) => ({ ...doc.data(), id: doc.id }));
+            setPosts(data);
+        };
+        const unsubscribe = onSnapshot(collection(db, "posts"), handleSnapshot);
+        return () => {
+            unsubscribe();
+        };
+    }, [])
+
     //! Theme Mode
     const theme = useThemeStore((state: any) => state.theme);
+
+
+    const { id } = useParams();
+    const [Post, setPost] = useState<any>();
+
+    useEffect(() => {
+        const userDetails = Posts && Posts.find((Post: any) => Post.id === id);
+        if (userDetails) {
+            setPost(userDetails);
+        }
+    }, [id, Posts]);
 
     return (
         <main className="relative">
@@ -92,7 +114,7 @@ export default function ViewPost() {
                 </section>
                 <section
                     className=" w-[95%] mt-4 rounded-2xl  md800:w-[60%] sm650:w-[100%] smm500:mt-0 min-h-screen">
-                    <ViewPostContent  />
+                    <ViewPostContent Post={Post} />
                 </section>
                 <section
                     onClick={handleBodyClick}

@@ -1,13 +1,16 @@
+interface Props {
+    Post: any
+}
 import { useThemeStore } from '../../Zustand';
 import { AiOutlineArrowLeft } from 'react-icons/ai'
 
-export default function ViewPostContent(){
+export default function ViewPostContent({Post}: Props){
     //! Theme Mode
     const theme = useThemeStore((state: any) => state.theme);
     function HandleBack() {
         window.history.go(-3);
     }
-
+    console.log(Post)
 
     return(
         <main>
@@ -23,14 +26,3 @@ export default function ViewPostContent(){
         </main>
     )
 }
-// useEffect(() => {
-//     const handlePopState = () => {
-//         if (window.location.pathname === '/post/data') {
-//             history.push('/Home');
-//         }
-//     };
-//     window.addEventListener('popstate', handlePopState);
-//     return () => {
-//         window.removeEventListener('popstate', handlePopState);
-//     };
-// }, [history]);
