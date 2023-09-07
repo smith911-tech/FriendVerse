@@ -1,16 +1,16 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import Leftsidebar from "../../GeneralComponent/Leftsidebar";
 import { useNavigate, useParams } from "react-router-dom";
-import Rightsidebar from "../GeneralComponent/Rightsidebar";
-import Header from "../GeneralComponent/Header";
-import ButtomNav from "../GeneralComponent/ButtomNav";
+import Rightsidebar from "../../GeneralComponent/Rightsidebar";
+import Header from "../../GeneralComponent/Header";
+import ButtomNav from "../../GeneralComponent/ButtomNav";
 import { collection, doc, onSnapshot } from "firebase/firestore"
-import { db } from "../firebase-config"
-import Leftsidebar from "../GeneralComponent/Leftsidebar";
-import ViewUsersData from "./Viewothersdata";
-import {useThemeStore} from '../Zustand';
-export default function ViewOtherUsers() {
+import { db } from '../../firebase-config'
+import { useThemeStore } from '../../Zustand';
+import ViewPostContent from "./ViewPostContent";
+export default function ViewPost() {
+    const navigate = useNavigate();
     let userid = sessionStorage.getItem('UserId')
-    const navigate  =  useNavigate()
     useEffect(() => {
         window.scrollTo(0, 0);
         const desiredPath = window.location.pathname;
@@ -61,6 +61,7 @@ export default function ViewOtherUsers() {
         };
     }, []);
 
+
     // ! Opening the post div
     const [isInputClicked, setInputClicked] = useState(false);
 
@@ -68,33 +69,30 @@ export default function ViewOtherUsers() {
         setInputClicked(false);
         document.body.style.overflow = 'auto';
     };
-    const handleInputClick = () => {
-        setInputClicked(true);
-        document.body.style.overflow = 'hidden'; 
-        window.scrollTo(0,0)
-    };
-
-
-    // ! getting other users data personal data with id 
-    const { id } = useParams(); 
-    const [data, setData] = useState<any>();
-
-    useEffect(() => {
-        const userDetails = SuggestData && SuggestData.find((data: any) => data.username === id);
-        if (userDetails) {
-            setData(userDetails);
-        }
-    }, [id, SuggestData]);
+    const [Posts, setPosts] = useState<any[]>([]); useEffect(() => {
+        const handleSnapshot = (snapshot: any) => {
+            const data = snapshot.docs.map((doc: any) => ({ ...doc.data(), id: doc.id }));
+            setPosts(data);
+        };
+        const unsubscribe = onSnapshot(collection(db, "posts"), handleSnapshot);
+        return () => {
+            unsubscribe();
+        };
+    }, [])
 
     //! Theme Mode
     const theme = useThemeStore((state: any) => state.theme);
 
-    // ! name that will apear on the followers count page
-    let name = data && data.fullName
-    sessionStorage.setItem("Oname", name);
-    let username = data && data.username
-    sessionStorage.setItem("Ousername", username);
 
+    const { id } = useParams();
+    const [Post, setPost] = useState<any>();
+
+    useEffect(() => {
+        const userDetails = Posts && Posts.find((Post: any) => Post.id === id);
+        if (userDetails) {
+            setPost(userDetails);
+        }
+    }, [id, Posts]);
 
     return (
         <main className="relative">
@@ -103,27 +101,20 @@ export default function ViewOtherUsers() {
             </header>
 
             <article className={` flex justify-between gap-[1%] sm650:px-3 pt-[70px] 
-            ${theme 
-                ? isInputClicked ? " bg-[#000000ee]" : "bg-[#1b1d21]" 
-                : isInputClicked ?  "bg-[#000000ca]" : "bg-[#f0f2f5]"
-            }`}>
+            ${theme
+                    ? isInputClicked ? " bg-[#000000ee]" : "bg-[#1b1d21]"
+                    : isInputClicked ? "bg-[#000000ca]" : "bg-[#f0f2f5]"
+                }`}>
                 <section
                     onClick={handleBodyClick}
-                    className={`pt-2 w-[5%] h-screen sticky top-[70px] md970:w-[25%] sm650:hidden ${isInputClicked ? " brightness-[0.2]" : " brightness-100"}`}
-                >
+                    className={`pt-2 w-[5%] h-screen sticky top-[70px] md970:w-[25%] sm650:hidden  ${isInputClicked ? " brightness-[0.2]" : " brightness-100"}`}>
                     <Leftsidebar
                         userData={userData}
                         SuggestData={SuggestData} />
                 </section>
                 <section
                     className=" w-[95%] mt-4 rounded-2xl  md800:w-[60%] sm650:w-[100%] smm500:mt-0 min-h-screen">
-                    <ViewUsersData 
-                    data={data} 
-                    userData={userData}   
-                    isInputClicked={isInputClicked}
-                    handleInputClick={handleInputClick}
-                    handleBodyClick={handleBodyClick}
-                    />
+                    <ViewPostContent Post={Post} />
                 </section>
                 <section
                     onClick={handleBodyClick}
@@ -134,7 +125,9 @@ export default function ViewOtherUsers() {
                     />
                 </section>
             </article>
-            <ButtomNav />
+            <footer onClick={handleBodyClick} >
+                <ButtomNav />
+            </footer>
         </main>
     )
 }

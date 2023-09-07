@@ -1,4 +1,4 @@
-interface userDats{
+interface Props{
     SuggestData : any
 }
 import { collection, onSnapshot } from "firebase/firestore"
@@ -17,7 +17,7 @@ import { RotatingLines } from "react-loader-spinner";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
-export default function Postsection({SuggestData}: userDats) {
+export default function Postsection({SuggestData}: Props) {
     let userid = sessionStorage.getItem('UserId')
     //! Theme Mode
     const theme = useThemeStore((state: any) => state.theme);

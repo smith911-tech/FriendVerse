@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useThemeStore } from "../../Zustand";
 interface Props {
     post: any
 }
@@ -11,9 +13,26 @@ export default function Postedarticle({post}:Props) {
     const toggleReadMore = () => {
         setShowFullArticle(!showFullArticle);
     };
+
+    const navigate = useNavigate()
+    const handleViewPost = (id: string) => {
+        navigate(`/Post/${id}`)
+    }
+    // this is to make follower btn and dot icon not clickable
+    const handleINotNavigate = (event: React.MouseEvent<HTMLDivElement>) => {
+        event.preventDefault();
+        event.stopPropagation();
+    };
+
+    //! Theme Mode
+    const theme = useThemeStore((state: any) => state.theme);
     return(
         <main>
-            <article className=" pt-2  px-2">
+            <article className={`pt-2  px-2 cursor-pointer
+            ${theme 
+            ? "hover:bg-[#ffffff0f]" 
+            :  " hover:bg-[#00000017]"}`} 
+            onClick={() => handleViewPost(post.id)}>
                 <div>
                     {showFullArticle ? (
                         <div >
@@ -39,12 +58,14 @@ export default function Postedarticle({post}:Props) {
                         ))
                     )}
                     {fullArticle.length > 320 && (
-                        <button
-                            onClick={toggleReadMore}
-                            className="text-blue-500 hover:underline cursor-pointer select-none"
-                        >
-                            {showFullArticle ? 'Read Less' : 'Read More'}
-                        </button>
+                        <div onClick={handleINotNavigate}>
+                            <button
+                                onClick={toggleReadMore}
+                                className="text-blue-500 hover:underline cursor-pointer select-none"
+                            >
+                                {showFullArticle ? 'Read Less' : 'Read More'}
+                            </button>
+                        </div>
                     )}
                 </div>
             </article>

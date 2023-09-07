@@ -1,4 +1,4 @@
-interface userdats{
+interface Props{
     setShowDeleteModal: any
 }
 import { auth } from "../firebase-config"
@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { FilldetailsError } from '../Error-SuccessM'
 import { useState } from "react";
 import {useThemeStore} from '../Zustand';
-export default function DeleteModal({ setShowDeleteModal }: userdats){
+export default function DeleteModal({ setShowDeleteModal }: Props){
     // ! error message
     const [error, setError] = useState<string | boolean>(false)
     const navigate = useNavigate()
