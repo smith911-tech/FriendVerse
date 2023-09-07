@@ -18,7 +18,7 @@ import FollowersInterface from "./UserPersonalProfile/Followers/FollowersInterfa
 import FollowingInterface from "./UserPersonalProfile/Following/FollowingInterface";
 import OthersFollowersInterface from "./ViewOtherUsers/OthersFollowers/OthersFollower";
 import OthersFollowingInterface from "./ViewOtherUsers/OthersFollowing/OthersFollowing";
-import ViewPost from "./Home Comp/PostedContent/ViewPost";
+import ViewPost from "./Home Comp/ViewPost/ViewPost";
 
 
 export {

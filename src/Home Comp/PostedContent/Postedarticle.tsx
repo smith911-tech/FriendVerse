@@ -15,11 +15,16 @@ export default function Postedarticle({post}:Props) {
 
     const navigate = useNavigate()
     const handleViewPost = (id: string) => {
-        navigate(`/Home/${id}`)
+        if (location.pathname === `/Home`){
+            navigate(`/Post/${id}`)
+        }
+        else {
+            return null
+        }
     }
     return(
         <main>
-            <article className=" pt-2  px-2">
+            <article className=" pt-2  px-2" >
                 <div>
                     {showFullArticle ? (
                         <div >

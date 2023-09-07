@@ -102,7 +102,7 @@ function App() {
                         <Route path="/User/:id/Following" element={<OthersFollowingInterface />} />
 
                         {/* OthersFollowingInterface on there page */}
-                        <Route path="/Home/:id" element={<ViewPost />} />
+                        <Route path="/Post/:id" element={<ViewPost />} />
 
                         {/* 404 error */}
                         <Route path="*" element={<Page404 />} />
