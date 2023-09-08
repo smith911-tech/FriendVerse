@@ -73,7 +73,7 @@ export default function ViewPostContent({Post, SuggestData, userData}: Props){
     
 
     return(
-        <main>
+        <main className=' pb-14'>
             <header className={`
             sticky top-16 z-[50] flex py-2 gap-3 pl-1 w-full
             ${theme ? "bg-[black] text-white" : "bg-[white] text-black"}`}>
@@ -136,7 +136,7 @@ export default function ViewPostContent({Post, SuggestData, userData}: Props){
                         </aside>
                     </main>
                     <section>
-                        <Postedarticle post={Post} />
+                        {Post.article ? <Postedarticle post={Post} /> : null}
                         {Post.video ? <PostedVideo post={Post} /> : null}
                         {Post.Code ? <PostedCode post={Post} /> : null}
                         {Post.images ? <PostedImages post={Post} /> : null}

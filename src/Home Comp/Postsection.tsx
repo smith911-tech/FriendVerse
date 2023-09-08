@@ -138,7 +138,7 @@ export default function Postsection({SuggestData}: Props) {
                                         </aside>
                                     </main>
                                     <section>
-                                        <Postedarticle post={post}/>
+                                        {post.article ? <Postedarticle post={post} /> : null}
                                         {post.video ? <PostedVideo post={post}/> : null}
                                         {post.Code ? <PostedCode post={post} /> : null}
                                         {post.images ? <PostedImages post={post} /> : null}
