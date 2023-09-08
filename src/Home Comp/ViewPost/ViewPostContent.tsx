@@ -1,6 +1,7 @@
 interface Props {
     Post: any
     SuggestData : any
+    userData : any
 }
 import { useThemeStore } from '../../Zustand';
 import { AiOutlineArrowLeft } from 'react-icons/ai'
@@ -10,8 +11,14 @@ import { VscVerifiedFilled } from 'react-icons/vsc'
 import { BiSolidUserCircle, BiTimeFive, BiDotsHorizontal } from 'react-icons/bi'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import Postedarticle from "../PostedContent/Postedarticle"
+import PostedVideo from "../PostedContent/PostedVideos"
+import PostedCode from "../PostedContent/PostedCode"
+import PostedImages from "../PostedContent/PostedImages"
+import Postedbtn from "../PostedContent/Postedbtn"
+import PostComment from './Postcomment';
 
-export default function ViewPostContent({Post, SuggestData}: Props){
+export default function ViewPostContent({Post, SuggestData, userData}: Props){
     let userid = sessionStorage.getItem('UserId')
     //! Theme Mode
     const theme = useThemeStore((state: any) => state.theme);
@@ -128,6 +135,14 @@ export default function ViewPostContent({Post, SuggestData}: Props){
                             <BiDotsHorizontal />
                         </aside>
                     </main>
+                    <section>
+                        <Postedarticle post={Post} />
+                        {Post.video ? <PostedVideo post={Post} /> : null}
+                        {Post.Code ? <PostedCode post={Post} /> : null}
+                        {Post.images ? <PostedImages post={Post} /> : null}
+                    </section>
+                    <Postedbtn />
+                    <PostComment userData={userData} />
                 </article>
             )}
         </main>
