@@ -129,7 +129,7 @@ export default function RequestContent({ userData, SuggestData }: userData) {
             ):
             (
                 <div className=" min-h-screen  w-full">
-                    <div className=" flex justify-center">
+                    <div className=" flex justify-center w-full">
                                 <RotatingLines
                                     strokeColor="grey"
                                     strokeWidth="5"
