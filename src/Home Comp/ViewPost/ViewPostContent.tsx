@@ -6,7 +6,7 @@ interface Props {
 import { useThemeStore } from '../../Zustand';
 import { AiOutlineArrowLeft } from 'react-icons/ai'
 import { useNavigate, Link } from 'react-router-dom';
-import {useEffect} from 'react'
+import {useEffect, useState} from 'react'
 import { VscVerifiedFilled } from 'react-icons/vsc'
 import { BiSolidUserCircle, BiTimeFive, BiDotsHorizontal } from 'react-icons/bi'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
@@ -17,6 +17,7 @@ import PostedCode from "../PostedContent/PostedCode"
 import PostedImages from "../PostedContent/PostedImages"
 import Postedbtn from "../PostedContent/Postedbtn"
 import PostComment from './Postcomment';
+import { Oval } from 'react-loader-spinner'
 
 export default function ViewPostContent({Post, SuggestData, userData}: Props){
     let userid = sessionStorage.getItem('UserId')
@@ -70,7 +71,15 @@ export default function ViewPostContent({Post, SuggestData, userData}: Props){
         }
     };
     const formattedDate = Post && formatPostDate(Post.time)
-    
+
+    // Loading state
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+    useEffect(() => {
+        if (SuggestData && Post && userData) {
+            setIsLoading(false);
+        }
+    }, [SuggestData, Post, userData]);;
+
 
     return(
         <main className=' pb-14'>
@@ -88,62 +97,76 @@ export default function ViewPostContent({Post, SuggestData, userData}: Props){
 
                 </article>
             )}
-            {Post && (
-                <article className={` py-3 rounded-md mb-4 ${theme
-                    ? "bg-black text-[#ffff]" : "bg-white text-[#000000]"}`} key={Post.id}>
-                    <main className="flex px-2 justify-between">
-                        <aside className="flex">
-                            <section>
-                                {authorData.profileImage === "" ? (
-                                    <Link to={`${userid !== Post.author ? `/User/${authorData.username}` : '/Profile'}`}>
-                                        <div className={`text-[40px] rounded-full select-none 
-                                        ${theme ? "text-white" : "text-[#000000d7]"}`}>
-                                            <BiSolidUserCircle />
-                                        </div>
-                                    </Link>
-                                ) : (
-                                    <Link to={`${userid !== Post.author ? `/User/${authorData.username}` : '/Profile'}`}>
-                                        <LazyLoadImage
-                                            effect="blur"
-                                            src={authorData.profileImage}
-                                            alt="Profile"
-                                            className="w-10 h-10 rounded-full object-cover select-none "
-                                        />
-                                    </Link>
-                                )}
-                            </section>
-                            <span>
-                                <Link to={`${userid !== Post.author ? `/User/${authorData.username}` : '/Profile'}`} className=' ml-2 text-sm font-medium flex hover:underline select-none '>
-                                    {authorData.fullName}
-                                    {authorData.Verify && (
-                                        <span className='text-[#1d9bf0] mt-[2px]'>
-                                            <VscVerifiedFilled />
-                                        </span>
+            {isLoading ? (
+                <div className='flex justify-center mt-4'>
+                    <Oval
+                        height={80}
+                        width={80}
+                        color="#328fdb"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                        visible={true}
+                        ariaLabel='oval-loading'
+                        secondaryColor="rgb(50,143,219,0.4)"
+                        strokeWidth={2}
+                        strokeWidthSecondary={2}
+                    />
+                </div>
+            ) : (
+                Post && (
+                    <article className={`py-3 rounded-md mb-4 ${theme ? "bg-black text-[#ffff]" : "bg-white text-[#000000]"}`} key={Post.id}>
+                        <main className="flex px-2 justify-between">
+                            <aside className="flex">
+                                <section>
+                                    {authorData.profileImage === "" ? (
+                                        <Link to={`${userid !== Post.author ? `/User/${authorData.username}` : '/Profile'}`}>
+                                            <div className={`text-[40px] rounded-full select-none ${theme ? "text-white" : "text-[#000000d7]"}`}>
+                                                <BiSolidUserCircle />
+                                            </div>
+                                        </Link>
+                                    ) : (
+                                        <Link to={`${userid !== Post.author ? `/User/${authorData.username}` : '/Profile'}`}>
+                                            <LazyLoadImage
+                                                effect="blur"
+                                                src={authorData.profileImage}
+                                                alt="Profile"
+                                                className="w-10 h-10 rounded-full object-cover select-none"
+                                            />
+                                        </Link>
                                     )}
-                                </Link>
-                                <span className={`ml-2 text-sm flex gap-[2px] select-none
-                                            ${theme ? " text-[#ffffffaa]" : "text-[#000000a0]"}`}>
-                                    {formattedDate}
-                                    <span className="mt-1">
-                                        <BiTimeFive />
+                                </section>
+                                <span>
+                                    <Link to={`${userid !== Post.author ? `/User/${authorData.username}` : '/Profile'}`} className='ml-2 text-sm font-medium flex hover:underline select-none '>
+                                        {authorData.fullName}
+                                        {authorData.Verify && (
+                                            <span className='text-[#1d9bf0] mt-[2px]'>
+                                                <VscVerifiedFilled />
+                                            </span>
+                                        )}
+                                    </Link>
+                                    <span className={`ml-2 text-sm flex gap-[2px] select-none ${theme ? "text-[#ffffffaa]" : "text-[#000000a0]"}`}>
+                                        {formattedDate}
+                                        <span className="mt-1">
+                                            <BiTimeFive />
+                                        </span>
                                     </span>
                                 </span>
-                            </span>
-                        </aside>
+                            </aside>
 
-                        <aside className=" text-2xl my-[6px] cursor-pointer">
-                            <BiDotsHorizontal />
-                        </aside>
-                    </main>
-                    <section>
-                        {Post.article ? <Postedarticle post={Post} /> : null}
-                        {Post.video ? <PostedVideo post={Post} /> : null}
-                        {Post.Code ? <PostedCode post={Post} /> : null}
-                        {Post.images ? <PostedImages post={Post} /> : null}
-                    </section>
-                    <Postedbtn />
-                    <PostComment userData={userData} />
-                </article>
+                            <aside className="text-2xl my-[6px] cursor-pointer">
+                                <BiDotsHorizontal />
+                            </aside>
+                        </main>
+                        <section>
+                            {Post.article ? <Postedarticle post={Post} /> : null}
+                            {Post.video ? <PostedVideo post={Post} /> : null}
+                            {Post.Code ? <PostedCode post={Post} /> : null}
+                            {Post.images ? <PostedImages post={Post} /> : null}
+                        </section>
+                        <Postedbtn />
+                        <PostComment userData={userData} />
+                    </article>
+                )
             )}
         </main>
     )
