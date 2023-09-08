@@ -76,7 +76,7 @@ export default function Postsection({SuggestData}: Props) {
         <main>
             <section className="md970:w-[90%] block mb-0 mx-auto mt-4">
                 {isLoading ? ( // Render loading state
-                        <div className=" flex justify-center">
+                        <div className=" flex justify-center w-full">
                             <RotatingLines
                                 strokeColor="grey"
                                 strokeWidth="5"
@@ -138,7 +138,7 @@ export default function Postsection({SuggestData}: Props) {
                                         </aside>
                                     </main>
                                     <section>
-                                        <Postedarticle post={post}/>
+                                        {post.article ? <Postedarticle post={post} /> : null}
                                         {post.video ? <PostedVideo post={post}/> : null}
                                         {post.Code ? <PostedCode post={post} /> : null}
                                         {post.images ? <PostedImages post={post} /> : null}

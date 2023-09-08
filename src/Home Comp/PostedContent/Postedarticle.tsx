@@ -16,8 +16,13 @@ export default function Postedarticle({post}:Props) {
 
     const navigate = useNavigate()
     const handleViewPost = (id: string) => {
-        navigate(`/Post/${id}`)
+        if (window.location.pathname === '/Home') {
+            navigate(`/Post/${id}`);
+        } else {
+            return null
+        }
     }
+
     // this is to make follower btn and dot icon not clickable
     const handleINotNavigate = (event: React.MouseEvent<HTMLDivElement>) => {
         event.preventDefault();
@@ -28,10 +33,10 @@ export default function Postedarticle({post}:Props) {
     const theme = useThemeStore((state: any) => state.theme);
     return(
         <main>
-            <article className={`pt-2  px-2 cursor-pointer
-            ${theme 
-            ? "hover:bg-[#ffffff0f]" 
-            :  " hover:bg-[#00000017]"}`} 
+            <article className={`pt-2  px-2 
+            ${window.location.pathname === '/Home' 
+                ? (theme ? "hover:bg-[#ffffff0f] cursor-pointer" : "hover:bg-[#00000017] cursor-pointer") 
+            : ""}`} 
             onClick={() => handleViewPost(post.id)}>
                 <div>
                     {showFullArticle ? (
