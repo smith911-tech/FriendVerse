@@ -52,19 +52,30 @@ export default function Postedbtn({post}: Props) {
             console.error("Error UnLikes:", error);
         }
     }
-
+    let Likes = '0';
+    const LikesCount = post && post.Likes?.length || 0;
+    if (post) {
+        if (LikesCount > 9999) {
+            Likes = (LikesCount / 1000).toFixed(1) + 'k';
+        } else {
+            Likes = LikesCount.toString();
+        }
+    }
     return (
         <main className="mt-3 px-3">
             <section>
             <div  className='flex mb-1 justify-between'>
-                <span title='Likes' className='flex hover:underline cursor-pointer '>
+                    <span title='Likes' 
+                    className={`flex hover:underline cursor-pointer 
+                    ${LikesCount > 0 ? " visible" : " invisible"}`}>
                         <button className='text-white text-base bg-blue-600 rounded-2xl -rotate-12 p-[2px]'>
                             <AiTwotoneLike />
                         </button>
                         <span className={` text-xs ml-[1px] mt-1 
                         ${theme ? "text-[#ffffffa2]" : "text-[#000000a6]"}
-                        `}>3</span>
-                </span>
+                        `}>{Likes}
+                        </span>
+                    </span>
                     <span title='Impression' className='flex hover:underline cursor-pointer'>
                         <button className=' rounded-2xl  p-[2px]'>
                             <TbBrandGoogleAnalytics />
@@ -79,12 +90,15 @@ export default function Postedbtn({post}: Props) {
             <article className="flex gap-[1%] justify-center">
                 <button
                     onClick={isLiked ? handleUnLiked : handleLike}
-                    className={`flex mt-1 w-[33%] justify-center py-[7px] rounded gap-1  ${theme ? 'text-white' : 'text-black'}`}
+                    className={`flex mt-1 w-[33%] justify-center py-[7px] rounded gap-1  
+                    ${theme 
+                    ? 'text-white hover:bg-[#ffffff3c]' 
+                    : 'text-black hover:bg-[#0000004f]'}`}
                 >
                     <span className={`text-2xl  ${theme ? "text-[#ffffffd3]" : "text-[#00000087]"} ${isLiked ? 'text-blue-500' : ''} `}>
                         {isLiked ? <AiTwotoneLike /> : <BiLike />} {/* Change icons accordingly */}
                     </span>
-                    <span className={`text-[15px] smm500:text-[12px] ${theme ? "text-[#ffffffd3]" : "text-[#000000b7]"}`}>
+                    <span className={`text-[15px] smm500:text-[12px] ${theme ? "text-[#ffffffd3]" : "text-[#000000b7]"} ${isLiked ? 'text-blue-500' : ''}`}>
                         Like
                     </span>
                 </button>
