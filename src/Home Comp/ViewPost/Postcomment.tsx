@@ -15,7 +15,7 @@ export default function PostComment({userData}: Props) {
     const theme = useThemeStore((state: any) => state.theme);
     return(
         <article>
-            <section className="flex px-1">
+            <section className="flex px-1 mt-4">
                 {userData ? (
                     <section>
                         {userData.profileImage === "" ? (
