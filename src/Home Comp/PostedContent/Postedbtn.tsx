@@ -54,13 +54,12 @@ export default function Postedbtn({post}: Props) {
         }
     }
     let Likes = '0';
-    const LikesCount = post && post.Likes?.length || 0;
-    if (post) {
-        if (LikesCount > 9999) {
-            Likes = (LikesCount / 1000).toFixed(1) + 'k';
-        } else {
-            Likes = LikesCount.toString();
-        }
+    const LikesCount = post &&  post?.Likes?.length || 0;
+
+    if (LikesCount > 999) {
+        Likes = (LikesCount / 1000).toFixed(1) + 'k';
+    } else {
+        Likes = LikesCount.toString();
     }
     const navigate = useNavigate()
     const handleViewPost = (id: string) => {
