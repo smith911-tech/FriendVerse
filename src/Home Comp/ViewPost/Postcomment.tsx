@@ -48,6 +48,7 @@ export default function PostComment({userData}: Props) {
                 <div className={`mx-2 w-full rounded-xl pb-3 
                     ${theme ? "bg-[#1b1d21]" : "bg-[#f0f2f5]"}`}>
                     <TextareaAutosize
+                        autoFocus
                         className={`w-full px-4 text-lg rounded-xl outline-none pt-2 placeholder:select-none ${theme ? "bg-[#1b1d21]" : "bg-[#f0f2f5]"}`}
                         maxLength={200}
                         placeholder='Write a comment' />

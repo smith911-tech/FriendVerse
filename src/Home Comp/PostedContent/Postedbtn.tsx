@@ -10,6 +10,7 @@ import { FaShare } from 'react-icons/fa'
 import { db } from '../../firebase-config';
 import { doc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 export default function Postedbtn({post}: Props) {
     // ! theme 
     const theme = useThemeStore((state: any) => state.theme);
@@ -59,6 +60,14 @@ export default function Postedbtn({post}: Props) {
             Likes = (LikesCount / 1000).toFixed(1) + 'k';
         } else {
             Likes = LikesCount.toString();
+        }
+    }
+    const navigate = useNavigate()
+    const handleViewPost = (id: string) => {
+        if (window.location.pathname === '/Home') {
+            navigate(`/Post/${id}`);
+        } else {
+            return null
         }
     }
     return (
@@ -111,7 +120,7 @@ export default function Postedbtn({post}: Props) {
                         Repost
                     </span>
                 </button>
-                <button className={`flex mt-1 w-[33%] justify-center py-[7px] rounded gap-1 
+                <button onClick={() => handleViewPost(post && post.id)} className={`flex mt-1 w-[33%] justify-center py-[7px] rounded gap-1 
                 ${theme ? "hover:bg-[#ffffff3c]" : "hover:bg-[#0000004f]"}`}>
                     <span className={`text-2xl  ${theme ? "text-[#ffffffd3]" : "text-[#00000087]"} `}>
                         <TbMessage />
