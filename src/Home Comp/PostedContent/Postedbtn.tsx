@@ -4,55 +4,12 @@ interface Props{
 import { AiTwotoneLike } from 'react-icons/ai'
 import { useThemeStore } from '../../Zustand';
 import { TbBrandGoogleAnalytics } from 'react-icons/tb'
-import { BiLike, BiRepost } from 'react-icons/bi'
-import { TbMessage } from 'react-icons/tb'
-import { FaShare } from 'react-icons/fa'
-import { db } from '../../firebase-config';
-import { doc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import Likebutton from './Likebutton';
+import Sharebutton from './Sharebutton';
+import Commentbutton from './Commentbutton';
+import Repost from './Repost';
 export default function Postedbtn({post}: Props) {
-    // ! theme 
     const theme = useThemeStore((state: any) => state.theme);
-    //? uid
-    let userid = sessionStorage.getItem('UserId')
-    // Assuming you have state for the postLiked status
-    const [isLiked, setIsLiked] = useState(post.Likes ? post.Likes.includes(userid) : false);
-
-    const handleLike = async () => {
-        try {
-            const DataDocRefLiked = doc(db, "users", userid as string)
-            await updateDoc(DataDocRefLiked, {
-                Liked: arrayUnion(post.id)
-            })
-            const DataDocRefLikes = doc(db, "posts", post.id)
-            await updateDoc(DataDocRefLikes, {
-                Likes: arrayUnion(userid)
-            })
-            console.log("Liked successful!");
-            setIsLiked(true); // Update the state
-        }
-        catch (error) {
-            console.error("Error Liked:", error);
-        }
-    }
-
-    const handleUnLiked = async () => {
-        try {
-            const userDocRefLiked = doc(db, "users", userid as string);
-            await updateDoc(userDocRefLiked, {
-                Liked: arrayRemove(post.id)
-            });
-            const userDocRefLikes = doc(db, "posts", post.id);
-            await updateDoc(userDocRefLikes, {
-                Likes: arrayRemove(userid)
-            });
-            console.log("Unliked successful!");
-            setIsLiked(false); // Update the state
-        } catch (error) {
-            console.error("Error UnLikes:", error);
-        }
-    }
     let Likes = '0';
     const LikesCount = post &&  post?.Likes?.length || 0;
 
@@ -60,14 +17,6 @@ export default function Postedbtn({post}: Props) {
         Likes = (LikesCount / 1000).toFixed(1) + 'k';
     } else {
         Likes = LikesCount.toString();
-    }
-    const navigate = useNavigate()
-    const handleViewPost = (id: string) => {
-        if (window.location.pathname === '/Home') {
-            navigate(`/Post/${id}`);
-        } else {
-            return null
-        }
     }
     return (
         <main className="mt-3 px-3">
@@ -96,47 +45,10 @@ export default function Postedbtn({post}: Props) {
             <hr />
             </section>
             <article className="flex gap-[1%] justify-center">
-                <button
-                    onClick={isLiked ? handleUnLiked : handleLike}
-                    className={`flex mt-1 w-[33%] justify-center py-[7px] rounded gap-1  
-                    ${theme 
-                    ? 'text-white hover:bg-[#ffffff3c]' 
-                    : 'text-black hover:bg-[#0000004f]'}`}
-                >
-                    <span className={`text-2xl  ${theme ? "text-[#ffffffd3]" : "text-[#00000087]"} ${isLiked ? 'text-blue-500' : ''} `}>
-                        {isLiked ? <AiTwotoneLike /> : <BiLike />} {/* Change icons accordingly */}
-                    </span>
-                    <span className={`text-[15px] smm500:text-[12px] ${theme ? "text-[#ffffffd3]" : "text-[#000000b7]"} ${isLiked ? 'text-blue-500' : ''}`}>
-                        Like
-                    </span>
-                </button>
-                <button className={`flex mt-1 w-[33%] justify-center py-[7px] rounded gap-1 
-                ${theme ? "hover:bg-[#ffffff3c]" : "hover:bg-[#0000004f]"}`}>
-                    <span className={`text-2xl  ${theme ? "text-[#ffffffd3]" : "text-[#00000087]"} `}>
-                        <BiRepost />
-                    </span>
-                    <span className={`text-[15px] smm500:text-[12px]  ${theme ? "text-[#ffffffd3]" : "text-[#000000b7]"}`}>
-                        Repost
-                    </span>
-                </button>
-                <button onClick={() => handleViewPost(post && post.id)} className={`flex mt-1 w-[33%] justify-center py-[7px] rounded gap-1 
-                ${theme ? "hover:bg-[#ffffff3c]" : "hover:bg-[#0000004f]"}`}>
-                    <span className={`text-2xl  ${theme ? "text-[#ffffffd3]" : "text-[#00000087]"} `}>
-                        <TbMessage />
-                    </span>
-                    <span className={`text-[15px] smm500:text-[12px]  ${theme ? "text-[#ffffffd3]" : "text-[#000000b7]"}`}>
-                        Comment
-                    </span>
-                </button>
-                <button className={`flex mt-1 w-[33%] justify-center py-[7px] rounded gap-1 smm500:hidden
-                ${theme ? "hover:bg-[#ffffff3c]" : "hover:bg-[#0000004f]"}`}>
-                    <span className={`text-2xl   ${theme ? "text-[#ffffffd3]" : "text-[#00000087]"} `}>
-                        <FaShare />
-                    </span>
-                    <span className={`text-[15px] smm500:text-[12px]  ${theme ? "text-[#ffffffd3]" : "text-[#000000b7]"}`}>
-                        Share
-                    </span>
-                </button>
+                <Likebutton post={post} Likes={Likes} LikesCount={LikesCount}/>
+                <Repost />
+                <Commentbutton post={post}/>
+                <Sharebutton />
             </article>
         </main>
     )
