@@ -163,7 +163,7 @@ export default function ViewPostContent({Post, SuggestData, userData}: Props){
                             {Post.Code ? <PostedCode post={Post} /> : null}
                             {Post.images ? <PostedImages post={Post} /> : null}
                         </section>
-                        <Postedbtn />
+                        <Postedbtn post={Post}/>
                         <PostComment userData={userData} />
                     </article>
                 )
