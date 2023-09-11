@@ -1,4 +1,4 @@
-import { useThemeStore } from '../../Zustand';
+import { useThemeStore } from '../../../Zustand';
 import { BiRepost } from 'react-icons/bi'
 export default function Repost() {
     const theme = useThemeStore((state: any) => state.theme);

@@ -3,11 +3,11 @@ interface Props{
     Likes: any
     LikesCount: any
 }
-import { db } from '../../firebase-config';
+import { db } from '../../../firebase-config';
 import { doc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
 import { useState } from 'react';
 import { BiLike } from 'react-icons/bi'
-import { useThemeStore } from '../../Zustand';
+import { useThemeStore } from '../../../Zustand';
 import { AiTwotoneLike } from 'react-icons/ai'
 export default function Likebutton({post}: Props){
     // ! theme 

@@ -1,7 +1,7 @@
 interface Props{
     post: any
 }
-import { useThemeStore } from '../../Zustand';
+import { useThemeStore } from '../../../Zustand';
 import { TbMessage } from 'react-icons/tb'
 import { useNavigate } from 'react-router-dom';
 export default function Commentbutton({post}: Props) {

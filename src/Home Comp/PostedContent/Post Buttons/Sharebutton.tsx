@@ -1,5 +1,5 @@
 import { FaShare } from 'react-icons/fa'
-import { useThemeStore } from '../../Zustand';
+import { useThemeStore } from '../../../Zustand';
 export default function Sharebutton(){
     const theme = useThemeStore((state: any) => state.theme);
     return(

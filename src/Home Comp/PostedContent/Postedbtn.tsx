@@ -4,10 +4,10 @@ interface Props{
 import { AiTwotoneLike } from 'react-icons/ai'
 import { useThemeStore } from '../../Zustand';
 import { TbBrandGoogleAnalytics } from 'react-icons/tb'
-import Likebutton from './Likebutton';
-import Sharebutton from './Sharebutton';
-import Commentbutton from './Commentbutton';
-import Repost from './Repost';
+import Likebutton from './Post Buttons/Likebutton';
+import Sharebutton from './Post Buttons/Sharebutton';
+import Commentbutton from './Post Buttons/Commentbutton';
+import Repost from './Post Buttons/Repost';
 export default function Postedbtn({post}: Props) {
     const theme = useThemeStore((state: any) => state.theme);
     let Likes = '0';
