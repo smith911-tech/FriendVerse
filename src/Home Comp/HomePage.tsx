@@ -44,9 +44,9 @@ export default function HomePage() {
         }
     }, []);
 
-
     //! states
     const [SuggestData, setSuggestData] = useState<any[]>([]);
+
 
     // !suggestions user data
     useEffect(() => {

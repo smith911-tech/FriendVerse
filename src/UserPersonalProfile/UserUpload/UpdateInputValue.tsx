@@ -106,9 +106,9 @@ export default function UpdateInputValue({
                 {/* Date of Birth section */}
                     <DatePicker
                         showLeadingZeros
-                        dayPlaceholder='dd'
-                        monthPlaceholder='mm'
-                        yearPlaceholder='yyyy'
+                        dayPlaceholder='DD'
+                        monthPlaceholder='MM'
+                        yearPlaceholder='YYYY'
                         minDate={new Date("01-01-1800")}
                         maxDate={new Date("01-01-2010")}
                         onChange={setDateOfBirth}
