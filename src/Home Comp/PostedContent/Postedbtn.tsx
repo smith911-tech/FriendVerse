@@ -8,10 +8,26 @@ import Likebutton from './Post Buttons/Likebutton';
 import Sharebutton from './Post Buttons/Sharebutton';
 import Commentbutton from './Post Buttons/Commentbutton';
 import Repost from './Post Buttons/Repost';
+import { collection, onSnapshot } from "firebase/firestore"
+import { db } from '../../firebase-config'
+import { useState, useEffect } from 'react'
 export default function Postedbtn({post}: Props) {
     const theme = useThemeStore((state: any) => state.theme);
+    const [likes, setlikes] = useState<any[]>([]);
+    useEffect(() => {
+        const handleSnapshot = (snapshot: any) => {
+            const data = snapshot.docs.map((doc: any) => ({ ...doc.data(), id: doc.id }));
+            setlikes(data);
+        };
+        const unsubscribe = onSnapshot(collection(db, "posts", post.id, 'Likes'), handleSnapshot);
+        return () => {
+            unsubscribe();
+        };
+    }, []);
+
+
     let Likes = '0';
-    const LikesCount = post &&  post?.Likes?.length || 0;
+    const LikesCount = likes &&  likes?.length || 0;
 
     if (LikesCount > 999) {
         Likes = (LikesCount / 1000).toFixed(1) + 'k';
@@ -45,8 +61,8 @@ export default function Postedbtn({post}: Props) {
             <hr />
             </section>
             <article className="flex gap-[1%] justify-center">
-                <Likebutton post={post} Likes={Likes} LikesCount={LikesCount}/>
-                <Repost />
+                <Likebutton post={post} likes={likes} />
+                <Repost post={post}/>
                 <Commentbutton post={post}/>
                 <Sharebutton />
             </article>

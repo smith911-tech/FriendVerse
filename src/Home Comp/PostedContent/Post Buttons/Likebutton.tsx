@@ -1,56 +1,67 @@
 interface Props{
     post: any
-    Likes: any
-    LikesCount: any
+    likes: any
 }
 import { db } from '../../../firebase-config';
-import { doc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
-import { useState } from 'react';
+import { doc, deleteDoc, setDoc } from 'firebase/firestore';
 import { BiLike } from 'react-icons/bi'
 import { useThemeStore } from '../../../Zustand';
 import { AiTwotoneLike } from 'react-icons/ai'
-export default function Likebutton({post}: Props){
+import {useState, useEffect} from 'react'
+export default function Likebutton({post, likes}: Props){
     // ! theme 
     const theme = useThemeStore((state: any) => state.theme);
     //? uid
     let userid = sessionStorage.getItem('UserId')
-    // Assuming you have state for the postLiked status
-    const [isLiked, setIsLiked] = useState(post.Likes ? post.Likes.includes(userid) : false);
+    const [isLiked, setIsLiked] = useState<boolean>(false);
+
+    useEffect(() => {
+        if (likes && userid) {
+            const userLiked = likes.some((like: { Like: string | null; }) => like.Like === userid);
+            setIsLiked(userLiked);
+        }
+    }, [likes, post]);
+
 
     const handleLike = async () => {
+        setIsLiked(true); 
         try {
-            const DataDocRefLiked = doc(db, "users", userid as string)
-            await updateDoc(DataDocRefLiked, {
-                Liked: arrayUnion(post.id)
+            const ReportDocRef = doc(db, "users", userid as string, "Liked", post.id)
+            await setDoc(ReportDocRef, {
+                Liked: post.id,
+                time: new Date()
             })
-            const DataDocRefLikes = doc(db, "posts", post.id)
-            await updateDoc(DataDocRefLikes, {
-                Likes: arrayUnion(userid)
+            const RepostRef = doc(db, "posts", post.id, 'Likes', userid as string)
+            await setDoc(RepostRef, {
+                Like: userid,
+                time: new Date()
             })
             console.log("Liked successful!");
-            setIsLiked(true); // Update the state
         }
         catch (error) {
             console.error("Error Liked:", error);
+            setIsLiked(false)
         }
     }
 
     const handleUnLiked = async () => {
+        setIsLiked(false); // Update the state to indicate unliking
         try {
-            const userDocRefLiked = doc(db, "users", userid as string);
-            await updateDoc(userDocRefLiked, {
-                Liked: arrayRemove(post.id)
-            });
-            const userDocRefLikes = doc(db, "posts", post.id);
-            await updateDoc(userDocRefLikes, {
-                Likes: arrayRemove(userid)
-            });
+            // Remove the like from the user's Liked collection
+            const ReportDocRef = doc(db, "users", userid as string, "Liked", post.id);
+            await deleteDoc(ReportDocRef);
+
+            // Remove the like from the post's Likes collection
+            const RepostRef = doc(db, "posts", post.id, 'Likes', userid as string);
+            await deleteDoc(RepostRef);
+
             console.log("Unliked successful!");
-            setIsLiked(false); // Update the state
         } catch (error) {
-            console.error("Error UnLikes:", error);
+            setIsLiked(false)
+            console.error("Error Unliked:", error);
         }
-    }
+    };
+
     return(
         <button
             onClick={isLiked ? handleUnLiked : handleLike}

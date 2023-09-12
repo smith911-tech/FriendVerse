@@ -25,7 +25,7 @@ export default function Postsection({SuggestData}: Props) {
     const [Posts, setPosts] = useState<any[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true); 
 
-    // !suggestions user data
+
     useEffect(() => {
         const handleSnapshot = (snapshot: any) => {
             const data = snapshot.docs.map((doc: any) => ({ ...doc.data(), id: doc.id }));
