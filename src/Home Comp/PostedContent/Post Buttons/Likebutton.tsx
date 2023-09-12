@@ -54,7 +54,6 @@ export default function Likebutton({post, likes}: Props){
             // Remove the like from the post's Likes collection
             const RepostRef = doc(db, "posts", post.id, 'Likes', userid as string);
             await deleteDoc(RepostRef);
-
             console.log("Unliked successful!");
         } catch (error) {
             setIsLiked(false)
