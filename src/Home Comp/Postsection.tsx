@@ -25,7 +25,6 @@ export default function Postsection({SuggestData}: Props) {
     const [Posts, setPosts] = useState<any[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true); 
 
-
     useEffect(() => {
         const handleSnapshot = (snapshot: any) => {
             const data = snapshot.docs.map((doc: any) => ({ ...doc.data(), id: doc.id }));
@@ -37,6 +36,22 @@ export default function Postsection({SuggestData}: Props) {
             unsubscribe();
         };
     }, [])
+
+    // const [repost, setRepost] = useState<any[]>([]);
+
+    // useEffect(() => {
+    //     const handleSnapshot = (snapshot: any) => {
+    //         const data = snapshot.docs.map((doc: any) => ({ ...doc.data(), id: doc.id }));
+    //         setRepost(data);
+    //     };
+    //     const unsubscribe = onSnapshot(collection(db, 'Reposted'), handleSnapshot);
+    //         return () => {
+    //             unsubscribe()
+    //         }
+    // }, [])
+
+    // console.log(repost);
+
     // ! date calculation
     const formatPostDate = (timestamp: any): string => {
         const currentDate: any = new Date();
@@ -54,20 +69,18 @@ export default function Postsection({SuggestData}: Props) {
         } else if (timeDiffInSeconds < 604800) {
             const days = Math.floor(timeDiffInSeconds / 86400);
             return `${days}d ago`;
-        } else if (timeDiffInSeconds < 2419200) { // 28 days, approximately 4 weeks
-            const weeks = Math.floor(timeDiffInSeconds / 604800);
-            return `${weeks}w ago`;
-        } else if (postDate.getFullYear() === currentDate.getFullYear()) {
-            const month = postDate.toLocaleString('default', { month: 'short' });
+        } else if (timeDiffInSeconds < 31536000) { // 365 days in seconds
             const day = postDate.getDate();
+            const month = postDate.toLocaleString('default', { month: 'short' });
             return `${day} ${month}`;
         } else {
-            const month = postDate.toLocaleString('default', { month: 'short' });
             const day = postDate.getDate();
+            const month = postDate.toLocaleString('default', { month: 'short' });
             const year = postDate.getFullYear() % 100; // Get last two digits of year
             return `${day} ${month} ${year}`;
         }
     };
+
 
     // Sort the Posts array based on the post timestamps
     const sortedPosts = Posts.slice().sort((a, b) => b.time.toMillis() - a.time.toMillis());
