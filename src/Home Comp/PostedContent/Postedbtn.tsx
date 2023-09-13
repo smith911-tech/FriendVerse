@@ -14,6 +14,7 @@ import { useState, useEffect } from 'react'
 export default function Postedbtn({post}: Props) {
     const theme = useThemeStore((state: any) => state.theme);
     const [likes, setlikes] = useState<any[]>([]);
+    const [repost, setrepost] = useState<any[]>([]);
     useEffect(() => {
         const handleSnapshot = (snapshot: any) => {
             const data = snapshot.docs.map((doc: any) => ({ ...doc.data(), id: doc.id }));
@@ -24,6 +25,18 @@ export default function Postedbtn({post}: Props) {
             unsubscribe();
         };
     }, []);
+    useEffect(() => {
+        const handleSnapshoted = (snapshot: any) => {
+            const data = snapshot.docs.map((doc: any) => ({ ...doc.data(), id: doc.id }));
+            setrepost(data);
+        };
+        const unsubscribed = onSnapshot(collection(db, 'Repost'), handleSnapshoted);
+        return () => {
+            unsubscribed();
+        };
+    }, [])
+    console.log(repost);
+    
 
 
     let Likes = '0';
@@ -62,7 +75,7 @@ export default function Postedbtn({post}: Props) {
             </section>
             <article className="flex gap-[1%] justify-center">
                 <Likebutton post={post} likes={likes} />
-                <Repost post={post}/>
+                <Repost post={post} />
                 <Commentbutton post={post}/>
                 <Sharebutton />
             </article>

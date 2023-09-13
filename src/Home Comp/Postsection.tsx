@@ -25,7 +25,6 @@ export default function Postsection({SuggestData}: Props) {
     const [Posts, setPosts] = useState<any[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true); 
 
-
     useEffect(() => {
         const handleSnapshot = (snapshot: any) => {
             const data = snapshot.docs.map((doc: any) => ({ ...doc.data(), id: doc.id }));
@@ -37,6 +36,22 @@ export default function Postsection({SuggestData}: Props) {
             unsubscribe();
         };
     }, [])
+
+    // const [repost, setRepost] = useState<any[]>([]);
+
+    // useEffect(() => {
+    //     const handleSnapshot = (snapshot: any) => {
+    //         const data = snapshot.docs.map((doc: any) => ({ ...doc.data(), id: doc.id }));
+    //         setRepost(data);
+    //     };
+    //     const unsubscribe = onSnapshot(collection(db, 'Reposted'), handleSnapshot);
+    //         return () => {
+    //             unsubscribe()
+    //         }
+    // }, [])
+
+    // console.log(repost);
+
     // ! date calculation
     const formatPostDate = (timestamp: any): string => {
         const currentDate: any = new Date();

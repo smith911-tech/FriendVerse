@@ -22,18 +22,17 @@ export default function Likebutton({post, likes}: Props){
         }
     }, [likes, post]);
 
-
     const handleLike = async () => {
         setIsLiked(true); 
         try {
-            const ReportDocRef = doc(db, "users", userid as string, "Liked", post.id)
-            await setDoc(ReportDocRef, {
-                Liked: post.id,
-                time: new Date()
-            })
             const RepostRef = doc(db, "posts", post.id, 'Likes', userid as string)
             await setDoc(RepostRef, {
                 Like: userid,
+                time: new Date()
+            })
+            const ReportDocRef = doc(db, "users", userid as string, "Liked", post.id)
+            await setDoc(ReportDocRef, {
+                Liked: post.id,
                 time: new Date()
             })
             console.log("Liked successful!");
@@ -47,13 +46,12 @@ export default function Likebutton({post, likes}: Props){
     const handleUnLiked = async () => {
         setIsLiked(false); // Update the state to indicate unliking
         try {
-            // Remove the like from the user's Liked collection
-            const ReportDocRef = doc(db, "users", userid as string, "Liked", post.id);
-            await deleteDoc(ReportDocRef);
-
             // Remove the like from the post's Likes collection
             const RepostRef = doc(db, "posts", post.id, 'Likes', userid as string);
             await deleteDoc(RepostRef);
+            // Remove the like from the user's Liked collection
+            const ReportDocRef = doc(db, "users", userid as string, "Liked", post.id);
+            await deleteDoc(ReportDocRef);
             console.log("Unliked successful!");
         } catch (error) {
             setIsLiked(false)
