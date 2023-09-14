@@ -27,30 +27,18 @@ export default function Postsection({SuggestData}: Props) {
 
     useEffect(() => {
         const handleSnapshot = (snapshot: any) => {
-            const data = snapshot.docs.map((doc: any) => ({ ...doc.data(), id: doc.id }));
-            setPosts(data);
+            const data = snapshot.docs.map((doc: any) => ({
+                ...doc.data(),
+                id: doc.id 
+            }));
             setIsLoading(false);
+            setPosts(data);
         };
         const unsubscribe = onSnapshot(collection(db, "posts"), handleSnapshot);
         return () => {
             unsubscribe();
         };
     }, [])
-
-    // const [repost, setRepost] = useState<any[]>([]);
-
-    // useEffect(() => {
-    //     const handleSnapshot = (snapshot: any) => {
-    //         const data = snapshot.docs.map((doc: any) => ({ ...doc.data(), id: doc.id }));
-    //         setRepost(data);
-    //     };
-    //     const unsubscribe = onSnapshot(collection(db, 'Reposted'), handleSnapshot);
-    //         return () => {
-    //             unsubscribe()
-    //         }
-    // }, [])
-
-    // console.log(repost);
 
     // ! date calculation
     const formatPostDate = (timestamp: any): string => {
@@ -80,11 +68,9 @@ export default function Postsection({SuggestData}: Props) {
             return `${day} ${month} ${year}`;
         }
     };
-
-
+    
     // Sort the Posts array based on the post timestamps
     const sortedPosts = Posts.slice().sort((a, b) => b.time.toMillis() - a.time.toMillis());
-
     return(
         <main>
             <section className="md970:w-[90%] block mb-0 mx-auto mt-4">

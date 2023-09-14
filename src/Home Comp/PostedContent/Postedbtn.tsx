@@ -38,7 +38,6 @@ export default function Postedbtn({post}: Props) {
     console.log(repost);
     
 
-
     let Likes = '0';
     const LikesCount = likes &&  likes?.length || 0;
 
