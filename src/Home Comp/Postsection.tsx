@@ -93,16 +93,8 @@ export default function Postsection({SuggestData}: Props) {
     // Sort the Posts array based on the post timestamps
     const sortedPosts = Posts.slice().sort((a, b) => b.time.toMillis() - a.time.toMillis());
     const sortedRePosts = repostedData.slice().sort((a: any, b: any) => b.timeReposed.toMillis() - a.timeReposed.toMillis());
-    const combinedPosts = [...sortedPosts, ...sortedRePosts];
-
-    
-    // Sort the combined array based on timestamps
-    const sortedCombinedPosts = combinedPosts.slice().sort((a, b) => {
-        return b.time.toMillis() - a.time.toMillis();
-    });
     console.log(sortedRePosts);
     
-
     return(
         <main>
             <section className="md970:w-[90%] block mb-0 mx-auto mt-4">
@@ -117,7 +109,7 @@ export default function Postsection({SuggestData}: Props) {
                             />
                         </div>
                 ) : (
-                    sortedRePosts.map((post) => {
+                    sortedPosts.map((post) => {
                         const authorData = SuggestData.find((user: any) => user.id === post.author);
                         if (authorData) {
                             const formattedDate = formatPostDate(post.time);

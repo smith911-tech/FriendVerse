@@ -36,38 +36,41 @@ export default function Repost({post}: Props) {
 
     const handleRepost = async () => {
         setIsRepost(true);
-    // Check if the user has already reposted this post
+
+        // Check if the user has already reposted this post
         const repostQuery = query(collection(db, "Repost"), where("RepostAuthor", "==", userid), where("id", "==", post.id));
 
-    try {
-        const querySnapshot = await getDocs(repostQuery);
+        try {
+            const querySnapshot = await getDocs(repostQuery);
 
-        // If a document exists in the 'Repost' collection, the user has already reposted this post
-        if (!querySnapshot.empty) {
-            console.log("User has already reposted this post.");
-            setIsRepost(true);
-            return;
-        }
+            // If a document exists in the 'Repost' collection, the user has already reposted this post
+            if (!querySnapshot.empty) {
+                console.log("User has already reposted this post.");
+                setIsRepost(true);
+                return;
+            }
 
-        // If the user hasn't reposted this post yet, add a new repost record
-        await addDoc(collection(db, "Repost"), {
-            RepostAuthor: userid,
-            id: post.id,
-            timeReposed: new Date()
-        });
-            const ReportDocRef = doc(db, "users", userid as string, "Repost", post.id)
-            await setDoc(ReportDocRef, {
+            // If the user hasn't reposted this post yet, add a new repost record
+            const repostDocData = {
                 RepostAuthor: userid,
                 id: post.id,
-                timeReposed: new Date()
-            })
+                timeReposed: new Date(),
+            };
+
+            // Add the repost document to the 'Repost' collection
+            await addDoc(collection(db, "Repost"), repostDocData);
+
+            // Add the repost document to the user's 'Repost' subcollection
+            const userRepostDocRef = doc(db, "users", userid as string, "Repost", post.id);
+            await setDoc(userRepostDocRef, repostDocData);
+
             console.log("Repost successful!");
-        }
-        catch (error) {
+        } catch (error) {
             console.error("Error Repost:", error);
-            setIsRepost(false)
+            setIsRepost(false);
         }
-    }
+    };
+
 
     const handleUnRepost = async () => {
         setIsRepost(false); // Update the state to indicate un-reposting
