@@ -16,7 +16,7 @@ export default function Repost({post}: Props) {
     // Function to check if the user has already reposted the post
     const checkRepostStatus = async () => {
         // Query the "Repost" collection to check if the user has reposted the post
-        const repostQuery = query(collection(db, "Repost"), where("Repost", "==", post.id), where("id", "==", userid));
+        const repostQuery = query(collection(db, "Repost"), where("RepostAuthor", "==", userid), where("id", "==", post.id));
 
         try {
             const querySnapshot = await getDocs(repostQuery);
@@ -36,38 +36,41 @@ export default function Repost({post}: Props) {
 
     const handleRepost = async () => {
         setIsRepost(true);
-    // Check if the user has already reposted this post
-    const repostQuery = query(collection(db, "Repost"), where("Repost", "==", post.id), where("id", "==", userid));
 
-    try {
-        const querySnapshot = await getDocs(repostQuery);
+        // Check if the user has already reposted this post
+        const repostQuery = query(collection(db, "Repost"), where("RepostAuthor", "==", userid), where("id", "==", post.id));
 
-        // If a document exists in the 'Repost' collection, the user has already reposted this post
-        if (!querySnapshot.empty) {
-            console.log("User has already reposted this post.");
-            setIsRepost(true);
-            return;
-        }
+        try {
+            const querySnapshot = await getDocs(repostQuery);
 
-        // If the user hasn't reposted this post yet, add a new repost record
-        await addDoc(collection(db, "Repost"), {
-            Repost: post.id,
-            id: userid,
-            time: new Date()
-        });
-            const ReportDocRef = doc(db, "users", userid as string, "Repost", post.id)
-            await setDoc(ReportDocRef, {
-                Repost: post.id,
-                id: userid,
-                time: new Date()
-            })
+            // If a document exists in the 'Repost' collection, the user has already reposted this post
+            if (!querySnapshot.empty) {
+                console.log("User has already reposted this post.");
+                setIsRepost(true);
+                return;
+            }
+
+            // If the user hasn't reposted this post yet, add a new repost record
+            const repostDocData = {
+                RepostAuthor: userid,
+                id: post.id,
+                timeReposed: new Date(),
+            };
+
+            // Add the repost document to the 'Repost' collection
+            await addDoc(collection(db, "Repost"), repostDocData);
+
+            // Add the repost document to the user's 'Repost' subcollection
+            const userRepostDocRef = doc(db, "users", userid as string, "Repost", post.id);
+            await setDoc(userRepostDocRef, repostDocData);
+
             console.log("Repost successful!");
-        }
-        catch (error) {
+        } catch (error) {
             console.error("Error Repost:", error);
-            setIsRepost(false)
+            setIsRepost(false);
         }
-    }
+    };
+
 
     const handleUnRepost = async () => {
         setIsRepost(false); // Update the state to indicate un-reposting
@@ -75,8 +78,7 @@ export default function Repost({post}: Props) {
         try {
             // Remove the repost from the post's "Repost" collection
             const repostQuery = query(collection(db, "Repost"),
-                where("Repost", "==", post.id),
-                where("id", "==", userid)
+                where("RepostAuthor", "==", userid), where("id", "==", post.id)
             );
 
             const querySnapshot = await getDocs(repostQuery);
