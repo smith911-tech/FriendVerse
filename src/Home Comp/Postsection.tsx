@@ -23,7 +23,9 @@ export default function Postsection({SuggestData}: Props) {
     const theme = useThemeStore((state: any) => state.theme);
     //! states
     const [Posts, setPosts] = useState<any[]>([]);
+    const [repost, setRepost] = useState<any[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true); 
+    const [repostedData, setRepostedData] = useState<any[]>([]);
 
     useEffect(() => {
         const handleSnapshot = (snapshot: any) => {
@@ -34,11 +36,30 @@ export default function Postsection({SuggestData}: Props) {
             setIsLoading(false);
             setPosts(data);
         };
+        const handleSnapshoted = (snapshot: any) => {
+            const data = snapshot.docs.map((doc: any) => ({ ...doc.data(), id: doc.id }));
+            setRepost(data);
+        };
         const unsubscribe = onSnapshot(collection(db, "posts"), handleSnapshot);
+        const unsubscribed = onSnapshot(collection(db, 'Repost'), handleSnapshoted);
         return () => {
             unsubscribe();
+            unsubscribed();
         };
     }, [])
+    useEffect(() => {
+        const combined = repost.map((repost) => {
+            const originalPost = Posts.find((post) => post.postId === repost.originalPostId);
+            return {
+                ...repost,
+                ...originalPost,
+            };
+        });
+        setRepostedData(combined);
+    }, [repost, Posts]);
+
+    
+
 
     // ! date calculation
     const formatPostDate = (timestamp: any): string => {
@@ -67,10 +88,21 @@ export default function Postsection({SuggestData}: Props) {
             const year = postDate.getFullYear() % 100; // Get last two digits of year
             return `${day} ${month} ${year}`;
         }
-    };
+    }
     
     // Sort the Posts array based on the post timestamps
     const sortedPosts = Posts.slice().sort((a, b) => b.time.toMillis() - a.time.toMillis());
+    const sortedRePosts = repostedData.slice().sort((a: any, b: any) => b.timeReposed.toMillis() - a.timeReposed.toMillis());
+    const combinedPosts = [...sortedPosts, ...sortedRePosts];
+
+    
+    // Sort the combined array based on timestamps
+    const sortedCombinedPosts = combinedPosts.slice().sort((a, b) => {
+        return b.time.toMillis() - a.time.toMillis();
+    });
+    console.log(sortedRePosts);
+    
+
     return(
         <main>
             <section className="md970:w-[90%] block mb-0 mx-auto mt-4">
@@ -85,7 +117,7 @@ export default function Postsection({SuggestData}: Props) {
                             />
                         </div>
                 ) : (
-                    sortedPosts.map((post) => {
+                    sortedRePosts.map((post) => {
                         const authorData = SuggestData.find((user: any) => user.id === post.author);
                         if (authorData) {
                             const formattedDate = formatPostDate(post.time);

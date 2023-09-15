@@ -16,7 +16,7 @@ export default function Repost({post}: Props) {
     // Function to check if the user has already reposted the post
     const checkRepostStatus = async () => {
         // Query the "Repost" collection to check if the user has reposted the post
-        const repostQuery = query(collection(db, "Repost"), where("Repost", "==", post.id), where("id", "==", userid));
+        const repostQuery = query(collection(db, "Repost"), where("RepostAuthor", "==", userid), where("id", "==", post.id));
 
         try {
             const querySnapshot = await getDocs(repostQuery);
@@ -37,7 +37,7 @@ export default function Repost({post}: Props) {
     const handleRepost = async () => {
         setIsRepost(true);
     // Check if the user has already reposted this post
-    const repostQuery = query(collection(db, "Repost"), where("Repost", "==", post.id), where("id", "==", userid));
+        const repostQuery = query(collection(db, "Repost"), where("RepostAuthor", "==", userid), where("id", "==", post.id));
 
     try {
         const querySnapshot = await getDocs(repostQuery);
@@ -51,15 +51,15 @@ export default function Repost({post}: Props) {
 
         // If the user hasn't reposted this post yet, add a new repost record
         await addDoc(collection(db, "Repost"), {
-            Repost: post.id,
-            id: userid,
-            time: new Date()
+            RepostAuthor: userid,
+            id: post.id,
+            timeReposed: new Date()
         });
             const ReportDocRef = doc(db, "users", userid as string, "Repost", post.id)
             await setDoc(ReportDocRef, {
-                Repost: post.id,
-                id: userid,
-                time: new Date()
+                RepostAuthor: userid,
+                id: post.id,
+                timeReposed: new Date()
             })
             console.log("Repost successful!");
         }
@@ -75,8 +75,7 @@ export default function Repost({post}: Props) {
         try {
             // Remove the repost from the post's "Repost" collection
             const repostQuery = query(collection(db, "Repost"),
-                where("Repost", "==", post.id),
-                where("id", "==", userid)
+                where("RepostAuthor", "==", userid), where("id", "==", post.id)
             );
 
             const querySnapshot = await getDocs(repostQuery);
