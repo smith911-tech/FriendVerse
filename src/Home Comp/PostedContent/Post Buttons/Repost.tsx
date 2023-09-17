@@ -54,7 +54,7 @@ export default function Repost({post}: Props) {
             const repostDocData = {
                 RepostAuthor: userid,
                 PostId: post.id,
-                timeReposed: new Date(),
+                timeReposted: new Date(),
             };
 
             // Add the repost document to the 'Repost' collection

@@ -90,14 +90,6 @@ export default function Postsection({SuggestData}: Props) {
         }
     }
     
-    // Sort the Posts array based on the post timestamps
-    const sortedPosts = Posts.slice().sort((a, b) => b.time.toMillis() - a.time.toMillis());
-    const sortedRePosts = repostedData.slice().sort((a: any, b: any) => b.timeReposed.toMillis() - a.timeReposed.toMillis());
-    
-    const CombinedData = [
-        ...sortedPosts,
-        ...sortedRePosts.filter((repost) => sortedPosts.some((post) => post.id === repost.id))
-    ];
     function generateRandomKey() {
         // Get the current timestamp
         const timestamp = Date.now();
@@ -110,6 +102,12 @@ export default function Postsection({SuggestData}: Props) {
 
         return uniqueKey;
     }
+
+
+    const CombinedData = [
+        ...Posts,
+        ...repostedData.filter((repost) => Posts.some((post) => post.id === repost.id))
+    ];
     return(
         <main>
             <section className="md970:w-[90%] block mb-0 mx-auto mt-4">
