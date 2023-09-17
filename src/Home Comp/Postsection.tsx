@@ -49,7 +49,7 @@ export default function Postsection({SuggestData}: Props) {
     }, [])
     useEffect(() => {
         const combined = repost.map((repost) => {
-            const originalPost = Posts.find((post) => post.postId === repost.originalPostId);
+            const originalPost = Posts.find((post) => post.id === repost.PostId);
             return {
                 ...repost,
                 ...originalPost,
@@ -57,7 +57,7 @@ export default function Postsection({SuggestData}: Props) {
         });
         setRepostedData(combined);
     }, [repost, Posts]);
-
+    console.log(repostedData);
     
 
 
@@ -93,8 +93,23 @@ export default function Postsection({SuggestData}: Props) {
     // Sort the Posts array based on the post timestamps
     const sortedPosts = Posts.slice().sort((a, b) => b.time.toMillis() - a.time.toMillis());
     const sortedRePosts = repostedData.slice().sort((a: any, b: any) => b.timeReposed.toMillis() - a.timeReposed.toMillis());
-    console.log(sortedRePosts);
     
+    const CombinedData = [
+        ...sortedPosts,
+        ...sortedRePosts.filter((repost) => sortedPosts.some((post) => post.id === repost.id))
+    ];
+    function generateRandomKey() {
+        // Get the current timestamp
+        const timestamp = Date.now();
+
+        // Generate a random number between 1 and 1000
+        const randomNumber = Math.floor(Math.random() * 1000) + 1;
+
+        // Combine the timestamp and random number to create a unique key
+        const uniqueKey = `${timestamp}-${randomNumber}`;
+
+        return uniqueKey;
+    }
     return(
         <main>
             <section className="md970:w-[90%] block mb-0 mx-auto mt-4">
@@ -109,13 +124,14 @@ export default function Postsection({SuggestData}: Props) {
                             />
                         </div>
                 ) : (
-                    sortedPosts.map((post) => {
+                    CombinedData.map((post) => {
                         const authorData = SuggestData.find((user: any) => user.id === post.author);
                         if (authorData) {
                             const formattedDate = formatPostDate(post.time);
                             return (
                                 <article className={` py-3 rounded-md mb-4 ${theme 
-                                ? "bg-black text-[#ffff]" : "bg-white text-[#000000]"}`} key={post.id}>
+                                ? "bg-black text-[#ffff]" : "bg-white text-[#000000]"}`} 
+                                key={post.RepostAuthor ? generateRandomKey() : post.id} >
                                     <main className="flex px-2 justify-between">
                                         <aside className="flex">
                                         <section>
