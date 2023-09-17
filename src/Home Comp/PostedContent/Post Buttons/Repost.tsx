@@ -16,7 +16,7 @@ export default function Repost({post}: Props) {
     // Function to check if the user has already reposted the post
     const checkRepostStatus = async () => {
         // Query the "Repost" collection to check if the user has reposted the post
-        const repostQuery = query(collection(db, "Repost"), where("RepostAuthor", "==", userid), where("id", "==", post.id));
+        const repostQuery = query(collection(db, "Repost"), where("RepostAuthor", "==", userid), where("PostId", "==", post.id));
 
         try {
             const querySnapshot = await getDocs(repostQuery);
@@ -38,7 +38,7 @@ export default function Repost({post}: Props) {
         setIsRepost(true);
 
         // Check if the user has already reposted this post
-        const repostQuery = query(collection(db, "Repost"), where("RepostAuthor", "==", userid), where("id", "==", post.id));
+        const repostQuery = query(collection(db, "Repost"), where("RepostAuthor", "==", userid), where("PostId", "==", post.id));
 
         try {
             const querySnapshot = await getDocs(repostQuery);
@@ -53,8 +53,8 @@ export default function Repost({post}: Props) {
             // If the user hasn't reposted this post yet, add a new repost record
             const repostDocData = {
                 RepostAuthor: userid,
-                id: post.id,
-                timeReposed: new Date(),
+                PostId: post.id,
+                timeReposted: new Date(),
             };
 
             // Add the repost document to the 'Repost' collection
@@ -78,7 +78,7 @@ export default function Repost({post}: Props) {
         try {
             // Remove the repost from the post's "Repost" collection
             const repostQuery = query(collection(db, "Repost"),
-                where("RepostAuthor", "==", userid), where("id", "==", post.id)
+                where("RepostAuthor", "==", userid), where("PostId", "==", post.id)
             );
 
             const querySnapshot = await getDocs(repostQuery);

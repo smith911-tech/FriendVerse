@@ -49,7 +49,7 @@ export default function Postsection({SuggestData}: Props) {
     }, [])
     useEffect(() => {
         const combined = repost.map((repost) => {
-            const originalPost = Posts.find((post) => post.postId === repost.originalPostId);
+            const originalPost = Posts.find((post) => post.id === repost.PostId);
             return {
                 ...repost,
                 ...originalPost,
@@ -57,7 +57,7 @@ export default function Postsection({SuggestData}: Props) {
         });
         setRepostedData(combined);
     }, [repost, Posts]);
-
+    console.log(repostedData);
     
 
 
@@ -90,11 +90,24 @@ export default function Postsection({SuggestData}: Props) {
         }
     }
     
-    // Sort the Posts array based on the post timestamps
-    const sortedPosts = Posts.slice().sort((a, b) => b.time.toMillis() - a.time.toMillis());
-    const sortedRePosts = repostedData.slice().sort((a: any, b: any) => b.timeReposed.toMillis() - a.timeReposed.toMillis());
-    console.log(sortedRePosts);
-    
+    function generateRandomKey() {
+        // Get the current timestamp
+        const timestamp = Date.now();
+
+        // Generate a random number between 1 and 1000
+        const randomNumber = Math.floor(Math.random() * 1000) + 1;
+
+        // Combine the timestamp and random number to create a unique key
+        const uniqueKey = `${timestamp}-${randomNumber}`;
+
+        return uniqueKey;
+    }
+
+
+    const CombinedData = [
+        ...Posts,
+        ...repostedData.filter((repost) => Posts.some((post) => post.id === repost.id))
+    ];
     return(
         <main>
             <section className="md970:w-[90%] block mb-0 mx-auto mt-4">
@@ -109,65 +122,71 @@ export default function Postsection({SuggestData}: Props) {
                             />
                         </div>
                 ) : (
-                    sortedPosts.map((post) => {
+                    CombinedData.map((post) => {
                         const authorData = SuggestData.find((user: any) => user.id === post.author);
                         if (authorData) {
                             const formattedDate = formatPostDate(post.time);
                             return (
-                                <article className={` py-3 rounded-md mb-4 ${theme 
-                                ? "bg-black text-[#ffff]" : "bg-white text-[#000000]"}`} key={post.id}>
-                                    <main className="flex px-2 justify-between">
-                                        <aside className="flex">
-                                        <section>
-                                            {authorData.profileImage === "" ? (
-                                                <Link to={`${userid !== post.author ? `/User/${authorData.username}` : '/Profile'}`}>
-                                                    <div className={`text-[40px] rounded-full select-none 
+                                <main key={post.RepostAuthor ? generateRandomKey() : post.id}>
+                                    <span>
+                                        
+                                    </span>
+                                    <article className={` py-3 rounded-md mb-4 ${theme
+                                        ? "bg-black text-[#ffff]" : "bg-white text-[#000000]"}`}
+                                        >
+                                        <main className="flex px-2 justify-between">
+                                            <aside className="flex">
+                                                <section>
+                                                    {authorData.profileImage === "" ? (
+                                                        <Link to={`${userid !== post.author ? `/User/${authorData.username}` : '/Profile'}`}>
+                                                            <div className={`text-[40px] rounded-full select-none 
                                         ${theme ? "text-white" : "text-[#000000d7]"}`}>
-                                                        <BiSolidUserCircle />
-                                                    </div>
-                                                </Link>
-                                            ) : (
-                                                <Link to={`${userid !== post.author ? `/User/${authorData.username}` : '/Profile'}`}>
-                                                    <LazyLoadImage
-                                                        effect="blur"
-                                                        src={authorData.profileImage}
-                                                        alt="Profile"
-                                                        className="w-10 h-10 rounded-full object-cover select-none "
-                                                    />
-                                                </Link>
-                                            )}
-                                        </section>
-                                        <span>
-                                                <Link to={`${userid !== post.author ? `/User/${authorData.username}` : '/Profile'}`} className=' ml-2 text-sm font-medium flex hover:underline select-none '>
-                                                    {authorData.fullName}
-                                                    {authorData.Verify && (
-                                                        <span className='text-[#1d9bf0] mt-[2px]'>
-                                                            <VscVerifiedFilled />
-                                                        </span>
+                                                                <BiSolidUserCircle />
+                                                            </div>
+                                                        </Link>
+                                                    ) : (
+                                                        <Link to={`${userid !== post.author ? `/User/${authorData.username}` : '/Profile'}`}>
+                                                            <LazyLoadImage
+                                                                effect="blur"
+                                                                src={authorData.profileImage}
+                                                                alt="Profile"
+                                                                className="w-10 h-10 rounded-full object-cover select-none "
+                                                            />
+                                                        </Link>
                                                     )}
-                                                </Link>
-                                            <span className={`ml-2 text-sm flex gap-[2px] select-none
+                                                </section>
+                                                <span>
+                                                    <Link to={`${userid !== post.author ? `/User/${authorData.username}` : '/Profile'}`} className=' ml-2 text-sm font-medium flex hover:underline select-none '>
+                                                        {authorData.fullName}
+                                                        {authorData.Verify && (
+                                                            <span className='text-[#1d9bf0] mt-[2px]'>
+                                                                <VscVerifiedFilled />
+                                                            </span>
+                                                        )}
+                                                    </Link>
+                                                    <span className={`ml-2 text-sm flex gap-[2px] select-none
                                             ${theme ? " text-[#ffffffaa]" : "text-[#000000a0]"}`}>
-                                                {formattedDate}
-                                                <span className="mt-1">
-                                                    <BiTimeFive />
+                                                        {formattedDate}
+                                                        <span className="mt-1">
+                                                            <BiTimeFive />
+                                                        </span>
+                                                    </span>
                                                 </span>
-                                            </span>
-                                        </span>
-                                        </aside>
+                                            </aside>
 
-                                        <aside className=" text-2xl my-[6px] cursor-pointer">
-                                            <BiDotsHorizontal />
-                                        </aside>
-                                    </main>
-                                    <section>
-                                        {post.article ? <Postedarticle post={post} /> : null}
-                                        {post.video ? <PostedVideo post={post}/> : null}
-                                        {post.Code ? <PostedCode post={post} /> : null}
-                                        {post.images ? <PostedImages post={post} /> : null}
-                                    </section>
-                                    <Postedbtn post={post}/>
-                                </article>
+                                            <aside className=" text-2xl my-[6px] cursor-pointer">
+                                                <BiDotsHorizontal />
+                                            </aside>
+                                        </main>
+                                        <section>
+                                            {post.article ? <Postedarticle post={post} /> : null}
+                                            {post.video ? <PostedVideo post={post} /> : null}
+                                            {post.Code ? <PostedCode post={post} /> : null}
+                                            {post.images ? <PostedImages post={post} /> : null}
+                                        </section>
+                                        <Postedbtn post={post} />
+                                    </article>
+                                </main>
                             );
                         } else {
                             return null;
