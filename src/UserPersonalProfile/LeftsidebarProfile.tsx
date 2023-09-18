@@ -46,10 +46,11 @@ export default function ProfileLeftbar({ SuggestData }: Props): JSX.Element {
                             <span className="text-[#117dd5]"><GoTelescopeFill /></span>
                         </div>
                         {shuffledData.filter((data: any) => data.id !== userid).slice(0, 8).map((data: any) => (
-                            <Link to={`/User/${data.username}`}>
+                            <Link to={`/User/${data.username}`} key={data.id}>
                             <div
+                                    key={data.id}
                                 className="cursor-pointer w-full select-none flex my-4 ml-1 rounded-2xl gap-2"
-                                key={data.id}
+                                
                                 onClick={(() => {
                                     window.scrollTo(0, 0);
                                 })}
