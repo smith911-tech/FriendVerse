@@ -16,6 +16,7 @@ import Postedbtn from "./PostedContent/Postedbtn"
 import { RotatingLines } from "react-loader-spinner";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import { BiRepost } from 'react-icons/bi'
 
 export default function Postsection({SuggestData}: Props) {
     let userid = sessionStorage.getItem('UserId')
@@ -57,8 +58,6 @@ export default function Postsection({SuggestData}: Props) {
         });
         setRepostedData(combined);
     }, [repost, Posts]);
-    console.log(repostedData);
-    
 
 
     // ! date calculation
@@ -124,16 +123,23 @@ export default function Postsection({SuggestData}: Props) {
                 ) : (
                     CombinedData.map((post) => {
                         const authorData = SuggestData.find((user: any) => user.id === post.author);
+                        const Repostauthor =SuggestData && SuggestData?.find((user: any) => user?.id === post?.RepostAuthor);
                         if (authorData) {
                             const formattedDate = formatPostDate(post.time);
                             return (
-                                <main key={post.RepostAuthor ? generateRandomKey() : post.id}>
-                                    <span>
-                                        
-                                    </span>
+                                <main key={post.RepostAuthor ? generateRandomKey() : post.id} >
                                     <article className={` py-3 rounded-md mb-4 ${theme
                                         ? "bg-black text-[#ffff]" : "bg-white text-[#000000]"}`}
                                         >
+                                        <div className={` pb-4 ${theme
+                                        ? " text-[#ffffffb0]" : " text-[#000000aa]"}`}>
+                                            {Repostauthor && (
+                                                <Link to={`${userid !== post.RepostAuthor ? `/User/${Repostauthor.username}` : '/Profile'}`} className="flex ml-4 text-sm gap-1">
+                                                    <BiRepost className=' text-xl' />
+                                                    {userid === post.RepostAuthor ? 'You Reposted' : `${Repostauthor.username} Reposted`}
+                                                </Link>
+                                            )}
+                                        </div>
                                         <main className="flex px-2 justify-between">
                                             <aside className="flex">
                                                 <section>

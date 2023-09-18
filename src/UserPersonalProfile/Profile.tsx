@@ -64,6 +64,7 @@ export default function userPersonalProfile() {
         return () => {
             unsubscribe();
         };
+        window.scrollTo(9,0)
     }, []);
 
 

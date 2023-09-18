@@ -43,6 +43,7 @@ export default function ViewPost() {
                 unsubscribe();
             };
         }
+        window.scrollTo(0,0)
     }, []);
 
 
