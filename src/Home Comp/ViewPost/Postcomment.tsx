@@ -55,21 +55,21 @@ export default function PostComment({userData}: Props) {
                         <article className="flex justify-between px-4 pt-2">
                         <div className={`flex gap-2 mt-1 
                         ${theme ? " text-[#ffffffa5]" : " text-[#000000ab]"}`}>
-                            <span className=" text-xl cursor-pointer" title="Emoji">
+                            <span className=" text-base cursor-pointer" title="Emoji">
                                 <BsEmojiSmile />
                             </span>
-                            <span className=" text-xl cursor-pointer" title="Gallery">
+                            <span className=" text-base cursor-pointer" title="Gallery">
                                 <AiOutlineCamera />
                             </span>
-                            <span className=" text-xl cursor-pointer" title="Video">
+                            <span className=" text-base cursor-pointer" title="Video">
                                 <AiOutlineVideoCameraAdd />
                             </span>
-                            <span className=" text-xl cursor-pointer" title="Gif">
+                            <span className=" text-base cursor-pointer" title="Gif">
                                 <HiOutlineGif />
                             </span>
                             </div>
                         <span 
-                        className={` cursor-pointer text-2xl ${theme ? "text-[#ffffffa5]" : "text-[#000000ab]"}`} title="Comment">
+                        className={` cursor-pointer text-xl ${theme ? "text-[#ffffffa5]" : "text-[#000000ab]"}`} title="Comment">
                             <HiOutlinePaperAirplane /></span>
                         </article>
                 </div>

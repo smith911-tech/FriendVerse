@@ -17,6 +17,7 @@ import { RotatingLines } from "react-loader-spinner";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { BiRepost } from 'react-icons/bi'
+import { Popover } from '@headlessui/react'
 
 export default function Postsection({SuggestData}: Props) {
     let userid = sessionStorage.getItem('UserId')
@@ -127,14 +128,15 @@ export default function Postsection({SuggestData}: Props) {
                         if (authorData) {
                             const formattedDate = formatPostDate(post.time);
                             return (
-                                <main key={post.RepostAuthor ? generateRandomKey() : post.id} >
-                                    <article className={` py-3 rounded-md mb-4 ${theme
+                                <main
+                                key={post.RepostAuthor ? generateRandomKey() : post.id} className="relative">
+                                    <Popover className={`py-3 rounded-md mb-4 relative ${theme
                                         ? "bg-black text-[#ffff]" : "bg-white text-[#000000]"}`}
                                         >
-                                        <div className={` pb-4 ${theme
+                                        <div className={`  ${theme
                                         ? " text-[#ffffffb0]" : " text-[#000000aa]"}`}>
                                             {Repostauthor && (
-                                                <Link to={`${userid !== post.RepostAuthor ? `/User/${Repostauthor.username}` : '/Profile'}`} className="flex ml-4 text-sm gap-1">
+                                                <Link to={`${userid !== post.RepostAuthor ? `/User/${Repostauthor.username}` : '/Profile'}`} className="flex ml-4 text-sm gap-1 pb-4">
                                                     <BiRepost className=' text-xl' />
                                                     {userid === post.RepostAuthor ? 'You Reposted' : `${Repostauthor.username} Reposted`}
                                                 </Link>
@@ -179,7 +181,6 @@ export default function Postsection({SuggestData}: Props) {
                                                     </span>
                                                 </span>
                                             </aside>
-
                                             <aside className=" text-2xl my-[6px] cursor-pointer">
                                                 <BiDotsHorizontal />
                                             </aside>
@@ -190,8 +191,8 @@ export default function Postsection({SuggestData}: Props) {
                                             {post.Code ? <PostedCode post={post} /> : null}
                                             {post.images ? <PostedImages post={post} /> : null}
                                         </section>
-                                        <Postedbtn post={post} />
-                                    </article>
+                                        <Postedbtn post={post} Popover={Popover}/>
+                                    </Popover>
                                 </main>
                             );
                         } else {

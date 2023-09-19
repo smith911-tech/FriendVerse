@@ -18,6 +18,7 @@ import PostedImages from "../PostedContent/PostedImages"
 import Postedbtn from "../PostedContent/Postedbtn"
 import PostComment from './Postcomment';
 import { Oval } from 'react-loader-spinner'
+import { Popover } from '@headlessui/react'
 
 export default function ViewPostContent({Post, SuggestData, userData}: Props){
     let userid = sessionStorage.getItem('UserId')
@@ -163,7 +164,7 @@ export default function ViewPostContent({Post, SuggestData, userData}: Props){
                             {Post.Code ? <PostedCode post={Post} /> : null}
                             {Post.images ? <PostedImages post={Post} /> : null}
                         </section>
-                        <Postedbtn post={Post}/>
+                        <Postedbtn post={Post} Popover={Popover}/>
                         <PostComment userData={userData} />
                     </article>
                 )

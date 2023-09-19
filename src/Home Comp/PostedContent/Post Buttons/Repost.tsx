@@ -103,15 +103,16 @@ export default function Repost({post}: Props) {
         }
     };
 
+    
     return(
         <button onClick={isRepost ? handleUnRepost : handleRepost }
         className={`flex mt-1 w-[33%] justify-center py-[7px] rounded gap-1 
-                ${theme ? "hover:bg-[#ffffff3c]" : "hover:bg-[#0000004f]"}`}>
-            <span className={`text-2xl  ${theme ? "text-[#ffffffd3]" : "text-[#00000087]"} 
+                ${theme ? "hover:bg-[#ffffff3c] text-[#ffffffd3]" : "hover:bg-[#0000004f] text-[#000000b7]"}`}>
+            <span className={`text-2xl  
             ${isRepost ? "text-[#19c37d]" : ""}`}>
                 <BiRepost />
             </span>
-            <span className={`text-[15px] smm500:text-[12px]  ${theme ? "text-[#ffffffd3]" : "text-[#000000b7]"} ${isRepost ? "text-[#19c37d]" : ""}`}>
+            <span className={`text-[15px] smm500:text-[12px] ${isRepost ? "text-[#19c37d]" : ""}`}>
                 Repost
             </span>
         </button>
