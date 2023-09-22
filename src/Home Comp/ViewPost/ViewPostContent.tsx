@@ -19,6 +19,9 @@ import Postedbtn from "../PostedContent/Postedbtn"
 import PostComment from './Postcomment';
 import { Oval } from 'react-loader-spinner'
 import { Popover } from '@headlessui/react'
+import { FaCopy } from 'react-icons/fa6'
+import { FiShare2 } from 'react-icons/fi'
+import { message } from 'antd';
 
 export default function ViewPostContent({Post, SuggestData, userData}: Props){
     let userid = sessionStorage.getItem('UserId')
@@ -81,6 +84,33 @@ export default function ViewPostContent({Post, SuggestData, userData}: Props){
         }
     }, [SuggestData, Post, userData]);;
 
+    const CopySuccessful = () => {
+        message.success('Copied');
+    };
+
+
+
+    const handleCopyClick = (id: string) => {
+        CopySuccessful()
+        const url = `https://friend-verse.vercel.app/Post/${id}`
+        const textArea = document.createElement('textarea');
+        textArea.value = url;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+    };
+    const handleShare = async (id: string) => {
+        try {
+            await navigator.share({
+                text: 'Check out this awesome content!',
+                url: `/Post/${id}`,
+            });
+        } catch (error) {
+            console.error('Error sharing:', error);
+        }
+    }
+
 
     return(
         <main className=' pb-14'>
@@ -115,7 +145,7 @@ export default function ViewPostContent({Post, SuggestData, userData}: Props){
                 </div>
             ) : (
                 Post && (
-                    <article className={`py-3 rounded-md mb-4 ${theme ? "bg-black text-[#ffff]" : "bg-white text-[#000000]"}`} key={Post.id}>
+                    <Popover className={`py-3 rounded-md mb-4 ${theme ? "bg-black text-[#ffff]" : "bg-white text-[#000000]"}`} key={Post.id}>
                         <main className="flex px-2 justify-between">
                             <aside className="flex">
                                 <section>
@@ -153,10 +183,28 @@ export default function ViewPostContent({Post, SuggestData, userData}: Props){
                                     </span>
                                 </span>
                             </aside>
-
-                            <aside className="text-2xl my-[6px] cursor-pointer">
-                                <BiDotsHorizontal />
-                            </aside>
+                                <Popover className='relative'>
+                                    <Popover.Button>
+                                        <aside className=" text-2xl my-[6px] cursor-pointer">
+                                            <BiDotsHorizontal />
+                                        </aside>
+                                    </Popover.Button>
+                                    <Popover.Panel
+                                        className={`absolute top-10 right-3 shadow-2xl z-20 w-56 py-2  rounded                                                    ${theme ? "bg-[#303031] text-[#ffff]" : "bg-[white] text-[#000000]"}`}>
+                                        <div className=" flex flex-col w-full">
+                                            <Popover.Button
+                                                onClick={(() => handleCopyClick(Post.id))}
+                                                className="flex gap-1 w-full py-2 pl-3 hover:bg-[#00000076] cursor-pointer">
+                                                <FaCopy className="text-2xl px-1" /> <p>Copy link to post</p>
+                                            </Popover.Button>
+                                            <Popover.Button
+                                                onClick={(() => handleShare(Post.id))}
+                                                className="flex gap-1 w-full py-2 pl-3 hover:bg-[#00000076] cursor-pointer">
+                                                <FiShare2 className="text-2xl px-1" /> <p>Share</p>
+                                            </Popover.Button>
+                                        </div>
+                                    </Popover.Panel>
+                                </Popover>
                         </main>
                         <section>
                             {Post.article ? <Postedarticle post={Post} /> : null}
@@ -166,7 +214,7 @@ export default function ViewPostContent({Post, SuggestData, userData}: Props){
                         </section>
                         <Postedbtn post={Post} Popover={Popover}/>
                         <PostComment userData={userData} />
-                    </article>
+                    </Popover>
                 )
             )}
         </main>

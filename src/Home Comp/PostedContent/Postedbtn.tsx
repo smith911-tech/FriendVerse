@@ -115,7 +115,7 @@ export default function Postedbtn({post, Popover}: Props) {
                 <Likebutton post={post} likes={likes} />
                 <Repost post={post} />
                 <Commentbutton post={post}/>
-                <Sharebutton />
+                <Sharebutton post={post} />
             </article>
             <Popover.Panel className={` absolute z-10 top-0 h-full w-full -ml-2 overflow-auto rounded-2xl ${theme ? "bg-black text-[#ffff]" : "bg-white text-[#000000]"}`}>
                 <header className='flex justify-between px-3 py-3'>
