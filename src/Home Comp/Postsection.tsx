@@ -20,6 +20,7 @@ import { BiRepost } from 'react-icons/bi'
 import { Popover } from '@headlessui/react'
 import { FaCopy } from 'react-icons/fa6'
 import { FiShare2 } from 'react-icons/fi'
+import { message } from 'antd';
 
 export default function Postsection({SuggestData}: Props) {
     let userid = sessionStorage.getItem('UserId')
@@ -111,9 +112,13 @@ export default function Postsection({SuggestData}: Props) {
         ...repostedData.filter((repost) => Posts.some((post) => post.id === repost.id))
     ];
 
-    
+    const CopySuccessful = () => {
+        message.success('Copied');
+    };
+
 
     const handleCopyClick = (id: string) => {
+        CopySuccessful()
         const url = `https://friend-verse.vercel.app/Post/${id}`
         const textArea = document.createElement('textarea');
         textArea.value = url;

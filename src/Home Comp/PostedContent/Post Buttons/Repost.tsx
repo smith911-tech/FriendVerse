@@ -6,6 +6,7 @@ import { BiRepost } from 'react-icons/bi'
 import {useState, useEffect} from 'react'
 import { db } from '../../../firebase-config';
 import { collection, addDoc, setDoc, getDocs, query, where, doc, deleteDoc } from 'firebase/firestore'; 
+import { message } from 'antd';
 export default function Repost({post}: Props) {
     //? uid
     let userid = sessionStorage.getItem('UserId')
@@ -32,7 +33,10 @@ export default function Repost({post}: Props) {
     useEffect(() => {
         checkRepostStatus();
     }, []);
-
+    // ! Repost
+    const RepostSuccessful = () => {
+        message.success('Repost succesfully');
+    };
 
     const handleRepost = async () => {
         setIsRepost(true);
@@ -45,7 +49,7 @@ export default function Repost({post}: Props) {
 
             // If a document exists in the 'Repost' collection, the user has already reposted this post
             if (!querySnapshot.empty) {
-                console.log("User has already reposted this post.");
+                console.log("User has already  this post.");
                 setIsRepost(true);
                 return;
             }
@@ -64,7 +68,7 @@ export default function Repost({post}: Props) {
             const userRepostDocRef = doc(db, "users", userid as string, "Repost", post.id);
             await setDoc(userRepostDocRef, repostDocData);
 
-            console.log("Repost successful!");
+            RepostSuccessful()
         } catch (error) {
             console.error("Error Repost:", error);
             setIsRepost(false);
@@ -102,6 +106,7 @@ export default function Repost({post}: Props) {
             console.error("Error UnRepost:", error);
         }
     };
+
 
     
     return(
