@@ -115,7 +115,7 @@ export default function ViewPostContent({Post, SuggestData, userData}: Props){
                 </div>
             ) : (
                 Post && (
-                    <article className={`py-3 rounded-md mb-4 ${theme ? "bg-black text-[#ffff]" : "bg-white text-[#000000]"}`} key={Post.id}>
+                    <Popover className={`py-3 rounded-md mb-4 ${theme ? "bg-black text-[#ffff]" : "bg-white text-[#000000]"}`} key={Post.id}>
                         <main className="flex px-2 justify-between">
                             <aside className="flex">
                                 <section>
@@ -166,7 +166,7 @@ export default function ViewPostContent({Post, SuggestData, userData}: Props){
                         </section>
                         <Postedbtn post={Post} Popover={Popover}/>
                         <PostComment userData={userData} />
-                    </article>
+                    </Popover>
                 )
             )}
         </main>

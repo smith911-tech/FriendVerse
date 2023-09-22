@@ -18,6 +18,8 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { BiRepost } from 'react-icons/bi'
 import { Popover } from '@headlessui/react'
+import { FaCopy } from 'react-icons/fa6'
+import { FiShare2 } from 'react-icons/fi'
 
 export default function Postsection({SuggestData}: Props) {
     let userid = sessionStorage.getItem('UserId')
@@ -108,6 +110,28 @@ export default function Postsection({SuggestData}: Props) {
         ...Posts,
         ...repostedData.filter((repost) => Posts.some((post) => post.id === repost.id))
     ];
+
+    
+
+    const handleCopyClick = (id: string) => {
+        const url = `https://friend-verse.vercel.app/Post/${id}`
+        const textArea = document.createElement('textarea');
+        textArea.value = url;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+    };
+    const handleShare = async (id: string) => {
+        try {
+            await navigator.share({
+                text: 'Check out this awesome content!',
+                url: `/Post/${id}`,
+            });
+        } catch (error) {
+            console.error('Error sharing:', error);
+        }
+    }
     return(
         <main>
             <section className="md970:w-[90%] block mb-0 mx-auto mt-4">
@@ -181,9 +205,28 @@ export default function Postsection({SuggestData}: Props) {
                                                     </span>
                                                 </span>
                                             </aside>
-                                            <aside className=" text-2xl my-[6px] cursor-pointer">
-                                                <BiDotsHorizontal />
-                                            </aside>
+                                            <Popover className='relative'>
+                                                <Popover.Button>
+                                                    <aside className=" text-2xl my-[6px] cursor-pointer">
+                                                        <BiDotsHorizontal />
+                                                    </aside>
+                                                </Popover.Button>
+                                                <Popover.Panel 
+                                                    className={`absolute top-10 right-3 shadow-2xl z-20 w-56 py-2  rounded                                                    ${theme ? "bg-[#303031] text-[#ffff]" : "bg-[white] text-[#000000]"}`}>
+                                                    <div className=" flex flex-col w-full">
+                                                        <Popover.Button 
+                                                        onClick={(() => handleCopyClick(post.id))}
+                                                        className="flex gap-1 w-full py-2 pl-3 hover:bg-[#00000076] cursor-pointer">
+                                                            <FaCopy className="text-2xl px-1"/> <p>Copy link to post</p>
+                                                        </Popover.Button>
+                                                        <Popover.Button
+                                                        onClick={(() => handleShare(post.id))}
+                                                        className="flex gap-1 w-full py-2 pl-3 hover:bg-[#00000076] cursor-pointer">
+                                                            <FiShare2 className="text-2xl px-1" /> <p>Share</p>
+                                                        </Popover.Button>
+                                                    </div>
+                                                </Popover.Panel>
+                                            </Popover>
                                         </main>
                                         <section>
                                             {post.article ? <Postedarticle post={post} /> : null}
