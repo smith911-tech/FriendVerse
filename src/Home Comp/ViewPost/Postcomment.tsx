@@ -13,6 +13,8 @@ interface Props{
 export default function PostComment({userData}: Props) {
     //! Theme Mode
     const theme = useThemeStore((state: any) => state.theme);
+
+
     return(
         <article>
             <section className="flex px-1 mt-4">
@@ -51,7 +53,8 @@ export default function PostComment({userData}: Props) {
                         autoFocus
                         className={`w-full px-4 text-lg rounded-xl outline-none pt-2 placeholder:select-none ${theme ? "bg-[#1b1d21]" : "bg-[#f0f2f5]"}`}
                         maxLength={200}
-                        placeholder='Write a comment' />
+                        placeholder='Write a comment' 
+                        />
                         <article className="flex justify-between px-4 pt-2">
                         <div className={`flex gap-2 mt-1 
                         ${theme ? " text-[#ffffffa5]" : " text-[#000000ab]"}`}>
