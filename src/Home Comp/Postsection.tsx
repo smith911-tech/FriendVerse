@@ -211,7 +211,7 @@ export default function Postsection({SuggestData}: Props) {
                                                 </span>
                                             </aside>
                                             <Popover className='relative'>
-                                                <Popover.Button>
+                                                <Popover.Button className='outline-none'>
                                                     <aside className=" text-2xl my-[6px] cursor-pointer">
                                                         <BiDotsHorizontal />
                                                     </aside>

@@ -113,7 +113,7 @@ export default function ViewPostContent({Post, SuggestData, userData}: Props){
 
 
     return(
-        <main className=' pb-14'>
+        <main className=' pb-14 relative w-full'>
             <header className={`
             sticky top-16 z-[50] flex py-2 gap-3 pl-1 w-full
             ${theme ? "bg-[black] text-white" : "bg-[white] text-black"}`}>
