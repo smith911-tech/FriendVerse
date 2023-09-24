@@ -22,6 +22,9 @@ import { Popover } from '@headlessui/react'
 import { FaCopy } from 'react-icons/fa6'
 import { FiShare2 } from 'react-icons/fi'
 import { message } from 'antd';
+import { doc, deleteDoc } from "firebase/firestore";
+import { RiDeleteBinLine } from 'react-icons/ri'
+import { db } from '../../firebase-config'
 
 export default function ViewPostContent({Post, SuggestData, userData}: Props){
     let userid = sessionStorage.getItem('UserId')
@@ -110,6 +113,15 @@ export default function ViewPostContent({Post, SuggestData, userData}: Props){
             console.error('Error sharing:', error);
         }
     }
+
+    const handleDelete = async (Postid: String) => {
+        try {
+            await deleteDoc(doc(db, "posts", Postid as string));
+        }
+        catch (error) {
+            console.log('error', error);
+        }
+    } 
 
 
     return(
@@ -202,6 +214,13 @@ export default function ViewPostContent({Post, SuggestData, userData}: Props){
                                                 className="flex gap-1 w-full py-2 pl-3 hover:bg-[#00000076] cursor-pointer">
                                                 <FiShare2 className="text-2xl px-1" /> <p>Share</p>
                                             </Popover.Button>
+                                            {userid === Post.author && (
+                                                <Popover.Button
+                                                    onClick={(() => handleDelete(Post.id))}
+                                                    className="flex gap-1 w-full py-2 pl-3 hover:bg-[#00000076] cursor-pointer">
+                                                    <RiDeleteBinLine className="text-2xl px-1" /> <p>Delete Post</p>
+                                                </Popover.Button>
+                                            )}
                                         </div>
                                     </Popover.Panel>
                                 </Popover>
