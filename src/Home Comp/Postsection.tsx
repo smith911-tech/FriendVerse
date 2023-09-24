@@ -23,7 +23,6 @@ import { FiShare2 } from 'react-icons/fi'
 import { message } from 'antd';
 import { RiDeleteBinLine } from 'react-icons/ri'
 import { doc, deleteDoc } from "firebase/firestore";
-// import { ref, deleteObject } from "firebase/storage";
 
 export default function Postsection({SuggestData}: Props) {
     let userid = sessionStorage.getItem('UserId')
@@ -141,17 +140,11 @@ export default function Postsection({SuggestData}: Props) {
         }
     }
     const handleDelete = async (Postid: String) => {
-        // const path = `Posts/${Postid}`
-        // const storageRef = ref(storage, path);
-        // console.log(storageRef);
         try {
-            // await deleteOb(storageRef)
             await deleteDoc(doc(db, "posts", Postid as string));
         }
         catch(error) {
             console.log('error', error);
-        }
-        finally{
         }
     } 
     return(
