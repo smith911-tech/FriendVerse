@@ -29,7 +29,7 @@ export default function Postedarticle({ post }: Props) {
         event.preventDefault();
         event.stopPropagation();
     };
-    
+
     const renderArticleContent = (content: string) => {
         const urlRegex = /(https?:\/\/[^\s]+|www\.[^\s]+|(?!www\.)[^\s]+\.[^\s]+)/g;
         const parts = content.split(urlRegex);
@@ -71,7 +71,7 @@ export default function Postedarticle({ post }: Props) {
     return (
         <main>
             <article
-                className={`pt-2  px-2 
+                className={`pt-2  px-2 overflow-auto
                 ${window.location.pathname === '/Home'
                         ? (theme ? "hover:bg-[#ffffff0f] cursor-pointer" : "hover:bg-[#00000017] cursor-pointer")
                         : ""}`}

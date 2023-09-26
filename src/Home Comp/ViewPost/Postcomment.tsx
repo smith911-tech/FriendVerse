@@ -5,7 +5,7 @@ import { useThemeStore } from '../../Zustand';
 import TextareaAutosize from 'react-textarea-autosize';
 import { AiOutlineCamera, AiOutlineVideoCameraAdd } from 'react-icons/ai'
 import { BsEmojiSmile } from 'react-icons/bs'
-import { HiOutlineGif, HiOutlinePaperAirplane } from 'react-icons/hi2'
+import { HiOutlinePaperAirplane } from 'react-icons/hi2'
 import {useState} from 'react'
 import Picker from '@emoji-mart/react'
 import { FaXmark } from 'react-icons/fa6'
@@ -26,6 +26,8 @@ export default function PostComment({userData}: Props) {
     function handleShowEmoji(){
         setSelectEmoji(!selectEmoji)
     }
+    // const [UploadedVideo, setUploadedVideo] = useState<string>('')
+    // const [UploadedImage, setUploadedImage] = useState<string>('')
 
 
     return(
@@ -95,9 +97,6 @@ export default function PostComment({userData}: Props) {
                             </span>
                             <span className=" text-base cursor-pointer" title="Video">
                                 <AiOutlineVideoCameraAdd />
-                            </span>
-                            <span className=" text-base cursor-pointer" title="Gif">
-                                <HiOutlineGif />
                             </span>
                             </div>
                         <span 
