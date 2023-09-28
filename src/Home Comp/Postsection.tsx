@@ -23,6 +23,7 @@ import { FiShare2 } from 'react-icons/fi'
 import { message } from 'antd';
 import { RiDeleteBinLine } from 'react-icons/ri'
 import { doc, deleteDoc } from "firebase/firestore";
+import PostedYtLink from "./PostedContent/PostedYtLink"
 
 export default function Postsection({SuggestData}: Props) {
     let userid = sessionStorage.getItem('UserId')
@@ -255,6 +256,9 @@ export default function Postsection({SuggestData}: Props) {
                                             {post.video ? <PostedVideo post={post} /> : null}
                                             {post.Code ? <PostedCode post={post} /> : null}
                                             {post.images ? <PostedImages post={post} /> : null}
+                                            {!post.images && !post.Code && !post.video 
+                                            ? <PostedYtLink post={post}/> 
+                                            : null}
                                         </section>
                                         <Postedbtn post={post} Popover={Popover}/>
                                     </Popover>
