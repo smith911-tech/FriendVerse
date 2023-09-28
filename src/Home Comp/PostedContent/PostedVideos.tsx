@@ -29,7 +29,7 @@ export default function PostedVideo({ post }: Props) {
                 <div onClick={handleClick}>
                 <video controls className="w-full h-80 cursor-pointer" id="videoPlayer" preload="none" 
                         poster={theme 
-                        ? "https://yt3.ggpht.com/a/AATXAJypFMgOMCnYeUOFbdJ5vS3aWAPCfOLml0j07w=s900-c-k-c0xffffffff-no-rj-mo" 
+                            ? "https://th.bing.com/th/id/OIP.wpFEOTcv9Ou_cSrMEcaCdAHaHa?pid=ImgDet&rs=1" 
                         : "https://cdn.pixabay.com/photo/2016/11/18/11/17/youtube-1834016_1280.png"}>
                     <source src={post.video} type="video/mp4" />
                     Your browser does not support the video tag.
