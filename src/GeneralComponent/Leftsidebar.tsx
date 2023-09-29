@@ -72,7 +72,7 @@ export default function Dashboard({ userData, SuggestData }: Props): JSX.Element
     const formattedBio = userData && userData.bio ? replaceUrlsWithLinks(userData.bio) : null;
 
     const [sliceStart, setSliceStart] = useState(0);
-    const [sliceEnd, setSliceEnd] = useState(2); // Initialize with default value
+    const [sliceEnd, setSliceEnd] = useState(2); 
     useEffect(() => {
         const updateSliceRange = () => {
             const windowHeight = window.innerHeight;
@@ -94,9 +94,8 @@ export default function Dashboard({ userData, SuggestData }: Props): JSX.Element
                 setSliceEnd(7);
             } else {
                 // Handle the case when windowHeight is greater than 1100
-                // You can set your desired values here.
                 setSliceStart(0);
-                setSliceEnd(7); // Update with your desired values
+                setSliceEnd(7); 
             }
         };
 

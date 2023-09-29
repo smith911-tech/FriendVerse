@@ -23,8 +23,48 @@ export default function ProfileLeftbar({ SuggestData }: Props): JSX.Element {
         setShuffledData(shuffled);
     }, [SuggestData]);
 
-    return (
+    const [sliceStart, setSliceStart] = useState(0);
+    const [sliceEnd, setSliceEnd] = useState(8); 
+    useEffect(() => {
+        const updateSliceRange = () => {
+            const windowHeight = window.innerHeight;
 
+            if (windowHeight <= 700) {
+                setSliceStart(0);
+                setSliceEnd(8);
+            } else if (windowHeight <= 750) {
+                setSliceStart(0);
+                setSliceEnd(9);
+            } else if (windowHeight <= 850) {
+                setSliceStart(0);
+                setSliceEnd(10);
+            } else if (windowHeight <= 900) {
+                setSliceStart(0);
+                setSliceEnd(11);
+            } else if (windowHeight <= 1100) {
+                setSliceStart(0);
+                setSliceEnd(12);
+            } else {
+                // Handle the case when windowHeight is greater than 1100
+                setSliceStart(0);
+                setSliceEnd(7);
+            }
+        };
+
+        // Initial update
+        updateSliceRange();
+
+        // Listen for window resize events and update the slice range
+        window.addEventListener('resize', updateSliceRange);
+
+        // Cleanup the event listener when the component unmounts
+        return () => {
+            window.removeEventListener('resize', updateSliceRange);
+        };
+    }, []);
+
+
+    return (
         <main className="md970:block hidden font-Inter pt-2 px-2">
             <section >
                 {SuggestData.length === 0 ? (
@@ -45,7 +85,7 @@ export default function ProfileLeftbar({ SuggestData }: Props): JSX.Element {
                             <h2 className="font-extrabold">Suggestions</h2>
                             <span className="text-[#117dd5]"><GoTelescopeFill /></span>
                         </div>
-                        {shuffledData.filter((data: any) => data.id !== userid).slice(0, 8).map((data: any) => (
+                        {shuffledData.filter((data: any) => data.id !== userid).slice(sliceStart, sliceEnd).map((data: any) => (
                             <Link to={`/User/${data.username}`} key={data.id}>
                             <div
                                     key={data.id}
