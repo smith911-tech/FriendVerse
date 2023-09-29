@@ -55,7 +55,7 @@ export default function PostedYtLink({ post }: Props) {
                             effect="blur"
                             src={youtubeData.thumbnail_url}
                             alt="YouTube Thumbnail"
-                        className=" w-[100vw] h-[360px] object-cover smm500:h-[240px]"
+                        className=" md800:w-[55vw] h-[360px] object-cover smm500:h-[240px] w-[95vw] "
                         />
                     <div className={`px-2 mx-[1px] py-1 ${theme ? "bg-[#1b1d21] " : "bg-[#f0f2f5]"}`}>
                         <p className=" text-base smm500:text-sm">{youtubeData.provider_url}</p>
