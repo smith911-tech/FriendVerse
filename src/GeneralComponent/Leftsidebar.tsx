@@ -95,7 +95,7 @@ export default function Dashboard({ userData, SuggestData }: Props): JSX.Element
             } else {
                 // Handle the case when windowHeight is greater than 1100
                 setSliceStart(0);
-                setSliceEnd(7); 
+                setSliceEnd(9); 
             }
         };
 
