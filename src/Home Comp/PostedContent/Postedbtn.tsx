@@ -107,7 +107,7 @@ export default function Postedbtn({post, Popover}: Props) {
         <main ref={RefDoc} className="mt-3 px-3">
             <section>
             <div className={`
-            ${LikesCount === 0 && impressionCount === 0 ? "hidden" : "flex mb-1 justify-between"}
+            ${LikesCount === 0 && impressionCount === 0 && matchingRepostsCount === 0 ? "hidden" : "flex mb-1 justify-between"}
             `}>
                     <Popover.Button title='Likes' 
                     className={`flex hover:underline cursor-pointer 
