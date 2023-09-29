@@ -19,6 +19,7 @@ import { VscVerifiedFilled } from 'react-icons/vsc'
 import { RotatingLines } from "react-loader-spinner";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useInViewport } from 'react-in-viewport';
+import { BiRepost } from 'react-icons/bi'
 export default function Postedbtn({post, Popover}: Props) {
     //? uid
     let userid = sessionStorage.getItem('UserId')
@@ -93,15 +94,18 @@ export default function Postedbtn({post, Popover}: Props) {
         return repost.PostId === post.id;
     });
 
-    // Get the length of matching reposts
-    const matchingRepostsCount = matchingReposts.length;
-    console.log(matchingRepostsCount);
-    
+
+    let Repostcount
+    const matchingRepostsCount = matchingReposts?.length || 0;
+    if (matchingRepostsCount > 999) {
+        Repostcount = (matchingRepostsCount / 1000).toFixed(1) + 'k';
+    } else {
+        Repostcount = matchingRepostsCount.toString();
+    }
 
     return (
         <main ref={RefDoc} className="mt-3 px-3">
             <section>
-                {matchingRepostsCount}
             <div className={`
             ${LikesCount === 0 && impressionCount === 0 ? "hidden" : "flex mb-1 justify-between"}
             `}>
@@ -116,15 +120,26 @@ export default function Postedbtn({post, Popover}: Props) {
                         `}>{Likes}
                         </span>
                     </Popover.Button>
-                    <span title='Impression' className={`flex hover:underline cursor-pointer 
+                    <main className='flex  gap-2'>
+                        <span title='Reposts' className={`flex hover:underline cursor-pointer 
+                        ${matchingRepostsCount > 0 ? " visible" : " invisible"}`}>
+                            <button className=' rounded-2xl  pt-[2.3px] text-lg'>
+                                <BiRepost />
+                            </button>
+                            <span className={` text-xs mt-1 
+                        ${theme ? "text-[#ffffffa2]" : "text-[#000000a6]"}
+                        `}>{Repostcount}</span>
+                        </span>
+                        <span title='Impression' className={`flex hover:underline cursor-pointer 
                         ${impressionCount > 0 ? " visible" : " invisible"}`}>
-                        <button className=' rounded-2xl  p-[2px]'>
-                            <TbBrandGoogleAnalytics />
-                        </button>
-                        <span className={` text-xs ml-[1px] mt-1 
+                            <button className=' rounded-2xl  p-[2px]'>
+                                <TbBrandGoogleAnalytics />
+                            </button>
+                            <span className={` text-xs ml-[1px] mt-1 
                         ${theme ? "text-[#ffffffa2]" : "text-[#000000a6]"}
                         `}>{impression}</span>
-                    </span>
+                        </span>
+                    </main>
             </div>
             <hr />
             </section>
