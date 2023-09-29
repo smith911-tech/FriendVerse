@@ -26,6 +26,7 @@ export default function Postedbtn({post, Popover}: Props) {
     const [likes, setlikes] = useState<any[]>([]);
     const [impressionData, setImpressionData] = useState<any[]>([]);
     const [SuggestData, setSuggestData] = useState<any[]>([]);
+    const [repostData, setRepostData] = useState<any[]>([])
     useEffect(() => {
         const handleSnapshot = (snapshot: any) => {
             const data = snapshot.docs.map((doc: any) => ({ ...doc.data(), id: doc.id }));
@@ -39,13 +40,19 @@ export default function Postedbtn({post, Popover}: Props) {
             const data = snapshot.docs.map((doc: any) => ({ ...doc.data(), id: doc.id }));
             setImpressionData(data);
         };
+        const handleRepost = (snapshot: any) => {
+            const data = snapshot.docs.map((doc: any) => ({ ...doc.data(), id: doc.id }));
+            setRepostData(data);
+        };
         const unsubscribe = onSnapshot(collection(db, "posts",  post.id, 'Likes'), handleSnapshot);
         const unsubscribed = onSnapshot(collection(db, "users"), handleSnapshoted);
         const unsubscribImpression = onSnapshot(collection(db, "posts", post.id, 'Impression'), handleImpression);
+        const unsubscribRepost = onSnapshot(collection(db, "Repost",), handleRepost);
         return () => {
             unsubscribe();
             unsubscribed();
             unsubscribImpression();
+            unsubscribRepost()
         };
     }, []);
     
@@ -82,9 +89,19 @@ export default function Postedbtn({post, Popover}: Props) {
         impression = impressionCount.toString();
     }
 
+    const matchingReposts = repostData.filter((repost) => {
+        return repost.PostId === post.id;
+    });
+
+    // Get the length of matching reposts
+    const matchingRepostsCount = matchingReposts.length;
+    console.log(matchingRepostsCount);
+    
+
     return (
         <main ref={RefDoc} className="mt-3 px-3">
             <section>
+                {matchingRepostsCount}
             <div className={`
             ${LikesCount === 0 && impressionCount === 0 ? "hidden" : "flex mb-1 justify-between"}
             `}>

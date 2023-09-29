@@ -5,7 +5,7 @@ export default {
   theme: {
         screens: {
       "sm650": {"max": "650px"},
-      // => (max-width: 733px) { ... }
+      // => (max-width: 650px) { ... }
 
       "smm500": {"max": "500px"},
       // => (max-width: 733px) { ... }
