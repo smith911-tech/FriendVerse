@@ -80,7 +80,7 @@ export default function Dashboard({ userData, SuggestData }: Props): JSX.Element
             if (windowHeight <= 700) {
                 setSliceStart(0);
                 setSliceEnd(2);
-            } else if (windowHeight <= 750) {
+            } else if (windowHeight <= 800) {
                 setSliceStart(0);
                 setSliceEnd(3);
             } else if (windowHeight <= 850) {
