@@ -51,7 +51,7 @@ export default function UserProfile({
         <main>
         <section className='relative'>
                 {userData ? (
-                    <section className={`w-full flex flex-col justify-center 
+                    <section className={`w-full  flex flex-col justify-center 
                     ${theme ? "bg-black text-white" : "bg-white text-black"}`}>
                         <section className={`flex justify-between px-2 py-2 smm500:px-1 sticky top-16 z-[50] ${theme ? "bg-black" : "bg-white "}`}>
                             <Link to='/Home'>

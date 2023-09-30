@@ -14,10 +14,10 @@ export function UserCoverImg({ userData, handleCloseModal, showCmodal }: Props) 
     useEffect(() => {
         if (showCmodal) {
             // Add the 'overflow-hidden' class to the body when the modal is shown
-            document.body.classList.add('overflow-hidden');
+            document.body.style.overflow = 'hidden'; 
         } else {
             // Remove the 'overflow-hidden' class from the body when the modal is hidden
-            document.body.classList.remove('overflow-hidden');
+            document.body.style.overflow = 'auto';
         }
     }, [showCmodal]);
     return(

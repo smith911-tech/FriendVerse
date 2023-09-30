@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import { BiSolidUserCircle } from 'react-icons/bi'
 import { useThemeStore } from '../../Zustand';
 import TextareaAutosize from 'react-textarea-autosize';
-import { AiOutlineCamera, AiOutlineVideoCameraAdd } from 'react-icons/ai'
-import { BsEmojiSmile } from 'react-icons/bs'
+import { RiEmojiStickerFill } from 'react-icons/ri'
 import { HiOutlinePaperAirplane } from 'react-icons/hi2'
 import {useState} from 'react'
 import Picker from '@emoji-mart/react'
@@ -26,8 +25,6 @@ export default function PostComment({userData}: Props) {
     function handleShowEmoji(){
         setSelectEmoji(!selectEmoji)
     }
-    // const [UploadedVideo, setUploadedVideo] = useState<string>('')
-    // const [UploadedImage, setUploadedImage] = useState<string>('')
 
 
     return(
@@ -90,13 +87,7 @@ export default function PostComment({userData}: Props) {
                         ${theme ? " text-[#ffffffa5]" : " text-[#000000ab]"}`}>
                             <span className=" text-base cursor-pointer" title="Emoji" 
                             onClick={handleShowEmoji}>
-                                <BsEmojiSmile />
-                            </span>
-                            <span className=" text-base cursor-pointer" title="Gallery">
-                                <AiOutlineCamera />
-                            </span>
-                            <span className=" text-base cursor-pointer" title="Video">
-                                <AiOutlineVideoCameraAdd />
+                                <RiEmojiStickerFill />
                             </span>
                             </div>
                         <span 

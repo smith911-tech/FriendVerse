@@ -29,7 +29,7 @@ export function OtherUserCover({ data, handleCloseModal, showCmodal }: Props) {
                 >
                     <div className="fixed w-full top-20 z-[40] left-0 select-none" onClick={(e) => e.stopPropagation()}>
                         <LazyLoadImage
-                                    effect="blur"
+                            effect="blur"
                             src={data.coverImage}
                             alt="Cover"
                             className="object-contain top-0 h-[60vh] w-screen"
