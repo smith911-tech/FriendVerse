@@ -118,6 +118,9 @@ export default function Postsection({SuggestData}: Props) {
     const CopySuccessful = () => {
         message.success('Copied');
     };
+    const DeleteSuccessful = () => {
+        message.success('Post Deleted');
+    };
 
 
     const handleCopyClick = (id: string) => {
@@ -143,6 +146,7 @@ export default function Postsection({SuggestData}: Props) {
     const handleDelete = async (Postid: String) => {
         try {
             await deleteDoc(doc(db, "posts", Postid as string));
+            DeleteSuccessful()
         }
         catch(error) {
             console.log('error', error);
