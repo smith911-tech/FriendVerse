@@ -158,3 +158,11 @@ input::-webkit-calendar-picker-indicator {
 .codescroll::-webkit-scrollbar-thumb:hover {
   background-color: #555;
 }
+
+/* ! Page not found  */
+.pagenotfound .ant-result-title{
+  color: rgba(255, 255, 255, 0.672) !important;
+}
+.pagenotfound .ant-result-subtitle {
+  color: rgba(255, 255, 255, 0.672) !important;
+}

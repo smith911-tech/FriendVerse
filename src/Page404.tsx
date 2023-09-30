@@ -1,24 +1,22 @@
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate} from 'react-router-dom'
 import { useEffect } from 'react'
+import { Button, Result } from 'antd';
 export default function Page404(){
   useEffect(() => {
       navigate('/Wrong-Link')
   }, [])
   const navigate = useNavigate()
+  const handleBackHome = () => {
+    navigate('/Home')
+  }
     return(
-      <div className="flex items-center justify-center h-screen bg-gray-900 text-white">
-        <div className="p-8 bg-gray-800 shadow-lg rounded-lg text-center">
-          <h1 className="text-4xl font-bold mb-4">404 - Page Not Found</h1>
-          <p className="text-lg mb-6">
-            The page you're looking for could not be found. Please check the URL and try again.
-          </p>
-          <Link
-            to="/Home"
-            className="text-blue-400 hover:underline bg-gray-700 py-2 px-6 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-md"
-          >
-            Back to Home
-          </Link>
-        </div>
+      <div className='bg-[#111827] h-[120vh] text-[#ffffffc1] pt-15 pagenotfound'>
+      <Result
+        status="404"
+        title="404"
+        subTitle="Sorry, the page you visited does not exist."
+        extra={<Button onClick={handleBackHome} type="primary">Back Home</Button>}
+      />
       </div>
     )
 }
