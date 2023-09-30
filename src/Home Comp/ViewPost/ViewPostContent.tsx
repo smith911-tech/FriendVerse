@@ -111,7 +111,7 @@ export default function ViewPostContent({Post, SuggestData, userData}: Props){
                 text: 'Check out this awesome content!',
                 url: `/Post/${id}`,
             });
-        } catch (error) {
+        } catch (error) { 
             console.error('Error sharing:', error);
         }
     }

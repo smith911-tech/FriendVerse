@@ -128,7 +128,7 @@ export default function ViewPost() {
                         SuggestData={SuggestData}
                         userData={userData}
                     />
-                </section>
+                </section>  
             </article>
             <footer onClick={handleBodyClick} >
                 <ButtomNav />
