@@ -64,10 +64,9 @@ export default function Postedarticle({ post }: Props) {
         });
     };
 
-
-
     //! Theme Mode
     const theme = useThemeStore((state: any) => state.theme);
+
     return (
         <main>
             <article

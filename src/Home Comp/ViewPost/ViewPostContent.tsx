@@ -25,6 +25,7 @@ import { message } from 'antd';
 import { doc, deleteDoc } from "firebase/firestore";
 import { RiDeleteBinLine } from 'react-icons/ri'
 import { db } from '../../firebase-config'
+import PostedYtLink from ".././PostedContent/PostedYtLink"
 
 export default function ViewPostContent({Post, SuggestData, userData}: Props){
     let userid = sessionStorage.getItem('UserId')
@@ -90,8 +91,9 @@ export default function ViewPostContent({Post, SuggestData, userData}: Props){
     const CopySuccessful = () => {
         message.success('Copied');
     };
-
-
+    const DeleteSuccessful = () => {
+        message.success('Post Deleted');
+    };
 
     const handleCopyClick = (id: string) => {
         CopySuccessful()
@@ -117,6 +119,8 @@ export default function ViewPostContent({Post, SuggestData, userData}: Props){
     const handleDelete = async (Postid: String) => {
         try {
             await deleteDoc(doc(db, "posts", Postid as string));
+            DeleteSuccessful()
+            navigate('/Home')
         }
         catch (error) {
             console.log('error', error);
@@ -135,11 +139,6 @@ export default function ViewPostContent({Post, SuggestData, userData}: Props){
                 </span>
                 <p className=' font-medium text-xl select-none'>Post</p>
             </header>
-            {authorData && (
-                <article>
-
-                </article>
-            )}
             {isLoading ? (
                 <div className='flex justify-center mt-4'>
                     <Oval
@@ -156,7 +155,7 @@ export default function ViewPostContent({Post, SuggestData, userData}: Props){
                     />
                 </div>
             ) : (
-                Post && (
+                Post && authorData && (
                     <Popover className={`py-3 rounded-md mb-4 ${theme ? "bg-black text-[#ffff]" : "bg-white text-[#000000]"}`} key={Post.id}>
                         <main className="flex px-2 justify-between">
                             <aside className="flex">
@@ -230,6 +229,9 @@ export default function ViewPostContent({Post, SuggestData, userData}: Props){
                             {Post.video ? <PostedVideo post={Post} /> : null}
                             {Post.Code ? <PostedCode post={Post} /> : null}
                             {Post.images ? <PostedImages post={Post} /> : null}
+                            {!Post.images && !Post.Code && !Post.video 
+                                            ? <PostedYtLink post={Post}/> 
+                                            : null}
                         </section>
                         <Postedbtn post={Post} Popover={Popover}/>
                         <PostComment userData={userData} />

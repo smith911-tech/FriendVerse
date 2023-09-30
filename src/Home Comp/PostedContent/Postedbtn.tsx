@@ -28,6 +28,7 @@ export default function Postedbtn({post, Popover}: Props) {
     const [impressionData, setImpressionData] = useState<any[]>([]);
     const [SuggestData, setSuggestData] = useState<any[]>([]);
     const [repostData, setRepostData] = useState<any[]>([])
+    const [IsEqualToPath, setIsEqualToPath] = useState(false);
     useEffect(() => {
         const handleSnapshot = (snapshot: any) => {
             const data = snapshot.docs.map((doc: any) => ({ ...doc.data(), id: doc.id }));
@@ -103,6 +104,16 @@ export default function Postedbtn({post, Popover}: Props) {
         Repostcount = matchingRepostsCount.toString();
     }
 
+    const pathToCompare = `/Post/${post.id}`
+    const currentPath = window.location.pathname;
+    useEffect(() => {
+        if (currentPath === pathToCompare) {
+            setIsEqualToPath(true);
+        } else {
+            setIsEqualToPath(false); // Reset to false if they don't match
+        }
+    }, [currentPath, pathToCompare]);
+
     return (
         <main ref={RefDoc} className="mt-3 px-3">
             <section>
@@ -110,9 +121,9 @@ export default function Postedbtn({post, Popover}: Props) {
             ${LikesCount === 0 && impressionCount === 0 && matchingRepostsCount === 0 ? "hidden" : "flex mb-1 justify-between"}
             `}>
                     <Popover.Button title='Likes' 
-                    className={`flex hover:underline cursor-pointer 
+                    className={`flex hover:underline cursor-pointer select-none 
                     ${LikesCount > 0 ? " visible" : " invisible"}`}>
-                        <button className='text-white text-base bg-blue-600 rounded-2xl -rotate-12 p-[2px]'>
+                        <button className='text-white text-base bg-blue-600 rounded-2xl -rotate-12 p-[2px] select-none'>
                             <AiTwotoneLike />
                         </button>
                         <span className={` text-xs ml-[1px] mt-1 
@@ -149,7 +160,8 @@ export default function Postedbtn({post, Popover}: Props) {
                 <Commentbutton post={post}/>
                 <Sharebutton post={post} />
             </article>
-            <Popover.Panel className={` absolute z-10 top-0 h-full w-full -ml-2 overflow-auto rounded-2xl ${theme ? "bg-black text-[#ffff]" : "bg-white text-[#000000]"}`}>
+            <Popover.Panel className={` z-10 -ml-2 overflow-auto ${theme ? "bg-black text-[#ffff]" : "bg-white text-[#000000]"}
+            ${IsEqualToPath ? "fixed top-[120px] lg1150:w-[53%] h-[60%] md800:w-[58%] w-[94%]" : "absolute w-full top-0 rounded-2xl h-full"}`}>
                 <header className='flex justify-between px-3 py-3'>
                     <h2 className=' text-lg'>Reactions</h2> 
                     <Popover.Button>
