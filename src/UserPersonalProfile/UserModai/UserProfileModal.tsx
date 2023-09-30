@@ -14,10 +14,10 @@ export function UserCoverImg({ userData, handleCloseModal, showCmodal }: Props) 
     useEffect(() => {
         if (showCmodal) {
             // Add the 'overflow-hidden' class to the body when the modal is shown
-            document.body.classList.add('overflow-hidden');
+            document.body.style.overflow = 'hidden'; 
         } else {
             // Remove the 'overflow-hidden' class from the body when the modal is hidden
-            document.body.classList.remove('overflow-hidden');
+            document.body.style.overflow = 'auto';
         }
     }, [showCmodal]);
     return(
@@ -25,7 +25,7 @@ export function UserCoverImg({ userData, handleCloseModal, showCmodal }: Props) 
             {showCmodal && (
                 <div
                     onClick={handleCloseModal}
-                    className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
+                    className="fixed inset-0  bg-black bg-opacity-75 flex items-center justify-center z-50 "
                 >
                     <div className="fixed w-full top-20 z-[40] left-0 select-none" onClick={(e) => e.stopPropagation()}>
                             <LazyLoadImage
