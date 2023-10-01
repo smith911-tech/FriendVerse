@@ -267,12 +267,15 @@ export default function PostController({
     const [disableBtn, setDisableBtn] = useState<boolean>(false)
     useEffect(() => {
         // Check the conditions and update disableBtn accordingly
-        if (inputValue === "" && codeInput === "" && UploadedVideo === "" && uploadedImages.length === 0) {
+        const trimmedInputValue = inputValue.trim(); // Trim the input value
+
+        if (trimmedInputValue === "" && codeInput === "" && UploadedVideo === "" && uploadedImages.length === 0) {
             setDisableBtn(true);
         } else {
             setDisableBtn(false);
         }
     }, [inputValue, codeInput, UploadedVideo, uploadedImages]);
+
 
     return(
         <>
@@ -424,7 +427,8 @@ export default function PostController({
                             </label>
                         </div>
                     </section>
-                    <button onClick={handlePost} disabled={disableBtn} 
+                    <button disabled={disableBtn || Loading}
+                        onClick={!Loading ? handlePost : undefined}
                         className={`my-3 text-center w-full py-[6px] bg-[#3b82f6] text-white text-xl font-medium  smm500:py-1 smm500:text-lg select-none  
                     ${disableBtn ? " brightness-75 cursor-not-allowed" : ""}`}>Post</button>
                     {uploadProgress > 0 && (
