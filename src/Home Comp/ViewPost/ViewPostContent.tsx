@@ -26,6 +26,7 @@ import { doc, deleteDoc } from "firebase/firestore";
 import { RiDeleteBinLine } from 'react-icons/ri'
 import { db } from '../../firebase-config'
 import PostedYtLink from ".././PostedContent/PostedYtLink"
+import PostNotAvaliable from '../../GeneralComponent/PostNotAvailable';
 
 export default function ViewPostContent({Post, SuggestData, userData}: Props){
     let userid = sessionStorage.getItem('UserId')
@@ -86,6 +87,11 @@ export default function ViewPostContent({Post, SuggestData, userData}: Props){
         if (SuggestData && Post && userData) {
             setIsLoading(false);
         }
+        else{
+            setTimeout(() => {
+                setIsLoading(false)
+            }, 3000)
+        }
     }, [SuggestData, Post, userData]);;
 
     const CopySuccessful = () => {
@@ -127,7 +133,6 @@ export default function ViewPostContent({Post, SuggestData, userData}: Props){
         }
     } 
 
-
     return(
         <main className=' pb-14 relative w-full'>
             <header className={`
@@ -155,7 +160,7 @@ export default function ViewPostContent({Post, SuggestData, userData}: Props){
                     />
                 </div>
             ) : (
-                Post && authorData && (
+                Post && authorData ? (
                     <Popover className={`py-3 rounded-md mb-4 ${theme ? "bg-black text-[#ffff]" : "bg-white text-[#000000]"}`} key={Post.id}>
                         <main className="flex px-2 justify-between">
                             <aside className="flex">
@@ -229,13 +234,13 @@ export default function ViewPostContent({Post, SuggestData, userData}: Props){
                             {Post.video ? <PostedVideo post={Post} /> : null}
                             {Post.Code ? <PostedCode post={Post} /> : null}
                             {Post.images ? <PostedImages post={Post} /> : null}
-                            {!Post.images && !Post.Code && !Post.video 
-                                            ? <PostedYtLink post={Post}/> 
-                                            : null}
+                            {!Post.images && !Post.Code && !Post.video ? <PostedYtLink post={Post}/> : null}
                         </section>
                         <Postedbtn post={Post} Popover={Popover}/>
-                        <PostComment userData={userData} />
+                        <PostComment userData={userData} post={Post}/>
                     </Popover>
+                ): (
+                    <PostNotAvaliable />
                 )
             )}
         </main>

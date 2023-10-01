@@ -5,18 +5,24 @@ import { useThemeStore } from '../../Zustand';
 import TextareaAutosize from 'react-textarea-autosize';
 import { RiEmojiStickerFill } from 'react-icons/ri'
 import { HiOutlinePaperAirplane } from 'react-icons/hi2'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import Picker from '@emoji-mart/react'
 import { FaXmark } from 'react-icons/fa6'
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../../firebase-config";
+import { RotatingLines } from "react-loader-spinner";
 
 interface Props{
     userData : any
+    post: any
 }
-export default function PostComment({userData}: Props) {
+export default function PostComment({userData, post}: Props) {
     //! Theme Mode
     const theme = useThemeStore((state: any) => state.theme);
     const [inputValue, setInputValue] = useState<string>('');
-    const [selectEmoji, setSelectEmoji] = useState(false)
+    const [selectEmoji, setSelectEmoji] = useState<boolean>(false)
+    const [loading, setLoading] = useState<boolean>(false)
+    const [disableBtn, setDisableBtn] = useState<boolean>(false)
 
     function handleEmojiClick(emoji: any) {
         const newInputValue = inputValue + emoji.native;
@@ -24,6 +30,39 @@ export default function PostComment({userData}: Props) {
     };
     function handleShowEmoji(){
         setSelectEmoji(!selectEmoji)
+    }
+    // ! getting the userid from the local storage 
+    let userid = sessionStorage.getItem('UserId')
+
+    useEffect(() => {
+        const trimmedInputValue = inputValue.trim();
+        if (trimmedInputValue === "") {
+            setDisableBtn(true);
+        } else {
+            setDisableBtn(false);
+        }
+    }, [inputValue])
+
+    const handleComment = async () => {
+        setLoading(true)
+        console.log("comment");
+        
+        try{
+            await addDoc(collection(db, 'Comment'), {
+                author: userid as string,
+                PostId: post.id,
+                Comment: inputValue,
+                time: new Date(),
+            });
+            setInputValue("")
+        }
+        catch(error){
+            console.error('Error occurred while handling the post:', error);
+            setLoading(false)
+        }
+        finally{
+            setLoading(false)
+        }
     }
 
 
@@ -65,7 +104,7 @@ export default function PostComment({userData}: Props) {
                         <header className="  bg-[#151617] absolute top-52 py-3 z-50 smm500:w-[80%]">
                             <section className="flex justify-between px-2">
                                 <p>Emoji</p>
-                                <FaXmark className=' text-xl cursor-pointer' onClick={handleShowEmoji} />
+                                <FaXmark className='text-xl cursor-pointer text-[#ffffffc9]' onClick={handleShowEmoji} />
                             </section>
                             <main className='  overflow-y-hidden h-60 '>
                                 <Picker
@@ -90,9 +129,25 @@ export default function PostComment({userData}: Props) {
                                 <RiEmojiStickerFill />
                             </span>
                             </div>
-                        <span 
-                        className={` cursor-pointer text-xl ${theme ? "text-[#ffffffa5]" : "text-[#000000ab]"}`} title="Comment">
-                            <HiOutlinePaperAirplane /></span>
+                        <button
+                            disabled={disableBtn || loading} // Disable the button when disableBtn is true or loading is true
+                            onClick={!loading ? handleComment : undefined} // Only trigger handleComment when loading is false
+                            className={` ${disableBtn || loading
+                                ? " cursor-not-allowed"
+                                : " cursor-pointer"} select-none  text-xl 
+                            ${theme ? "text-[#ffffffa5]" : "text-[#000000ab]"}`} title="Comment">
+                            {!loading ? (
+                                <HiOutlinePaperAirplane />
+                            ) : (
+                                <RotatingLines
+                                    strokeColor="grey"
+                                    strokeWidth="5"
+                                    animationDuration="0.75"
+                                    width="20"
+                                    visible={true}
+                                />
+                            )}
+                        </button>
                         </article>
                 </div>
             </section>
