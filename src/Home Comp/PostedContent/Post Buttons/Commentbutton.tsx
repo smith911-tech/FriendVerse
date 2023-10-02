@@ -15,7 +15,7 @@ export default function Commentbutton({post}: Props) {
         }
     }
     return(
-        <button onClick={() => handleViewPost(post && post.id)} className={`flex mt-1 w-[33%] justify-center py-[7px] rounded gap-1 
+        <button onClick={() => handleViewPost(post && post.id)} className={`flex mt-1 w-[33%] justify-center py-[7px] rounded gap-1  outline-none
                 ${theme ? "hover:bg-[#ffffff3c]" : "hover:bg-[#0000004f]"}`}>
             <span className={`text-2xl  ${theme ? "text-[#ffffffd3]" : "text-[#00000087]"} `}>
                 <TbMessage />

@@ -11,12 +11,14 @@ import { FaXmark } from 'react-icons/fa6'
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../firebase-config";
 import { RotatingLines } from "react-loader-spinner";
+import CommentPop from '../../assets/PostNotify.mp3'
 
 interface Props{
     userData : any
     post: any
 }
 export default function PostComment({userData, post}: Props) {
+    const [soundComment] = useState(new Audio(CommentPop));
     //! Theme Mode
     const theme = useThemeStore((state: any) => state.theme);
     const [inputValue, setInputValue] = useState<string>('');
@@ -45,8 +47,6 @@ export default function PostComment({userData, post}: Props) {
 
     const handleComment = async () => {
         setLoading(true)
-        console.log("comment");
-        
         try{
             await addDoc(collection(db, 'Comment'), {
                 author: userid as string,
@@ -61,6 +61,7 @@ export default function PostComment({userData, post}: Props) {
             setLoading(false)
         }
         finally{
+            soundComment.play()
             setLoading(false)
         }
     }
@@ -118,7 +119,7 @@ export default function PostComment({userData, post}: Props) {
                         className={`w-full px-4 text-lg rounded-xl outline-none pt-2 placeholder:select-none ${theme ? "bg-[#1b1d21]" : "bg-[#f0f2f5]"}`}
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
-                        maxLength={200}
+                        maxLength={500}
                         placeholder='Write a comment' 
                         />
                         <article className="flex justify-between px-4 pt-2">

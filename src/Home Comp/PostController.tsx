@@ -23,10 +23,12 @@ import { Oval } from "react-loader-spinner";
 import { message} from 'antd';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import PostPop from '../assets/PostNotify.mp3'
 
 export default function PostController({
     handleBodyClick, 
     isInputClicked, userData}: Props){
+    const [soundPost] = useState(new Audio(PostPop));
     const firstName = userData?.fullName?.split(' ')[0] ?? 'Loading....';
     const inputRef = useRef<HTMLTextAreaElement>(null);
     const [inputValue, setInputValue] = useState<string>('')
@@ -258,6 +260,7 @@ export default function PostController({
             setLoading(false)
         }
         finally {
+            soundPost.play()
             handleBodyClick()
             setUploadProgress(0);
             setLoading(false)

@@ -247,7 +247,7 @@ export default function Postsection({SuggestData}: Props) {
                                                         {userid === post.author && (
                                                             <Popover.Button 
                                                                 onClick={(() => handleDelete(post.id))}
-                                                                className="flex gap-1 w-full py-2 pl-3 hover:bg-[#00000076] cursor-pointer">
+                                                                className="flex gap-1 w-full py-2 pl-3 hover:bg-[#00000076] cursor-pointer text-red-700">
                                                                 <RiDeleteBinLine className="text-2xl px-1" /> <p>Delete Post</p>
                                                             </Popover.Button>
                                                         )}
