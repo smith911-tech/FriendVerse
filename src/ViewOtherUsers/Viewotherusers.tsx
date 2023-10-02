@@ -22,18 +22,22 @@ export default function ViewOtherUsers() {
     }, [navigate, userid]);
 
 
-    // ! fetching personal userdata 
-    const [userData, setUserData] = useState<any>(null);
+    const cachedUserData = localStorage.getItem("userData");
+    const [userData, setUserData] = useState<any>(
+        cachedUserData ? JSON.parse(cachedUserData) : null
+    );
+
 
     // ! data fetched
-
     useEffect(() => {
         if (userid) {
             const userRef = doc(collection(db, "users"), userid as string);
-            const handleSnapshot = (snapshot: { exists: () => any; data: () => any; }) => {
+            const handleSnapshot = (snapshot: { exists: () => any; data: () => any }) => {
                 if (snapshot.exists()) {
                     const data = snapshot.data();
                     setUserData(data);
+                    // Cache user data in localStorage
+                    localStorage.setItem("userData", JSON.stringify(data));
                 } else {
                     setUserData(null);
                 }
@@ -43,17 +47,21 @@ export default function ViewOtherUsers() {
                 unsubscribe();
             };
         }
-    }, []);
-
-
+    }, [userid]);
     //! states
-    const [SuggestData, setSuggestData] = useState<any[]>([]);
+    const cachedSuggestData = localStorage.getItem("suggestData");
+    const [SuggestData, setSuggestData] = useState<any[]>(
+        cachedSuggestData ? JSON.parse(cachedSuggestData) : []
+    );
+
 
     // !suggestions user data
     useEffect(() => {
         const handleSnapshot = (snapshot: any) => {
             const data = snapshot.docs.map((doc: any) => ({ ...doc.data(), id: doc.id }));
             setSuggestData(data);
+            // Cache suggestion data in localStorage
+            localStorage.setItem("suggestData", JSON.stringify(data));
         };
         const unsubscribe = onSnapshot(collection(db, "users"), handleSnapshot);
         return () => {

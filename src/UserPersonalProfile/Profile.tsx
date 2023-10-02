@@ -20,21 +20,24 @@ export default function userPersonalProfile() {
         }
     }, [])
 
+    const cachedUserData = localStorage.getItem("userData");
+    const [userData, setUserData] = useState<any>(
+        cachedUserData ? JSON.parse(cachedUserData) : null
+    );
 
-    // ! fetching personal userdata 
-    const [userData, setUserData] = useState<any>(null);
 
     // ! data fetched
-
     useEffect(() => {
         if (userid) {
             const userRef = doc(collection(db, "users"), userid as string);
-            const handleSnapshot = (snapshot: { exists: () => any; data: () => any; }) => {
+            const handleSnapshot = (snapshot: { exists: () => any; data: () => any }) => {
                 if (snapshot.exists()) {
                     const data = snapshot.data();
-                    setUserData(data); 
+                    setUserData(data);
+                    // Cache user data in localStorage
+                    localStorage.setItem("userData", JSON.stringify(data));
                 } else {
-                    setUserData(null); 
+                    setUserData(null);
                 }
             };
             const unsubscribe = onSnapshot(userRef, handleSnapshot);
@@ -42,6 +45,26 @@ export default function userPersonalProfile() {
                 unsubscribe();
             };
         }
+    }, [userid]);
+    //! states
+    const cachedSuggestData = localStorage.getItem("suggestData");
+    const [SuggestData, setSuggestData] = useState<any[]>(
+        cachedSuggestData ? JSON.parse(cachedSuggestData) : []
+    );
+
+
+    // !suggestions user data
+    useEffect(() => {
+        const handleSnapshot = (snapshot: any) => {
+            const data = snapshot.docs.map((doc: any) => ({ ...doc.data(), id: doc.id }));
+            setSuggestData(data);
+            // Cache suggestion data in localStorage
+            localStorage.setItem("suggestData", JSON.stringify(data));
+        };
+        const unsubscribe = onSnapshot(collection(db, "users"), handleSnapshot);
+        return () => {
+            unsubscribe();
+        };
     }, []);
 
     // ! name that will apear on the followers count page
@@ -49,23 +72,6 @@ export default function userPersonalProfile() {
     sessionStorage.setItem("name", name);
     let username = userData && userData.username
     sessionStorage.setItem("username", username);
-
-
-    //! states
-    const [SuggestData, setSuggestData] = useState<any[]>([]);
-
-    // !suggestions user data
-    useEffect(() => {
-        const handleSnapshot = (snapshot: any) => {
-            const data = snapshot.docs.map((doc: any) => ({ ...doc.data(), id: doc.id }));
-            setSuggestData(data);
-        };
-        const unsubscribe = onSnapshot(collection(db, "users"), handleSnapshot);
-        return () => {
-            unsubscribe();
-        };
-        window.scrollTo(9,0)
-    }, []);
 
 
     // ! Opening the post div
