@@ -8,7 +8,9 @@ import { BiLike } from 'react-icons/bi'
 import { useThemeStore } from '../../../Zustand';
 import { AiTwotoneLike } from 'react-icons/ai'
 import {useState, useEffect} from 'react'
+import Likepop from '../../../assets/Likespopsound.mp3'
 export default function Likebutton({post, likes}: Props){
+    const [soundLike] = useState(new Audio(Likepop));
     // ! theme 
     const theme = useThemeStore((state: any) => state.theme);
     //? uid
@@ -23,6 +25,7 @@ export default function Likebutton({post, likes}: Props){
     }, [likes, post]);
 
     const handleLike = async () => {
+        soundLike.play();
         setIsLiked(true); 
         try {
             const RepostRef = doc(db, "posts", post.id, 'Likes', userid as string)
@@ -62,7 +65,7 @@ export default function Likebutton({post, likes}: Props){
     return(
         <button
             onClick={isLiked ? handleUnLiked : handleLike}
-            className={`flex mt-1 w-[33%] justify-center py-[7px] rounded gap-1  
+            className={`flex mt-1 w-[33%] justify-center py-[7px] rounded gap-1 outline-none
                     ${theme
                     ? 'text-white hover:bg-[#ffffff3c]'
                     : 'text-black hover:bg-[#0000004f]'}`}

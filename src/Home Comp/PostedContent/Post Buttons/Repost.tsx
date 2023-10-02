@@ -7,7 +7,9 @@ import {useState, useEffect} from 'react'
 import { db } from '../../../firebase-config';
 import { collection, addDoc, setDoc, getDocs, query, where, doc, deleteDoc } from 'firebase/firestore'; 
 import { message } from 'antd';
+import RepostPop from '../../../assets/Repostpop.mp3'
 export default function Repost({post}: Props) {
+    const [soundRepost] = useState(new Audio(RepostPop));
     //? uid
     let userid = sessionStorage.getItem('UserId')
     const theme = useThemeStore((state: any) => state.theme);
@@ -28,7 +30,6 @@ export default function Repost({post}: Props) {
             console.error("Error checking repost status:", error);
         }
     };
-
     // Call the checkRepostStatus function when the component mounts
     useEffect(() => {
         checkRepostStatus();
@@ -39,6 +40,7 @@ export default function Repost({post}: Props) {
     };
 
     const handleRepost = async () => {
+        soundRepost.play()
         setIsRepost(true);
 
         // Check if the user has already reposted this post
@@ -111,7 +113,7 @@ export default function Repost({post}: Props) {
     
     return(
         <button onClick={isRepost ? handleUnRepost : handleRepost }
-        className={`flex mt-1 w-[33%] justify-center py-[7px] rounded gap-1 
+            className={`flex mt-1 w-[33%] justify-center py-[7px] rounded gap-1  outline-none
                 ${theme ? "hover:bg-[#ffffff3c] text-[#ffffffd3]" : "hover:bg-[#0000004f] text-[#000000b7]"}`}>
             <span className={`text-2xl  
             ${isRepost ? "text-[#19c37d]" : ""}`}>

@@ -221,7 +221,7 @@ export default function ViewPostContent({Post, SuggestData, userData}: Props){
                                             {userid === Post.author && (
                                                 <Popover.Button
                                                     onClick={(() => handleDelete(Post.id))}
-                                                    className="flex gap-1 w-full py-2 pl-3 hover:bg-[#00000076] cursor-pointer">
+                                                    className="flex gap-1 w-full py-2 pl-3 hover:bg-[#00000076] cursor-pointer text-red-700">
                                                     <RiDeleteBinLine className="text-2xl px-1" /> <p>Delete Post</p>
                                                 </Popover.Button>
                                             )}
