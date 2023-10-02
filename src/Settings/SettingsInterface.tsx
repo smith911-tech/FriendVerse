@@ -27,6 +27,9 @@ export default function SettingsInterface({ userData }: Props) {
         auth.signOut()
             .then(() => {
                 setSuccessful("Logging out...");
+                // Clear cached data in localStorage
+                localStorage.removeItem("userData");
+                localStorage.removeItem("suggestData");
                 setTimeout(() => {
                     sessionStorage.removeItem('UserId');
                     setSuccessful(false)
