@@ -3,6 +3,7 @@ interface Props {
     handleInputClick : () => void,
     isInputClicked : boolean,
     handleBodyClick: () => void
+    SuggestData : any
 }
 import { BsFillPencilFill } from 'react-icons/bs'
 import { IoLocationOutline } from 'react-icons/io5'
@@ -17,7 +18,8 @@ export default function UserProfileDetails({
     userData, 
     handleInputClick, 
     isInputClicked,
-    handleBodyClick
+    handleBodyClick,
+    SuggestData 
 }: Props): JSX.Element{
 
 
@@ -153,6 +155,7 @@ export default function UserProfileDetails({
             handleBodyClick={handleBodyClick}
             showDOB={showDOB}
             setShowDOB={setShowDOB}
+            SuggestData={SuggestData} 
             />
         </>
     )

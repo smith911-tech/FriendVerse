@@ -3,6 +3,7 @@ interface Props{
     handleInputClick: () => void,
     isInputClicked : boolean,
     handleBodyClick: () => void
+    SuggestData : any
 }
 import defaultcoverimg from '../assets/DefalutCoverImg.jpg'
 import { BiSolidUserCircle } from "react-icons/bi";
@@ -20,7 +21,8 @@ export default function UserProfile({
     userData, 
     handleInputClick, 
     isInputClicked,
-    handleBodyClick
+    handleBodyClick,
+    SuggestData 
 }: Props): JSX.Element{
     const [showPmodal, setShowPmodal] = useState<boolean>(false)
     const [showCmodal, setShowCmodal] = useState<boolean>(false)
@@ -126,6 +128,7 @@ export default function UserProfile({
                         handleInputClick={handleInputClick} 
                         isInputClicked={isInputClicked}
                         handleBodyClick={handleBodyClick}
+                        SuggestData={SuggestData} 
                         />
                     </section>
                 ) : (

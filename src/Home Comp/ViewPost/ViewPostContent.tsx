@@ -27,8 +27,11 @@ import { RiDeleteBinLine } from 'react-icons/ri'
 import { db } from '../../firebase-config'
 import PostedYtLink from ".././PostedContent/PostedYtLink"
 import PostNotAvaliable from '../../GeneralComponent/PostNotAvailable';
+import PostPop from '../../assets/PostNotify.mp3'
+import ViewComment from './ViewComments';
 
 export default function ViewPostContent({Post, SuggestData, userData}: Props){
+    const [soundDelete] = useState(new Audio(PostPop));
     let userid = sessionStorage.getItem('UserId')
     //! Theme Mode
     const theme = useThemeStore((state: any) => state.theme);
@@ -126,6 +129,7 @@ export default function ViewPostContent({Post, SuggestData, userData}: Props){
         try {
             await deleteDoc(doc(db, "posts", Postid as string));
             DeleteSuccessful()
+            soundDelete.play()
             navigate('/Home')
         }
         catch (error) {
@@ -238,6 +242,7 @@ export default function ViewPostContent({Post, SuggestData, userData}: Props){
                         </section>
                         <Postedbtn post={Post} Popover={Popover}/>
                         <PostComment userData={userData} post={Post}/>
+                            <ViewComment />
                     </Popover>
                 ): (
                     <PostNotAvaliable />
