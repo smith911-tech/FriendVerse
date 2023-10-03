@@ -154,7 +154,7 @@ export default function Postedbtn({post, Popover}: Props) {
             </div>
             <hr />
             </section>
-            <article className="flex gap-[1%] justify-center">
+            <article className="flex gap-[1%] justify-center select-none">
                 <Likebutton post={post} likes={likes} />
                 <Repost post={post} />
                 <Commentbutton post={post}/>

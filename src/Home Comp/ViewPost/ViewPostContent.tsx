@@ -138,7 +138,7 @@ export default function ViewPostContent({Post, SuggestData, userData}: Props){
     } 
 
     return(
-        <main className=' pb-14 relative w-full'>
+        <main className='sm650:pb-20 relative w-full'>
             <header className={`
             sticky top-16 z-[50] flex py-2 gap-3 pl-1 w-full
             ${theme ? "bg-[black] text-white" : "bg-[white] text-black"}`}>
@@ -165,85 +165,87 @@ export default function ViewPostContent({Post, SuggestData, userData}: Props){
                 </div>
             ) : (
                 Post && authorData ? (
-                    <Popover className={`py-3 rounded-md mb-4 ${theme ? "bg-black text-[#ffff]" : "bg-white text-[#000000]"}`} key={Post.id}>
-                        <main className="flex px-2 justify-between">
-                            <aside className="flex">
-                                <section>
-                                    {authorData.profileImage === "" ? (
-                                        <Link to={`${userid !== Post.author ? `/User/${authorData.username}` : '/Profile'}`}>
-                                            <div className={`text-[40px] rounded-full select-none ${theme ? "text-white" : "text-[#000000d7]"}`}>
-                                                <BiSolidUserCircle />
-                                            </div>
-                                        </Link>
-                                    ) : (
-                                        <Link to={`${userid !== Post.author ? `/User/${authorData.username}` : '/Profile'}`}>
-                                            <LazyLoadImage
-                                                effect="blur"
-                                                src={authorData.profileImage}
-                                                alt="Profile"
-                                                className="w-10 h-10 rounded-full object-cover select-none"
-                                            />
-                                        </Link>
-                                    )}
-                                </section>
-                                <span>
-                                    <Link to={`${userid !== Post.author ? `/User/${authorData.username}` : '/Profile'}`} className='ml-2 text-sm font-medium flex hover:underline select-none '>
-                                        {authorData.fullName}
-                                        {authorData.Verify && (
-                                            <span className='text-[#1d9bf0] mt-[2px]'>
-                                                <VscVerifiedFilled />
-                                            </span>
-                                        )}
-                                    </Link>
-                                    <span className={`ml-2 text-sm flex gap-[2px] select-none ${theme ? "text-[#ffffffaa]" : "text-[#000000a0]"}`}>
-                                        {formattedDate}
-                                        <span className="mt-1">
-                                            <BiTimeFive />
-                                        </span>
-                                    </span>
-                                </span>
-                            </aside>
-                                <Popover className='relative'>
-                                    <Popover.Button>
-                                        <aside className=" text-2xl my-[6px] cursor-pointer">
-                                            <BiDotsHorizontal />
-                                        </aside>
-                                    </Popover.Button>
-                                    <Popover.Panel
-                                        className={`absolute top-10 right-3 shadow-2xl z-20 w-56 py-2  rounded                                                    ${theme ? "bg-[#303031] text-[#ffff]" : "bg-[white] text-[#000000]"}`}>
-                                        <div className=" flex flex-col w-full">
-                                            <Popover.Button
-                                                onClick={(() => handleCopyClick(Post.id))}
-                                                className="flex gap-1 w-full py-2 pl-3 hover:bg-[#00000076] cursor-pointer">
-                                                <FaCopy className="text-2xl px-1" /> <p>Copy link to post</p>
-                                            </Popover.Button>
-                                            <Popover.Button
-                                                onClick={(() => handleShare(Post.id))}
-                                                className="flex gap-1 w-full py-2 pl-3 hover:bg-[#00000076] cursor-pointer">
-                                                <FiShare2 className="text-2xl px-1" /> <p>Share</p>
-                                            </Popover.Button>
-                                            {userid === Post.author && (
-                                                <Popover.Button
-                                                    onClick={(() => handleDelete(Post.id))}
-                                                    className="flex gap-1 w-full py-2 pl-3 hover:bg-[#00000076] cursor-pointer text-red-700">
-                                                    <RiDeleteBinLine className="text-2xl px-1" /> <p>Delete Post</p>
-                                                </Popover.Button>
+                        <article className={theme ? "bg-black text-[#ffff]" : "bg-white text-[#000000]"}>
+                            <Popover className='py-3 rounded-md mb-4' key={Post.id}>
+                                <main className="flex px-2 justify-between">
+                                    <aside className="flex">
+                                        <section>
+                                            {authorData.profileImage === "" ? (
+                                                <Link to={`${userid !== Post.author ? `/User/${authorData.username}` : '/Profile'}`}>
+                                                    <div className={`text-[40px] rounded-full select-none ${theme ? "text-white" : "text-[#000000d7]"}`}>
+                                                        <BiSolidUserCircle />
+                                                    </div>
+                                                </Link>
+                                            ) : (
+                                                <Link to={`${userid !== Post.author ? `/User/${authorData.username}` : '/Profile'}`}>
+                                                    <LazyLoadImage
+                                                        effect="blur"
+                                                        src={authorData.profileImage}
+                                                        alt="Profile"
+                                                        className="w-10 h-10 rounded-full object-cover select-none"
+                                                    />
+                                                </Link>
                                             )}
-                                        </div>
-                                    </Popover.Panel>
-                                </Popover>
-                        </main>
-                        <section>
-                            {Post.article ? <Postedarticle post={Post} /> : null}
-                            {Post.video ? <PostedVideo post={Post} /> : null}
-                            {Post.Code ? <PostedCode post={Post} /> : null}
-                            {Post.images ? <PostedImages post={Post} /> : null}
-                            {!Post.images && !Post.Code && !Post.video ? <PostedYtLink post={Post}/> : null}
-                        </section>
-                        <Postedbtn post={Post} Popover={Popover}/>
-                        <PostComment userData={userData} post={Post}/>
-                            <ViewComment />
-                    </Popover>
+                                        </section>
+                                        <span>
+                                            <Link to={`${userid !== Post.author ? `/User/${authorData.username}` : '/Profile'}`} className='ml-2 text-sm font-medium flex hover:underline select-none '>
+                                                {authorData.fullName}
+                                                {authorData.Verify && (
+                                                    <span className='text-[#1d9bf0] mt-[2px]'>
+                                                        <VscVerifiedFilled />
+                                                    </span>
+                                                )}
+                                            </Link>
+                                            <span className={`ml-2 text-sm flex gap-[2px] select-none ${theme ? "text-[#ffffffaa]" : "text-[#000000a0]"}`}>
+                                                {formattedDate}
+                                                <span className="mt-1">
+                                                    <BiTimeFive />
+                                                </span>
+                                            </span>
+                                        </span>
+                                    </aside>
+                                    <Popover className='relative'>
+                                        <Popover.Button>
+                                            <aside className=" text-2xl my-[6px] cursor-pointer">
+                                                <BiDotsHorizontal />
+                                            </aside>
+                                        </Popover.Button>
+                                        <Popover.Panel
+                                            className={`absolute top-10 right-3 shadow-2xl z-20 w-56 py-2  rounded                                                    ${theme ? "bg-[#303031] text-[#ffff]" : "bg-[white] text-[#000000]"}`}>
+                                            <div className=" flex flex-col w-full">
+                                                <Popover.Button
+                                                    onClick={(() => handleCopyClick(Post.id))}
+                                                    className="flex gap-1 w-full py-2 pl-3 hover:bg-[#00000076] cursor-pointer">
+                                                    <FaCopy className="text-2xl px-1" /> <p>Copy link to post</p>
+                                                </Popover.Button>
+                                                <Popover.Button
+                                                    onClick={(() => handleShare(Post.id))}
+                                                    className="flex gap-1 w-full py-2 pl-3 hover:bg-[#00000076] cursor-pointer">
+                                                    <FiShare2 className="text-2xl px-1" /> <p>Share</p>
+                                                </Popover.Button>
+                                                {userid === Post.author && (
+                                                    <Popover.Button
+                                                        onClick={(() => handleDelete(Post.id))}
+                                                        className="flex gap-1 w-full py-2 pl-3 hover:bg-[#00000076] cursor-pointer text-red-700">
+                                                        <RiDeleteBinLine className="text-2xl px-1" /> <p>Delete Post</p>
+                                                    </Popover.Button>
+                                                )}
+                                            </div>
+                                        </Popover.Panel>
+                                    </Popover>
+                                </main>
+                                <section>
+                                    {Post.article ? <Postedarticle post={Post} /> : null}
+                                    {Post.video ? <PostedVideo post={Post} /> : null}
+                                    {Post.Code ? <PostedCode post={Post} /> : null}
+                                    {Post.images ? <PostedImages post={Post} /> : null}
+                                    {!Post.images && !Post.Code && !Post.video ? <PostedYtLink post={Post} /> : null}
+                                </section>
+                                <Postedbtn post={Post} Popover={Popover} />
+                                <PostComment userData={userData} post={Post} />
+                            </Popover>
+                            <ViewComment post={Post} SuggestData={SuggestData} />
+                    </article>
                 ): (
                     <PostNotAvaliable />
                 )
