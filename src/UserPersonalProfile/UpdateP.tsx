@@ -4,6 +4,7 @@ interface Props {
     handleBodyClick: () => void
     showDOB: boolean
     setShowDOB: any
+    SuggestData : any
 }
 import { useState, useEffect } from 'react';
 import { db, storage } from '../firebase-config';
@@ -21,6 +22,7 @@ export default function UpdateProfile({
     handleBodyClick,
     showDOB,
     setShowDOB,
+    SuggestData 
     }: Props) {
 
     // ! dataofbirth formatter
@@ -94,6 +96,14 @@ export default function UpdateProfile({
             return;
         } else if (userName.trim().length < 1) {
             setError("Username cannot be empty.");
+            setLoader(false);
+            setTimeout(() => {
+                setError(false);
+            }, 1500);
+            return;
+        }
+        if (SuggestData.some((user: any) => user.username === userName)) {
+            setError("Username is already taken.");
             setLoader(false);
             setTimeout(() => {
                 setError(false);
@@ -198,7 +208,7 @@ export default function UpdateProfile({
                         profileImg={profileImg}/>
                     </div>
                     {/* Name, username, location, date of birth, bio Input */}
-                    <div className="flex justify-center update-user-Date">
+                        <div className="flex justify-center update-user-Date smm500:mb-20">
                         <UpdateInputValue 
                         fullName={fullName}
                         setFullName={setFullName}

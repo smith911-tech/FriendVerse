@@ -24,8 +24,10 @@ import { message } from 'antd';
 import { RiDeleteBinLine } from 'react-icons/ri'
 import { doc, deleteDoc } from "firebase/firestore";
 import PostedYtLink from "./PostedContent/PostedYtLink"
+import PostPop from '../assets/PostNotify.mp3'
 
 export default function Postsection({SuggestData}: Props) {
+    const [soundDelete] = useState(new Audio(PostPop));
     let userid = sessionStorage.getItem('UserId')
     //! Theme Mode
     const theme = useThemeStore((state: any) => state.theme);
@@ -146,6 +148,7 @@ export default function Postsection({SuggestData}: Props) {
     const handleDelete = async (Postid: String) => {
         try {
             await deleteDoc(doc(db, "posts", Postid as string));
+            soundDelete.play()
             DeleteSuccessful()
         }
         catch(error) {
