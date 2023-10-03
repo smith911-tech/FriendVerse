@@ -28,6 +28,7 @@ import { db } from '../../firebase-config'
 import PostedYtLink from ".././PostedContent/PostedYtLink"
 import PostNotAvaliable from '../../GeneralComponent/PostNotAvailable';
 import PostPop from '../../assets/PostNotify.mp3'
+import ViewComment from './ViewComments';
 
 export default function ViewPostContent({Post, SuggestData, userData}: Props){
     const [soundDelete] = useState(new Audio(PostPop));
@@ -241,6 +242,7 @@ export default function ViewPostContent({Post, SuggestData, userData}: Props){
                         </section>
                         <Postedbtn post={Post} Popover={Popover}/>
                         <PostComment userData={userData} post={Post}/>
+                            <ViewComment />
                     </Popover>
                 ): (
                     <PostNotAvaliable />
