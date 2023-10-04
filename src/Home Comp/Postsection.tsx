@@ -1,7 +1,7 @@
 interface Props{
     SuggestData : any
 }
-import { collection, onSnapshot } from "firebase/firestore"
+import { collection, onSnapshot, doc, deleteDoc,  getDocs, query, where } from "firebase/firestore"
 import { db } from '../firebase-config'
 import {useState, useEffect} from 'react'
 import { useThemeStore } from '../Zustand'
@@ -22,7 +22,6 @@ import { FaCopy } from 'react-icons/fa6'
 import { FiShare2 } from 'react-icons/fi'
 import { message } from 'antd';
 import { RiDeleteBinLine } from 'react-icons/ri'
-import { doc, deleteDoc } from "firebase/firestore";
 import PostedYtLink from "./PostedContent/PostedYtLink"
 import PostPop from '../assets/PostNotify.mp3'
 
@@ -147,14 +146,25 @@ export default function Postsection({SuggestData}: Props) {
     }
     const handleDelete = async (Postid: String) => {
         try {
+            // Delete comments associated with the post
+            const commentsSnapshot = await getDocs(
+                query(collection(db, "Comment"), where("PostId", "==", Postid))
+            );
+
+            commentsSnapshot.forEach(async (commentDoc) => {
+                await deleteDoc(doc(db, "Comment", commentDoc.id));
+            });
+            
             await deleteDoc(doc(db, "posts", Postid as string));
-            soundDelete.play()
-            DeleteSuccessful()
+
+            soundDelete.play();
+            DeleteSuccessful();
+        } catch (error) {
+            console.error("Error deleting post and associated comments: ", error);
         }
-        catch(error) {
-            console.log('error', error);
-        }
-    } 
+    };
+
+
     return(
         <main>
             <section className="md970:w-[90%] block mb-0 mx-auto mt-4">
