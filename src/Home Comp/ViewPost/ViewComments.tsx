@@ -8,7 +8,7 @@ import { BiSolidUserCircle } from 'react-icons/bi'
 import { useThemeStore } from '../../Zustand';
 import { VscVerifiedFilled } from 'react-icons/vsc'
 import { BiDotsHorizontalRounded } from 'react-icons/bi'
-import { FcLikePlaceholder } from 'react-icons/fc'
+import { IoHeartDislikeOutline } from 'react-icons/io5'
 
 interface Props {
     post: any
@@ -147,7 +147,7 @@ export default function ViewComment({ post, SuggestData }: Props) {
                                                 </main>
                                                 <button className={`flex gap-1 mt-1 outline-none text-sm font-medium text-[#0000007f] ml-4
                                                 ${theme ? "text-[#ffffff91]" : "text-[#0000007f] "}`}>
-                                                    Like <FcLikePlaceholder className='mt-1'/>
+                                                    Like <IoHeartDislikeOutline className='mt-1'/>
                                                 </button>
                                         </aside>
                                         </article>

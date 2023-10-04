@@ -22,7 +22,7 @@ import { Popover } from '@headlessui/react'
 import { FaCopy } from 'react-icons/fa6'
 import { FiShare2 } from 'react-icons/fi'
 import { message } from 'antd';
-import { doc, deleteDoc } from "firebase/firestore";
+import { collection,  doc, deleteDoc, getDocs, query, where } from "firebase/firestore"
 import { RiDeleteBinLine } from 'react-icons/ri'
 import { db } from '../../firebase-config'
 import PostedYtLink from ".././PostedContent/PostedYtLink"
@@ -127,15 +127,23 @@ export default function ViewPostContent({Post, SuggestData, userData}: Props){
 
     const handleDelete = async (Postid: String) => {
         try {
+            // Delete comments associated with the post
+            const commentsSnapshot = await getDocs(
+                query(collection(db, "Comment"), where("PostId", "==", Postid))
+            );
+
+            commentsSnapshot.forEach(async (commentDoc) => {
+                await deleteDoc(doc(db, "Comment", commentDoc.id));
+            });
+
             await deleteDoc(doc(db, "posts", Postid as string));
-            DeleteSuccessful()
-            soundDelete.play()
+            soundDelete.play();
+            DeleteSuccessful();
             navigate('/Home')
+        } catch (error) {
+            console.error("Error deleting post and associated comments: ", error);
         }
-        catch (error) {
-            console.log('error', error);
-        }
-    } 
+    };
 
     return(
         <main className='sm650:pb-20 relative w-full'>

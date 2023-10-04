@@ -9,7 +9,7 @@ import Likebutton from './Post Buttons/Likebutton';
 import Sharebutton from './Post Buttons/Sharebutton';
 import Commentbutton from './Post Buttons/Commentbutton';
 import Repost from './Post Buttons/Repost';
-import { collection, onSnapshot, setDoc, doc} from "firebase/firestore"
+import { collection, onSnapshot, setDoc, doc, getDoc} from "firebase/firestore"
 import { db } from '../../firebase-config'
 import { useState, useEffect, useRef } from 'react'
 import { FaXmark } from 'react-icons/fa6'
@@ -75,13 +75,28 @@ export default function Postedbtn({post, Popover}: Props) {
         RefDoc
     );
     useEffect(() => {
-        const DataDocImpression = doc(db, "posts", post.id, 'Impression', userid as string)
-        if (inViewport) {
-            setDoc(DataDocImpression, {
-                time: new Date()
-            })
-        }
-    }, [inViewport])
+        const checkImpression = async () => {
+            const impressionRef = doc(db, "posts", post.id, 'Impression', userid as string);
+
+            try {
+                const impressionSnapshot = await getDoc(impressionRef);
+
+                // Check if the impression document already exists
+                if (!impressionSnapshot.exists()) {
+                    if (inViewport) {
+                        const DataDocImpression = doc(db, "posts", post.id, 'Impression', userid as string);
+                        setDoc(DataDocImpression, {
+                            time: new Date()
+                        });
+                    }
+                }
+            } catch (error) {
+                console.error("Error checking impression:", error);
+            }
+        };
+
+        checkImpression();
+    }, [inViewport]);
     let impression
     const impressionCount = impressionData && impressionData?.length || 0;
 
