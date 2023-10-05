@@ -163,7 +163,7 @@ export default function ViewComment({ post, SuggestData }: Props) {
                                                             </Link>
                                                             <p className=' text-xs'>{formatPostDate(comment.time)}</p>
                                                         </section>
-                                                        <DeleteCommentPop />
+                                                        <DeleteCommentPop comment={comment} post={post}/>
                                                     </div>
                                                     <p className={` text-xs ml-2 text-[#0000009c] -mt-1 pb-4 select-none ${theme ? "text-[#ffffff91]" : "text-[#0000009c] "}`}>{comment.author.bio}</p>
                                                     <p className='text-sm ml-2 pb-2'>{comment.Comment}</p>
@@ -173,7 +173,7 @@ export default function ViewComment({ post, SuggestData }: Props) {
                                                 ${comment.Likes?.includes(userid) ? "text-red-500" : ""}`}>
                                                     {comment.Likes?.includes(userid) ? 'Unlike' : 'Like'}
                                                     {comment.Likes?.includes(userid) 
-                                                    ? <FcLike className='mt-1'/> 
+                                                    ? <FcLike className='mt-[2px]'/> 
                                                     : < IoHeartDislikeOutline className='mt-1'/>}
                                                 </button>
                                         </aside>

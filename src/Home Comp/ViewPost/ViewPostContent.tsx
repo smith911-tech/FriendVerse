@@ -219,7 +219,7 @@ export default function ViewPostContent({Post, SuggestData, userData}: Props){
                                             </aside>
                                         </Popover.Button>
                                         <Popover.Panel
-                                            className={`absolute top-10 right-3 shadow-2xl z-20 w-56 py-2  rounded                                                    ${theme ? "bg-[#303031] text-[#ffff]" : "bg-[white] text-[#000000]"}`}>
+                                            className={`absolute top-10 right-3 shadow-2xl z-20 w-56 py-2  rounded ${theme ? "bg-[#303031] text-[#ffff]" : "bg-[white] text-[#000000]"}`}>
                                             <div className=" flex flex-col w-full">
                                                 <Popover.Button
                                                     onClick={(() => handleCopyClick(Post.id))}
