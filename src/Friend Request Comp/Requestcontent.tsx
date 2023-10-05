@@ -126,8 +126,7 @@ export default function RequestContent({ userData, SuggestData }: userData) {
                         <p className='font-medium ml-[52px] text-sm -mt-1 mb-6'>{data.bio}</p>
                     </Link>
                 ))
-            ):
-            (
+            ):(
                 <div className=" min-h-screen  w-full">
                     <div className=" flex justify-center w-full">
                                 <RotatingLines

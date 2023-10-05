@@ -94,16 +94,27 @@ export default function Followers({ userData, SuggestData }: Props) {
     }, [userData, SuggestData]);;
 
     const handleShare = async (Username: string, name: string) => {
-        try {
-            await navigator.share({
-                title: `${name}(@${Username})`,
-                text: 'Check out this awesome content!',
-                url: `/User/${Username}`,
-            });
-        } catch (error) {
-            console.error('Error sharing:', error);
+        if (navigator.share) {
+            try {
+                await navigator.share({
+                    title: `${name}(@${Username})`,
+                    text: 'Check out this awesome content!',
+                    url: `/User/${Username}`,
+                });
+            } catch (error) {
+                console.error('Error sharing:', error);
+            }
+        } else {
+            const userAgent = navigator.userAgent.toLowerCase();
+            if (userAgent.includes('chrome')) {
+                alert('Sharing is not supported on this browser. Please use the share menu in Chrome.');
+            } else if (userAgent.includes('firefox')) {
+                alert('Sharing is not supported on this browser. Please use the share menu in Firefox.');
+            } else {
+                alert('Sharing is not supported on this browser.');
+            }
         }
-    }
+    } 
 
     const handleRemove = async (dataid: string) => {
         try {
