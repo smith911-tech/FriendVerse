@@ -28,36 +28,32 @@ export default function Likebutton({post, likes}: Props){
         soundLike.play();
         setIsLiked(true); 
         try {
-            const RepostRef = doc(db, "posts", post.id, 'Likes', userid as string)
-            await setDoc(RepostRef, {
+            const LikeRef = doc(db, "posts", post.id, 'Likes', userid as string)
+            await setDoc(LikeRef, {
                 Like: userid,
                 time: new Date()
             })
-            const ReportDocRef = doc(db, "users", userid as string, "Liked", post.id)
-            await setDoc(ReportDocRef, {
+            const LikeDocRef = doc(db, "users", userid as string, "Liked", post.id)
+            await setDoc(LikeDocRef, {
                 Liked: post.id,
                 time: new Date()
             })
-            console.log("Liked successful!");
         }
         catch (error) {
             console.error("Error Liked:", error);
-            setIsLiked(false)
         }
     }
 
     const handleUnLiked = async () => {
         setIsLiked(false); // Update the state to indicate unliking
         try {
-            // Remove the like from the post's Likes collection
-            const RepostRef = doc(db, "posts", post.id, 'Likes', userid as string);
-            await deleteDoc(RepostRef);
-            // Remove the like from the user's Liked collection
-            const ReportDocRef = doc(db, "users", userid as string, "Liked", post.id);
-            await deleteDoc(ReportDocRef);
-            console.log("Unliked successful!");
+            // Remove the like from the post's Likes sub collection
+            const UnlikeRef = doc(db, "posts", post.id, 'Likes', userid as string);
+            await deleteDoc(UnlikeRef);
+            // Remove the like from the user's Liked sub collection
+            const UnlikeDocRef = doc(db, "users", userid as string, "Liked", post.id);
+            await deleteDoc(UnlikeDocRef);
         } catch (error) {
-            setIsLiked(false)
             console.error("Error Unliked:", error);
         }
     };
