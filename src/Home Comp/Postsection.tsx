@@ -135,15 +135,26 @@ export default function Postsection({SuggestData}: Props) {
         document.body.removeChild(textArea);
     };
     const handleShare = async (id: string) => {
-        try {
-            await navigator.share({
-                text: 'Check out this awesome content!',
-                url: `/Post/${id}`,
-            });
-        } catch (error) {
-            console.error('Error sharing:', error);
+        if (navigator.share) {
+            try {
+                await navigator.share({
+                    text: 'Check out this awesome content!',
+                    url: `/Post/${id}`,
+                });
+            } catch (error) {
+                console.error('Error sharing:', error);
+            }
+        } else {
+            const userAgent = navigator.userAgent.toLowerCase();
+            if (userAgent.includes('chrome')) {
+                alert('Sharing is not supported on this browser. Please use the share menu in Chrome.');
+            } else if (userAgent.includes('firefox')) {
+                alert('Sharing is not supported on this browser. Please use the share menu in Firefox.');
+            } else {
+                alert('Sharing is not supported on this browser.');
+            }
         }
-    }
+    };
     const handleDelete = async (Postid: String) => {
         try {
             // Delete comments associated with the post
