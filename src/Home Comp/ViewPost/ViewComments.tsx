@@ -7,9 +7,10 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { BiSolidUserCircle } from 'react-icons/bi'
 import { useThemeStore } from '../../Zustand';
 import { VscVerifiedFilled } from 'react-icons/vsc'
-import { BiDotsHorizontalRounded } from 'react-icons/bi'
+
 import { IoHeartDislikeOutline } from 'react-icons/io5'
 import { FcLike } from 'react-icons/fc'
+import DeleteCommentPop from './DeleteCommentPop';
 
 
 interface Props {
@@ -23,7 +24,6 @@ export default function ViewComment({ post, SuggestData }: Props) {
     const theme = useThemeStore((state: any) => state.theme);
     const [comments, setComments] = useState<any[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
-    const [isLiked, setIsLiked] = useState<boolean>(false);
 
     useEffect(() => {
         const q = query(collection(db, "Comment"), where("PostId", "==", post.id));
@@ -86,7 +86,6 @@ export default function ViewComment({ post, SuggestData }: Props) {
     
 
     const handleLike = async (Commentid: string) => {
-        setIsLiked(true);
         try {
             const DataDocRefLike = doc(db, "Comment", Commentid)
             await updateDoc(DataDocRefLike, {
@@ -98,7 +97,6 @@ export default function ViewComment({ post, SuggestData }: Props) {
         }
     }
     const handleUnLike = async (Commentid: string) => {
-        setIsLiked(false);
         try {
             const DataDocRefLike = doc(db, "Comment", Commentid)
             await updateDoc(DataDocRefLike, {
@@ -165,16 +163,16 @@ export default function ViewComment({ post, SuggestData }: Props) {
                                                             </Link>
                                                             <p className=' text-xs'>{formatPostDate(comment.time)}</p>
                                                         </section>
-                                                        <BiDotsHorizontalRounded className=" text-2xl -mt-1 cursor-pointer" />
+                                                        <DeleteCommentPop />
                                                     </div>
                                                     <p className={` text-xs ml-2 text-[#0000009c] -mt-1 pb-4 select-none ${theme ? "text-[#ffffff91]" : "text-[#0000009c] "}`}>{comment.author.bio}</p>
                                                     <p className='text-sm ml-2 pb-2'>{comment.Comment}</p>
                                                 </main>
-                                                <button onClick={() => (isLiked ? handleUnLike(comment.id) : handleLike(comment.id))} className={`flex gap-1 mt-1 outline-none text-sm font-medium text-[#0000007f] ml-4
+                                                <button onClick={() => (comment.Likes?.includes(userid) ? handleUnLike(comment.id) : handleLike(comment.id))} className={`flex gap-1 mt-1 outline-none text-sm font-medium text-[#0000007f] ml-4
                                                 ${theme ? "text-[#ffffff91]" : "text-[#0000007f] "}
-                                                ${isLiked ? "text-red-500" : ""}`}>
-                                                    {isLiked ? 'Unlike' : 'Like'}
-                                                    {isLiked 
+                                                ${comment.Likes?.includes(userid) ? "text-red-500" : ""}`}>
+                                                    {comment.Likes?.includes(userid) ? 'Unlike' : 'Like'}
+                                                    {comment.Likes?.includes(userid) 
                                                     ? <FcLike className='mt-1'/> 
                                                     : < IoHeartDislikeOutline className='mt-1'/>}
                                                 </button>
