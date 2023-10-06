@@ -82,7 +82,7 @@ export default function Postedarticle({ post }: Props) {
                             {paragraphs.map((paragraph: string, index: number) => (
                                 <p
                                     key={index}
-                                    className={`text-[15px] font-normal font-sans ${index < paragraphs.length - 1 ? 'mb-2' : ''
+                                    className={`text-[15px] font-normal font-sans whitespace-normal overflow-ellipsis overflow-hidden max-w-[100%] ${index < paragraphs.length - 1 ? 'mb-2' : ''
                                         }`}
                                 >
                                     {renderArticleContent(paragraph)}
@@ -93,7 +93,7 @@ export default function Postedarticle({ post }: Props) {
                         paragraphs.slice(0, 2).map((paragraph: string, index: number) => (
                             <p
                                 key={index}
-                                className={`text-[15px] font-normal font-sans ${index < paragraphs.length - 1 ? 'mb-2' : ''
+                                className={`text-[15px] font-normal font-sans whitespace-normal overflow-ellipsis overflow-hidden max-w-[100%] ${index < paragraphs.length - 1 ? 'mb-2' : ''
                                     }`}
                             >
                                 {renderArticleContent(paragraph)}
