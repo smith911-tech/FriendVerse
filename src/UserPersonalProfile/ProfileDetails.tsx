@@ -68,7 +68,9 @@ export default function UserProfileDetails({
     if (userData) {
         const followersCount = userData.Followers?.length || 0;
 
-        if (followersCount > 9999) {
+        if (followersCount >= 1000000) {
+            Followers = (followersCount / 1000000).toFixed(1) + 'm';
+        } else if (followersCount >= 1000) {
             Followers = (followersCount / 1000).toFixed(1) + 'k';
         } else {
             Followers = followersCount.toString();
@@ -76,7 +78,9 @@ export default function UserProfileDetails({
 
         const followingCount = userData.Following?.length || 0;
 
-        if (followingCount > 9999) {
+        if (followingCount >= 1000000) {
+            Following = (followingCount / 1000000).toFixed(1) + 'm';
+        } else if (followingCount >= 1000) {
             Following = (followingCount / 1000).toFixed(1) + 'k';
         } else {
             Following = followingCount.toString();

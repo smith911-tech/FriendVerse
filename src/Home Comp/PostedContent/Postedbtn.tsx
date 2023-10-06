@@ -61,9 +61,11 @@ export default function Postedbtn({post, Popover}: Props) {
     const matchingSuggestions = SuggestData && SuggestData.filter((suggest) => likes.some((like) => like.id === suggest.id));
     
     let Likes 
-    const LikesCount = likes &&  likes?.length || 0;
+    const LikesCount = likes && likes?.length || 0;
 
-    if (LikesCount > 999) {
+    if (LikesCount >= 1000000) {
+        Likes = (LikesCount / 1000000).toFixed(1) + 'm';
+    } else if (LikesCount >= 1000) {
         Likes = (LikesCount / 1000).toFixed(1) + 'k';
     } else {
         Likes = LikesCount.toString();
@@ -100,7 +102,9 @@ export default function Postedbtn({post, Popover}: Props) {
     let impression
     const impressionCount = impressionData && impressionData?.length || 0;
 
-    if (impressionCount > 999) {
+    if (impressionCount >= 1000000) {
+        impression = (impressionCount / 1000000).toFixed(1) + 'm';
+    } else if (impressionCount >= 1000) {
         impression = (impressionCount / 1000).toFixed(1) + 'k';
     } else {
         impression = impressionCount.toString();
@@ -113,12 +117,13 @@ export default function Postedbtn({post, Popover}: Props) {
 
     let Repostcount
     const matchingRepostsCount = matchingReposts?.length || 0;
-    if (matchingRepostsCount > 999) {
+    if (matchingRepostsCount >= 1000000) {
+        Repostcount = (matchingRepostsCount / 1000000).toFixed(1) + 'm';
+    } else if (matchingRepostsCount >= 1000) {
         Repostcount = (matchingRepostsCount / 1000).toFixed(1) + 'k';
     } else {
         Repostcount = matchingRepostsCount.toString();
     }
-
     const pathToCompare = `/Post/${post.id}`
     const currentPath = window.location.pathname;
     useEffect(() => {
