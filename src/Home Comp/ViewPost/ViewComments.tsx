@@ -11,6 +11,7 @@ import { VscVerifiedFilled } from 'react-icons/vsc'
 import { IoHeartDislikeOutline } from 'react-icons/io5'
 import { FcLike } from 'react-icons/fc'
 import DeleteCommentPop from './DeleteCommentPop';
+import CommentLikesCount from './CommentLikesCount';
 
 
 interface Props {
@@ -149,7 +150,7 @@ export default function ViewComment({ post, SuggestData }: Props) {
                                                 )}
                                         </main>
                                             <aside className='w-full'>
-                                                <main className={` w-full pt-1 px-2 rounded-r-xl rounded-b-xl
+                                                <main className={` w-full pt-1 px-2 rounded-r-xl rounded-b-xl relative
                                                 ${theme ? "bg-[#1b1d21]" : "bg-[#f0f2f5]"}`}>
                                                     <div className='flex justify-between'>
                                                         <section className='flex gap-1'>
@@ -166,7 +167,8 @@ export default function ViewComment({ post, SuggestData }: Props) {
                                                         <DeleteCommentPop comment={comment} post={post}/>
                                                     </div>
                                                     <p className={` text-xs ml-2 text-[#0000009c] -mt-1 pb-4 select-none ${theme ? "text-[#ffffff91]" : "text-[#0000009c] "}`}>{comment.author.bio}</p>
-                                                    <p className='text-sm ml-2 pb-2'>{comment.Comment}</p>
+                                                    <p className='text-sm ml-2 pb-2 whitespace-normal overflow-ellipsis overflow-hidden max-w-[90%]'>{comment.Comment}</p>
+                                                    <CommentLikesCount comment={comment}/>
                                                 </main>
                                                 <button onClick={() => (comment.Likes?.includes(userid) ? handleUnLike(comment.id) : handleLike(comment.id))} className={`flex gap-1 mt-1 outline-none text-sm font-medium text-[#0000007f] ml-4
                                                 ${theme ? "text-[#ffffff91]" : "text-[#0000007f] "}
