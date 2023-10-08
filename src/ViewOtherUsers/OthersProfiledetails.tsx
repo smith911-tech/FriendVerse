@@ -197,9 +197,9 @@ export default function OthersProfileDetails({
                         <span  className={`select-none ${theme ? "text-[white]" : "text-[black] "}`}>{Following}</span> Following</Link>
                 </div>
                 <hr />
-                <section onClick={handleBodyClick}>
-                    <OtherUsersSlidesbtn />
-                </section>
+            </section>
+            <section onClick={handleBodyClick}>
+                <OtherUsersSlidesbtn />
             </section>
             {isInputClicked && (
                 <section className='absolute -top-10 left-1/2 transform -translate-x-1/2 shadow-2xl smm500:-top-32'>
