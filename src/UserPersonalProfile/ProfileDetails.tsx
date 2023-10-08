@@ -150,9 +150,9 @@ export default function UserProfileDetails({
                     </li>
                 </ul>
             <hr />
-                <ProfileSLideBtn 
-                handleBodyClick={handleBodyClick} />
         </section>
+            <ProfileSLideBtn 
+            handleBodyClick={handleBodyClick} />
             <UpdateP
             isInputClicked={isInputClicked} 
             userData={userData}
