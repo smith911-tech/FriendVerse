@@ -20,6 +20,7 @@ import { RotatingLines } from "react-loader-spinner";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useInViewport } from 'react-in-viewport';
 import { BiRepost } from 'react-icons/bi'
+import { FaRegComment } from 'react-icons/fa'
 export default function Postedbtn({post, Popover}: Props) {
     //? uid
     let userid = sessionStorage.getItem('UserId')
@@ -29,6 +30,7 @@ export default function Postedbtn({post, Popover}: Props) {
     const [SuggestData, setSuggestData] = useState<any[]>([]);
     const [repostData, setRepostData] = useState<any[]>([])
     const [IsEqualToPath, setIsEqualToPath] = useState(false);
+    const [comments, setComments] = useState<any[]>([]);
     useEffect(() => {
         const handleSnapshot = (snapshot: any) => {
             const data = snapshot.docs.map((doc: any) => ({ ...doc.data(), id: doc.id }));
@@ -38,32 +40,42 @@ export default function Postedbtn({post, Popover}: Props) {
             const data = snapshot.docs.map((doc: any) => ({ ...doc.data(), id: doc.id }));
             setSuggestData(data);
         };
-        const handleImpression = (snapshot: any) => {
+        const handleGetImpression = (snapshot: any) => {
             const data = snapshot.docs.map((doc: any) => ({ ...doc.data(), id: doc.id }));
             setImpressionData(data);
         };
-        const handleRepost = (snapshot: any) => {
+        const handleGetRepost = (snapshot: any) => {
             const data = snapshot.docs.map((doc: any) => ({ ...doc.data(), id: doc.id }));
             setRepostData(data);
         };
+        const handleGetComment = (snapshot: any) => {
+            const data = snapshot.docs
+                .map((doc: any) => ({ ...doc.data(), id: doc.id }))
+                .filter((comment: any) => comment.PostId === post.id); // Filter comments by PostId
+            setComments(data);
+        };
         const unsubscribe = onSnapshot(collection(db, "posts",  post.id, 'Likes'), handleSnapshot);
         const unsubscribed = onSnapshot(collection(db, "users"), handleSnapshoted);
-        const unsubscribImpression = onSnapshot(collection(db, "posts", post.id, 'Impression'), handleImpression);
-        const unsubscribRepost = onSnapshot(collection(db, "Repost",), handleRepost);
+        const unsubscribImpression = onSnapshot(collection(db, "posts", post.id, 'Impression'), handleGetImpression);
+        const unsubscribRepost = onSnapshot(collection(db, "Repost",), handleGetRepost);
+        const unsubscribComment = onSnapshot(collection(db, "Comment",), handleGetComment);
         return () => {
             unsubscribe();
             unsubscribed();
             unsubscribImpression();
             unsubscribRepost()
+            unsubscribComment()
         };
     }, []);
     
     const matchingSuggestions = SuggestData && SuggestData.filter((suggest) => likes.some((like) => like.id === suggest.id));
     
     let Likes 
-    const LikesCount = likes &&  likes?.length || 0;
+    const LikesCount = likes && likes?.length || 0;
 
-    if (LikesCount > 999) {
+    if (LikesCount >= 1000000) {
+        Likes = (LikesCount / 1000000).toFixed(1) + 'm';
+    } else if (LikesCount >= 1000) {
         Likes = (LikesCount / 1000).toFixed(1) + 'k';
     } else {
         Likes = LikesCount.toString();
@@ -100,7 +112,9 @@ export default function Postedbtn({post, Popover}: Props) {
     let impression
     const impressionCount = impressionData && impressionData?.length || 0;
 
-    if (impressionCount > 999) {
+    if (impressionCount >= 1000000) {
+        impression = (impressionCount / 1000000).toFixed(1) + 'm';
+    } else if (impressionCount >= 1000) {
         impression = (impressionCount / 1000).toFixed(1) + 'k';
     } else {
         impression = impressionCount.toString();
@@ -113,12 +127,13 @@ export default function Postedbtn({post, Popover}: Props) {
 
     let Repostcount
     const matchingRepostsCount = matchingReposts?.length || 0;
-    if (matchingRepostsCount > 999) {
+    if (matchingRepostsCount >= 1000000) {
+        Repostcount = (matchingRepostsCount / 1000000).toFixed(1) + 'm';
+    } else if (matchingRepostsCount >= 1000) {
         Repostcount = (matchingRepostsCount / 1000).toFixed(1) + 'k';
     } else {
         Repostcount = matchingRepostsCount.toString();
     }
-
     const pathToCompare = `/Post/${post.id}`
     const currentPath = window.location.pathname;
     useEffect(() => {
@@ -129,11 +144,21 @@ export default function Postedbtn({post, Popover}: Props) {
         }
     }, [currentPath, pathToCompare]);
 
+    let comment
+    const CommentsCount = impressionData && comments?.length || 0;
+
+    if (CommentsCount >= 1000000) {
+        comment = (CommentsCount / 1000000).toFixed(1) + 'm';
+    } else if (CommentsCount >= 1000) {
+        comment = (CommentsCount / 1000).toFixed(1) + 'k';
+    } else {
+        comment = CommentsCount.toString();
+    }
+
     return (
         <main ref={RefDoc} className="mt-3 px-3">
             <section>
-            <div className={`
-            ${LikesCount === 0 && impressionCount === 0 && matchingRepostsCount === 0 ? "hidden" : "flex mb-1 justify-between"}
+                <div className={`${LikesCount === 0 && impressionCount === 0 && matchingRepostsCount === 0 && CommentsCount === 0  ? "hidden" : "flex mb-1 justify-between"}
             `}>
                     <Popover.Button title='Likes' 
                     className={`flex hover:underline cursor-pointer select-none 
@@ -149,16 +174,23 @@ export default function Postedbtn({post, Popover}: Props) {
                     <main className='flex  gap-2'>
                         <span title='Reposts' className={`flex hover:underline cursor-pointer 
                         ${matchingRepostsCount > 0 ? " visible" : " invisible"}`}>
-                            <button className=' rounded-2xl  pt-[2.3px] text-lg'>
+                            <button className=' rounded-2xl  pt-[2.3px] text-lg outline-none'>
                                 <BiRepost />
                             </button>
-                            <span className={` text-xs mt-1 
-                        ${theme ? "text-[#ffffffa2]" : "text-[#000000a6]"}
-                        `}>{Repostcount}</span>
+                            <span className={` text-xs mt-1 ${theme ? "text-[#ffffffa2]" : "text-[#000000a6]"}`}>{Repostcount}
+                            </span>
+                        </span>
+                        <span title='Commments' className={`flex hover:underline cursor-pointer 
+                        ${CommentsCount > 0 ? "block" : " hidden"}`}>
+                            <button className=' rounded-2xl  pt-[2.3px] text-base outline-none'>
+                                <FaRegComment />
+                            </button>
+                            <span className={` text-xs mt-1 ${theme ? "text-[#ffffffa2]" : "text-[#000000a6]"}`}>{comment}
+                            </span>
                         </span>
                         <span title='Impression' className={`flex hover:underline cursor-pointer 
                         ${impressionCount > 0 ? " visible" : " invisible"}`}>
-                            <button className=' rounded-2xl  p-[2px]'>
+                            <button className=' rounded-2xl  p-[2px] outline-none'>
                                 <TbBrandGoogleAnalytics />
                             </button>
                             <span className={` text-xs ml-[1px] mt-1 

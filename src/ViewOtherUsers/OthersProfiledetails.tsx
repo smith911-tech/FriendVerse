@@ -112,8 +112,9 @@ export default function OthersProfileDetails({
     if (data) {
         const followersCount = data.Followers?.length || 0;
 
-
-        if (followersCount > 9999) {
+        if (followersCount >= 1000000) {
+            Followers = (followersCount / 1000000).toFixed(1) + 'm';
+        } else if (followersCount >= 1000) {
             Followers = (followersCount / 1000).toFixed(1) + 'k';
         } else {
             Followers = followersCount.toString();
@@ -121,7 +122,9 @@ export default function OthersProfileDetails({
 
         const followingCount = data.Following?.length || 0;
 
-        if (followingCount > 9999) {
+        if (followingCount >= 1000000) {
+            Following = (followingCount / 1000000).toFixed(1) + 'm';
+        } else if (followingCount >= 1000) {
             Following = (followingCount / 1000).toFixed(1) + 'k';
         } else {
             Following = followingCount.toString();
@@ -194,9 +197,9 @@ export default function OthersProfileDetails({
                         <span  className={`select-none ${theme ? "text-[white]" : "text-[black] "}`}>{Following}</span> Following</Link>
                 </div>
                 <hr />
-                <section onClick={handleBodyClick}>
-                    <OtherUsersSlidesbtn />
-                </section>
+            </section>
+            <section onClick={handleBodyClick}>
+                <OtherUsersSlidesbtn />
             </section>
             {isInputClicked && (
                 <section className='absolute -top-10 left-1/2 transform -translate-x-1/2 shadow-2xl smm500:-top-32'>

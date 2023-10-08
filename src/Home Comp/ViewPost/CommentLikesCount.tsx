@@ -9,12 +9,14 @@ export default function CommentLikesCount ({comment}: Props) {
     const theme = useThemeStore((state: any) => state.theme);
     let Likes
     const LikesCount =  comment?.Likes?.length || 0;
-
-    if (LikesCount > 999) {
+    if (LikesCount >= 1000000) {
+        Likes = (LikesCount / 1000000).toFixed(1) + 'm';
+    } else if (LikesCount >= 1000) {
         Likes = (LikesCount / 1000).toFixed(1) + 'k';
     } else {
         Likes = LikesCount.toString();
     }
+
 
     return(
         <main>

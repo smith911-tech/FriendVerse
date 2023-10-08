@@ -129,7 +129,7 @@ export default function ViewComment({ post, SuggestData }: Props) {
                             {CommetByTime.map((comment) => (
                                 <div key={comment.id}>
                                     {comment.author && (
-                                        <article className='py-4 px-2 flex gap-2'>
+                                        <article className='py-4 px-2 flex gap-2 w-full'>
                                         <main>
                                                 {comment.author.profileImage === "" ? (
                                                     <Link to={`${userid !== comment.author.id ? `/User/${comment.author.username}` : '/Profile'}`}>
@@ -149,8 +149,8 @@ export default function ViewComment({ post, SuggestData }: Props) {
                                                     </Link>
                                                 )}
                                         </main>
-                                            <aside className='w-full'>
-                                                <main className={` w-full pt-1 px-2 rounded-r-xl rounded-b-xl relative
+                                            <aside className='w-[84%] md734:w-[90%]'>
+                                                <main className={` pt-1 px-2 rounded-r-xl rounded-b-xl relative
                                                 ${theme ? "bg-[#1b1d21]" : "bg-[#f0f2f5]"}`}>
                                                     <div className='flex justify-between'>
                                                         <section className='flex gap-1'>
@@ -167,7 +167,7 @@ export default function ViewComment({ post, SuggestData }: Props) {
                                                         <DeleteCommentPop comment={comment} post={post}/>
                                                     </div>
                                                     <p className={` text-xs ml-2 text-[#0000009c] -mt-1 pb-4 select-none ${theme ? "text-[#ffffff91]" : "text-[#0000009c] "}`}>{comment.author.bio}</p>
-                                                    <p className='text-sm ml-2 pb-2 whitespace-normal overflow-ellipsis overflow-hidden max-w-[90%]'>{comment.Comment}</p>
+                                                    <p className='text-sm ml-2 pb-2 break-words'>{comment.Comment}</p>
                                                     <CommentLikesCount comment={comment}/>
                                                 </main>
                                                 <button onClick={() => (comment.Likes?.includes(userid) ? handleUnLike(comment.id) : handleLike(comment.id))} className={`flex gap-1 mt-1 outline-none text-sm font-medium text-[#0000007f] ml-4
