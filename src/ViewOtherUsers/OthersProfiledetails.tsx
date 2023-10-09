@@ -198,8 +198,8 @@ export default function OthersProfileDetails({
                 </div>
                 <hr />
             </section>
-            <section onClick={handleBodyClick}>
-                <OtherUsersSlidesbtn />
+            <section onClick={handleBodyClick} className={isInputClicked ? " brightness-[0.2]" : " brightness-100"}>
+                <OtherUsersSlidesbtn data={data}/>
             </section>
             {isInputClicked && (
                 <section className='absolute -top-10 left-1/2 transform -translate-x-1/2 shadow-2xl smm500:-top-32'>

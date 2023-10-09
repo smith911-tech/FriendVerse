@@ -17,10 +17,10 @@ export default function Postedarticle({ post }: Props) {
 
     const navigate = useNavigate();
     const handleViewPost = (id: string) => {
-        if (window.location.pathname === '/Home' || '/Profile') {
-            navigate(`/Post/${id}`);
-        } else {
+        if (window.location.pathname === `/Post/${id}`) {
             return null;
+        } else {
+            navigate(`/Post/${id}`)
         }
     };
 
@@ -71,7 +71,7 @@ export default function Postedarticle({ post }: Props) {
         <main>
             <article
                 className={`pt-2  px-2 overflow-auto
-                ${window.location.pathname === '/Home'
+                ${window.location.pathname !== `/Post/${post.id}`
                         ? (theme ? "hover:bg-[#ffffff0f] cursor-pointer" : "hover:bg-[#00000017] cursor-pointer")
                         : ""}`}
                 onClick={() => handleViewPost(post.id)}
