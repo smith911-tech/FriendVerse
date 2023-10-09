@@ -17,7 +17,7 @@ export default function Postedarticle({ post }: Props) {
 
     const navigate = useNavigate();
     const handleViewPost = (id: string) => {
-        if (window.location.pathname === '/Home') {
+        if (window.location.pathname === '/Home' || '/Profile') {
             navigate(`/Post/${id}`);
         } else {
             return null;

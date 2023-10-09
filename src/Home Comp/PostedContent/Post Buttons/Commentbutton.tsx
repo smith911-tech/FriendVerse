@@ -8,7 +8,7 @@ export default function Commentbutton({post}: Props) {
     const theme = useThemeStore((state: any) => state.theme);
     const navigate = useNavigate()
     const handleViewPost = (id: string) => {
-        if (window.location.pathname === '/Home') {
+        if (window.location.pathname === '/Home' || '/Profile') {
             navigate(`/Post/${id}`);
         } else {
             return null
