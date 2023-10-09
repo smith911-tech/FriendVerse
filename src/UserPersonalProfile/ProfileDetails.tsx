@@ -151,8 +151,12 @@ export default function UserProfileDetails({
                 </ul>
             <hr />
         </section>
-            <ProfileSLideBtn 
-            handleBodyClick={handleBodyClick} />
+            <section className={isInputClicked ? " brightness-[0.2]" : " brightness-100"}>
+                <ProfileSLideBtn
+                    handleBodyClick={handleBodyClick}
+                    SuggestData={SuggestData}
+                />
+            </section>
             <UpdateP
             isInputClicked={isInputClicked} 
             userData={userData}

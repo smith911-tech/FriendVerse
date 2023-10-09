@@ -13,6 +13,7 @@ import PostedVideo from "./PostedContent/PostedVideos"
 import PostedCode from "./PostedContent/PostedCode"
 import PostedImages from "./PostedContent/PostedImages"
 import Postedbtn from "./PostedContent/Postedbtn"
+import PostedYtLink from "./PostedContent/PostedYtLink"
 import { RotatingLines } from "react-loader-spinner";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
@@ -22,7 +23,6 @@ import { FaCopy } from 'react-icons/fa6'
 import { FiShare2 } from 'react-icons/fi'
 import { message } from 'antd';
 import { RiDeleteBinLine } from 'react-icons/ri'
-import PostedYtLink from "./PostedContent/PostedYtLink"
 import PostPop from '../assets/PostNotify.mp3'
 
 export default function Postsection({SuggestData}: Props) {

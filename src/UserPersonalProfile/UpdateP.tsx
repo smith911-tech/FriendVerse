@@ -102,7 +102,7 @@ export default function UpdateProfile({
             }, 1500);
             return;
         }
-        if (SuggestData.some((user: any) => user.username === userName)) {
+        if (SuggestData.some((user: any) => user.id !== userid && user.username === userName)) {
             setError("Username is already taken.");
             setLoader(false);
             setTimeout(() => {
