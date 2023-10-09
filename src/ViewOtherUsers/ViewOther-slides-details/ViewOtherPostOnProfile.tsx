@@ -122,14 +122,14 @@ export default function ViewOtherPostOnProfile({ PersonalData, PostDataByTime }:
                             <aside className="flex">
                                 <section>
                                     {PersonalData.profileImage === "" ? (
-                                        <Link to='/Profile'>
+                                        <Link to={`/User/${PersonalData.username}`}>
                                             <div className={`text-[40px] rounded-full select-none 
                                         ${theme ? "text-white" : "text-[#000000d7]"}`}>
                                                 <BiSolidUserCircle />
                                             </div>
                                         </Link>
                                     ) : (
-                                        <Link to='/Profile'>
+                                        <Link to={`/User/${PersonalData.username}`}>
                                             <LazyLoadImage
                                                 effect="blur"
                                                 src={PersonalData.profileImage}
@@ -140,7 +140,7 @@ export default function ViewOtherPostOnProfile({ PersonalData, PostDataByTime }:
                                     )}
                                 </section>
                                 <span>
-                                    <Link to='/Profile' className=' ml-2 text-sm font-medium flex hover:underline select-none '>
+                                    <Link to={`/User/${PersonalData.username}`} className=' ml-2 text-sm font-medium flex hover:underline select-none '>
                                         {PersonalData.fullName}
                                         {PersonalData.Verify && (
                                             <span className='text-[#1d9bf0] mt-[2px]'>
