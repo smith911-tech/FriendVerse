@@ -7,7 +7,7 @@ import { db } from '../firebase-config';
 import { useState, useEffect } from 'react'
 import { RotatingLines } from "react-loader-spinner";
 import PostNotAvaliable from '../GeneralComponent/PostNotAvailable';
-import ViewPostOnProfile from './ViewPostOnProfile';
+import ViewPostOnProfile from './View-slides-details/ViewPostOnProfile';
 export default function Post({ SuggestData }: Props) {
     const [postData, setPostData] = useState<any[]>([])
     //? uid

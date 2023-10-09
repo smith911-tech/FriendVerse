@@ -8,12 +8,12 @@ export default function Commentbutton({post}: Props) {
     const theme = useThemeStore((state: any) => state.theme);
     const navigate = useNavigate()
     const handleViewPost = (id: string) => {
-        if (window.location.pathname === '/Home') {
-            navigate(`/Post/${id}`);
+        if (window.location.pathname === `/Post/${id}`) {
+            return null;
         } else {
-            return null
+            navigate(`/Post/${id}`)
         }
-    }
+    };
     return(
         <button onClick={() => handleViewPost(post && post.id)} className={`flex mt-1 w-[33%] justify-center py-[7px] rounded gap-1  outline-none
                 ${theme ? "hover:bg-[#ffffff3c]" : "hover:bg-[#0000004f]"}`}>

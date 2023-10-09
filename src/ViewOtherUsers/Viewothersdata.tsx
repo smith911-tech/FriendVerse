@@ -51,7 +51,7 @@ export default function ViewUsersData({
     return (
         <main className='relative'>
             {data ? (
-                <section className={`w-full flex flex-col justify-center p-1
+                <section className={`w-full flex flex-col justify-center 
                 ${theme ? isInputClicked ? " bg-black text-white" : " bg-black text-white"
                     : isInputClicked ? " text-black" : "bg-white text-black"}
                 `}>

@@ -1,4 +1,4 @@
-import { useThemeStore } from '../Zustand'
+import { useThemeStore } from '../../Zustand'
 import { BiSolidUserCircle, BiTimeFive } from 'react-icons/bi'
 import { Link } from "react-router-dom"
 import { VscVerifiedFilled } from 'react-icons/vsc'
@@ -9,15 +9,15 @@ import { FaCopy } from 'react-icons/fa6'
 import { FiShare2 } from 'react-icons/fi'
 import { BiDotsHorizontal } from 'react-icons/bi'
 import { RiDeleteBinLine } from 'react-icons/ri'
-import { db } from '../firebase-config';
+import { db } from '../../firebase-config';
 import { message } from 'antd';
 import { collection, doc, deleteDoc, getDocs, query, where } from "firebase/firestore"
-import Postedarticle from "../Home Comp/PostedContent/Postedarticle"
-import PostedVideo from "../Home Comp/PostedContent/PostedVideos"
-import PostedCode from "../Home Comp/PostedContent/PostedCode"
-import PostedImages from "../Home Comp/PostedContent/PostedImages"
-import Postedbtn from "../Home Comp/PostedContent/Postedbtn"
-import PostedYtLink from "../Home Comp/PostedContent/PostedYtLink"
+import Postedarticle from "../../Home Comp/PostedContent/Postedarticle"
+import PostedVideo from "../../Home Comp/PostedContent/PostedVideos"
+import PostedCode from "../../Home Comp/PostedContent/PostedCode"
+import PostedImages from "../../Home Comp/PostedContent/PostedImages"
+import Postedbtn from "../../Home Comp/PostedContent/Postedbtn"
+import PostedYtLink from "../../Home Comp/PostedContent/PostedYtLink"
 interface Props {
     PersonalData: any
     PostDataByTime: any
