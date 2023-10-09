@@ -1,10 +1,62 @@
-
-
-export default function Post() {
+interface Props{
+    SuggestData: any
+}
+import { useThemeStore } from '../Zustand';
+import { collection, onSnapshot} from "firebase/firestore"
+import { db } from '../firebase-config';
+import { useState, useEffect } from 'react'
+import { RotatingLines } from "react-loader-spinner";
+import PostNotAvaliable from '../GeneralComponent/PostNotAvailable';
+export default function Post({ SuggestData }: Props) {
+    const [postData, setPostData] = useState<any[]>([])
+    //? uid
+    let userid = sessionStorage.getItem('UserId')
+    //! Theme Mode
+    const theme = useThemeStore((state: any) => state.theme);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+    useEffect(() => {
+        const handleGetPost = (snapshot: any) => {
+            const data = snapshot.docs
+                .map((doc: any) => ({ ...doc.data(), id: doc.id }))
+                .filter((post: any) => post.author === userid as string); // Filter Posts by userid
+            setIsLoading(false);
+            setPostData(data);
+        };
+        const unsubscribePost = onSnapshot(collection(db, "posts",), handleGetPost);
+        return () => {
+            unsubscribePost()
+        };
+    }, []);
+    const PostDataByTime = postData.sort((a, b) => b.time - a.time);
+    const UserData = SuggestData.find((suggestion: any) => suggestion.id === userid);
+    
     return (
-        <>
-        Verb Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum saepe molestiae consectetur quia accusantium totam corporis earum quisquam minus, porro aliquam nesciunt vel incidunt soluta natus nostrum, perspiciatis amet quod voluptates quae rerum a itaque commodi. Molestiae aspernatur possimus amet culpa quidem, rerum delectus ipsa? Voluptatum, consequatur sunt doloribus nostrum consequuntur iusto ducimus, aperiam id reiciendis ipsam dolore itaque. A, odit, aperiam facilis repellendus, dolor aliquid consequuntur excepturi asperiores cum praesentium laboriosam voluptatibus! Libero nostrum, molestias iusto magnam delectus ex quae obcaecati quas maxime accusamus quo, sequi aut dicta voluptate? Quas eos facilis consectetur, laudantium facere ut suscipit harum nesciunt.
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea numquam inventore dolorem beatae animi eaque praesentium dolores aut, accusantium laboriosam sequi perspiciatis temporibus illo quos amet? Exercitationem consequatur perferendis asperiores quis accusantium nesciunt, animi eos distinctio earum? Tempora at ratione in perferendis iusto aspernatur consequatur, sapiente amet nobis, dolore possimus maiores fuga quisquam provident temporibus inventore ipsam laudantium iure suscipit minima commodi. Delectus explicabo veritatis ratione quae ipsam obcaecati asperiores hic quis recusandae dicta quos perferendis totam nostrum sit velit labore quisquam, magni ad excepturi molestias. Exercitationem corrupti fugit architecto rerum soluta atque debitis itaque aliquam perspiciatis est impedit cum blanditiis voluptatem aspernatur sequi omnis in consectetur porro esse, explicabo odio accusantium ratione neque voluptate! Id quasi obcaecati enim, consectetur officia voluptate cum cumque quisquam consequatur rem at illo accusamus a, perspiciatis rerum quia perferendis sunt ratione nulla hic! Ullam ipsa temporibus et ea. Repellendus ducimus tenetur minima voluptas deleniti nisi facilis nesciunt odit blanditiis ullam nobis, tempore at laboriosam praesentium ratione ab quasi, minus autem esse eum dolore quisquam asperiores. Cupiditate, temporibus voluptates, praesentium libero nobis suscipit ea odit a non explicabo natus sequi? Odit eos quis nam et sed magnam adipisci minus sit, sequi iste porro deleniti molestiae quia aliquid odio. Quam, laborum. Dolorum enim mollitia explicabo voluptatem harum minima, accusamus ipsa perspiciatis, sequi possimus aliquid asperiores magni alias excepturi.
-        </>
+        <main className={` mt-3 
+        ${theme ? "bg-[#1b1d21] text-[#ffff]" : "bg-[#f0f2f5]  text-[#000000]"}`}>
+            {isLoading ? (
+                <div className='flex items-center justify-center gap-2 py-5'>
+                    <RotatingLines
+                        strokeColor="grey"
+                        strokeWidth="5"
+                        animationDuration="0.75"
+                        width="50"
+                        visible={true}
+                    />
+                    <p className='text-lg text-gray-600'>Loading Post...</p>
+                </div>
+            ): (
+                <section>
+                    {PostDataByTime ? (
+                        <div className={` pt-10 pb-28 ${theme ? " bg-black" : "bg-white"}`}>
+                            <PostNotAvaliable />
+                        </div>
+                    ): (
+                        <section>
+                            
+                        </section>
+                    )}
+                </section>
+            )}
+        </main>
     )
 }

@@ -152,7 +152,9 @@ export default function UserProfileDetails({
             <hr />
         </section>
             <ProfileSLideBtn 
-            handleBodyClick={handleBodyClick} />
+            handleBodyClick={handleBodyClick} 
+            SuggestData={SuggestData}
+            />
             <UpdateP
             isInputClicked={isInputClicked} 
             userData={userData}

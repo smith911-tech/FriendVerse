@@ -255,7 +255,9 @@ export default function ViewPostContent({Post, SuggestData, userData}: Props){
                             <ViewComment post={Post} SuggestData={SuggestData} />
                     </article>
                 ): (
-                    <PostNotAvaliable />
+                    <div className=' pt-28'>
+                        <PostNotAvaliable />
+                    </div>
                 )
             )}
         </main>

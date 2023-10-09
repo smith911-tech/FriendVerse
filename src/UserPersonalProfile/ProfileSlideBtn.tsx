@@ -9,6 +9,7 @@ import Liked from './Liked';
 import Impressions from './Impression';
 interface Props{
     handleBodyClick : () => void
+    SuggestData: any
 }
 type ClickedState = {
     Post: boolean;
@@ -17,7 +18,7 @@ type ClickedState = {
     impression: boolean;
 };
 
-export default function ProfileSides({handleBodyClick}: Props) {
+export default function ProfileSides({ handleBodyClick, SuggestData }: Props) {
     let settings = {
         speed: 700,
         slidesToShow: 4,
@@ -102,7 +103,7 @@ export default function ProfileSides({handleBodyClick}: Props) {
                 </Slider>
             </main>
             <section onClick={handleBodyClick}>
-                {clicked.Post && <Posts />}
+                {clicked.Post && <Posts SuggestData={SuggestData}/>}
                 {clicked.rePost && <RePost />}
                 {clicked.liked && <Liked />}
                 {clicked.impression && <Impressions />}
