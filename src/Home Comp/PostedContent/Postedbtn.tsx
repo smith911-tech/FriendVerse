@@ -172,7 +172,7 @@ export default function Postedbtn({post, Popover}: Props) {
                         </span>
                     </Popover.Button>
                     <main className='flex  gap-2'>
-                        <span title='Reposts' className={`flex hover:underline cursor-pointer 
+                        <span title='Reposts' className={`flex hover:underline cursor-pointer
                         ${matchingRepostsCount > 0 ? " visible" : " invisible"}`}>
                             <button className=' rounded-2xl  pt-[2.3px] text-lg outline-none'>
                                 <BiRepost />
@@ -182,7 +182,7 @@ export default function Postedbtn({post, Popover}: Props) {
                         </span>
                         <span title='Commments' className={`flex hover:underline cursor-pointer 
                         ${CommentsCount > 0 ? "block" : " hidden"}`}>
-                            <button className=' rounded-2xl  pt-[2.3px] text-base outline-none'>
+                            <button className=' rounded-2xl  pt-[2.3px] mr-[2px] text-base outline-none'>
                                 <FaRegComment />
                             </button>
                             <span className={` text-xs mt-1 ${theme ? "text-[#ffffffa2]" : "text-[#000000a6]"}`}>{comment}

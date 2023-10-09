@@ -1,4 +1,4 @@
-import { useThemeStore } from '../Zustand'
+import { useThemeStore } from '../../Zustand'
 import { BiSolidUserCircle, BiTimeFive } from 'react-icons/bi'
 import { Link } from "react-router-dom"
 import { VscVerifiedFilled } from 'react-icons/vsc'
@@ -9,21 +9,21 @@ import { FaCopy } from 'react-icons/fa6'
 import { FiShare2 } from 'react-icons/fi'
 import { BiDotsHorizontal } from 'react-icons/bi'
 import { RiDeleteBinLine } from 'react-icons/ri'
-import { db } from '../firebase-config';
+import { db } from '../../firebase-config';
 import { message } from 'antd';
 import { collection, doc, deleteDoc, getDocs, query, where } from "firebase/firestore"
-import Postedarticle from "../Home Comp/PostedContent/Postedarticle"
-import PostedVideo from "../Home Comp/PostedContent/PostedVideos"
-import PostedCode from "../Home Comp/PostedContent/PostedCode"
-import PostedImages from "../Home Comp/PostedContent/PostedImages"
-import Postedbtn from "../Home Comp/PostedContent/Postedbtn"
-import PostedYtLink from "../Home Comp/PostedContent/PostedYtLink"
+import Postedarticle from "../../Home Comp/PostedContent/Postedarticle"
+import PostedVideo from "../../Home Comp/PostedContent/PostedVideos"
+import PostedCode from "../../Home Comp/PostedContent/PostedCode"
+import PostedImages from "../../Home Comp/PostedContent/PostedImages"
+import Postedbtn from "../../Home Comp/PostedContent/Postedbtn"
+import PostedYtLink from "../../Home Comp/PostedContent/PostedYtLink"
 interface Props {
     PersonalData: any
     PostDataByTime: any
 }
 
-export default function ViewPostOnProfile({ PersonalData, PostDataByTime }: Props){
+export default function ViewOtherPostOnProfile({ PersonalData, PostDataByTime }: Props) {
     const theme = useThemeStore((state: any) => state.theme);
 
     // ! date calculation
@@ -110,8 +110,8 @@ export default function ViewPostOnProfile({ PersonalData, PostDataByTime }: Prop
             console.error("Error deleting post and associated comments: ", error);
         }
     };
-    
-    return(
+
+    return (
         <main className=' pt-4 pb-28'>
             {PostDataByTime.map((post: any) => (
                 <main key={post.id}>
@@ -176,11 +176,11 @@ export default function ViewPostOnProfile({ PersonalData, PostDataByTime }: Prop
                                             className="flex gap-1 w-full py-2 pl-3 hover:bg-[#00000076] cursor-pointer">
                                             <FiShare2 className="text-2xl px-1" /> <p>Share</p>
                                         </Popover.Button>
-                                            <Popover.Button
-                                                onClick={(() => handleDelete(post.id))}
-                                                className="flex gap-1 w-full py-2 pl-3 hover:bg-[#00000076] cursor-pointer text-red-700">
-                                                <RiDeleteBinLine className="text-2xl px-1" /> <p>Delete Post</p>
-                                            </Popover.Button>
+                                        <Popover.Button
+                                            onClick={(() => handleDelete(post.id))}
+                                            className="flex gap-1 w-full py-2 pl-3 hover:bg-[#00000076] cursor-pointer text-red-700">
+                                            <RiDeleteBinLine className="text-2xl px-1" /> <p>Delete Post</p>
+                                        </Popover.Button>
 
                                     </div>
                                 </Popover.Panel>
