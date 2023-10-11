@@ -128,7 +128,7 @@ export default function ViewOtherRepostOnProfile({ RePostDataByTime, SuggestData
                                     ? " text-[#ffffffb0]" : " text-[#000000aa]"}`}>
                                     <Link to={`/User/${data.username}`} className="flex ml-4 text-sm gap-1 pb-4">
                                         <BiRepost className=' text-xl' />
-                                        <h2>{data && data.username}Reposted</h2>
+                                        <h2>{data && data.username} Reposted</h2>
                                     </Link>
                                 </div>
                                 <main className="flex px-2 justify-between">
