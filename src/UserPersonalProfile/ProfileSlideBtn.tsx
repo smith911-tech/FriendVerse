@@ -69,7 +69,7 @@ export default function ProfileSides({ handleBodyClick, SuggestData }: Props) {
             <main className='block my-0 mx-auto  font-medium mb-3 px-6'>
                 <Slider {...settings}>
                     <div>
-                        <div onClick={(() => handleClick('Post'))} className={`  w-[80%] py-2 ease-in-out transition duration-200 ${theme ? "hover:bg-[#ffffff62]" : "hover:bg-[#00000052]"} cursor-pointer 
+                        <div onClick={(() => handleClick('Post'))} className={`  w-[80%] py-2 ease-in-out transition duration-200 outline-none ${theme ? "hover:bg-[#ffffff62]" : "hover:bg-[#00000052]"} cursor-pointer 
                         ${clicked.Post
                                 ? " border-b-4 border-blue-600"
                                 : "border-b-4 border-b-transparent"}`}>
@@ -77,7 +77,7 @@ export default function ProfileSides({ handleBodyClick, SuggestData }: Props) {
                         </div>
                     </div>
                     <div>
-                        <div onClick={(() => handleClick('rePost'))} className={`  w-[80%] py-2 ease-in-out transition duration-200 ${theme ? "hover:bg-[#ffffff62]" : "hover:bg-[#00000052]"} cursor-pointer
+                        <div onClick={(() => handleClick('rePost'))} className={`  w-[80%] py-2 ease-in-out transition duration-200 outline-none ${theme ? "hover:bg-[#ffffff62]" : "hover:bg-[#00000052]"} cursor-pointer
                     ${clicked.rePost
                                 ? " border-b-4 border-blue-600"
                                 : "border-b-4 border-b-transparent"}`}>
@@ -85,7 +85,7 @@ export default function ProfileSides({ handleBodyClick, SuggestData }: Props) {
                         </div>
                     </div>
                     <div>
-                        <div onClick={(() => handleClick('liked'))} className={`  w-[80%] py-2 ease-in-out transition duration-200 ${theme ? "hover:bg-[#ffffff62]" : "hover:bg-[#00000052]"} cursor-pointer
+                        <div onClick={(() => handleClick('liked'))} className={`  w-[80%] py-2 ease-in-out transition duration-200 outline-none ${theme ? "hover:bg-[#ffffff62]" : "hover:bg-[#00000052]"} cursor-pointer
                     ${clicked.liked
                                 ? " border-b-4 border-blue-600"
                                 : "border-b-4 border-b-transparent"}`}>
@@ -93,7 +93,7 @@ export default function ProfileSides({ handleBodyClick, SuggestData }: Props) {
                         </div>
                     </div>
                     <div>
-                        <div onClick={(() => handleClick('impression'))} className={`  w-[80%] py-2 ease-in-out transition duration-200 ${theme ? "hover:bg-[#ffffff62]" : "hover:bg-[#00000052]"} cursor-pointer
+                        <div onClick={(() => handleClick('impression'))} className={`  w-[80%] py-2 ease-in-out transition duration-200 outline-none ${theme ? "hover:bg-[#ffffff62]" : "hover:bg-[#00000052]"} cursor-pointer
                     ${clicked.impression
                                 ? " border-b-4 border-blue-600"
                                 : "border-b-4 border-b-transparent"}`}>
@@ -104,7 +104,7 @@ export default function ProfileSides({ handleBodyClick, SuggestData }: Props) {
             </main>
             <section onClick={handleBodyClick}>
                 {clicked.Post && <Posts SuggestData={SuggestData}/>}
-                {clicked.rePost && <RePost />}
+                {clicked.rePost && <RePost SuggestData={SuggestData} />}
                 {clicked.liked && <Liked />}
                 {clicked.impression && <Impressions />}
             </section>
