@@ -192,7 +192,7 @@ export default function Postsection({SuggestData}: Props) {
                 ) : (
                     CombinedData.map((post) => {
                         const authorData = SuggestData.find((user: any) => user.id === post.author);
-                        const Repostauthor =SuggestData && SuggestData?.find((user: any) => user?.id === post?.RepostAuthor);
+                        const Repostauthor = SuggestData && SuggestData?.find((user: any) => user?.id === post?.RepostAuthor);
                         if (authorData) {
                             const formattedDate = formatPostDate(post.time);
                             return (
