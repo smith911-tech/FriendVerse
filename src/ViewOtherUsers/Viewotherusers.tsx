@@ -131,6 +131,7 @@ export default function ViewOtherUsers() {
                     isInputClicked={isInputClicked}
                     handleInputClick={handleInputClick}
                     handleBodyClick={handleBodyClick}
+                    SuggestData={SuggestData}
                     />
                 </section>
                 <section

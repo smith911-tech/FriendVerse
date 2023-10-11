@@ -4,6 +4,7 @@ interface Props {
     isInputClicked : boolean
     handleInputClick:  () => void
     handleBodyClick: () => void
+    SuggestData : any
 }
 import { useState} from 'react'
 import { LongCard } from '../GeneralComponent/LoadingCard'
@@ -22,7 +23,8 @@ export default function ViewUsersData({
     userData, 
     isInputClicked,
     handleInputClick,
-    handleBodyClick
+    handleBodyClick,
+    SuggestData 
 }: Props) {
     const [showPmodal, setShowPmodal] = useState<boolean>(false)
     const [showCmodal, setShowCmodal] = useState<boolean>(false)
@@ -84,7 +86,9 @@ export default function ViewUsersData({
                             onClick={handleShowCoverImg}
                             src={data.coverImage}
                             alt="CoverImg"
-                            className="w-screen rounded-t-lg h-44  object-cover smm500:h-32 cursor-pointer"
+                            className={` w-screen rounded-t-lg h-44  object-cover smm500:h-32 cursor-pointer
+                            ${isInputClicked ? 
+                                "brightness-[0.2]" : " brightness-100"}`}
                             />
                         )}
                         {data.profileImage === "" ? (
@@ -126,6 +130,7 @@ export default function ViewUsersData({
                     isInputClicked={isInputClicked}
                     handleInputClick={handleInputClick}
                     handleBodyClick={handleBodyClick}
+                    SuggestData={SuggestData}
                     />
                 </section>
             ) : (
