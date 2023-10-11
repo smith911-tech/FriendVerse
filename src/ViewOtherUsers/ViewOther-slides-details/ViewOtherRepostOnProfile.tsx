@@ -22,9 +22,10 @@ import { BiRepost } from 'react-icons/bi'
 interface Props {
     RePostDataByTime: any
     SuggestData: any
+    data: any
 }
 
-export default function ViewRepostOnProfile({ RePostDataByTime, SuggestData }: Props) {
+export default function ViewOtherRepostOnProfile({ RePostDataByTime, SuggestData, data }: Props) {
     const theme = useThemeStore((state: any) => state.theme);
     //? uid
     let userid = sessionStorage.getItem('UserId')
@@ -117,18 +118,18 @@ export default function ViewRepostOnProfile({ RePostDataByTime, SuggestData }: P
         <main className=' pt-4 pb-28'>
             {RePostDataByTime.map((post: any) => {
                 const PersonalData = SuggestData && SuggestData.find((suggestion: any) => suggestion.id === post.author);
-                if(PersonalData){
-                    return(
+                if (PersonalData) {
+                    return (
                         <main key={post.id}>
                             <Popover className={`py-3 rounded-md mb-4 relative ${theme
                                 ? "bg-black text-[#ffff]" : "bg-white text-[#000000]"}`}
                             >
                                 <div className={`  ${theme
                                     ? " text-[#ffffffb0]" : " text-[#000000aa]"}`}>
-                                        <Link to='/Profile' className="flex ml-4 text-sm gap-1 pb-4">
-                                            <BiRepost className=' text-xl' />
-                                        <h2>You Reposted</h2>
-                                        </Link>
+                                    <Link to={`/User/${data.username}`} className="flex ml-4 text-sm gap-1 pb-4">
+                                        <BiRepost className=' text-xl' />
+                                        <h2>{data && data.username} Reposted</h2>
+                                    </Link>
                                 </div>
                                 <main className="flex px-2 justify-between">
                                     <aside className="flex">

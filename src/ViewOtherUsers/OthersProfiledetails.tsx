@@ -5,6 +5,7 @@ interface Props {
     handleInputClick: () => void
     isInputClicked: boolean
     handleBodyClick: () => void
+    SuggestData : any
 }
 import { IoLocationOutline } from 'react-icons/io5'
 import { LiaBirthdayCakeSolid } from 'react-icons/lia'
@@ -21,7 +22,8 @@ export default function OthersProfileDetails({
     userData,
     handleInputClick,
     isInputClicked,
-    handleBodyClick
+    handleBodyClick,
+    SuggestData
 }: Props){
 
 
@@ -199,7 +201,7 @@ export default function OthersProfileDetails({
                 <hr />
             </section>
             <section onClick={handleBodyClick} className={isInputClicked ? " brightness-[0.2]" : " brightness-100"}>
-                <OtherUsersSlidesbtn data={data}/>
+                <OtherUsersSlidesbtn data={data} SuggestData={SuggestData} />
             </section>
             {isInputClicked && (
                 <section className='absolute -top-10 left-1/2 transform -translate-x-1/2 shadow-2xl smm500:-top-32'>

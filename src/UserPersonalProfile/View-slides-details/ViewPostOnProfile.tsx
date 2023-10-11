@@ -104,7 +104,6 @@ export default function ViewPostOnProfile({ PersonalData, PostDataByTime }: Prop
 
             await deleteDoc(doc(db, "posts", Postid as string));
 
-            // soundDelete.play();
             DeleteSuccessful();
         } catch (error) {
             console.error("Error deleting post and associated comments: ", error);

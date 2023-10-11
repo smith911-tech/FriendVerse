@@ -1,9 +1,86 @@
+interface Props {
+    SuggestData: any
+    data : any
+}
+import { useThemeStore } from '../Zustand';
+import { collection, onSnapshot } from "firebase/firestore"
+import { db } from '../firebase-config';
+import { useState, useEffect } from 'react'
+import { RotatingLines } from "react-loader-spinner";
+import RepostNotAvaliable from '../GeneralComponent/RepostNotAvailable';
+import ViewOtherRepostOnProfile from './ViewOther-slides-details/ViewOtherRepostOnProfile';
+export default function OtherRepost({ SuggestData, data }: Props) {
+    const theme = useThemeStore((state: any) => state.theme);
+    const [repostData, setRePostData] = useState<any[]>([])
+    const [Posts, setPosts] = useState<any[]>([]);
+    const [repostedData, setRePostedData] = useState<any[]>([])
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+    useEffect(() => {
+        const userId = data && data.id
+        const handleGetPost = (snapshot: any) => {
+            const data = snapshot.docs
+                .map((doc: any) => ({ ...doc.data(), id: doc.id }))
+                .filter((repost: any) => repost.RepostAuthor === userId); // Filter rePosts by userid
+            setIsLoading(false);
+            setRePostData(data);
+        };
+        const handleSnapshot = (snapshot: any) => {
+            const data = snapshot.docs.map((doc: any) => ({
+                ...doc.data(),
+                id: doc.id
+            }));
+            setIsLoading(false);
+            setPosts(data);
+        };
+        const unsubscribrePost = onSnapshot(collection(db, "Repost",), handleGetPost);
+        const unsubscribe = onSnapshot(collection(db, "posts"), handleSnapshot);
+        return () => {
+            unsubscribe();
+            unsubscribrePost()
+        };
+    }, []);
+    useEffect(() => {
+        const combined = repostData.map((repost) => {
+            const originalPost = Posts.find((post) => post.id === repost.PostId);
+            return {
+                ...repost,
+                ...originalPost,
+            };
+        });
+        setRePostedData(combined);
+    }, [repostData, Posts]);
 
+    const RePostDataByTime = repostedData.sort((a, b) => b.timeReposted - a.timeReposted);
 
-export default function OtherRepost() {
-    return(
-    <>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores illo maxime dolor sed est temporibus molestias maiores excepturi quidem eveniet earum aspernatur magni praesentium quo, porro atque esse soluta dolorem? Modi expedita totam sed cupiditate eaque exercitationem, dicta minima facilis sunt itaque a magni delectus tempore soluta velit quidem nisi quos! Nam nihil cupiditate voluptatem doloribus quisquam, porro recusandae nostrum eos deleniti rerum quam cum iusto tempora vel! Eveniet tempora temporibus debitis repudiandae molestiae, ullam amet culpa maxime fugiat iure et impedit repellendus, quaerat molestias eos esse ab accusantium laboriosam corporis velit natus hic ex commodi. Cupiditate neque illo animi eius pariatur omnis commodi officiis dolore officia perferendis veritatis ullam nulla esse vitae ipsam, deserunt sunt nisi ex necessitatibus tenetur. Dignissimos quod alias esse illo voluptatibus nulla excepturi similique animi, qui inventore, ea doloribus laborum quis explicabo dolores iste ducimus expedita quasi dolorem ad iure, ipsa saepe? Inventore dolores ut quasi vitae reiciendis quidem officia temporibus delectus, dolore reprehenderit dolor debitis rem natus aspernatur nam placeat facilis quae possimus quos animi unde. Reiciendis commodi provident, saepe corporis consequuntur a optio minus quaerat, suscipit necessitatibus explicabo, numquam unde earum? Earum fugiat repudiandae optio deserunt ducimus nesciunt ipsa, dolore ab veritatis porro? Provident odio, vel voluptatem excepturi inventore, exercitationem sint eos, quam suscipit ullam debitis? Pariatur error magnam doloribus non ipsa eveniet beatae, ea sequi ex facilis possimus voluptate aspernatur maxime facere, ipsam corporis temporibus neque ab omnis id esse iste tempora? Vero, doloribus libero excepturi itaque nulla tempore distinctio fugit nihil maiores sequi eaque similique necessitatibus. Quos ab natus expedita odit, incidunt, soluta modi consectetur, cumque perspiciatis delectus repudiandae unde eum provident aliquam iusto id molestiae ullam. Aliquid, excepturi iste! Culpa numquam nam commodi distinctio. Illum, nulla quis sequi voluptatibus in non dolorum recusandae repellendus optio! Exercitationem adipisci, veniam unde dignissimos molestias rerum libero ea, pariatur maxime esse saepe ex cum voluptatibus molestiae. Temporibus, vitae fugiat nihil, porro doloribus dolore iusto dicta ab nostrum animi quam vel iure. Adipisci vitae perspiciatis quaerat tempore neque? Numquam iusto optio eaque voluptatibus officiis reiciendis, harum ipsa enim necessitatibus dolorem, culpa quam repellendus voluptatem voluptatum inventore doloremque blanditiis fugit minus. Aut iusto error perferendis quae doloribus officiis deleniti voluptate amet quidem iste minima eum nemo et vitae velit exercitationem expedita praesentium quis eius aliquam, ipsa tempore ipsam. Quidem, hic corporis enim sequi placeat officia dignissimos veniam quis aliquam deleniti quae, repellat, iure neque ratione possimus.
-    </>
-)
+    return (
+        <main className={` mt-3 ${theme ? "bg-[#1b1d21] text-[#ffff]" : "bg-[#f0f2f5]  text-[#000000]"}`}>
+            {isLoading ? (
+                <section className={`py-10 ${theme ? " bg-black" : "bg-white"}`}>
+                    <div className='flex items-center justify-center gap-2 py-5'>
+                        <RotatingLines
+                            strokeColor="grey"
+                            strokeWidth="5"
+                            animationDuration="0.75"
+                            width="50"
+                            visible={true}
+                        />
+                        <p className='text-lg'>Loading Repost Data...</p>
+                    </div>
+                </section>
+            ) : (
+                <section>
+                    {RePostDataByTime.length === 0 ? (
+                        <div className={` pt-10 pb-28 ${theme ? " bg-black" : "bg-white"}`}>
+                            <RepostNotAvaliable />
+                        </div>
+                    ) : (
+                        <ViewOtherRepostOnProfile 
+                        SuggestData={SuggestData} 
+                        RePostDataByTime={RePostDataByTime}
+                        data={data}/>
+                    )}
+                </section>
+            )}
+        </main>
+    )
 }

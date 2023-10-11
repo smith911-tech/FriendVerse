@@ -1,5 +1,6 @@
 interface Props{
     data: any
+    SuggestData : any
 }
 import Slider from 'react-slick'
 import "slick-carousel/slick/slick.css";
@@ -16,7 +17,7 @@ type ClickedState = {
     liked: boolean;
     impression: boolean;
 };
-export default function OtherUsersSlidesbtn({data}: Props) {
+export default function OtherUsersSlidesbtn({ data, SuggestData}: Props) {
     let settings = {
         speed: 700,
         slidesToShow: 4,
@@ -100,7 +101,7 @@ export default function OtherUsersSlidesbtn({data}: Props) {
             </main>
             <section>
                 {clicked.post && <Post data={data}/>}
-                {clicked.repost && <Repost />}
+                {clicked.repost && <Repost data={data} SuggestData={SuggestData} />}
                 {clicked.liked && <Liked />}
                 {clicked.impression && <Impressions />}
             </section>
