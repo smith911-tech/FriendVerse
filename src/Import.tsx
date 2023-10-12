@@ -1,12 +1,12 @@
 import SignIn from "./User-Sign In/Sign-In";
-import Signup from './User-Sign Up/Sign-up';
+import Signup from "./User-Sign Up/Sign-up";
 import Page404 from "./Page404";
 import Forgetpasword from "./ForgotPasswordF/Forgetpassword";
 import HomePage from "./Home Comp/HomePage";
 import TermsandCondition from "./Terms & condition/Terms";
 import Privacy from "./Privacy/Privacy";
 import Cookie from "./Cookie/Cookie";
-import Profile from './UserPersonalProfile/Profile'
+import Profile from "./UserPersonalProfile/Profile";
 import FriendRequest from "./Friend Request Comp/FriendRequest";
 import VideoContent from "./Videos/Videos";
 import MessageComp from "./Message/Messagecomp";
@@ -20,27 +20,26 @@ import OthersFollowersInterface from "./ViewOtherUsers/OthersFollowers/OthersFol
 import OthersFollowingInterface from "./ViewOtherUsers/OthersFollowing/OthersFollowing";
 import ViewPost from "./Home Comp/ViewPost/ViewPost";
 
-
 export {
-    SignIn,
-    Signup, 
-    Page404,
-    Forgetpasword,
-    HomePage,
-    TermsandCondition,
-    Privacy,
-    Cookie,
-    Profile,
-    FriendRequest,
-    VideoContent,
-    MessageComp,
-    NotificationComp,
-    ViewOtherUsers,
-    UserSearch,
-    Settings,
-    FollowersInterface,
-    FollowingInterface,
-    OthersFollowersInterface,
-    OthersFollowingInterface,
-    ViewPost,
-}
+  SignIn,
+  Signup,
+  Page404,
+  Forgetpasword,
+  HomePage,
+  TermsandCondition,
+  Privacy,
+  Cookie,
+  Profile,
+  FriendRequest,
+  VideoContent,
+  MessageComp,
+  NotificationComp,
+  ViewOtherUsers,
+  UserSearch,
+  Settings,
+  FollowersInterface,
+  FollowingInterface,
+  OthersFollowersInterface,
+  OthersFollowingInterface,
+  ViewPost,
+};

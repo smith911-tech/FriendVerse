@@ -6,8 +6,8 @@ export default function Preloader() {
     window.scrollTo(0, 0)
   }, []);
   return (
-        <div className='bg-[#1B1D21] h-screen preloader'>
-      <img src={logo} alt="Logo" className="preloader-logo" loading='lazy'/>
+        <div className='bg-[#1B1D21] h-screen preloader select-none'>
+          <img src={logo} alt="Logo" className="preloader-logo" loading='lazy'/>
         </div>
   );
 }        
