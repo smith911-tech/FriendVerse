@@ -25,16 +25,12 @@ import PostedCode from "../../Home Comp/PostedContent/PostedCode";
 import PostedImages from "../../Home Comp/PostedContent/PostedImages";
 import Postedbtn from "../../Home Comp/PostedContent/Postedbtn";
 import PostedYtLink from "../../Home Comp/PostedContent/PostedYtLink";
-import { BiRepost } from "react-icons/bi";
 interface Props {
-  RePostDataByTime: any;
+  LikedDataByTime: any;
   SuggestData: any;
 }
 
-export default function ViewRepostOnProfile({
-  RePostDataByTime,
-  SuggestData,
-}: Props) {
+export default function ViewLikedPost({ LikedDataByTime, SuggestData }: Props) {
   const theme = useThemeStore((state: any) => state.theme);
   //? uid
   let userid = sessionStorage.getItem("UserId");
@@ -131,7 +127,7 @@ export default function ViewRepostOnProfile({
 
   return (
     <main className=" pt-4 pb-28">
-      {RePostDataByTime.map((post: any) => {
+      {LikedDataByTime.map((post: any) => {
         const PersonalData =
           SuggestData &&
           SuggestData.find((suggestion: any) => suggestion.id === post.author);
@@ -143,16 +139,6 @@ export default function ViewRepostOnProfile({
                   theme ? "bg-black text-[#ffff]" : "bg-white text-[#000000]"
                 }`}
               >
-                <div
-                  className={`  ${
-                    theme ? " text-[#ffffffb0]" : " text-[#000000aa]"
-                  }`}
-                >
-                  <Link to="/Profile" className="flex ml-4 text-sm gap-1 pb-4">
-                    <BiRepost className=" text-xl" />
-                    <h2>You Reposted</h2>
-                  </Link>
-                </div>
                 <main className="flex px-2 justify-between">
                   <aside className="flex">
                     <section>
@@ -209,7 +195,9 @@ export default function ViewRepostOnProfile({
                         )}
                       </Link>
                       <span
-                        className={`ml-2 text-sm flex gap-[2px] select-none${  theme ? " text-[#ffffffaa]" : "text-[#000000a0]"}`}
+                        className={`ml-2 text-sm flex gap-[2px] select-none${
+                          theme ? " text-[#ffffffaa]" : "text-[#000000a0]"
+                        }`}
                       >
                         {formatPostDate(post?.time)}
                         <span className="mt-1">

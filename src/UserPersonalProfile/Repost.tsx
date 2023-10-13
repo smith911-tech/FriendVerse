@@ -1,21 +1,28 @@
 interface Props {
   SuggestData: any;
 }
-import { useThemeStore } from "../Zustand";
+import { useState, useEffect } from "react";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase-config";
-import { useState, useEffect } from "react";
 import { RotatingLines } from "react-loader-spinner";
 import RepostNotAvaliable from "../GeneralComponent/RepostNotAvailable";
 import ViewRepostOnProfile from "./View-slides-details/ViewRePostOnProfile";
+import { useThemeStore } from "../Zustand";
+
+interface Props {
+  SuggestData: any;
+}
+
 export default function RePost({ SuggestData }: Props) {
-  const theme = useThemeStore((state: any) => state.theme);
   const [repostData, setRePostData] = useState<any[]>([]);
   const [Posts, setPosts] = useState<any[]>([]);
   const [repostedData, setRePostedData] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+    const theme = useThemeStore((state: any) => state.theme);
+
   //? uid
   let userid = sessionStorage.getItem("UserId");
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+
   useEffect(() => {
     const handleGetPost = (snapshot: any) => {
       const data = snapshot.docs
@@ -24,6 +31,7 @@ export default function RePost({ SuggestData }: Props) {
       setIsLoading(false);
       setRePostData(data);
     };
+
     const handleSnapshot = (snapshot: any) => {
       const data = snapshot.docs.map((doc: any) => ({
         ...doc.data(),
@@ -32,24 +40,34 @@ export default function RePost({ SuggestData }: Props) {
       setIsLoading(false);
       setPosts(data);
     };
+
     const unsubscribrePost = onSnapshot(
       collection(db, "Repost"),
       handleGetPost
     );
+
     const unsubscribe = onSnapshot(collection(db, "posts"), handleSnapshot);
+
     return () => {
       unsubscribe();
       unsubscribrePost();
     };
   }, []);
+
   useEffect(() => {
-    const combined = repostData.map((repost) => {
-      const originalPost = Posts.find((post) => post.id === repost.PostId);
-      return {
-        ...repost,
-        ...originalPost,
-      };
-    });
+    const combined = repostData
+      .filter((repost) => {
+        const originalPost = Posts.find((post) => post.id === repost.PostId);
+        return originalPost; // Only include reposts with matching posts
+      })
+      .map((repost) => {
+        const originalPost = Posts.find((post) => post.id === repost.PostId);
+        return {
+          ...repost,
+          ...originalPost,
+        };
+      });
+
     setRePostedData(combined);
   }, [repostData, Posts]);
 

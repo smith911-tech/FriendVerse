@@ -25,7 +25,7 @@ export default function Content({
         handleBodyClick={handleBodyClick}
       />
       <section
-        className={`smm500:pb-20 ${
+        className={`sm650:pb-20 ${
           isInputClicked ? " brightness-[0.2]" : " brightness-100"
         }`}
         onClick={handleBodyClick}

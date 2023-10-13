@@ -1,38 +1,98 @@
-export default function Liked() {
+interface Props {
+  SuggestData: any;
+}
+import { useThemeStore } from "../Zustand";
+import { RotatingLines } from "react-loader-spinner";
+import { useEffect, useState } from "react";
+import { collection, onSnapshot } from "firebase/firestore";
+import { db } from "../firebase-config";
+import LikedPostNotAvailble from "../GeneralComponent/LikedPostNotAvailable";
+import ViewLikedPost from "./View-slides-details/ViewLikedPost";
+
+export default function Liked({ SuggestData }: Props) {  
+  const theme = useThemeStore((state: any) => state.theme);
+  const [likedData, setLikedData] = useState<any[]>([])
+  const [postData, setPostData] = useState<any[]>([]);
+  const [data, setData] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  let userid = sessionStorage.getItem("UserId");
+useEffect(() => {
+  const handleGetPost = (snapshot: any) => {
+    const data = snapshot.docs.map((doc: any) => ({
+      ...doc.data(),
+      id: doc.id,
+    }));
+    setLikedData(data);
+    setIsLoading(false);
+  };
+
+  const unsubscribeLiked = onSnapshot(collection(db, "users", userid as string, 'Liked'), handleGetPost);
+
+  const handleGetPostData = (snapshot: any) => {
+    const data = snapshot.docs
+      .map((doc: any) => ({ ...doc.data(), id: doc.id })) // Filter Posts by userid
+      setPostData(data);
+      setIsLoading(false);
+  };
+
+  const unsubscribePostData = onSnapshot(collection(db, "posts"), handleGetPostData);
+
+  return () => {
+    unsubscribeLiked();
+    unsubscribePostData();
+  };
+  }, []);
+  useEffect(() => {
+    const combined = likedData
+      .filter((repost) => {
+        const originalPost = postData.find((post) => post.id === repost.id);
+        return originalPost; // Only include reposts with matching posts
+      })
+      .map((repost) => {
+        const originalPost = postData.find((post) => post.id === repost.id);
+        return {
+          ...repost,
+          ...originalPost,
+        };
+      });
+
+    setData(combined);
+  }, [likedData, postData]);
+    const LikedDataByTime = data.sort((a, b) => b.timeLiked - a.timeLiked);
+  
   return (
-    <>
-      Liked Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum
-      saepe molestiae consectetur quia accusantium totam corporis earum quisquam
-      minus, porro aliquam nesciunt vel incidunt soluta natus nostrum,
-      perspiciatis amet quod voluptates quae rerum a itaque commodi. Molestiae
-      aspernatur possimus amet culpa quidem, rerum delectus ipsa? Voluptatum,
-      consequatur sunt doloribus nostrum consequuntur iusto ducimus, aperiam id
-      reiciendis ipsam dolore itaque. A, odit, aperiam facilis repellendus,
-      dolor aliquid consequuntur excepturi asperiores cum praesentium laboriosam
-      voluptatibus! Libero nostrum, molestias iusto magnam delectus ex quae
-      obcaecati quas maxime accusamus quo, sequi aut dicta voluptate? Quas eos
-      facilis consectetur, laudantium facere ut suscipit harum nesciunt. Lorem
-      ipsum, dolor sit amet consectetur adipisicing elit. Et, soluta. Nesciunt
-      dolores cum sint ab assumenda iste ducimus suscipit rem quam in. At sint
-      unde voluptas optio, accusantium fugiat vitae, quod facilis in sit
-      incidunt, necessitatibus illo voluptatum molestiae veritatis saepe. Quia
-      nam repellendus quam asperiores reiciendis unde quo accusamus obcaecati,
-      incidunt dolorum possimus iure minus voluptatem itaque ut rerum sit
-      veritatis harum, quaerat dolor? Quae ea cumque necessitatibus atque!
-      Molestias, eum. Atque, incidunt? Blanditiis aliquid est earum quaerat
-      optio ipsa, mollitia odio architecto fugiat, delectus minima ex ipsam
-      sapiente temporibus at. Ea saepe ex beatae velit, voluptas minus animi!
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos similique
-      alias unde explicabo, neque eaque ad dolorum, et rem vitae voluptates.
-      Laudantium ratione, quam nesciunt natus fugit ab iusto laboriosam, eveniet
-      ex excepturi suscipit quod! Expedita earum voluptatem pariatur quos
-      consequatur nisi sint tenetur molestiae, nam amet maxime laudantium
-      debitis. Iure praesentium harum, quia dolorum culpa tempore aspernatur
-      molestias sed nesciunt architecto dolores, cum amet officiis fuga adipisci
-      debitis consequuntur? Magni, soluta atque nesciunt ipsum nemo consectetur
-      saepe quae, consequatur aliquam provident vel possimus. Sapiente animi est
-      voluptatum eaque laudantium voluptate, facilis temporibus soluta dicta,
-      nulla laboriosam ad pariatur adipisci?
-    </>
+    <main
+      className={` mt-3 ${
+        theme ? "bg-[#1b1d21] text-[#ffff]" : "bg-[#f0f2f5]  text-[#000000]"
+      }`}
+    >
+      {isLoading ? (
+        <section className={`py-10 ${theme ? " bg-black" : "bg-white"}`}>
+          <div className="flex items-center justify-center gap-2 py-5">
+            <RotatingLines
+              strokeColor="grey"
+              strokeWidth="5"
+              animationDuration="0.75"
+              width="50"
+              visible={true}
+            />
+            <p className="text-lg">Loading Repost Data...</p>
+          </div>
+        </section>
+      ) : (
+        <section>
+          {LikedDataByTime.length === 0 ? (
+            <div className={` pt-10 pb-28 ${theme ? " bg-black" : "bg-white"}`}>
+              <LikedPostNotAvailble />
+            </div>
+          ) : (
+            <ViewLikedPost
+              SuggestData={SuggestData}
+              LikedDataByTime={LikedDataByTime}
+            />
+          )}
+        </section>
+      )}
+    </main>
   );
 }
