@@ -131,7 +131,7 @@ export default function ProfileSides({ handleBodyClick, SuggestData }: Props) {
       <section onClick={handleBodyClick}>
         {clicked.Post && <Posts SuggestData={SuggestData} />}
         {clicked.rePost && <RePost SuggestData={SuggestData} />}
-        {clicked.liked && <Liked />}
+        {clicked.liked && <Liked SuggestData={SuggestData} />}
         {clicked.impression && <Impressions />}
       </section>
     </section>

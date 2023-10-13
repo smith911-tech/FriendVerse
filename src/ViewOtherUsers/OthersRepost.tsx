@@ -43,15 +43,21 @@ export default function OtherRepost({ SuggestData, data }: Props) {
     };
   }, []);
   useEffect(() => {
-    const combined = repostData.map((repost) => {
-      const originalPost = Posts.find((post) => post.id === repost.PostId);
-      return {
-        ...repost,
-        ...originalPost,
-      };
-    });
+    const combined = repostData
+      .filter((repost) => {
+        const originalPost = Posts.find((post) => post.id === repost.PostId);
+        return originalPost; // Only include reposts with matching posts
+      })
+      .map((repost) => {
+        const originalPost = Posts.find((post) => post.id === repost.PostId);
+        return {
+          ...repost,
+          ...originalPost,
+        };
+      });
     setRePostedData(combined);
   }, [repostData, Posts]);
+
 
   const RePostDataByTime = repostedData.sort(
     (a, b) => b.timeReposted - a.timeReposted

@@ -38,7 +38,7 @@ export default function Likebutton({ post, likes }: Props) {
       const LikeDocRef = doc(db, "users", userid as string, "Liked", post.id);
       await setDoc(LikeDocRef, {
         Liked: post.id,
-        time: new Date(),
+        timeLiked: new Date(),
       });
     } catch (error) {
       console.error("Error Liked:", error);
