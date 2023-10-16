@@ -123,6 +123,7 @@ export default function Signup() {
       });
   };
 
+
   return (
     <main className="bg-[#1B1D21] h-[120vh] px-[29px] py-[61px] relative text-white w-full">
       <section className="bg-[black]  px-4 pb-28 sm500:w-[450px] block mx-auto my-0 md734:w-[680px] md734:pb-36 relative changePageanimation">
