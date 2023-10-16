@@ -128,7 +128,7 @@ export default function OtherUsersSlidesbtn({ data, SuggestData }: Props) {
       <section>
         {clicked.post && <Post data={data} />}
         {clicked.repost && <Repost data={data} SuggestData={SuggestData} />}
-        {clicked.liked && <Liked />}
+        {clicked.liked && <Liked data={data} SuggestData={SuggestData} />}
         {clicked.impression && <Impressions />}
       </section>
     </section>
