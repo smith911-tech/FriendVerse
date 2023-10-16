@@ -76,7 +76,7 @@ useEffect(() => {
               width="50"
               visible={true}
             />
-            <p className="text-lg">Loading Repost Data...</p>
+            <p className="text-lg">Loading Liked Data...</p>
           </div>
         </section>
       ) : (

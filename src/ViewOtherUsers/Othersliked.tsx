@@ -1,49 +1,105 @@
-export default function Othersliked() {
+interface Props{
+  data: any
+  SuggestData: any
+}
+import { useThemeStore } from "../Zustand";
+import { collection, onSnapshot } from "firebase/firestore";
+import { db } from "../firebase-config";
+import { useState, useEffect } from "react";
+import { RotatingLines } from "react-loader-spinner";
+import LikedPostNotAvailble from "../GeneralComponent/LikedPostNotAvailable";
+import ViewOtherLikedPost from "./ViewOther-slides-details/ViewOtherLikedPost";
+export default function Othersliked({data, SuggestData}: Props) {
+    const theme = useThemeStore((state: any) => state.theme);
+    const userId = data && data.id
+      const [likedData, setLikedData] = useState<any[]>([]);
+      const [postData, setPostData] = useState<any[]>([]);
+      const [arrangedData, setArrangedData] = useState<any[]>([]);
+      const [isLoading, setIsLoading] = useState<boolean>(true);
+    useEffect(() => {
+      const handleGetPost = (snapshot: any) => {
+        const data = snapshot.docs.map((doc: any) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+        setLikedData(data);
+        setIsLoading(false);
+      };
+
+      const unsubscribeLiked = onSnapshot(
+        collection(db, "users", userId as string, "Liked"),
+        handleGetPost
+      );
+
+      const handleGetPostData = (snapshot: any) => {
+        const data = snapshot.docs.map((doc: any) => ({
+          ...doc.data(),
+          id: doc.id,
+        })); // Filter Posts by userid
+        setPostData(data);
+        setIsLoading(false);
+      };
+
+      const unsubscribePostData = onSnapshot(
+        collection(db, "posts"),
+        handleGetPostData
+      );
+
+      return () => {
+        unsubscribeLiked();
+        unsubscribePostData();
+      };
+    }, []);
+      useEffect(() => {
+        const combined = likedData
+          .filter((repost) => {
+            const originalPost = postData.find((post) => post.id === repost.id);
+            return originalPost; // Only include reposts with matching posts
+          })
+          .map((repost) => {
+            const originalPost = postData.find((post) => post.id === repost.id);
+            return {
+              ...repost,
+              ...originalPost,
+            };
+          });
+
+        setArrangedData(combined);
+      }, [likedData, postData]);
+      const LikedDataByTime = arrangedData.sort((a, b) => b.timeLiked - a.timeLiked);
   return (
-    <>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro magni quis
-      ad doloribus velit corrupti asperiores vero dolor voluptate expedita
-      aliquid reiciendis facilis natus perspiciatis voluptates iusto beatae,
-      assumenda dolore, dignissimos ex animi minima facere. Alias, optio! Quos
-      inventore praesentium ipsa ipsam itaque magni commodi necessitatibus,
-      eaque sunt vel ea debitis enim rerum, iste alias sapiente aliquid sequi.
-      Ipsa suscipit, quibusdam reiciendis sapiente modi porro. Beatae in
-      repellat libero, pariatur labore, eum ipsa a ducimus aliquid, commodi
-      earum eveniet minus placeat deserunt. Eveniet cupiditate debitis officiis
-      voluptatem, maxime voluptatibus earum eligendi necessitatibus maiores
-      sunt. Libero necessitatibus dolor molestias incidunt sint nisi odio
-      tempora unde voluptates inventore repudiandae facere optio repellat
-      sapiente sunt laudantium, ad modi eum ut perferendis temporibus at.
-      Maiores, repudiandae quisquam cupiditate recusandae eaque, voluptas
-      perspiciatis vero ad distinctio dolore culpa reprehenderit ducimus aliquid
-      ex facilis assumenda quos, ut pariatur porro delectus unde omnis tempore
-      vitae! Nihil autem, labore magni voluptatem eligendi, earum voluptas
-      cumque enim reiciendis, molestiae corporis ab veritatis commodi tempora
-      corrupti nemo! Quaerat commodi quia ad. Sed quo amet incidunt
-      perspiciatis. Consequuntur, nisi error sint illum aut quas totam similique
-      quia corporis? Perspiciatis neque ut repellat quisquam, eius tenetur dolor
-      repellendus laudantium quis cum eum molestiae dolorem tempore quo.
-      Voluptate, fugiat qui eius dolorem laborum reiciendis commodi laboriosam
-      fugit? Facilis maxime ipsum voluptas placeat delectus laborum possimus
-      neque dolorem natus architecto molestiae, voluptatum, commodi sed. Alias,
-      corporis id voluptate ipsa repellendus eveniet quam odit non blanditiis
-      illum quasi vitae excepturi facere illo tempora harum quis, animi commodi?
-      Eaque dolorum pariatur harum cumque magnam possimus deserunt aliquam
-      obcaecati quod reiciendis ratione dignissimos aspernatur enim cupiditate
-      porro temporibus, architecto, perferendis dolore sapiente minus cum
-      accusamus ut vitae quam. Ea ipsa eos culpa voluptatibus delectus quod
-      obcaecati error voluptas facere earum illum veritatis mollitia tempore,
-      aliquid iste, explicabo ad voluptate vitae id. Et ducimus animi veniam
-      ipsam necessitatibus doloremque, laborum, illum sunt ratione quo aliquam,
-      a ea dicta doloribus tempore accusamus commodi qui nemo impedit assumenda
-      delectus aperiam. Labore assumenda vero similique rerum, enim molestias
-      veritatis? Soluta dicta iusto eveniet corrupti ea, earum laborum
-      distinctio, facere atque iure quisquam. Culpa quas est quia officia ullam,
-      pariatur amet voluptatum magnam suscipit facere dolores eius deserunt
-      adipisci consectetur numquam laborum ea quod voluptates, voluptatem neque
-      similique voluptas expedita exercitationem aut. Cupiditate aspernatur
-      autem dolorem obcaecati officia blanditiis minus porro accusamus eveniet
-      ut. Ea enim tempora dignissimos iste ratione. Exercitationem, quia!
-    </>
+    <main
+      className={` mt-3 ${
+        theme ? "bg-[#1b1d21] text-[#ffff]" : "bg-[#f0f2f5]  text-[#000000]"
+      }`}
+    >
+      {isLoading ? (
+        <section className={`py-10 ${theme ? " bg-black" : "bg-white"}`}>
+          <div className="flex items-center justify-center gap-2 py-5">
+            <RotatingLines
+              strokeColor="grey"
+              strokeWidth="5"
+              animationDuration="0.75"
+              width="50"
+              visible={true}
+            />
+            <p className="text-lg">Loading Liked Data...</p>
+          </div>
+        </section>
+      ) : (
+        <section>
+          {LikedDataByTime.length === 0 ? (
+            <div className={` pt-10 pb-28 ${theme ? " bg-black" : "bg-white"}`}>
+              <LikedPostNotAvailble />
+            </div>
+          ) : (
+            <ViewOtherLikedPost
+              SuggestData={SuggestData}
+              LikedDataByTime={LikedDataByTime}
+            />
+          )}
+        </section>
+      )}
+    </main>
   );
 }

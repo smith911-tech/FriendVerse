@@ -26,3 +26,7 @@ const db = getFirestore(app)
 const storage = getStorage(app)
 
 export{app, auth, db, storage}
+
+
+//Mailchimp key
+// 4af489558f6f0d3aecd63e0cb0234dd0-us8
