@@ -62,12 +62,7 @@ export default function Likebutton({ post, likes }: Props) {
   return (
     <button
       onClick={isLiked ? handleUnLiked : handleLike}
-      className={`flex mt-1 w-[33%] justify-center py-[7px] rounded gap-1 outline-none
-                    ${
-                      theme
-                        ? "text-white hover:bg-[#ffffff3c]"
-                        : "text-black hover:bg-[#0000004f]"
-                    }`}
+      className={`flex mt-1 w-[33%] justify-center py-[7px] rounded gap-1 outline-none ${theme  ? "text-white hover:bg-[#ffffff3c]" : "text-black hover:bg-[#0000004f]"}`}
     >
       <span
         className={`text-2xl  ${
