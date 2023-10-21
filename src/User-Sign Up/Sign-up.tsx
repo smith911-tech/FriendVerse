@@ -31,6 +31,10 @@ export default function Signup() {
     const emailPattern: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailPattern.test(email);
   };
+    const isTempmail = (email: string): boolean => {
+      const emailPattern: RegExp = /^(?!.*@(gmail\.com|outlook\.com|yahoo\.com|protonmail\.com|icloud\.com|aol\.com|zoho\.com|gmx\.com|mail\.com|yandex\.com)).*$/;
+      return emailPattern.test(email);
+    };
 
   // ! Submit preloader state
   const [loader, setLoader] = useState<boolean>(false);
@@ -43,12 +47,19 @@ export default function Signup() {
   const handleNextSection = () => {
     switch (section) {
       case 1:
-        if (fullName !== "" && password.length > 7 && isValidEmail(email)) {
+        if (
+          fullName !== "" &&
+          password.length > 7 &&
+          isValidEmail(email) &&
+          !isTempmail(email)
+        ) {
           setSection(section + 1);
         } else if (fullName === "" || email === "" || !isValidEmail(email)) {
           setError("Please fill in all input");
         } else if (password.length < 7) {
           setError("Password must be at least 7 characters long");
+        } else if (isTempmail(email)) {
+          setError("Temp cannot be used");
         }
         break;
       case 2:
