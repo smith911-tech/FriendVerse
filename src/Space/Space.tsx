@@ -6,7 +6,7 @@ import Header from "../GeneralComponent/Header";
 import ButtomNav from "../GeneralComponent/ButtomNav";
 import { collection, doc, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase-config";
-import VideoSection from "./VideoSection";
+import SpaceSection from "./SpaceSection";
 import { useThemeStore } from "../Zustand";
 
 export default function VideoContent() {
@@ -14,7 +14,7 @@ export default function VideoContent() {
   let userid = sessionStorage.getItem("UserId");
   useEffect(() => {
     if (userid) {
-      navigate("/VideoContent");
+      navigate("/SpaceVerse");
     } else if (!userid) {
       navigate("/");
     }
@@ -113,7 +113,7 @@ export default function VideoContent() {
           <Leftsidebar userData={userData} SuggestData={SuggestData} />
         </section>
         <section className=" w-[95%] mt-4 rounded-2xl  md800:w-[60%] sm650:w-[100%] smm500:mt-0 min-h-screen">
-          <VideoSection />
+          <SpaceSection />
         </section>
         <section
           onClick={handleBodyClick}

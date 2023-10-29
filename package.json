@@ -33,6 +33,7 @@
     "react-textarea-autosize": "^8.5.3",
     "slick-carousel": "^1.8.1",
     "styled-components": "^6.0.7",
+    "webrtc-adapter": "^8.2.3",
     "zustand": "^4.4.0"
   },
   "devDependencies": {

@@ -1,6 +1,6 @@
 import { AiOutlineHome } from "react-icons/ai";
 import { IoNotificationsOutline } from "react-icons/io5";
-import { MdOutlineOndemandVideo } from "react-icons/md";
+import { FaMicrophoneLines } from "react-icons/fa6";
 import { LuUsers } from "react-icons/lu";
 import { AiOutlineMail } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
@@ -28,11 +28,11 @@ export default function ButtomNav() {
         </div>
         <NavLink to="/FriendRequest" className="UnderHomeNav"></NavLink>
       </NavLink>
-      <NavLink className="ActiveLink" to="/VideoContent">
+      <NavLink className="ActiveLink" to="/SpaceVerse">
         <div className=" text-3xl cursor-pointer">
-          <MdOutlineOndemandVideo />
+          <FaMicrophoneLines />
         </div>
-        <NavLink to="/VideoContent" className="UnderHomeNav"></NavLink>
+        <NavLink to="/SpaceVerse" className="UnderHomeNav"></NavLink>
       </NavLink>
 
       <NavLink className="ActiveLink" to="/Message">

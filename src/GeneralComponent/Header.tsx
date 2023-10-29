@@ -7,7 +7,7 @@ import { AiOutlineHome, AiOutlineMail, AiOutlineSearch } from "react-icons/ai";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { LuUsers } from "react-icons/lu";
 import { BiSolidUserCircle } from "react-icons/bi";
-import { MdOutlineOndemandVideo } from "react-icons/md";
+import { FaMicrophoneLines } from "react-icons/fa6";
 import { Link, NavLink } from "react-router-dom";
 import { Popover } from "@headlessui/react";
 import HeaderSearch from "./HeaderSearch";
@@ -76,11 +76,11 @@ export default function Header({ userData, SuggestData }: Props) {
           <NavLink to="/FriendRequest" className="UnderHomeNav"></NavLink>
         </NavLink>
 
-        <NavLink className="ActiveLink" to="/VideoContent">
+        <NavLink className="ActiveLink" to="/SpaceVerse">
           <div className="text-3xl cursor-pointer">
-            <MdOutlineOndemandVideo />
+            <FaMicrophoneLines />
           </div>
-          <NavLink to="/VideoContent" className="UnderHomeNav"></NavLink>
+          <NavLink to="/SpaceVerse" className="UnderHomeNav"></NavLink>
         </NavLink>
 
         <NavLink className="ActiveLink" to="/Message">
