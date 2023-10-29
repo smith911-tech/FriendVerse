@@ -8,7 +8,7 @@ import Privacy from "./Privacy/Privacy";
 import Cookie from "./Cookie/Cookie";
 import Profile from "./UserPersonalProfile/Profile";
 import FriendRequest from "./Friend Request Comp/FriendRequest";
-import VideoContent from "./Videos/Videos";
+import Space from './Space/Space'
 import MessageComp from "./Message/Messagecomp";
 import NotificationComp from "./Notification/Notification";
 import ViewOtherUsers from "./ViewOtherUsers/Viewotherusers";
@@ -31,7 +31,7 @@ export {
   Cookie,
   Profile,
   FriendRequest,
-  VideoContent,
+  Space,
   MessageComp,
   NotificationComp,
   ViewOtherUsers,

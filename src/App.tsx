@@ -12,7 +12,7 @@ import {
   Cookie,
   Profile,
   FriendRequest,
-  VideoContent,
+  Space,
   MessageComp,
   NotificationComp,
   ViewOtherUsers,
@@ -68,7 +68,7 @@ function App() {
             <Route path="/FriendRequest" element={<FriendRequest />} />
 
             {/* Videos */}
-            <Route path="/VideoContent" element={<VideoContent />} />
+            <Route path="/SpaceVerse" element={<Space />} />
 
             {/* Message page */}
             <Route path="/Message" element={<MessageComp />} />
