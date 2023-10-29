@@ -9,7 +9,7 @@ import { db } from "../firebase-config";
 import SpaceSection from "./SpaceSection";
 import { useThemeStore } from "../Zustand";
 
-export default function VideoContent() {
+export default function Space() {
   const navigate = useNavigate();
   let userid = sessionStorage.getItem("UserId");
   useEffect(() => {
