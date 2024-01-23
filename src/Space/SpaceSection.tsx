@@ -1,24 +1,24 @@
 import UnderConstruction from "../GeneralComponent/UnderConstruction";
 import { useThemeStore } from "../Zustand";
-import { BsFillMicFill } from "react-icons/bs";
-import {AiOutlinePlus} from 'react-icons/ai'
-import { useState } from "react";
-import CreateSpace from "./CreateSpaceModal";
+// import { BsFillMicFill } from "react-icons/bs";
+// import {AiOutlinePlus} from 'react-icons/ai'
+// import { useState } from "react";
+// import CreateSpace from "./CreateSpaceModal";
 
 export default function SpaceSection() {
   const theme = useThemeStore((state: any) => state.theme);
-     const [showPopUp, setShowPopUp] = useState(false);
-     const [isMinimizing, setIsMinimizing] = useState(false);
-     const handleOpen = () => {
-       setShowPopUp(true);
-     }
-     const handleClose = () => {
-       setIsMinimizing(true);
-       setTimeout(() => {
-         setShowPopUp(false);
-         setIsMinimizing(false);
-       }, 500);
-     };
+    //  const [showPopUp, setShowPopUp] = useState(false);
+    //  const [isMinimizing, setIsMinimizing] = useState(false);
+    //  const handleOpen = () => {
+    //    setShowPopUp(true);
+    //  }
+    //  const handleClose = () => {
+    //    setIsMinimizing(true);
+    //    setTimeout(() => {
+    //      setShowPopUp(false);
+    //      setIsMinimizing(false);
+    //    }, 500);
+    //  };
   return (
     <main
       className={` ${
@@ -31,7 +31,7 @@ export default function SpaceSection() {
         }`}
       >
         <UnderConstruction />
-        <button
+        {/* <button
           onClick={handleOpen}
           className="fixed bottom-8 lg1150:right-[25%] md970:right-[13%] md800:right-[22%] sm500:right-[10%] smm500:right-[10%] sm650:bottom-24 z-50 text-2xl bg-[#3b82f6] p-3 rounded-full cursor-pointer text-white"
         >
@@ -45,7 +45,7 @@ export default function SpaceSection() {
               isMinimizing={isMinimizing}
             />
           )}
-        </section>
+        </section> */}
       </div>
     </main>
   );
